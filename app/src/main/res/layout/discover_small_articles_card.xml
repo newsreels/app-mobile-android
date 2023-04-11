@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transformationLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:background="@drawable/discover_card_shape"
+    android:elevation="@dimen/_13sdp" >
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/muli_semi_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.07"
+            android:textAllCaps="true"
+            android:textColor="@color/discover_card_grey_text"
+            android:textSize="@dimen/_7sdp"
+            tools:text="Small article" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:textAllCaps="false"
+            android:textColor="@color/discover_card_title"
+            android:textSize="@dimen/_22sdp"
+            tools:text="this is dummy text" />
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</LinearLayout>

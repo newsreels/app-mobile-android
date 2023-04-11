@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".activities.CommentsActivity">
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/_2sdp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/ca_img_left_arrow"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/ca_img_left_arrow"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/comments"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ca_img_left_arrow"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/_12sdp"
+                android:src="@drawable/ic_back_arrow"
+                android:tint="@color/black" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomBar"
+        android:layout_below="@+id/card"
+        android:paddingTop="@dimen/_16sdp"
+        tools:listitem="@layout/comment_item" />
+
+    <RelativeLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"
+            android:background="@color/comment_time_reply" />
+
+        <LinearLayout
+            android:id="@+id/emojiContainer"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:orientation="horizontal"
+            android:weightSum="8">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgHeart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_heart_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgHands"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_hands_up" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgFire"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_fire_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/clapImage"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_clap_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgSad"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_sad_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgSmiley"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_inlove_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgShock"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_shock_emoji" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/img_laugh"
+                android:layout_width="0dp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:paddingVertical="@dimen/_5sdp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_laugh_emoji" />
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:src="@drawable/ic_placeholder_user"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@id/emojiContainer"
+            android:layout_marginHorizontal="@dimen/_11sdp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:layout_toEndOf="@+id/image"
+            android:background="@drawable/normal_edittext_theme">
+
+            <EditText
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/send"
+                android:background="@null"
+                android:fontFamily="@font/muli_regular"
+                android:hint="@string/write_a_comment"
+                android:includeFontPadding="false"
+                android:textColor="@color/comment_name"
+                android:textColorHint="@color/edittextHint"
+                android:textSize="@dimen/_12sdp" />
+
+            <ImageView
+                android:id="@+id/camera"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignEnd="@+id/msg"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_camera_light"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_send_new" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/progress" />
+
+</RelativeLayout>

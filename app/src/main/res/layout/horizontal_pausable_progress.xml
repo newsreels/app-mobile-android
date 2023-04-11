@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bullet"
+    android:layout_width="@dimen/progress_bar_height"
+    android:rotation="@integer/locale_mirror_flip"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/back_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bullet_selector_2" />
+
+    <View
+        android:id="@+id/front_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bullet_selector"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/max_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bullet_selector"
+        android:visibility="gone" />
+
+
+</FrameLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<!--    <include layout="@layout/feed_seperator_line" />-->
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rootCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/discover_card_bg"
+        app:cardCornerRadius="0dp">
+
+        <RelativeLayout
+            android:id="@+id/ad_mob"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_adplaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+<!--    <include layout="@layout/feed_seperator_line" />-->
+
+</LinearLayout>

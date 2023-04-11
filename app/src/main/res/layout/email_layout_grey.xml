@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_50sdp">
+
+    <RelativeLayout
+        android:layout_width="@dimen/_17sdp"
+        android:layout_height="@dimen/_17sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_3sdp">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_email_grey" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/gradient_progress"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:backgroundTint="@color/primaryRed"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textDirection="locale"
+        android:paddingStart="@dimen/_35sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:textAllCaps="false"
+        android:textColorHint="@color/textSmallGrey"
+        android:fontFamily="@font/muli_semi_bold"
+        android:textColor="@color/splash_text"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_14sdp" />
+
+</RelativeLayout>

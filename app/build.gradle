@@ -1,0 +1,305 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+//apply plugin: 'com.google.protobuf'
+
+
+android {
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file('app/keystore/bullets')
+            storePassword 'NiBZiro54321!'
+            keyAlias 'newsinbullets'
+            keyPassword 'NiBZiro12345!'
+        }
+        staging {
+            storeFile rootProject.file('app/keystore/staging/Untitled')
+            storePassword 'abcde123'
+            keyAlias 'newsinbullets'
+            keyPassword 'abcde123'
+        }
+        debug {
+            storeFile rootProject.file('app/keystore/bullets')
+            storePassword 'NiBZiro54321!'
+            keyAlias 'newsinbullets'
+            keyPassword 'NiBZiro12345!'
+        }
+    }
+    flavorDimensions "default"
+
+    compileSdkVersion 33
+//    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "app.newsinbullets"
+        minSdkVersion 21
+        targetSdkVersion 33
+//        versionCode 88
+//        versionName "2.4.7"
+        versionCode 99
+        versionName "9.8.7"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        setProperty("archivesBaseName", "Newsreel" + "-v" + versionCode + "(" + versionName + ")")
+        signingConfig signingConfigs.release
+//        ndk {
+//            abiFilters "armeabi-v7a", "x86"
+//        }
+    }
+
+    buildTypes {
+        release {
+//            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        staging {
+//            buildConfigField "String", 'BASE_URL', '"https://api.staging.bullets.app/test/"'
+            buildConfigField "String", 'BASE_URL', '"https://api.dev.bullets.app/"'
+            buildConfigField "String", 'AUTH_CLIENT_ID', '"YiVGPipYhfY7jb6"'
+            buildConfigField "String", 'AUTH_CLIENT_SECRET', '"Dh3JlIyL3BkA3No9JKx2ZpAGfMmrfc"'
+
+//            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.dev.bullets.app/"'
+//            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.dev.bullets.app/oauth/token"'
+
+            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.staging.bullets.app/"'
+            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.staging.bullets.app/oauth/token"'
+            buildConfigField "String", 'CRYPTO_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/crypto/tickers"'
+            buildConfigField "String", 'FOREX_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/forex/tickers"'
+            buildConfigField "String", 'POLYGON_TOKEN', '"Bearer IZm7ZaTdCOkEBpeGx0IPKjp3nfL6CjV9"'
+            buildConfigField "String", 'WEATHER_API_TOKEN', '"93a47871d1284877b7e112904221406"'
+            buildConfigField "String", 'WEATHER_URL', '"https://api.weatherapi.com/v1/forecast.json"'
+            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"709274277066-qp23852lug78mhknsd5al43uij9gf64l.apps.googleusercontent.com"'
+            buildConfigField "String", 'One_Signal', '"5ca68357-0d2e-4c8c-af93-a04403ee9cb9"'
+            buildConfigField "String", 'API_VERSION', '"v6"'
+//            buildConfigField "String", 'API_VERSION', '"v4"'
+            buildConfigField "String", 'HelpUrl', '"https://www.rideziro.com/terms"'
+            buildConfigField "String", 'FLAVR', '"staging"'
+//            buildConfigField "String", 'CHARTBOOST_APPID', '"6110f38f6a729e0783b72f7e"'
+//            buildConfigField "String", 'CHARTBOOST_SIGNATURE', '"fda0b02bffcee5de532feb4a68856e7b12a3092e"'
+            signingConfig signingConfigs.staging
+        }
+        production {
+            buildConfigField "String", 'BASE_URL', '"https://api.bullets.app/"'
+//            buildConfigField "String", 'BASE_URL', '"https://api.india.bullets.app"'
+            buildConfigField "String", 'AUTH_CLIENT_ID', '"zvrRTNKY0An6YuC"'
+            buildConfigField "String", 'AUTH_CLIENT_SECRET', '"v8BV52pOl8HdWGSuGWoNdnJzP4U4vr"'
+            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.bullets.app/"'
+//            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.india.bullets.app"'
+            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.bullets.app/oauth/token"'
+//            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.india.bullets.app/oauth/token"'
+            buildConfigField "String", 'CRYPTO_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/crypto/tickers"'
+            buildConfigField "String", 'FOREX_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/forex/tickers"'
+            buildConfigField "String", 'POLYGON_TOKEN', '"Bearer IZm7ZaTdCOkEBpeGx0IPKjp3nfL6CjV9"'
+            buildConfigField "String", 'WEATHER_API_TOKEN', '"93a47871d1284877b7e112904221406"'
+            buildConfigField "String", 'WEATHER_URL', '"https://api.weatherapi.com/v1/forecast.json"'
+            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"883200977297-e3a0pgh8642ucv2htiniqr2dlpshei8l.apps.googleusercontent.com"'
+            buildConfigField "String", 'One_Signal', '"5ca68357-0d2e-4c8c-af93-a04403ee9cb9"'
+            buildConfigField "String", 'API_VERSION', '"v6"'
+            buildConfigField "String", 'HelpUrl', '"https://www.rideziro.com/terms"'
+            buildConfigField "String", 'FLAVR', '"production"'
+            signingConfig signingConfigs.debug
+//            buildConfigField "String", 'CHARTBOOST_APPID', '"6110f38f6a729e0783b72f7e"'
+//            buildConfigField "String", 'CHARTBOOST_SIGNATURE', '"fda0b02bffcee5de532feb4a68856e7b12a3092e"'
+        }
+    }
+}
+
+dependencies {
+//    implementation project(path: ':bubblenavigation')
+//    implementation project(":player-lib")
+    implementation 'androidx.appcompat:appcompat:1.3.0-beta01'
+    implementation "androidx.activity:activity-ktx:1.2.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.4.0'
+
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    // Add the Firebase Crashlytics SDK.
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
+    implementation 'com.google.firebase:firebase-perf:20.2.0'
+    implementation "androidx.browser:browser:1.3.0"
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.facebook.android:facebook-login:15.0.0'
+    implementation "androidx.tonyodev.fetch2:xfetch2:3.1.5"
+
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    implementation 'com.github.florent37:shapeofview:1.3.2'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // SDP DIMENSIONS
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:4.2.2"
+    // JSON Converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //Image Loader
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.11.0") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
+
+    // Facebook shimmer effect dependency
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation 'com.github.2coffees1team:GlideToVectorYou:v2.0.0'
+    implementation 'com.pixplicity.sharp:library:1.1.0@aar'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.sdsmdg.harjot:vectormaster:1.1.3'
+//    implementation 'com.facebook.stetho:stetho:1.5.1'
+//    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+//    implementation 'com.facebook.stetho:stetho-okhttp:1.5.1'
+//    implementation 'com.facebook.stetho:stetho-urlconnection:1.5.1'
+
+    //PageIndicator
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
+    implementation 'com.google.android.play:core:1.8.3'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+    implementation 'com.appsflyer:af-android-sdk:6.0.0'
+    implementation 'com.android.installreferrer:installreferrer:2.2'
+
+    implementation 'com.facebook.device.yearclass:yearclass:2.1.0'
+//    implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+
+    implementation 'com.github.rubensousa:gravitysnaphelper:2.2.1'
+    implementation "com.andkulikov:transitionseverywhere:1.8.1"
+    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation 'com.danikula:videocache:2.7.1'
+
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.0'
+
+//    implementation 'com.google.android.exoplayer:exoplayer-dash:2.12.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:2.12.0'
+
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6' // <-- this should be 2.8.4
+//    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.3'
+//    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.3'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:2.12.0'
+    implementation "im.ene.toro3:toro:3.7.0.2010003"
+    implementation "im.ene.toro3:toro-ext-exoplayer:3.7.0.2010003"
+    implementation "com.google.android.exoplayer:exoplayer:2.10.4"
+//    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.0'
+//    implementation "com.google.android.exoplayer:exoplayer:2.15.0"
+
+    // event bus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+    implementation 'com.google.firebase:firebase-dynamic-links:21.1.0'
+    implementation 'com.google.firebase:firebase-analytics:21.2.0'
+
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation("com.squareup.moshi:moshi:1.12.0")
+
+    //Skeleton loading
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation 'rongi.rotate-layout:rotate-layout:3.0.0'
+
+    implementation 'com.nex3z:flow-layout:1.3.3'
+    implementation project(path: ':ucrop')
+    api 'com.otaliastudios:transcoder:0.9.1'
+
+    implementation 'com.facebook.android:audience-network-sdk:6.7.0'
+    implementation 'com.aghajari.zoomhelper:ZoomHelper:1.0.1'
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+
+    //Epoxy
+    implementation "com.airbnb.android:epoxy:4.6.3"
+    kapt "com.airbnb.android:epoxy-processor:4.6.3"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.21"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+
+    //ReactiveNetwork
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.8'
+
+//    Onesignal
+//    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+    implementation 'com.onesignal:OneSignal:4.8.3'
+
+    //PR Downloader
+    implementation 'com.mindorks.android:prdownloader:0.6.0'
+
+    //Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
+    //Localization
+    implementation 'com.akexorcist:localization:1.2.10'
+
+    implementation 'androidx.work:work-runtime:2.7.1'
+
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+
+}

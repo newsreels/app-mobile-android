@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ziro.bullet">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <application
+        android:name=".BulletApp"
+        android:extractNativeLibs="true"
+        android:fullBackupContent="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:fullBackupContent">
+        <activity
+            android:name=".activities.logs.DebugLogsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PlacesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.TermsPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HelpFeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AccSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PersonalInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PostSettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.YoutubeFullScreenActivity"
+            android:exported="true"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".activities.explorefeed.ExploreFeedActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.intro.EnableNotificationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.onboarding.OnboardingDetailsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.onboarding.OnBoardingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FullScreenVideoActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".activities.VideoPreviewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.changereels.ChangeReelsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FollowersActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.WalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChannelDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChannelDescriptionEditActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.LoginPopupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ModeratorToolsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChannelPhotoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProfileImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Channel.PostToChannelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Channel.CreateChannelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Channel.ChannelImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Channel.ChannelDescriptionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.Channel.ChannelNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AuthorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/no_status_bar" />
+        <activity
+            android:name=".activities.PostArticleReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AddBulletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AddTagActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AddPostPlaceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FontSizeActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name=".utills.GenericFileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2352871460867862~2661516303" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification_icon" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsCollectionEnabled}" />
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
+            android:value="false" />
+
+        <!--        <service-->
+        <!--            android:name=".notification.PushReceiverService"-->
+        <!--            android:exported="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </service>-->
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".activities.ReelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragments.test.ReelInnerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CustomDiscoverListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ReplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CommentsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.DataSaverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BulletDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SavedPostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChannelPostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.OtherSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HelpAndFeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PersonalizationActivity"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/no_status_bar" />
+        <activity
+            android:name=".activities.VideoFullScreenActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".activities.EditionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LanguageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.PostArticleActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SuggestionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ForceUpdateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".onboarding.ui.WelcomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ContactUsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LegalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PushNotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragments.discoverdetail.weather.WeatherActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fragments.searchNew.sportsdetail.SportsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BlockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SourcesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChangeAccountInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.DarkLightModeActivity"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.OTPVerificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.ProfileNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FirstActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.TopicsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.CenterAnimation">
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.newsinbullets.app"
+                    android:scheme="https" />
+
+                <data
+                    android:host="view.newsreels.app"
+                    android:scheme="https" />
+                <data
+                    android:host="view.newsreels.app"
+                    android:scheme="http" />
+                <data
+                    android:host="m.bullets.app"
+                    android:scheme="https" />
+                <data
+                    android:host="newsin.bullets.app"
+                    android:scheme="https" />
+<!--                <data-->
+<!--                    android:host="getreel.onelink.me"-->
+<!--                    android:pathPrefix="/xU9P"-->
+<!--                    android:scheme="https" />-->
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--        <activity-->
+        <!--            android:name=".activities.DeepLinkSplashActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:screenOrientation="portrait"-->
+        <!--            android:theme="@style/AppTheme.CenterAnimation">-->
+        <!--            <intent-filter android:autoVerify="true">-->
+        <!--                <action android:name="android.intent.action.VIEW" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+        <!--                <data-->
+        <!--                    android:host="newsreels.app"-->
+        <!--                    android:scheme="https" />-->
+        <!--                <data-->
+        <!--                    android:host="m.bullets.app"-->
+        <!--                    android:scheme="https" />-->
+        <!--                <data-->
+        <!--                    android:host="newsin.bullets.app"-->
+        <!--                    android:scheme="https" />-->
+        <!--                <data-->
+        <!--                    android:host="getreel.onelink.me"-->
+        <!--                    android:pathPrefix="/xU9P"-->
+        <!--                    android:scheme="https" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+        <activity
+            android:name=".activities.MainActivityNew"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.HashTagDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BlinkActivity"
+            android:theme="@style/Theme.Transparent" />
+        <activity android:name=".activities.AudioSettingsActivity" />
+        <activity
+            android:name=".mediapicker.gallery.PictureSelectorInstagramStyleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".mediapicker.gallery.process.InstagramMediaProcessActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".mediapicker.gallery.VideoEditorActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".activities.DraftsListingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ScheduleListingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragments.FollowingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragments.FollowingDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.MyChannelsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ImageEditorActivity"
+            android:screenOrientation="portrait" /> <!-- <activity -->
+        <!-- android:name="com.chartboost.sdk.CBImpressionActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:hardwareAccelerated="true" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" /> -->
+        <!--        <service-->
+        <!--            android:name=".background.VideoProcessorService"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="false" />-->
+
+        <receiver
+            android:name=".widget.CollectionWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ziro.bullet.widget.CollectionWidget.ACTION_AUTO_UPDATE" />
+                <action android:name="com.ziro.bullet.widget.CollectionWidget.LEFT_BUTTON_CLICK" />
+                <action android:name="com.ziro.bullet.widget.CollectionWidget.RIGH_BUTTON_CLICK" />
+                <action android:name="com.ziro.bullet.widget.CollectionWidget.CONTAINER_CLICK" />
+                <action android:name="com.ziro.bullet.widget.CollectionWidget.MORE_CLICK" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/collection_widget_info" />
+        </receiver>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!--        <receiver-->
+        <!--            android:name="com.appsflyer.SingleInstallBroadcastReceiver"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.android.vending.INSTALL_REFERRER" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
+
+<!--        <meta-data-->
+<!--            android:name="com.onesignal.NotificationServiceExtension"-->
+<!--            android:value="com.ziro.bullet.services.OneSignalNotificationServiceExtension" />-->
+
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
+            android:value="true"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+            android:value="true"/>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+    </application>
+
+</manifest>

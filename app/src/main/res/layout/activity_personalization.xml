@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/personalization_layout"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".activities.AccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_62sdp"
+        android:layout_marginTop="@dimen/_15sdp" >
+
+        <RelativeLayout
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?android:selectableItemBackground">
+
+            <ImageView
+                android:rotation="@integer/locale_mirror_flip"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_back_arrow" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/ivBack"
+            android:fontFamily="@font/muli_extra_bold"
+            android:includeFontPadding="false"
+            android:text="@string/personalization"
+            android:textColor="@color/textHeader"
+            android:textSize="@dimen/toolbarTitleTextSize" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/change_theme"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/color_theme_text"
+                style="@style/menu_item_text"
+                android:letterSpacing=".1"
+                android:text="@string/reader_theme"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:background="@drawable/shape_dark"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tab1_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/auto"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lline"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:background="@color/tab_unselected"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tab2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/light"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rline"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:background="@color/tab_unselected"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tab3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/dark"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/haptic_btn"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/haptic_text"
+                android:letterSpacing=".1"
+                android:textSize="@dimen/_11sdp"
+                android:text="@string/haptics"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAllCaps="false"
+                style="@style/menu_item_text" />
+
+            <LinearLayout
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:id="@+id/hapticSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_dark"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/off"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/off_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_semi_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/off"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/on"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/on_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_semi_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/on"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/audio_settings"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/audio_settings_text"
+                android:letterSpacing=".1"
+                android:textSize="@dimen/_11sdp"
+                android:text="@string/audio_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAllCaps="false"
+                style="@style/menu_item_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

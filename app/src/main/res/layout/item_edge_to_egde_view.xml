@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+
+            tools:context=".fragments.BulletDetailFragment">
+            <!--    android:background="@drawable/white_item_bg"-->
+            <RelativeLayout
+                android:id="@+id/post_display_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_250sdp"
+                android:minHeight="@dimen/_250sdp"
+                tools:src="@drawable/img_place_holder">
+
+                <ImageView
+                    android:id="@+id/post_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/img_place_holder" />
+
+                <RelativeLayout
+                    android:id="@+id/banner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:layoutDirection="ltr"
+                    android:translationZ="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:id="@+id/main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_edge_black"
+                        android:gravity="center_vertical"
+                        android:layoutDirection="ltr">
+
+                        <ImageView
+                            android:id="@+id/banner_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/img_place_holder" />
+
+                        <TextView
+                            android:id="@+id/banner_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:fontFamily="@font/manuale_bold"
+                            android:includeFontPadding="false"
+                            android:maxWidth="@dimen/_150sdp"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            tools:text="NEW POST " />
+
+                        <ImageView
+                            android:id="@+id/separator_dot_2"
+                            android:layout_width="@dimen/_3sdp"
+                            android:layout_height="@dimen/_3sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_dot"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/post_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/manuale_medium"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_8sdp"
+                            android:visibility="gone"
+                            tools:text="1 min ago" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/post_display_container"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/manuale_bold"
+                android:gravity="start"
+                android:minHeight="@dimen/_60sdp"
+                android:textColor="@color/colorAccent"
+                android:textDirection="locale"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                tools:text="Miley Cyrus opened up about going through an identity crisis after Hannah Montana, which ran from 2006 until 2011"
+                tools:textSize="@dimen/_14sdp" />
+
+            <LinearLayout
+                android:id="@+id/source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/article_title"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/source_image"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:visibility="visible"
+                    app:riv_border_color="@color/colorPrimaryDark"
+                    app:riv_border_width="0.5dp"
+                    app:riv_corner_radius="@dimen/_30sdp"
+                    app:riv_oval="true"
+                    tools:src="@drawable/img_place_holder" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/source_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:textAllCaps="false"
+                        android:textColor="@color/large_source_name"
+                        android:textSize="@dimen/_8sdp"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="Source name" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:textAllCaps="false"
+                        android:textColor="@color/large_time"
+                        android:textSize="@dimen/_8sdp"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="Source name" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

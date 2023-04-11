@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_view_container"
+    app:shimmer_colored="true"
+    app:shimmer_highlight_color="@color/shimmer_highlight"
+    app:shimmer_base_color="@color/shimmer_base"
+    app:shimmer_highlight_alpha="0"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/top_img_2"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:id="@+id/text_top_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toStartOf="@+id/top_img_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_img_2" />
+
+            <View
+                android:id="@+id/text_bottom_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_2"
+                app:layout_constraintStart_toStartOf="@+id/text_top_2"
+                app:layout_constraintTop_toBottomOf="@+id/text_top_2" />
+
+            <View
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/text_bottom_b_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_2"
+                app:layout_constraintStart_toStartOf="@+id/text_top_2"
+                app:layout_constraintTop_toBottomOf="@+id/text_bottom_2" />
+
+            <View
+                android:id="@+id/username_text_2"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_2"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_2" />
+
+            <View
+                android:id="@+id/user_sub_text_2"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_2"
+                app:layout_constraintTop_toBottomOf="@+id/username_text_2" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_img_2"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@color/skeleton_view_item"
+                app:layout_constraintStart_toStartOf="@+id/text_bottom_2"
+                app:layout_constraintTop_toBottomOf="@+id/top_img_2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_img_2"
+                app:layout_constraintEnd_toEndOf="@+id/top_img_2"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/top_img_3"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:id="@+id/text_top_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toStartOf="@+id/top_img_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_img_3" />
+
+            <View
+                android:id="@+id/text_bottom_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_3"
+                app:layout_constraintStart_toStartOf="@+id/text_top_3"
+                app:layout_constraintTop_toBottomOf="@+id/text_top_3" />
+
+            <View
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/text_bottom_b_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_3"
+                app:layout_constraintStart_toStartOf="@+id/text_top_3"
+                app:layout_constraintTop_toBottomOf="@+id/text_bottom_3" />
+
+            <View
+                android:id="@+id/username_text_3"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_3"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_3" />
+
+            <View
+                android:id="@+id/user_sub_text_3"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_3"
+                app:layout_constraintTop_toBottomOf="@+id/username_text_3" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_img_3"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@color/skeleton_view_item"
+                app:layout_constraintStart_toStartOf="@+id/text_bottom_3"
+                app:layout_constraintTop_toBottomOf="@+id/top_img_3" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_img_3"
+                app:layout_constraintEnd_toEndOf="@+id/top_img_3"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/top_img_4"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:id="@+id/text_top_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toStartOf="@+id/top_img_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_img_4" />
+
+            <View
+                android:id="@+id/text_bottom_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_4"
+                app:layout_constraintStart_toStartOf="@+id/text_top_4"
+                app:layout_constraintTop_toBottomOf="@+id/text_top_4" />
+
+            <View
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/text_bottom_b_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_4"
+                app:layout_constraintStart_toStartOf="@+id/text_top_4"
+                app:layout_constraintTop_toBottomOf="@+id/text_bottom_4" />
+
+            <View
+                android:id="@+id/username_text_4"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_4"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_4" />
+
+            <View
+                android:id="@+id/user_sub_text_4"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_4"
+                app:layout_constraintTop_toBottomOf="@+id/username_text_4" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_img_4"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@color/skeleton_view_item"
+                app:layout_constraintStart_toStartOf="@+id/text_bottom_4"
+                app:layout_constraintTop_toBottomOf="@+id/top_img_4" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_img_4"
+                app:layout_constraintEnd_toEndOf="@+id/top_img_4"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/top_img_5"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:id="@+id/text_top_5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toStartOf="@+id/top_img_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_img_5" />
+
+            <View
+                android:id="@+id/text_bottom_5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_5"
+                app:layout_constraintStart_toStartOf="@+id/text_top_5"
+                app:layout_constraintTop_toBottomOf="@+id/text_top_5" />
+
+            <View
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/text_bottom_b_5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_5"
+                app:layout_constraintStart_toStartOf="@+id/text_top_5"
+                app:layout_constraintTop_toBottomOf="@+id/text_bottom_5" />
+
+            <View
+                android:id="@+id/username_text_5"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_5"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_5" />
+
+            <View
+                android:id="@+id/user_sub_text_5"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_5"
+                app:layout_constraintTop_toBottomOf="@+id/username_text_5" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_img_5"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@color/skeleton_view_item"
+                app:layout_constraintStart_toStartOf="@+id/text_bottom_5"
+                app:layout_constraintTop_toBottomOf="@+id/top_img_5" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_img_5"
+                app:layout_constraintEnd_toEndOf="@+id/top_img_5"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/top_img_6"
+                android:layout_width="100dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:id="@+id/text_top_6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toStartOf="@+id/top_img_6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_img_6" />
+
+            <View
+                android:id="@+id/text_bottom_6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_6"
+                app:layout_constraintStart_toStartOf="@+id/text_top_6"
+                app:layout_constraintTop_toBottomOf="@+id/text_top_6" />
+
+            <View
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/text_bottom_b_6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@+id/text_top_6"
+                app:layout_constraintStart_toStartOf="@+id/text_top_6"
+                app:layout_constraintTop_toBottomOf="@+id/text_bottom_6" />
+
+            <View
+                android:id="@+id/username_text_6"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_6"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_6" />
+
+            <View
+                android:id="@+id/user_sub_text_6"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintStart_toEndOf="@+id/profile_img_6"
+                app:layout_constraintTop_toBottomOf="@+id/username_text_6" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_img_6"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@color/skeleton_view_item"
+                app:layout_constraintStart_toStartOf="@+id/text_bottom_6"
+                app:layout_constraintTop_toBottomOf="@+id/top_img_6" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_img_6"
+                app:layout_constraintEnd_toEndOf="@+id/top_img_6"
+                app:layout_constraintTop_toTopOf="@+id/profile_img_6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

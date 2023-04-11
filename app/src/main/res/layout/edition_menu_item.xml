@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/_3sdp"
+    android:paddingBottom="@dimen/_3sdp"
+    android:paddingStart="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_10sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_menu_edition_item">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edition_icon"
+        android:layout_width="@dimen/_13sdp"
+        android:layout_height="@dimen/_13sdp"
+        android:src="@drawable/img_place_holder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        app:layout_constraintVertical_chainStyle="packed"
+        android:id="@+id/location_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:fontFamily="@font/muli_extra_bold"
+        tools:text="United States"
+        android:textColor="@color/title_bar_title"
+        android:textSize="@dimen/_6sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/language_ed"
+        app:layout_constraintStart_toEndOf="@+id/edition_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textColor="@color/textSubTitleGrey"
+        android:textSize="@dimen/_5sdp"
+        android:id="@+id/language_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="English"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/location_ed"
+        app:layout_constraintTop_toBottomOf="@+id/location_ed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

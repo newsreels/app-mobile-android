@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ProfileArticleFragment">
+
+    <im.ene.toro.widget.Container
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_scrollFlags="scroll|snap">
+
+    </im.ene.toro.widget.Container>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/holder_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_scrollFlags="scroll|snap">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</RelativeLayout>

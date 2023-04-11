@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">api.newsinbullets.app</domain>
+        <domain includeSubdomains="true">auth.staging.newsinbullets.app</domain>
+        <domain includeSubdomains="true">www.rideziro.com</domain>
+        <domain includeSubdomains="true">nib.us.auth0.com</domain>
+        <domain includeSubdomains="true">api.dev.bullets.app/</domain>
+        <domain includeSubdomains="true">account.dev.bullets.app/</domain>
+        <domain includeSubdomains="true">api.staging.bullets.app/</domain>
+        <domain includeSubdomains="true">account.staging.bullets.app/</domain>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

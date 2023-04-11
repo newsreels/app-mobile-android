@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:background="@drawable/category_item_bg">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_suggested_topic_icon"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:background="@drawable/img_grey_bg"
+        android:scaleType="centerCrop"
+        android:src="@drawable/trending_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+    <TextView
+        android:id="@+id/tv_suggested_topics_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_suggested_topic_icon"
+        app:layout_constraintEnd_toStartOf="@id/divider_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/iv_suggested_topic_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_suggested_topic_icon"
+        tools:text="Entertainment" />
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/_2sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toBottomOf="@id/tv_suggested_topics_title"
+        app:layout_constraintEnd_toStartOf="@id/iv_follow_topic"
+        app:layout_constraintTop_toTopOf="@id/tv_suggested_topics_title" />
+
+    <ImageView
+        android:id="@+id/iv_follow_topic"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:src="@drawable/ic_plus_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

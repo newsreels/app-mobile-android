@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorPrimaryDark"
+    android:clickable="true">
+
+
+    <RelativeLayout
+        android:id="@+id/detaillayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:paddingRight="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/leftArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:src="@drawable/ic_arrow_left"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/menu"
+                android:layout_toEndOf="@+id/leftArrow"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="visible"
+                tools:text="Title" />
+
+            <LinearLayout
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgFollow"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:src="@drawable/ic_follow_item"
+                    android:visibility="visible" />
+
+                <ProgressBar
+                    android:id="@+id/followProgress"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/gradient_progress"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/setting"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:rotation="90"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_overflow"
+                    app:tint="#84838b" />
+
+                <ImageView
+                    android:id="@+id/account_settings"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:rotation="90"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_settings"
+                    app:tint="#84838b" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewgray"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_color"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <ViewSwitcher
+            android:id="@+id/main_view_switcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tab_view_switcher">
+
+            <include layout="@layout/skeleton_home_list" />
+
+            <com.ziro.bullet.utills.CustomViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </ViewSwitcher>
+
+        <include layout="@layout/no_data_view" />
+
+        <include layout="@layout/progress" />
+
+        <ViewSwitcher
+            android:id="@+id/tab_view_switcher"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_below="@+id/toolbar">
+
+            <include
+                layout="@layout/skeleton_home_categories"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_10sdp" />
+
+            <RelativeLayout
+                android:id="@+id/category_menu"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:visibility="visible">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    style="@style/TabMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:visibility="visible"
+                    app:tabContentStart="0dp"
+                    app:tabIndicatorColor="@color/static_tabbar_text_selected"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabMinWidth="@dimen/_50sdp"
+                    app:tabMode="scrollable"
+                    app:tabPaddingBottom="0dp"
+                    app:tabRippleColor="@color/transparent"
+                    app:tabSelectedTextColor="@color/static_tabbar_text_selected_new"
+                    app:tabTextColor="@color/tabbar_text_unselected">
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tabEndGradient"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/menu_gradient_2" />
+            </RelativeLayout>
+
+        </ViewSwitcher>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:fontFamily="@font/muli_bold"
+        android:text="error"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_no_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:srcCompat="@drawable/ic_error_screen" />
+
+        <TextView
+            android:id="@+id/no_result_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="@string/Sorry_no_result_have_been_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp" />
+
+        <TextView
+            android:id="@+id/no_result_sub_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/muli_regular"
+            android:gravity="center"
+            android:text="@string/sorry_we_cant_find_what_your_looking_for_please_try_in_another_way"
+            android:textColor="@color/grey_light"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+</RelativeLayout>

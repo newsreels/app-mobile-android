@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".activities.BulletDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="@dimen/_2sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginVertical="@dimen/_3sdp"
+            android:background="?android:selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_centerInParent="true"
+                android:rotation="@integer/locale_mirror_flip"
+                app:srcCompat="@drawable/ic_back_arrow" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/likeMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+            app:layout_constraintEnd_toStartOf="@+id/commentMain"
+            app:layout_constraintTop_toTopOf="@+id/ivBack">
+
+            <ImageView
+                android:id="@+id/like_icon"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_9sdp"
+                app:srcCompat="@drawable/ic_like_heart" />
+
+            <TextView
+                android:id="@+id/like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toEndOf="@id/like_icon"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_extra_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:minWidth="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textColor="@color/like_disable_text_color"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:transitionName="@string/trans_desc"
+                tools:text="123" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/commentMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toStartOf="@+id/setting2"
+            android:translationX="@dimen/_2sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+            app:layout_constraintEnd_toStartOf="@+id/setting2"
+            app:layout_constraintTop_toTopOf="@+id/ivBack">
+
+
+            <ImageView
+                android:id="@+id/comment_icon"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_9sdp"
+                app:srcCompat="@drawable/ic_comment_box" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toEndOf="@id/comment_icon"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_extra_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:minWidth="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textColor="@color/like_disable_text_color"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:transitionName="@string/trans_desc"
+                tools:text="123" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setting2"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?android:selectableItemBackground"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivBack">
+
+            <ImageView
+                android:id="@+id/iv_select"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_centerInParent="true"
+                android:rotation="@integer/locale_mirror_flip"
+                app:srcCompat="@drawable/reels_3dot" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:clipToPadding="false"
+        android:descendantFocusability="blocksDescendants"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <RelativeLayout
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/ad_button_list"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_25sdp"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/gradient_progress" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

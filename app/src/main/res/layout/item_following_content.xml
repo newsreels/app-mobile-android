@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/contentName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/contentImage"
+        app:layout_constraintEnd_toStartOf="@+id/imgFollow"
+        app:layout_constraintStart_toEndOf="@+id/contentImage"
+        app:layout_constraintTop_toTopOf="@+id/contentImage"
+        tools:text="Sample Content" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/contentImage"
+        android:layout_width="46dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".08"
+        app:shapeAppearance="@style/shapeableIconAppearance" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgFollow"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_follow_item"
+        app:layout_constraintBottom_toBottomOf="@+id/contentName"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contentName" />
+
+    <ProgressBar
+        android:id="@+id/following_progress"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:indeterminateDrawable="@drawable/gradient_progress"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/contentName"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contentName" />
+
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

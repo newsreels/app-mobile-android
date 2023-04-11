@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="@dimen/_80sdp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:id="@+id/imageMain"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_centerHorizontal="true">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/locationImage"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:src="@color/theme_color_2"
+            app:riv_border_color="@color/grey_light"
+            app:riv_border_width="1dp"
+            app:riv_oval="true" />
+
+        <RelativeLayout
+            android:id="@+id/follow_btn"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/follow_background"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/follow_btn_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_star_follow"
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/follow_btn_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateTint="@color/white"
+                android:progress="40"
+                android:secondaryProgressTintMode="src_atop"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/locationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageMain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        tools:text="UNITED STATES" />
+
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottomsheet"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/ic_bookmark_selected_without_border" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/muli_extra_bold"
+        android:textColor="@color/textHeader"
+        android:textSize="@dimen/_12sdp"
+        tools:text="Lipsum Dolor Istes" />
+
+    <TextView
+        android:id="@+id/tvMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/muli_regular"
+        android:textColor="@color/textHeader"
+        android:textSize="@dimen/_11sdp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur a dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut" />
+
+    <RelativeLayout
+        android:id="@+id/rlOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/shape_with_stroke">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_15sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_extra_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.2"
+            android:maxLines="5"
+            android:text="@string/ok"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/textHeader"
+            android:textSize="@dimen/_9sdp" />
+
+    </RelativeLayout>
+</LinearLayout>

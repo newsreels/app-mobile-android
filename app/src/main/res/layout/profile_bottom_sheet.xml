@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_parent_shape"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/report"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/reportTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/report"
+                android:textColor="@color/main_category_text_color"
+                android:textSize="@dimen/_15sdp" />
+
+            <RelativeLayout
+                android:id="@+id/shr"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/reportIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_report"
+                    app:tint="@color/theme_color_1" />
+
+                <ProgressBar
+                    android:id="@+id/reportProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/gradient_progress"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/tabbar_icon_base_50op" />
+
+        <RelativeLayout
+            android:id="@+id/block"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/blockTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/block"
+                android:textColor="@color/main_category_text_color"
+                android:textSize="@dimen/_15sdp" />
+
+            <RelativeLayout
+                android:id="@+id/gt"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_2sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="-3dp">
+
+                <ImageView
+                    android:id="@+id/blockIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_block"
+                    app:tint="@color/theme_color_1" />
+
+                <ProgressBar
+                    android:id="@+id/blockProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/gradient_progress"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp" />
+
+    </LinearLayout>
+
+</LinearLayout>

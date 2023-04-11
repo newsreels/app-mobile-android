@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/ic_back_arrow"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/closeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="@dimen/_12sdp"
+        android:text="@string/close"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/closeBtn"
+        android:fillViewport="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--EMAIL FLOW-->
+                <include
+                    android:id="@+id/email_flow"
+                    layout="@layout/enter_email_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--USERNAME FLOW-->
+                <include
+                    android:id="@+id/username_flow"
+                    layout="@layout/enter_username_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--PASSWORD FLOW-->
+                <include
+                    android:id="@+id/password_flow"
+                    layout="@layout/add_password_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--REGISTRATION FLOW-->
+                <include
+                    android:id="@+id/reg_complete_flow"
+                    layout="@layout/registration_complete_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--WELCOME BACK FLOW-->
+                <include
+                    android:id="@+id/welcome_back_flow"
+                    layout="@layout/welcome_back_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--RESET PASSWORD FLOW-->
+                <include
+                    android:id="@+id/reset_password_flow"
+                    layout="@layout/reset_password_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
+                <include
+                    android:id="@+id/create_new_password"
+                    layout="@layout/create_new_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <!--TERMS AND CONDITION FLOW-->
+        <include
+            android:id="@+id/terms_flow"
+            layout="@layout/terms_flow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ad_button_list"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/gradient_progress"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/image"
+            android:fontFamily="@font/muli_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/main_category_text_color"
+            android:textDirection="locale"
+            android:textSize="@dimen/_12sdp"
+            tools:text="Wells Fargo is still in turmoil as profits plunge and customer refunds linger." />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/img_place_holder"
+            app:riv_corner_radius="5dp" />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_regular"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:maxWidth="@dimen/_110sdp"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/large_time"
+            android:textSize="@dimen/_7sdp"
+            android:transitionName="@string/trans_desc"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/time"
+            tools:text="Source name"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/separator_dot"
+            android:layout_width="@dimen/_3sdp"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/time"
+            app:layout_constraintStart_toEndOf="@+id/author_name"
+            app:layout_constraintTop_toTopOf="@+id/time"
+            app:srcCompat="@drawable/ic_dot"
+            app:tint="@color/large_time"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/large_time"
+            android:textSize="@dimen/_7sdp"
+            android:transitionName="@string/trans_desc"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/separator_dot"
+            tools:text="1 month ago" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/menu_separator_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/card_bg"
+        android:visibility="visible">
+
+        <View
+            android:id="@+id/menu_separator_view_10"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@color/menu_separator_bg" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+        <item name="android:ambientShadowAlpha">0.1</item>
+        <item name="android:spotShadowAlpha">0.1</item>
+        <item name="android:outlineAmbientShadowColor">@color/card_shadow</item>
+        <item name="android:outlineSpotShadowColor">@color/card_shadow</item>
+        <item name="android:textColorPrimary">@color/main_category_text_color</item>
+        <item name="colorOnSurface">?android:textColorPrimary</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="snackbarStyle">@style/MySnackbar</item>
+    </style>
+    <style name="AlertDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_right</item>
+    </style>
+    <style name="MySnackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="android:translationY">-100dp</item>
+        <item name="android:textColor">@color/main_category_text_color</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/primaryRed</item>
+        <item name="colorControlNormal">@color/primaryRed</item>
+        <item name="colorControlActivated">@color/primaryRed</item>
+        <item name="colorButtonNormal">@color/primaryRed</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/primaryRed</item>
+        <item name="colorAccent">@color/primaryRed</item>
+        <item name="colorControlNormal">@color/primaryRed</item>
+        <item name="colorControlActivated">@color/primaryRed</item>
+        <item name="colorButtonNormal">@color/primaryRed</item>
+    </style>
+
+</resources>

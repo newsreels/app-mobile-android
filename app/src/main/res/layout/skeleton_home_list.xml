@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shimmer_base_color="@color/shimmer_base"
+    app:shimmer_colored="true"
+    app:shimmer_highlight_alpha="0"
+    app:shimmer_highlight_color="@color/shimmer_highlight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_1"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_1"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line1"
+                app:layout_constraintStart_toStartOf="@id/text_line1"
+                app:layout_constraintTop_toBottomOf="@id/text_line1" />
+
+            <View
+                android:id="@+id/sub_subtext_line1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line1"
+                app:layout_constraintStart_toStartOf="@id/subtext_line1"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line1" />
+
+            <View
+                android:id="@+id/cover_image_1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg1"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_1"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_1"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg1"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg1">
+
+                <View
+                    android:id="@+id/time1"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot1"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/time1"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time1"
+                    app:layout_constraintStart_toEndOf="@id/time1"
+                    app:layout_constraintTop_toTopOf="@id/time1" />
+
+                <View
+                    android:id="@+id/source_name"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/separator_dot1"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot1"
+                    app:layout_constraintTop_toTopOf="@id/time1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_2"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_2"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line2"
+                app:layout_constraintStart_toStartOf="@id/text_line2"
+                app:layout_constraintTop_toBottomOf="@id/text_line2" />
+
+            <View
+                android:id="@+id/sub_subtext_line2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line2"
+                app:layout_constraintStart_toStartOf="@id/subtext_line2"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line2" />
+
+            <View
+                android:id="@+id/cover_image_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg2"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_2"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_2"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg2"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg2">
+
+                <View
+                    android:id="@+id/time2"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot2"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time2"
+                    app:layout_constraintStart_toEndOf="@id/time2"
+                    app:layout_constraintTop_toTopOf="@id/time2" />
+
+                <View
+                    android:id="@+id/source_name2"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/separator_dot2"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot2"
+                    app:layout_constraintTop_toTopOf="@id/time2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_3"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_3"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line3"
+                app:layout_constraintStart_toStartOf="@id/text_line3"
+                app:layout_constraintTop_toBottomOf="@id/text_line3" />
+
+            <View
+                android:id="@+id/sub_subtext_line3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line3"
+                app:layout_constraintStart_toStartOf="@id/subtext_line3"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line3" />
+
+            <View
+                android:id="@+id/cover_image_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg3"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_3"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_3"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg3"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg3">
+
+                <View
+                    android:id="@+id/time3"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot3"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time3"
+                    app:layout_constraintStart_toEndOf="@id/time3"
+                    app:layout_constraintTop_toTopOf="@id/time3" />
+
+                <View
+                    android:id="@+id/source_name3"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot3"
+                    app:layout_constraintTop_toTopOf="@id/time3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_4"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_4"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line4"
+                app:layout_constraintStart_toStartOf="@id/text_line4"
+                app:layout_constraintTop_toBottomOf="@id/text_line4" />
+
+            <View
+                android:id="@+id/sub_subtext_line4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line4"
+                app:layout_constraintStart_toStartOf="@id/subtext_line4"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line4" />
+
+            <View
+                android:id="@+id/cover_image_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg4"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_4"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_4"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg4"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg4">
+
+                <View
+                    android:id="@+id/time4"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot4"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time4"
+                    app:layout_constraintStart_toEndOf="@id/time4"
+                    app:layout_constraintTop_toTopOf="@id/time4" />
+
+                <View
+                    android:id="@+id/source_name4"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot4"
+                    app:layout_constraintTop_toTopOf="@id/time4" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_5"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_5"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line5"
+                app:layout_constraintStart_toStartOf="@id/text_line5"
+                app:layout_constraintTop_toBottomOf="@id/text_line5" />
+
+            <View
+                android:id="@+id/sub_subtext_line5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line5"
+                app:layout_constraintStart_toStartOf="@id/subtext_line5"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line5" />
+
+            <View
+                android:id="@+id/cover_image_5"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg5"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_5"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_5"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg5"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg5">
+
+                <View
+                    android:id="@+id/time5"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot5"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time5"
+                    app:layout_constraintStart_toEndOf="@id/time5"
+                    app:layout_constraintTop_toTopOf="@id/time5" />
+
+                <View
+                    android:id="@+id/source_name5"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot5"
+                    app:layout_constraintTop_toTopOf="@id/time5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <View
+                android:id="@+id/text_line6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintBottom_toBottomOf="@+id/cover_image_6"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cover_image_6"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/subtext_line6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/text_line6"
+                app:layout_constraintStart_toStartOf="@id/text_line6"
+                app:layout_constraintTop_toBottomOf="@id/text_line6" />
+
+            <View
+                android:id="@+id/sub_subtext_line6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:layout_constraintEnd_toEndOf="@id/subtext_line6"
+                app:layout_constraintStart_toStartOf="@id/subtext_line6"
+                app:layout_constraintTop_toBottomOf="@id/subtext_line6" />
+
+            <View
+                android:id="@+id/cover_image_6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginVertical="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/skeleton_bg_item"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:layout_constraintDimensionRatio="1.35:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".4" />
+
+            <View
+                android:id="@+id/dotImg6"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:background="@drawable/ic_more_options"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@id/cover_image_6"
+                app:layout_constraintEnd_toStartOf="@+id/cover_image_6"
+                app:tint="@color/skeleton_view_item" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timer6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@id/dotImg6"
+                app:layout_constraintEnd_toStartOf="@+id/dotImg6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dotImg6">
+
+                <View
+                    android:id="@+id/time6"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/separator_dot6"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/bg_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/time6"
+                    app:layout_constraintStart_toEndOf="@id/time6"
+                    app:layout_constraintTop_toTopOf="@id/time6" />
+
+                <View
+                    android:id="@+id/source_name6"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:background="@drawable/skeleton_bg_item"
+                    app:layout_constraintBottom_toBottomOf="@id/time6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/separator_dot6"
+                    app:layout_constraintTop_toTopOf="@id/time6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

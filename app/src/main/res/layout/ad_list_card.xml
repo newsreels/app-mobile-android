@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_120sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/imageCard"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="@dimen/_8sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/ad_imageBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY" />
+
+                <com.google.android.gms.ads.nativead.MediaView
+                    android:id="@+id/ad_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/ad_call_to_action" />
+
+                <Button
+                    android:id="@+id/ad_call_to_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/ad_shape_with_stroke"
+                    android:gravity="center"
+                    android:textColor="@color/main_category_text_color"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_8sdp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btm"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_toStartOf="@+id/imageCard"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ad_headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.020"
+                android:lineSpacingExtra="1.5dp"
+                android:maxLines="3"
+                android:textColor="@color/bullet_text"
+                android:textDirection="locale"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="@dimen/_12sdp"
+                app:autoSizeMinTextSize="@dimen/_10sdp"
+                app:autoSizeStepGranularity="0.5dp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/ad_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.020"
+                android:lineSpacingExtra="1.5dp"
+                android:maxLines="3"
+                android:textColor="@color/bullet_text"
+                android:textDirection="locale"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="@dimen/_10sdp"
+                app:autoSizeStepGranularity="0.5dp"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/btm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_toStartOf="@+id/imageCard">
+
+            <ImageView
+                android:id="@+id/ad_app_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:padding="5dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/ad_advertiser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/signal"
+                android:layout_width="@dimen/_6sdp"
+                android:layout_height="@dimen/_6sdp"
+                android:layout_centerVertical="true"
+                android:rotation="@integer/locale_mirror_flip_270"
+                app:srcCompat="@drawable/ic_wifi"
+                app:tint="@color/bullet_icon" />
+
+            <TextView
+                android:id="@+id/ad_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/signal"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_regular"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.2"
+                android:maxWidth="@dimen/_140sdp"
+                android:maxLines="1"
+                android:text="AD"
+                android:textAllCaps="true"
+                android:textColor="@color/bullet_icon"
+                android:textSize="@dimen/_7sdp"
+                android:transitionName="@string/trans_desc" />
+
+            <RatingBar
+                android:id="@+id/ad_stars"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/ad_txt"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="@color/primaryRed"
+                android:stepSize="0.5" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/ad_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/ad_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</com.google.android.gms.ads.nativead.NativeAdView>

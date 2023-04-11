@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_new_image"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginVertical="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_18sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcomebg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="@dimen/_8sdp" />
+
+    <TextView
+        android:id="@+id/tv_news_headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Top Cryptocurrency News on May 27: The biggest moves in crypto prices, policy and more"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_new_image"
+        app:layout_constraintTop_toTopOf="@id/iv_new_image" />
+
+    <TextView
+        android:id="@+id/tv_news_src"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="24min ago ."
+        app:layout_constraintBottom_toBottomOf="@id/iv_new_image"
+        app:layout_constraintStart_toEndOf="@+id/iv_new_image" />
+
+    <TextView
+        android:id="@+id/tv_post_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="Danielle Wallance"
+        app:layout_constraintBottom_toBottomOf="@id/tv_news_src"
+        app:layout_constraintEnd_toStartOf="@+id/tv_dots"
+        app:layout_constraintTop_toTopOf="@id/tv_news_src"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_dots"
+        android:layout_width="10dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_medium"
+        android:padding="@dimen/_3sdp"
+        android:text="..."
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/tv_news_headline"
+        tools:layout_editor_absoluteY="126dp"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/progress_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="1dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

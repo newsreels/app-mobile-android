@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:enableAutomaticInitialization="true"
+        app:showFullScreenButton="false"
+        app:showYouTubeButton="false" />
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_bg"
+        android:visibility="gone"
+        app:auto_show="false"
+        app:controller_layout_id="@layout/list_exoplayer_controller_view"
+        app:show_buffering="when_playing"
+        app:shutter_background_color="@android:color/transparent"
+        app:surface_type="texture_view"
+        app:use_controller="true" />
+
+    <RelativeLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomSpace"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/speaker"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_toStartOf="@+id/smallScreen"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_speaker_mute" />
+
+        <ImageView
+            android:id="@+id/smallScreen"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_fullscreen_exit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomSpace"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_above="@+id/bottom"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

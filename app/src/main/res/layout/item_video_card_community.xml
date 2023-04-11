@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_3sdp"
+    app:cardBackgroundColor="@color/discover_card_bg"
+    app:cardCornerRadius="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:clickable="false"
+                app:cardBackgroundColor="@color/grey"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:id="@+id/cardMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp">
+
+                    <FrameLayout
+                        android:id="@+id/videoMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="false">
+
+                        <com.google.android.exoplayer2.ui.PlayerView
+                            android:id="@+id/video_player"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/card_bg"
+                            app:auto_show="false"
+                            app:controller_layout_id="@layout/list_exoplayer_controller_view"
+                            app:show_buffering="when_playing"
+                            app:shutter_background_color="@android:color/transparent"
+                            app:surface_type="texture_view"
+                            app:use_controller="true" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/image_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:id="@+id/odd_imageBack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/odd_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:pivotX="50%"
+                            android:pivotY="50%"
+                            android:scaleType="fitCenter" />
+
+                        <ImageView
+                            android:id="@+id/play_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/icon_video_play" />
+
+                        <include
+                            android:id="@+id/tag"
+                            layout="@layout/hashtag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:visibility="gone" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:indeterminateBehavior="repeat"
+                            android:indeterminateDrawable="@drawable/gradient_progress"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="bottom"
+                        android:orientation="vertical"
+                        android:translationZ="@dimen/_5sdp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/speaker"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_7sdp"
+                                android:layout_toStartOf="@+id/fullscreen"
+                                android:visibility="invisible"
+                                app:srcCompat="@drawable/ic_speaker_mute" />
+
+                            <ImageView
+                                android:id="@+id/fullscreen"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/_6sdp"
+                                android:layout_marginBottom="@dimen/_7sdp"
+                                android:visibility="invisible"
+                                app:srcCompat="@drawable/ic_fullscreen_icon" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/play_duration"
+                            style="@style/play_duration"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:visibility="visible"
+                            app:drawableStartCompat="@drawable/ic_small_play_icon"
+                            tools:text="08:30" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/flag"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/ic_flag" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/source"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="-35dp"
+                android:orientation="horizontal"
+                android:translationZ="@dimen/_5sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profile"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_centerVertical="true"
+                    app:riv_corner_radius="@dimen/_30sdp"
+                    app:riv_oval="true"
+                    tools:src="@drawable/img_place_holder" />
+
+                <TextView
+                    android:id="@+id/source_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_toStartOf="@+id/dotImg"
+                    android:layout_toEndOf="@+id/profile"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/large_source_name"
+                    android:textSize="@dimen/_10sdp"
+                    android:transitionName="@string/trans_desc"
+                    tools:text="Source name " />
+
+                <ImageView
+                    android:id="@+id/dotImg"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_2sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/reels_3dot"
+                    app:tint="@color/dot_color" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/bulletHeadline"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.025"
+                android:singleLine="false"
+                android:textColor="@color/bullet_text"
+                android:textDirection="locale"
+                android:textSize="@dimen/_12sdp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_9sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_7sdp"
+                    android:transitionName="@string/trans_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1 month ago" />
+
+                <ImageView
+                    android:id="@+id/separator_dot"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/time"
+                    android:background="@color/icon" />
+
+                <TextView
+                    android:id="@+id/author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/separator_dot"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_7sdp"
+                    android:transitionName="@string/trans_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Source2" />
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/likeMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_toStartOf="@+id/commentMain"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/commentMain">
+
+                    <ImageView
+                        android:id="@+id/like_icon"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:srcCompat="@drawable/ic_like_heart" />
+
+                    <TextView
+                        android:id="@+id/like_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toEndOf="@id/like_icon"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:minWidth="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/like_disable_text_color"
+                        android:textSize="@dimen/_7sdp"
+                        android:textStyle="bold"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="123" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/commentMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone">
+
+
+                    <ImageView
+                        android:id="@+id/comment_icon"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:srcCompat="@drawable/ic_comment_box" />
+
+                    <TextView
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toEndOf="@id/comment_icon"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:minWidth="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/like_disable_text_color"
+                        android:textSize="@dimen/_7sdp"
+                        android:textStyle="bold"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="123" />
+
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/equilizer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:visibility="gone">
+
+                <com.ziro.bullet.storyMaker.HorizontalStoriesProgressView
+                    android:id="@+id/stories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/progress_bar_height"
+                    android:clickable="false"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/equilizer"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/equilizer"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/static_equilizer"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/article_status_layout" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

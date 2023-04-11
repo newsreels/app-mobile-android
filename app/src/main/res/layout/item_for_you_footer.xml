@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/footer_btn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/category_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manuale_bold"
+            android:textAllCaps="true"
+            android:textColor="@color/title_bar_title"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold"
+            tools:text="More " />
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_8sdp"
+            android:fontFamily="@font/manuale_bold"
+            android:textAllCaps="true"
+            android:textColor="@color/primaryRed"
+            android:textSize="@dimen/_9sdp"
+            android:textStyle="bold"
+            app:drawableEndCompat="@drawable/ic_arrow_more"
+            tools:text="Tech News" />
+
+    </LinearLayout>
+
+</RelativeLayout>

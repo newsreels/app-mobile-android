@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_centerVertical="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/gradient_progress"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/cancel"
+        android:layout_toEndOf="@+id/progress"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/viewArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_semi_bold"
+            android:text="@string/view_original_article"
+            android:textColor="@color/primaryRed"
+            android:textSize="@dimen/_12sdp" />
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="@dimen/_7sdp"
+            android:layout_height="@dimen/_7sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_arrow_more" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/cancel"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_alignParentEnd="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_circle_close"
+            android:visibility="visible"
+            app:tint="@color/darkgrey" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

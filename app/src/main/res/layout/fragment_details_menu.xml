@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_menu_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/_22sdp">
+
+    <RelativeLayout
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/muli_bold"
+            android:textColor="@color/pop_up__title"
+            android:textSize="@dimen/_13sdp" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_close"
+            app:tint="@color/pop_up__title" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/muli_regular"
+        android:text="@string/location"
+        android:textAllCaps="true"
+        android:textColor="@color/textSubTitleGrey"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/muli_semi_bold"
+        android:textAllCaps="true"
+        android:textColor="@color/pop_up__title"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/muli_regular"
+        android:text="@string/language"
+        android:textAllCaps="true"
+        android:textColor="@color/textSubTitleGrey"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muli_semi_bold"
+        android:textAllCaps="true"
+        android:textColor="@color/pop_up__title"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp" />
+
+</LinearLayout>

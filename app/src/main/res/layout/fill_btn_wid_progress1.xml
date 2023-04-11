@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btn_next"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:id="@+id/btn_red1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_color_1">
+
+        <TextView
+            android:id="@+id/btn_ok_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/muli_bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/btn_next_progress1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/gradient_progress"
+            android:indeterminateTintMode="src_atop"
+            android:progress="40"
+            android:secondaryProgressTintMode="src_atop"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

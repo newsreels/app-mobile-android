@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="?android:selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/close"
+                android:textColor="@color/greyad"
+                android:textSize="@dimen/_12sdp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/add_topics"
+            android:textColor="@color/greyad"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/ivBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_vertical|end"
+            android:text="@string/save"
+            android:textColor="@color/theme_color_1"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/search_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/bg_round_search_black"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/src_icon"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:src="@drawable/ic_search_discovery" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/svSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_toEndOf="@+id/src_icon"
+            android:autofillHints="no"
+            android:fontFamily="@font/muli_bold"
+            android:paddingStart="@dimen/_minus2sdp"
+            android:paddingEnd="0dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textDirection="locale"
+            app:closeIcon="@drawable/ic_search_clear_btn"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/search"
+            app:searchIcon="@null" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bottom_sheet_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:fontFamily="@font/muli_bold"
+                android:text="@string/you_are_not_following_anything_yet_n_here_try_these_for_a_start"
+                android:textAlignment="center"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/cardFollowing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:orientation="vertical">
+
+
+                    <ProgressBar
+                        android:id="@+id/pbFollowing"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_horizontal"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDrawable="@drawable/gradient_progress" />
+
+                    <TextView
+                        android:id="@+id/title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bold"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:text="@string/my_topics"
+                        android:textColor="@color/greyad"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/titleDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/we_ll_present_more_stories_from_your_topics"
+                        android:textColor="@color/icon"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <com.ziro.bullet.flowlayout.TagFlowLayout
+                        android:id="@+id/rvFollowingFlow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        app:max_select="-1"
+                        app:tag_gravity="center" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFollowing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:clipToPadding="false"
+                        android:descendantFocusability="blocksDescendants"
+                        android:nestedScrollingEnabled="false"
+                        tools:itemCount="5" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cardSuggested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:elevation="0dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSuggested"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/bold"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:text="@string/suggested_location"
+                        android:textColor="@color/greyad"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tvSuggested2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/discover_curated_content_from_you_fav_places"
+                        android:textColor="@color/icon"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <ProgressBar
+                        android:id="@+id/pbSuggested"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_horizontal"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDrawable="@drawable/gradient_progress" />
+
+                    <TextView
+                        android:id="@+id/no_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:text="@string/no_record"
+                        android:textColor="@color/primaryRed"
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="gone" />
+
+                    <com.ziro.bullet.flowlayout.TagFlowLayout
+                        android:id="@+id/rvSuggestedFlow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:visibility="gone"
+                        app:max_select="-1"
+                        app:tag_gravity="center" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSuggested"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:clipToPadding="false"
+                        android:descendantFocusability="blocksDescendants"
+                        android:nestedScrollingEnabled="false"
+                        tools:itemCount="5" />
+
+
+                    <TextView
+                        android:id="@+id/find_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/bold"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@string/find_more"
+                        android:textAlignment="center"
+                        android:textColor="@color/theme_color_1"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selected"
+    android:oneshot="false">
+<!--    <item-->
+<!--        android:drawable="@drawable/logo00"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo01"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo02"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo03"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo04"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo05"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo06"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo07"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo08"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo09"-->
+<!--        android:duration="50" />-->
+
+<!--    <item-->
+<!--        android:drawable="@drawable/logo10"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo11"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo12"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo13"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo14"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo15"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo16"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo17"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo18"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo19"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo20"-->
+<!--        android:duration="50" />-->
+
+<!--    <item-->
+<!--        android:drawable="@drawable/logo21"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo22"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo23"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo24"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo25"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo26"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo27"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo28"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo29"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo30"-->
+<!--        android:duration="50" />-->
+
+<!--    <item-->
+<!--        android:drawable="@drawable/logo31"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo32"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo33"-->
+<!--        android:duration="50" />-->
+<!--    <item-->
+<!--        android:drawable="@drawable/logo34"-->
+<!--        android:duration="50" />-->
+    <item
+        android:drawable="@drawable/logo35"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo36"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo37"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo38"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo39"
+        android:duration="50" />
+
+
+    <item
+        android:drawable="@drawable/logo40"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo41"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo42"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo43"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo44"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo45"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo46"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo47"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo48"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo49"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo50"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo51"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo52"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo53"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo54"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo55"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo56"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo57"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo58"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo59"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo60"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo61"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo62"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo63"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo64"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo65"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo66"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo67"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo68"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo69"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo70"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo71"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo72"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo73"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo74"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo75"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo76"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo77"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo78"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo79"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo80"
+        android:duration="50" />
+
+    <item
+        android:drawable="@drawable/logo81"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo82"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo83"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo84"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo85"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo86"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo87"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo88"
+        android:duration="50" />
+    <item
+        android:drawable="@drawable/logo89"
+        android:duration="50" />
+
+</animation-list>

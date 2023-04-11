@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/no_article_found"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:id="@+id/centerArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/ic_no_article" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:text="@string/you_have_reached_the_end"
+            android:textAlignment="center"
+            android:textColor="@color/textHeader"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/muli_regular"
+            android:includeFontPadding="false"
+            android:isScrollContainer="true"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/there_is_no_more_article_left_only_a_ghost_would_you_like_to_refresh_the_page"
+            android:textAlignment="center"
+            android:textColor="@color/textHeader"
+            android:textSize="@dimen/_8sdp" />
+
+        <RelativeLayout
+            android:id="@+id/refresh"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/shape_with_stroke"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/muli_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.2"
+                android:text="@string/refresh"
+                android:textAllCaps="true"
+                android:textColor="@color/splash_text"
+                android:textSize="@dimen/_7sdp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

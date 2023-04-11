@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/you_have_completed_the_registration"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18sdp" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/a_confirmation_email_has_been_sent_to_you"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_12sdp" />
+
+    <ImageView
+        android:layout_marginTop="@dimen/_40sdp"
+        android:src="@drawable/ic_giveaway"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"/>
+
+    <include
+        android:id="@+id/continueRegComplete"
+        layout="@layout/reg_btn_conitnue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:foreground="?android:attr/selectableItemBackground" />
+
+</LinearLayout>

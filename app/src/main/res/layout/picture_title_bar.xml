@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/titleViewBg"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginVertical="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/picture_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/titleViewBg"
+        android:layout_alignBottom="@id/titleViewBg"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/pictureLeftBack"
+        android:ellipsize="end"
+        android:fontFamily="@font/muli_bold"
+        android:gravity="center"
+        android:maxEms="8"
+        android:maxLines="1"
+        android:text="@string/picture_camera_roll"
+        android:textColor="@color/title_bar_title"
+        android:textSize="17sp" />
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="@dimen/_8sdp"
+        android:layout_height="@dimen/_8sdp"
+        android:layout_alignTop="@id/titleViewBg"
+        android:layout_alignBottom="@id/titleViewBg"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/picture_title"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_expand_arrow" />
+
+    <ImageView
+        android:id="@+id/pictureLeftBack"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_alignTop="@id/titleViewBg"
+        android:layout_alignBottom="@id/titleViewBg"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:rotation="@integer/locale_mirror_flip"
+        app:srcCompat="@drawable/ic_back_arrow"
+        app:tint="@color/textHeader" />
+
+    <TextView
+        android:id="@+id/picture_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/titleViewBg"
+        android:layout_alignBottom="@id/titleViewBg"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/bg_post_article_button"
+        android:fontFamily="@font/muli_extra_bold"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp" />
+
+</merge>
+

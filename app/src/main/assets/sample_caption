@@ -1,0 +1,1637 @@
+{
+  "captions": [
+    {
+      "view_template": "view1",
+      "sentence": " today's fresh start to fit this is",
+      "words": [
+        {
+          "word": " today's fresh start to fit this is",
+          "delay": 0,
+          "textAnimationDuration": 700,
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "wrapping": true,
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 1,
+        "end": 4
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+
+      "alignment"
+        "top": 0,
+        "bottom": 30,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {
+      "view_template": "view1",
+      "sentence": " all about workouts to improve balance",
+      "words": [
+        {
+          "word": " all about workouts to improve balance",
+          "delay": 0,
+          "textAnimationDuration": 700,
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 4,
+        "end": 6
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {
+      "view_template": "view1",
+      "sentence": " and strength I've won Jeffrey back",
+      "words": [
+        {
+          "word": " and strength I've won Jeffrey back",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 6,
+        "end": 16
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {
+      "view_template": "view1",
+      "sentence": " here with Intermountain Medical Center",
+      "words": [
+        {
+          "word": " here with Intermountain Medical Center",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 16,
+        "end": 17
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {
+      "view_template": "view1",
+
+      "sentence": " Heart Institute today I'll be demonstrating",
+      "words": [
+        {
+          "word": " Heart Institute today I'll be demonstrating",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 17,
+        "end": 19
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {
+      "view_template": "view1",
+
+      "sentence": " some balance and strength exercises",
+      "words": [
+        {
+          "word": " some balance and strength exercises",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 19,
+        "end": 20
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " you can do using a basketball we're",
+      "words": [
+        {
+          "word": " you can do using a basketball we're",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 20,
+        "end": 23
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " going to begin with the Ball Toss been",
+      "words": [
+        {
+          "word": " going to begin with the Ball Toss been",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 23,
+        "end": 25
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " balanced on one leg and just simply",
+      "words": [
+        {
+          "word": " balanced on one leg and just simply",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 25,
+        "end": 28
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " toss the ball in the air and catch",
+      "words": [
+        {
+          "word": " toss the ball in the air and catch",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 28,
+        "end": 30
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " it like so",
+      "words": [
+        {
+          "word": " it like so",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 30,
+        "end": 31
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " this really helps to strengthen those",
+      "words": [
+        {
+          "word": " this really helps to strengthen those",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 31,
+        "end": 34
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " small stabilizer muscles that help",
+      "words": [
+        {
+          "word": " small stabilizer muscles that help",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 34,
+        "end": 35
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " with bouncing",
+      "words": [
+        {
+          "word": " with bouncing",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 35,
+        "end": 36
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " just like this we're going to throw",
+      "words": [
+        {
+          "word": " just like this we're going to throw",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 38,
+        "end": 39
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " the ball 10 times with the one side",
+      "words": [
+        {
+          "word": " the ball 10 times with the one side",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 39,
+        "end": 42
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " and then switch to the other just like",
+      "words": [
+        {
+          "word": " and then switch to the other just like",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 42,
+        "end": 44
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " this",
+      "words": [
+        {
+          "word": " this",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 44,
+        "end": 44
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " next weekend to move into the uneven",
+      "words": [
+        {
+          "word": " next weekend to move into the uneven",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 44,
+        "end": 47
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " Squad place the ball in the ground",
+      "words": [
+        {
+          "word": " Squad place the ball in the ground",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 47,
+        "end": 49
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " put one leg on the ball and",
+      "words": [
+        {
+          "word": " put one leg on the ball and",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 49,
+        "end": 52
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " just squat down as low as you can this",
+      "words": [
+        {
+          "word": " just squat down as low as you can this",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 52,
+        "end": 56
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " really isolates the leg",
+      "words": [
+        {
+          "word": " really isolates the leg",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 56,
+        "end": 58
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " it's almost like doing a one-legged",
+      "words": [
+        {
+          "word": " it's almost like doing a one-legged",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 59,
+        "end": 60
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " squat with assistance you'll do 10",
+      "words": [
+        {
+          "word": " squat with assistance you'll do 10",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 60,
+        "end": 63
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " repetitions with that leg switch",
+      "words": [
+        {
+          "word": " repetitions with that leg switch",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 63,
+        "end": 66
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " over and of course do the other side",
+      "words": [
+        {
+          "word": " over and of course do the other side",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 66,
+        "end": 69
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " do",
+      "words": [
+        {
+          "word": " do",          "textAnimationDuration": 700,
+
+          "delay": 0,
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 69,
+        "end": 70
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " three to four sets of 10 repetitions",
+      "words": [
+        {
+          "word": " three to four sets of 10 repetitions",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 70,
+        "end": 71
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " they're finally will end with the uneven",
+      "words": [
+        {
+          "word": " they're finally will end with the uneven",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 71,
+        "end": 74
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " push-up this one come",
+      "words": [
+        {
+          "word": " push-up this one come",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 74,
+        "end": 76
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " down into a push-up position to accept",
+      "words": [
+        {
+          "word": " down into a push-up position to accept",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 76,
+        "end": 78
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " Place one hand on the ball the",
+      "words": [
+        {
+          "word": " Place one hand on the ball the",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 78,
+        "end": 80
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " other on the ground coming to the position",
+      "words": [
+        {
+          "word": " other on the ground coming to the position",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 80,
+        "end": 82
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " and",
+      "words": [
+        {
+          "word": " and",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 82,
+        "end": 84
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " simply perform a push-up just like",
+      "words": [
+        {
+          "word": " simply perform a push-up just like",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 84,
+        "end": 86
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    },
+    {      "view_template": "view1",
+
+      "sentence": " this",
+      "words": [
+        {
+          "word": " this",
+          "delay": 0,          "textAnimationDuration": 700,
+
+          "style": "bold",
+          "fontFamily": "Roboto",
+          "textSize": 14,
+          "textColor": "#FFFFFF",
+          "highlightColor": "#FFFFFF",
+          "shadowColor": "#000000",
+          "highlight": false,
+          "shadow": true,
+          "underline": false
+        }
+      ],
+      "textBackground": "#000000",
+      "rotation": 0,
+      "textAnimation": "FadeIn",
+      "textAlignment": "Center",
+      "duration": {
+        "start": 86,
+        "end": 86
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "position": {
+        "x": 70,
+        "y": 50
+      }
+    }
+  ]
+}

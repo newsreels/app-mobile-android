@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardData"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingEnd="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/source_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:ellipsize="end"
+        android:fontFamily="@font/sf_ui_display_bold"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textAllCaps="false"
+        android:textColor="@color/large_time"
+        android:textSize="@dimen/_11sdp"
+        android:transitionName="@string/trans_desc"
+        app:layout_constraintEnd_toStartOf="@+id/bullet_image_m"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideTop"
+        tools:text="Same Soe Source name" />
+
+    <TextView
+        android:id="@+id/bullet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/sf_ui_display_bold"
+        android:minHeight="@dimen/_60sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:textColor="@color/bullet_text"
+        android:textDirection="locale"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bullet_image_m"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/source_name"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bullet_image_m"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideTop">
+
+        <ImageView
+            android:id="@+id/bullet_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_place_holder" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <ImageView
+        android:id="@+id/dotImg"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/_5sdp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_image_m"
+        app:srcCompat="@drawable/reels_3dot"
+        app:tint="@color/dot_color" />
+
+    <ImageView
+        android:id="@+id/play_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_video_play"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/bullet_image_m"
+        app:layout_constraintEnd_toEndOf="@+id/bullet_image_m"
+        app:layout_constraintStart_toStartOf="@+id/bullet_image_m"
+        app:layout_constraintTop_toTopOf="@+id/bullet_image_m" />
+
+    <RelativeLayout
+        android:id="@+id/rlTime"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_11sdp"
+        app:layout_constraintStart_toStartOf="@+id/bullet"
+        app:layout_constraintTop_toBottomOf="@+id/bullet">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/sf_ui_display_bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/icon"
+            android:textSize="@dimen/_9sdp"
+            android:transitionName="@string/trans_desc"
+            tools:text="1 month ago" />
+
+        <ImageView
+            android:id="@+id/separator_dot"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toEndOf="@+id/time"
+            android:background="@color/icon"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toEndOf="@+id/separator_dot"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/icon"
+            android:textSize="@dimen/_7sdp"
+            android:transitionName="@string/trans_desc"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Source2" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

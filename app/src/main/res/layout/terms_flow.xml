@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet_new"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/disagree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/disagree"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11sdp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/terms_and_condition"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/roboto_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/agree"
+        android:textColor="@color/theme_color_1"
+        android:textSize="@dimen/_11sdp" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/linearPb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:visibility="gone"
+        app:indicatorColor="@color/theme_color_1" />
+
+    <WebView
+        android:id="@+id/terms_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearPb"
+        android:translationZ="@dimen/_10sdp"
+        android:visibility="visible" />
+
+</RelativeLayout>

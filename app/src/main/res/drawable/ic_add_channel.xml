@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="140dp"
+    android:height="140dp"
+    android:viewportWidth="140"
+    android:viewportHeight="140">
+  <path
+      android:pathData="M70,70m-70,0a70,70 0,1 1,140 0a70,70 0,1 1,-140 0"
+      android:fillColor="@color/create_channel_btn_icon_1"/>
+  <path
+      android:pathData="M70,70m-42,0a42,42 0,1 1,84 0a42,42 0,1 1,-84 0"
+      android:strokeAlpha="0.1"
+      android:fillColor="@color/create_channel_btn_icon_2"
+      android:fillAlpha="0.1"/>
+  <path
+      android:pathData="M83.203,66.657L55.865,66.657a2.159,2.159 0,0 0,-2.158 2.158v1.44a2.159,2.159 0,0 0,2.158 2.158h27.34a2.159,2.159 0,0 0,2.158 -2.158v-1.44A2.16,2.16 0,0 0,83.203 66.657Z"
+      android:fillColor="@color/create_channel_btn_icon_3"/>
+  <path
+      android:pathData="M66.657,55.865v27.34a2.159,2.159 0,0 0,2.158 2.158h1.44a2.159,2.159 0,0 0,2.158 -2.158L72.413,55.865a2.159,2.159 0,0 0,-2.158 -2.158h-1.44A2.156,2.156 0,0 0,66.657 55.865Z"
+      android:fillColor="@color/create_channel_btn_icon_4"/>
+</vector>

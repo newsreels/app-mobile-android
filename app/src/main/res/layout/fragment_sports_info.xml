@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".fragments.searchNew.sportsdetail.SportsInfoFragment1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/matchinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/matchinfo"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp" />
+        <View
+            android:id="@+id/v_matchinfo"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:background="@color/black10" />
+        <LinearLayout
+            android:id="@+id/llevent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/event"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:layout_weight="1"
+                android:text="@string/event"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_event_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_event"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/llmatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_thismatch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/thismatch"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_thismatch_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/vmatch"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_toss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_toss"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/toss"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_toss_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_toss"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_country"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/country"
+                android:textSize="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/tv_country_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_country"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/city"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_city_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_city"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_venue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_venue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/venue"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_venue_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_venue"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_ump1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_ump1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/umpire1"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_ump1_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_ump1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_ump2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_ump2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/umpire2"
+                android:textSize="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/tv_ump2_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_ump2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_tvump"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_tvump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/tvumpire"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_tvump_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_tvump"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:background="@color/black10" />
+
+        <LinearLayout
+            android:id="@+id/ll_ref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:padding="@dimen/_12sdp">
+
+            <TextView
+                android:id="@+id/tv_ref"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/referee"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tv_ref_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+<!--        <View-->
+<!--            android:id="@+id/crop_frame_top"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="@color/black10" />-->
+
+    </LinearLayout>
+</FrameLayout>

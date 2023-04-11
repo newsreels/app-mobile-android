@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/htab_maincontent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:visibility="gone"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_160sdp"
+                android:background="@drawable/splash_bg"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+                <RelativeLayout
+                    android:id="@+id/ivBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?android:selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/ic_back_arrow"
+                        app:tint="@color/greyad" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:text="@string/topics_locations"
+                    android:textColor="@color/textHeader"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RelativeLayout
+                    android:id="@+id/search"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="end"
+                    android:background="?android:selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerInParent="true"
+                        app:srcCompat="@drawable/new_search_icon"
+                        app:tint="@color/greyad" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <RelativeLayout
+                android:id="@+id/ivBack2"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="start"
+                android:background="?android:selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_back_arrow"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/search2"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="end"
+                android:background="?android:selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/new_search_icon"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/menu"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_bottom_sheet_new_grey"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDrawable="@drawable/gradient_progress"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bottom_sheet_bg"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <RelativeLayout
+            android:id="@+id/bottom_sheet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/suggested_location"
+                    android:textColor="@color/greyad"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/discover_curated_content_from_you_fav_places"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.ziro.bullet.flowlayout.TagFlowLayout
+                    android:id="@+id/rvPlaces"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    app:max_select="-1"
+                    app:tag_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/my_topics"
+                    android:textColor="@color/greyad"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/we_ll_present_more_stories_from_your_topics"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.ziro.bullet.flowlayout.TagFlowLayout
+                    android:id="@+id/rvTopics"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    app:max_select="-1"
+                    app:tag_gravity="center" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/week_topics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/trend_topics_of_the_week"
+                        android:textColor="@color/greyad"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/see_all_week_topics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/see_all"
+                        android:textColor="@color/theme_color_1"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/week_topics_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_below="@+id/week_topics" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/suggested_for_you"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/suggested_for_you"
+                        android:textColor="@color/greyad"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/see_all_suggested_for_you"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/see_all"
+                        android:textColor="@color/theme_color_1"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/suggested_for_you_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_below="@+id/suggested_for_you" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/menu_layout"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@color/home_bg"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvEmpty"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_30sdp"-->
+<!--                    android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                    android:fontFamily="@font/muli_bold"-->
+<!--                    android:text="@string/you_are_not_following_anything_yet_n_here_try_these_for_a_start"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:visibility="gone" />-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/cardChannels"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_8sdp"-->
+<!--                    android:layout_marginTop="@dimen/_6sdp"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clickable="false"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/_6sdp">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvHeaderChannels"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/muli_extra_bold"-->
+<!--                            android:text="@string/channels"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_12sdp" />-->
+
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="0.5dp"-->
+<!--                            android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                            android:background="@color/menu_separator_bg" />-->
+
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:id="@+id/rvChannels"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:descendantFocusability="blocksDescendants"-->
+<!--                            android:nestedScrollingEnabled="false"-->
+<!--                            tools:itemCount="5" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvManageChannels"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:clickable="true"-->
+<!--                            android:focusable="true"-->
+<!--                            android:fontFamily="@font/muli_bold"-->
+<!--                            android:foreground="?attr/selectableItemBackground"-->
+<!--                            android:paddingVertical="@dimen/_10sdp"-->
+<!--                            android:text="@string/view_all_and_manage"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_8sdp" />-->
+<!--                    </LinearLayout>-->
+<!--                </RelativeLayout>-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/cardTopics"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_8sdp"-->
+<!--                    android:layout_marginTop="@dimen/_6sdp"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clickable="false"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/_6sdp">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvHeaderTopics"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/muli_extra_bold"-->
+<!--                            android:text="@string/topics"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_12sdp" />-->
+
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="0.5dp"-->
+<!--                            android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                            android:background="@color/menu_separator_bg" />-->
+
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:id="@+id/rvTopics"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:descendantFocusability="blocksDescendants"-->
+<!--                            android:nestedScrollingEnabled="false"-->
+<!--                            tools:itemCount="5" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvManageTopics"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:clickable="true"-->
+<!--                            android:focusable="true"-->
+<!--                            android:fontFamily="@font/muli_bold"-->
+<!--                            android:foreground="?attr/selectableItemBackground"-->
+<!--                            android:paddingVertical="@dimen/_10sdp"-->
+<!--                            android:text="@string/view_all_and_manage"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_8sdp" />-->
+<!--                    </LinearLayout>-->
+<!--                </RelativeLayout>-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/cardAuthors"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_8sdp"-->
+<!--                    android:layout_marginTop="@dimen/_6sdp"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clickable="false"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/_6sdp">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvHeaderAuthors"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/muli_extra_bold"-->
+<!--                            android:text="@string/authors"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_12sdp" />-->
+
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="0.5dp"-->
+<!--                            android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                            android:background="@color/menu_separator_bg" />-->
+
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:id="@+id/rvAuthors"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            android:descendantFocusability="blocksDescendants"-->
+<!--                            android:nestedScrollingEnabled="false"-->
+<!--                            tools:itemCount="5" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvManageAuthors"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:clickable="true"-->
+<!--                            android:focusable="true"-->
+<!--                            android:fontFamily="@font/muli_bold"-->
+<!--                            android:foreground="?attr/selectableItemBackground"-->
+<!--                            android:paddingVertical="@dimen/_10sdp"-->
+<!--                            android:text="@string/view_all_and_manage"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_8sdp" />-->
+<!--                    </LinearLayout>-->
+<!--                </RelativeLayout>-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/cardPlaces"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginHorizontal="@dimen/_8sdp"-->
+<!--                    android:layout_marginTop="@dimen/_6sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                    android:visibility="gone">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:clickable="false"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="@dimen/_6sdp">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tvHeaderPlaces"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/muli_extra_bold"-->
+<!--                            android:text="@string/local"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_12sdp" />-->
+
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="0.5dp"-->
+<!--                            android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                            android:background="@color/menu_separator_bg" />-->
+
+<!--&lt;!&ndash;                        <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/rvPlaces"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:clipToPadding="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:descendantFocusability="blocksDescendants"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:nestedScrollingEnabled="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                            tools:itemCount="5" />&ndash;&gt;-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:clickable="true"-->
+<!--                            android:focusable="true"-->
+<!--                            android:fontFamily="@font/muli_bold"-->
+<!--                            android:foreground="?attr/selectableItemBackground"-->
+<!--                            android:paddingVertical="@dimen/_10sdp"-->
+<!--                            android:text="@string/view_all_and_manage"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="@color/textHeader"-->
+<!--                            android:textSize="@dimen/_8sdp" />-->
+<!--                    </LinearLayout>-->
+<!--                </RelativeLayout>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.core.widget.NestedScrollView>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/progress"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:focusable="true"-->
+<!--            android:clickable="true"-->
+<!--            android:visibility="gone">-->
+
+<!--            <ProgressBar-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                android:indeterminateBehavior="repeat"-->
+<!--                android:indeterminateDrawable="@drawable/picture_anim_progress"-->
+<!--                android:indeterminateTint="@color/main_category_text_color"-->
+<!--                android:indeterminateTintMode="src_atop" />-->
+
+<!--        </RelativeLayout>-->
+
+<!--    </RelativeLayout>-->
+
+<!--</LinearLayout>-->

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:paddingStart="@dimen/_16sdp"
+    android:paddingEnd="@dimen/_16sdp"
+    android:paddingBottom="@dimen/_16sdp">
+
+    <LinearLayout
+        android:id="@+id/ll_root"
+        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTopics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:text="@string/topics"
+            android:textColor="@color/textHeader"
+            android:textSize="@dimen/_24sdp" />
+
+        <TextView
+            android:id="@+id/tvSources"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:text="@string/sources"
+            android:textColor="@color/textUnselected"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/muli_bold"
+        android:includeFontPadding="false"
+        android:text="@string/sources_that_deliver_your_news"
+        android:textAllCaps="true"
+        android:textColor="@color/textHeader"
+        android:textSize="@dimen/_14sdp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:fontFamily="@font/manuale_medium"
+        android:lineSpacingExtra="3dp"
+        android:paddingVertical="@dimen/_2sdp"
+        android:textColor="@color/bullet_text"
+        android:textDirection="locale"
+        android:textSize="@dimen/_11sdp"
+        tools:text="Technology" />
+</RelativeLayout>

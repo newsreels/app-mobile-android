@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:fitsSystemWindows="true">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_62sdp">
+
+                    <RelativeLayout
+                        android:id="@+id/header_back"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="?android:selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_centerInParent="true"
+                            android:rotation="@integer/locale_mirror_flip"
+                            app:srcCompat="@drawable/ic_back_arrow" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/header_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/header_back"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/contact_us"
+                        android:textColor="@color/textHeader"
+                        android:textSize="@dimen/toolbarTitleTextSize" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/hello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/header"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/help_there"
+                    android:textColor="@color/grey"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/mesg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hello"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_bold"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:text="@string/drop_msg"
+                    android:textColor="@color/main_category_text_color"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_18sdp" />
+
+                <TextView
+                    android:id="@+id/msgus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mesg"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/msg"
+                    android:textColor="@color/grey"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/nameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/msgus"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/name"
+                    android:textColor="@color/primaryRed"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/nameLabel"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:backgroundTint="@color/grey"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:hint="@string/enter_name"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/splash_text"
+                    android:textColorHint="@color/textSmallGrey"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/emailLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/email"
+                    android:textColor="@color/primaryRed"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/emailLabel"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:backgroundTint="@color/grey"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:hint="@string/enter_email_address"
+                    android:includeFontPadding="false"
+                    android:inputType="textEmailAddress"
+                    android:textAllCaps="false"
+                    android:textColor="@color/splash_text"
+                    android:textColorHint="@color/textSmallGrey"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/msgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/email"
+                    android:layout_marginStart="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:fontFamily="@font/muli_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/mesg"
+                    android:textColor="@color/primaryRed"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/msgg"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_42sdp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:hint="@string/write_your_message"
+                    android:includeFontPadding="false"
+                    android:inputType="textMultiLine|text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/splash_text"
+                    android:textColorHint="@color/textSmallGrey"
+                    android:textCursorDrawable="@null"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_14sdp" />
+
+                <RelativeLayout
+                    android:id="@+id/sendEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:background="@drawable/shape_green2"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:letterSpacing="0.2"
+                        android:text="@string/send_email"
+                        android:textAllCaps="true"
+                        android:textColor="@color/contact_submit_text"
+                        android:textSize="@dimen/_11sdp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_centerInParent="true"
+                android:id="@+id/progress"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/loader"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

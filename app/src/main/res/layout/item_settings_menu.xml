@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/muli_semi_bold"
+        android:letterSpacing="0.2"
+        android:text="@string/edition_region"
+        android:textAllCaps="true"
+        android:textColor="@color/textSubTitleGrey"
+        android:textSize="@dimen/_9sdp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:paddingStart="@dimen/_3sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:background="?android:selectableItemBackground">
+
+        <RelativeLayout
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="@dimen/_5sdp"
+                android:layout_height="@dimen/_5sdp"
+                android:rotation="@integer/locale_mirror_flip"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_next_arrow" />
+
+            <LinearLayout
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:background="@drawable/shape_dark"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tab1_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/auto"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lline"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:background="@color/tab_unselected"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tab2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/light"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rline"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
+                    android:background="@color/tab_unselected"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tab3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:text="@string/dark"
+                        android:textColor="@color/tab_unselected"
+                        android:textSize="@dimen/_9sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/hapticSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_dark"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/off"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/off_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/off"
+                    android:textColor="@color/tab_unselected"
+                    android:textSize="@dimen/_9sdp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/on"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/on_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/muli_semi_bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/on"
+                    android:textColor="@color/tab_unselected"
+                    android:textSize="@dimen/_9sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/flag"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:visibility="gone"
+                android:layout_marginStart="@dimen/_8sdp"
+                app:riv_corner_radius="@dimen/_50sdp"
+                app:riv_oval="false" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivFlag1"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:riv_corner_radius="@dimen/_50sdp"
+                    app:riv_oval="false" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivFlag2"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:visibility="gone"
+                    app:riv_corner_radius="@dimen/_50sdp"
+                    app:riv_oval="false" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivFlag3"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:visibility="gone"
+                    app:riv_corner_radius="@dimen/_50sdp"
+                    app:riv_oval="false" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/muli_bold"
+                android:letterSpacing="0.2"
+                android:text="@string/account_settings"
+                android:textAllCaps="true"
+                android:textColor="@color/textHeader"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@color/theme_tab_bg" />
+
+</LinearLayout>

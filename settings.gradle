@@ -1,0 +1,4 @@
+include ':ucrop'
+include ':player-lib'
+include ':app'
+rootProject.name = 'Bullet'

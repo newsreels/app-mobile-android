@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".fragments.BulletDetailFragment">
+
+    <RelativeLayout
+        android:id="@+id/post_display_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:minHeight="@dimen/_250sdp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/img_place_holder">
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@color/white">
+
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:translationZ="@dimen/_10sdp">
+
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_edge_black"
+                android:gravity="center_vertical"
+                android:layoutDirection="locale">
+
+                <ImageView
+                    android:id="@+id/source"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="@dimen/_50sdp"
+                    tools:src="@drawable/img_placeholder_black" />
+
+                <TextView
+                    android:id="@+id/banner_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/muli_extra_bold"
+                    android:includeFontPadding="false"
+                    android:maxWidth="@dimen/_150sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone"
+                    tools:text="Manilla Standard" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/post_display_container"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/muli_bold"
+        android:paddingStart="0dp"
+        android:visibility="gone"
+        android:paddingEnd="@dimen/_35sdp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo"
+        android:textColor="@color/white"
+        android:textDirection="locale"
+        tools:textSize="@dimen/_14sdp" />
+
+    <ImageView
+        android:layout_width="@dimen/_96sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_below="@+id/article_title"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/ic_watermark_hq" />
+
+</RelativeLayout>

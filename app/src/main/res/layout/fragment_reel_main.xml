@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_44sdp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/verified"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:shadowColor="@color/black"
+            android:shadowDx="-1"
+            android:shadowDy="-1"
+            android:shadowRadius="1"
+            android:text="@string/verified"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:background="@color/whiteTrans" />
+
+        <TextView
+            android:id="@+id/community"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:shadowColor="@color/black"
+            android:shadowDx="-1"
+            android:shadowDy="-1"
+            android:shadowRadius="1"
+            android:text="@string/community_"
+            android:textAlignment="textStart"
+            android:textColor="@color/whiteTrans"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</RelativeLayout>

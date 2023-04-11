@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/ivBack"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="?android:selectableItemBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:rotation="@integer/locale_mirror_flip"
+            app:srcCompat="@drawable/ic_close" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/textView18"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muli_extra_bold"
+        android:text="@string/login_or_create_an_account"
+        android:textColor="@color/textHeader"
+        android:textSize="@dimen/_19sdp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/textView19"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muli_regular"
+        android:text="@string/login_popup_description"
+        android:textColor="@color/login_description"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_google"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sign_in_google"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_facebook"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/textView19">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#4285F4">
+
+            <ImageView
+                android:scaleType="fitCenter"
+                android:id="@+id/sign_in_google_text"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_google_login_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:layout_toEndOf="@+id/sign_in_google_text"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.2"
+                android:maxLines="5"
+                android:text="@string/continue_with_google"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8sdp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sign_in_facebook"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_email"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_google">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/popup_item_bg">
+
+
+            <ImageView
+                android:id="@+id/sign_in_facebook_text"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:src="@drawable/facebook_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:layout_toEndOf="@+id/sign_in_facebook_text"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.2"
+                android:maxLines="5"
+                android:text="@string/continue_with_facebook"
+                android:textAlignment="center"
+                android:textColor="@color/textHeader"
+                android:textSize="@dimen/_8sdp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sign_in_email"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/agree_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_facebook">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/popup_item_bg">
+
+
+            <ImageView
+                android:id="@+id/sign_in_email_text"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:tint="@color/login_description"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:layout_toEndOf="@+id/sign_in_email_text"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.2"
+                android:maxLines="5"
+                android:text="@string/continue_with_email_id"
+                android:textAlignment="center"
+                android:textColor="@color/textHeader"
+                android:textSize="@dimen/_8sdp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/agree_text_view"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muli_regular"
+        android:text="@string/login_popup_agree"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_20sdp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/_20sdp" />
+
+
+    <RelativeLayout
+        android:elevation="5dp"
+        android:id="@+id/progress"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/gradient_progress" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

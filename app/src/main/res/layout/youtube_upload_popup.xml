@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@color/home_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_bold"
+            android:text="@string/youtube_article"
+            android:textColor="@color/title_bar_title"
+            android:textSize="@dimen/_16sdp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/muli_regular"
+            android:text="@string/youtube_link_adding_dis"
+            android:textColor="@color/sorry_msg"
+            android:textSize="@dimen/_14sdp" />
+
+        <EditText
+            android:id="@+id/youtube_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:background="@drawable/bg_youtube_link_box"
+            android:drawableStart="@drawable/ic_youtube_add_link_icon"
+            android:drawablePadding="@dimen/_10sdp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center|start"
+            android:hint="@string/paste_a_youtube_link_to_take_import"
+            android:padding="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textColor="@color/search_text_new"
+            android:textColorHint="@color/search_text_new"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/_9sdp" />
+
+        <TextView
+            android:id="@+id/import_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/bg_youtube_import_btn"
+            android:fontFamily="@font/muli_black"
+            android:paddingStart="@dimen/_35sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_35sdp"
+            android:paddingBottom="@dimen/_12sdp"
+            android:text="@string/str_import"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9sdp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/progress" />
+
+</RelativeLayout>

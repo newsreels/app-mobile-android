@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dsv_ex_msg_adapter_wrong_recycler" translatable="false">InfiniteScrollAdapter is supposed to work only with DiscreteScrollView</string>
+    <string name="dsv_ex_msg_dont_set_lm" translatable="false">You should not set LayoutManager on DiscreteScrollView.class instance. Library uses a special one. Just don\'t call the method.</string>
+    <declare-styleable name="DiscreteScrollView">
+        <attr name="dsv_orientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

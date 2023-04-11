@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/setting"
+        android:title="@string/more_options"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/reels_3dot"/>
+
+    <item
+        android:id="@+id/notification"
+        android:title="@string/notification"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_notification"/>
+
+    <item
+        android:id="@+id/chat"
+        android:title="@string/chat"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_email"/>
+
+    <item
+        android:id="@+id/more_settings"
+        android:title="@string/menu"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu"/>
+</menu>

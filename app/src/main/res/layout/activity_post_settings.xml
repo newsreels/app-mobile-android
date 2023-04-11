@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_bar_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@color/white"
+                android:paddingTop="@dimen/_15sdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="?android:selectableItemBackground"
+                    android:padding="@dimen/_12sdp"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_arrow_right_new" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/content_settings"
+                    android:textColor="@color/black"
+                    android:textDirection="locale"
+                    android:textSize="@dimen/_15sdp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/post_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/icon_wallet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        app:srcCompat="@drawable/ic_post_language"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        style="@style/menu_item_text_black"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/icon_wallet"
+                        android:text="@string/post_language" />
+
+                    <ImageView
+                        android:id="@+id/arrow"
+                        style="@style/menu_item_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_right_new" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/blue_light" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/haptic"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/menu_item_text_black"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/haptics" />
+
+                        <TextView
+                            style="@style/menu_item_text_black_desc"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/haptic_feedback_can_be_enabled_and_disabled_for_the_post_here" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/haptic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/bullet_auto_play"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/menu_item_text_black"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/bullets_auto_play" />
+
+                        <TextView
+                            style="@style/menu_item_text_black_desc"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/bullets_autoplay_can_be_enabled_or_disabled_for_the_article_here" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/bullet_auto_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/video_auto_play"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/menu_item_text_black"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/videos_auto_play" />
+
+                        <TextView
+                            style="@style/menu_item_text_black_desc"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/videos_autoplay_can_be_enabled_or_disabled_for_the_article_here" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/video_auto_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/reels_auto_play"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/menu_item_text_black"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/reels_auto_play" />
+
+                        <TextView
+                            style="@style/menu_item_text_black_desc"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/reels_autoplay_can_be_enabled_or_disabled_for_the_article_here" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/reels_auto_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/reader_mode"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/menu_item_text_black"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/reader_mode" />
+
+                        <TextView
+                            style="@style/menu_item_text_black_desc"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:text="@string/reader_mode_can_be_enabled_or_disabled_for_the_article_here" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/reader_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:theme="@style/SCBSwitch" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/audio_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/audio_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        app:srcCompat="@drawable/ic_audio"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        style="@style/menu_item_text_black"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/audio_icon"
+                        android:text="@string/audio_settings" />
+
+                    <ImageView
+                        style="@style/menu_item_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_right_new" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/blue_light" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/article_text_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/article_text_size_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        app:srcCompat="@drawable/ic_article_text_size"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        style="@style/menu_item_text_black"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/article_text_size_icon"
+                        android:text="@string/article_text_size" />
+
+                    <ImageView
+                        android:id="@+id/arrow1"
+                        style="@style/menu_item_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_right_new" />
+
+                    <include
+                        android:id="@+id/tag"
+                        layout="@layout/hashtag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_toStartOf="@+id/arrow1" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/blue_light" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

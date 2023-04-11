@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rlRatio"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <VideoView
+            android:id="@+id/video_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+
+        <View
+            android:id="@+id/crop_frame_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/crop_frame"
+            android:background="@color/transparentBlack"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/crop_frame_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/crop_frame"
+            android:background="@color/transparentBlack"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/crop_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_crop_frame"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/crop_frame_end"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/crop_frame"
+            android:background="@color/transparentBlack"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/crop_frame_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/crop_frame"
+            android:background="@color/transparentBlack"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/icon_video_play"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/icon_video_play" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/timeFrame"
+        android:layout_above="@+id/rlRatio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:visibility="gone">
+
+        <TextView
+            android:background="@drawable/round_main_tab"
+            android:id="@+id/textTimeSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_3sdp"
+            android:textColor="@color/title_bar_title"
+            android:textSize="@dimen/_9sdp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rlRatio"
+        android:layout_above="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:fontFamily="@font/muli_regular"
+            android:text="Select Ratio"
+            android:textColor="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/btnRation169"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:src="@drawable/image_ratio_169_selected" />
+
+        <ImageView
+            android:id="@+id/btnRation11"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:src="@drawable/image_ratio_11_unselected" />
+
+        <ImageView
+            android:id="@+id/btnRation34"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:src="@drawable/image_ratio_34_unselected" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/timeLineFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp">
+
+                <com.ziro.bullet.mediapicker.gallery.process.TimeLineView
+                    android:id="@+id/timeLineView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <SeekBar
+                android:id="@+id/handlerTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:max="1000"
+                android:progressDrawable="@android:color/transparent"
+                android:secondaryProgress="0"
+                android:thumb="@drawable/seek_line"
+                android:visibility="invisible" />
+
+            <com.ziro.bullet.mediapicker.gallery.process.RangeSeekBarView
+                android:id="@+id/timeLineBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_3sdp" />
+
+            <View
+                android:id="@+id/bg_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/handlerTop"
+                android:layout_alignBottom="@+id/handlerTop"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:background="@drawable/bg_seekbar" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

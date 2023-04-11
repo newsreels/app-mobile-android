@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "844271567754",
+    "firebase_url": "https://nib-app-prod.firebaseio.com",
+    "project_id": "nib-app-prod",
+    "storage_bucket": "nib-app-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844271567754:android:965089822bd5ffb9f9fe73",
+        "android_client_info": {
+          "package_name": "app.newsinbullets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844271567754-vf9sp93hvgdktq2icoiko0sr15v75cku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD9HXUej-1jdKEq6J5f_jyzwscHW7BxdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844271567754-vf9sp93hvgdktq2icoiko0sr15v75cku.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844271567754-99n40j0ibc3ot230a7sanaui0jecpvh6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.newsinbullets",
+                "app_store_id": "1540932937"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2352871460867862~2661516303"
+    }
+  ],
+  "configuration_version": "1"
+}

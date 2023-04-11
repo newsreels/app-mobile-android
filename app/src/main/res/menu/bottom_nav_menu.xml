@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_video"
+        android:enabled="true"
+        android:icon="@drawable/reel_state"
+        android:title="@string/reels"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/article_state"
+        android:title="@string/articles"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/search_state"
+        android:title="@string/explore"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/following"
+        android:enabled="true"
+        android:icon="@drawable/following_state"
+        android:title="@string/following"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:icon="@drawable/profile_state"
+        android:title="@string/profile"
+        app:showAsAction="always" />
+
+</menu>

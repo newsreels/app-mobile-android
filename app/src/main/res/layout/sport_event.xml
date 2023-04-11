@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/sportsLayout"
+    android:background="@color/background_light"
+    android:layout_marginHorizontal="@dimen/_4sdp"
+  >
+<!--    android:background="@drawable/bg_article_card"-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".7" />
+
+    <TextView
+        android:id="@+id/tv_event_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_team1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_event_info">
+
+        <ImageView
+            android:id="@+id/iv_team1_flag"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/trending_item"
+             />
+<!--        android:src="@drawable/trending_item"-->
+        <TextView
+            android:id="@+id/tv_team1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_bold"
+            android:maxLines="1"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_team1_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/ll_team1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline8">
+
+        <TextView
+            android:id="@+id/tv_team1_overs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:textSize="@dimen/_8sdp" />
+
+        <TextView
+            android:id="@+id/tv_team1_score"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_team2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/ll_team1"
+        app:layout_constraintTop_toBottomOf="@id/ll_team1_score">
+
+        <ImageView
+            android:id="@+id/iv_team2_flag"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/trending_item"
+            />
+<!--        android:src="@drawable/trending_item"-->
+        <TextView
+            android:id="@+id/tv_team2_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_bold"
+            android:maxLines="1"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_team2_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/ll_team2"
+        app:layout_constraintEnd_toEndOf="@+id/ll_team1_score"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@+id/guideline8">
+
+        <TextView
+            android:id="@+id/tv_team2_overs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:textSize="@dimen/_8sdp" />
+
+        <TextView
+            android:id="@+id/tv_team2_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_event_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/ll_team2_score"
+        app:layout_constraintStart_toStartOf="@id/ll_team2"
+        app:layout_constraintTop_toBottomOf="@id/ll_team2" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@color/black"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/ll_team2_score"
+        app:layout_constraintStart_toStartOf="@id/tv_event_status"
+        app:layout_constraintTop_toBottomOf="@id/tv_event_status" />
+
+    <TextView
+        android:id="@+id/tv_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Schedule"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <TextView
+        android:id="@+id/tv_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Table"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_schedule"
+        app:layout_constraintStart_toEndOf="@id/tv_schedule"
+        app:layout_constraintTop_toTopOf="@id/tv_schedule" />
+
+    <TextView
+        android:id="@+id/tv_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Report"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_table"
+        app:layout_constraintEnd_toEndOf="@+id/divider"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/tv_table"
+        app:layout_constraintTop_toTopOf="@id/tv_table" />
+</androidx.constraintlayout.widget.ConstraintLayout>

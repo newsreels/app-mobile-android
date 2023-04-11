@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="158dp"
+    android:height="158dp"
+    android:viewportWidth="158"
+    android:viewportHeight="158">
+  <path
+      android:pathData="M79,79m-79,0a79,79 0,1 1,158 0a79,79 0,1 1,-158 0"
+      android:fillColor="@color/youtube_btn_bg"/>
+  <path
+      android:pathData="M100.055,57.979A29.752,29.752 0,0 0,57.979 100.055a29.764,29.764 0,0 0,36.432 4.426,2.324 2.324,0 0,0 -2.409,-3.976A25.326,25.326 0,1 1,99.865 92.95a2.324,2.324 0,0 0,3.865 2.584A29.679,29.679 0,0 0,100.055 57.979Z"
+      android:fillColor="@color/icon_post_article"/>
+  <path
+      android:pathData="M76.537,66.863a5.238,5.238 0,0 0,-7.862 4.544v15.221a5.224,5.224 0,0 0,7.862 4.543l13.115,-7.61a5.256,5.256 0,0 0,0 -9.087Z"
+      android:fillColor="@color/icon_post_article"/>
+</vector>

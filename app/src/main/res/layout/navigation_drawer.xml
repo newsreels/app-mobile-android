@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/main_content" />
+
+    </FrameLayout>
+
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/layoutDrawer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--   -->
+
+<!--        <RelativeLayout-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/relativeDrawer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginStart="-65dp"-->
+<!--            android:background="@color/menu_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/header"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_110sdp"-->
+<!--                android:background="@color/menu_header"-->
+<!--                android:clickable="true">-->
+
+<!--                <androidx.appcompat.widget.SwitchCompat-->
+<!--                    android:id="@+id/switchCompat"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginTop="@dimen/_30sdp"-->
+<!--                    android:layout_marginEnd="@dimen/_20sdp"-->
+<!--                    android:checked="false"-->
+<!--                    android:textAppearance="?android:attr/textAppearanceMedium" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/_20sdp"-->
+<!--                    android:layout_marginTop="@dimen/_40sdp"-->
+<!--                    android:layout_toStartOf="@+id/close"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                        android:fontFamily="@font/caros_soft_bold"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="Current Category"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textColor="@color/main_category_text_color"-->
+<!--                        android:textSize="@dimen/_10sdp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/current_category"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:ellipsize="end"-->
+<!--                        android:fontFamily="@font/caros_soft_bold"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:textColor="@color/main_category_text_color"-->
+<!--                        android:textSize="@dimen/_20sdp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/current_category_unread"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/caros_soft_bold"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:textColor="@color/main_category_text_color"-->
+<!--                        android:textSize="@dimen/_10sdp" />-->
+
+<!--                </LinearLayout>-->
+
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/close"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentBottom="true">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/_16sdp"-->
+<!--                        android:layout_height="@dimen/_16sdp"-->
+<!--                        android:layout_margin="@dimen/_20sdp"-->
+<!--                        android:tint="@color/main_category_text_color"-->
+<!--                        app:srcCompat="@drawable/ic_cross" />-->
+<!--                </RelativeLayout>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/menu_list"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_below="@+id/header"-->
+<!--                android:divider="@color/black"-->
+<!--                android:dividerHeight="1dp" />-->
+
+<!--            <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--                android:id="@+id/menu_shimmer"-->
+<!--                android:layout_width="@dimen/_180sdp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                shimmer:duration="500">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/header_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_110sdp"-->
+<!--                        android:background="@color/menu_header"-->
+<!--                        android:clickable="true">-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/_20sdp"-->
+<!--                            android:layout_marginTop="@dimen/_40sdp"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                                android:fontFamily="@font/caros_soft_bold"-->
+<!--                                android:includeFontPadding="false"-->
+<!--                                android:text="Current Category"-->
+<!--                                android:textAllCaps="true"-->
+<!--                                android:textColor="@color/main_category_text_color"-->
+<!--                                android:textSize="@dimen/_10sdp" />-->
+
+<!--                            <include layout="@layout/menu_item_skeleton" />-->
+
+<!--                        </LinearLayout>-->
+
+
+<!--                    </RelativeLayout>-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+<!--                    <include-->
+<!--                        layout="@layout/menu_item_skeleton"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginTop="@dimen/_20sdp" />-->
+
+
+<!--                </LinearLayout>-->
+<!--            </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+
+<!--        </RelativeLayout>-->
+
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.rongi.rotate_layout.layout.RotateLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rotateLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:surface_type="texture_view">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:surface_type="texture_view">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/ep_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:auto_show="false"
+            app:buffered_color="@color/red"
+            app:controller_layout_id="@layout/list_exoplayer_controller_view_caption"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:played_color="@color/red"
+            app:show_buffering="always"
+            app:shutter_background_color="@android:color/transparent"
+            app:surface_type="texture_view"
+            app:use_controller="true" />
+
+        <RelativeLayout
+            android:id="@+id/dynamicContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.github.rongi.rotate_layout.layout.RotateLayout>

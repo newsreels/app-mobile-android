@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_6sdp"
+    android:background="@color/discover_card_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp">
+
+        <RelativeLayout
+            android:id="@+id/cardMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false">
+
+            <RelativeLayout
+                android:id="@+id/source"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_below="@+id/card"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="-35dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:translationZ="@dimen/_5sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profile"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="@dimen/_30sdp"
+                    app:riv_oval="true"
+                    tools:src="@drawable/img_place_holder" />
+
+                <TextView
+                    android:id="@+id/source_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_toStartOf="@+id/dotImg"
+                    android:layout_toEndOf="@+id/profile"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/large_source_name"
+                    android:textSize="@dimen/_10sdp"
+                    android:transitionName="@string/trans_desc"
+                    tools:text="Source name" />
+
+                <ImageView
+                    android:id="@+id/dotImg"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_3sdp"
+                    app:srcCompat="@drawable/reels_3dot"
+                    app:tint="@color/dot_color" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/dummyBulletForSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.025"
+                android:paddingTop="@dimen/_190sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:singleLine="false"
+                android:textColor="@color/bullet_text"
+                android:textDirection="locale"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="invisible" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:clickable="false"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:clickable="false">
+
+                    <ImageView
+                        android:id="@+id/odd_imageBack"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/odd_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:pivotX="50%"
+                        android:pivotY="50%" />
+
+                    <include
+                        android:id="@+id/tag"
+                        layout="@layout/hashtag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:visibility="gone" />
+
+                    <ProgressBar
+                        android:id="@+id/progressAudio"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:indeterminateBehavior="repeat"
+                        android:indeterminateDrawable="@drawable/gradient_progress"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:id="@+id/flagArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparentBlack"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginHorizontal="@dimen/_40sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:fontFamily="@font/muli_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/are_you_sure_you_want_to_flag_this_as_fake_news"
+                                android:textAlignment="center"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:background="@color/whiteTrans" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/_8sdp">
+
+                                <ImageView
+                                    android:id="@+id/deny"
+                                    android:layout_width="@dimen/_15sdp"
+                                    android:layout_height="@dimen/_15sdp"
+                                    android:visibility="visible"
+                                    app:srcCompat="@drawable/ic_black_red_cross" />
+
+                                <ImageView
+                                    android:id="@+id/accept"
+                                    android:layout_width="@dimen/_15sdp"
+                                    android:layout_height="@dimen/_15sdp"
+                                    android:layout_marginStart="@dimen/_15sdp"
+                                    android:layout_toEndOf="@+id/deny"
+                                    android:visibility="visible"
+                                    app:srcCompat="@drawable/ic_black_red_mark" />
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_9sdp"
+                android:layout_below="@+id/desc_list"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:translationZ="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_7sdp"
+                    android:transitionName="@string/trans_desc"
+                    tools:text="1 month ago" />
+
+                <ImageView
+                    android:id="@+id/separator_dot"
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/time"
+                    android:background="@color/icon" />
+
+                <TextView
+                    android:id="@+id/author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/separator_dot"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/icon"
+                    android:textSize="@dimen/_7sdp"
+                    android:transitionName="@string/trans_desc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Source2" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/desc_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:clickable="false"
+                android:overScrollMode="never"
+                android:paddingTop="@dimen/_40sdp"
+                android:translationZ="2dp" />
+
+            <RelativeLayout
+                android:id="@+id/leftRightPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rotation="@integer/locale_mirror_flip"
+                android:translationZ="5dp">
+
+                <ImageView
+                    android:id="@+id/leftArc"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_marginVertical="@dimen/_40sdp"
+                    android:rotation="@integer/locale_mirror_flip"
+                    android:visibility="gone"
+                    app:tint="@color/shadow" />
+
+                <ImageView
+                    android:id="@+id/rightArc"
+                    android:layout_width="40dp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginVertical="@dimen/_40sdp"
+                    android:rotation="@integer/locale_mirror_flip"
+                    android:visibility="gone"
+                    app:tint="@color/shadow" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:translationZ="5dp">
+
+                <ImageView
+                    android:id="@+id/flag"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_22sdp"
+                    android:layout_marginEnd="@dimen/_11sdp"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_flag" />
+
+                <ImageView
+                    android:id="@+id/speaker"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_speaker_mute"
+                    tools:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/desc_list"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/equilizer"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/static_equilizer"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RelativeLayout
+                    android:id="@+id/likeMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_toStartOf="@+id/commentMain"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/commentMain"
+                    app:layout_constraintTop_toBottomOf="@+id/equilizer">
+
+                    <ImageView
+                        android:id="@+id/like_icon"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:srcCompat="@drawable/ic_like_heart" />
+
+                    <TextView
+                        android:id="@+id/like_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toEndOf="@id/like_icon"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:minWidth="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/like_disable_text_color"
+                        android:textSize="@dimen/_7sdp"
+                        android:textStyle="bold"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="123" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/commentMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints">
+
+
+                    <ImageView
+                        android:id="@+id/comment_icon"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        app:srcCompat="@drawable/ic_comment_box" />
+
+                    <TextView
+                        android:id="@+id/comment_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_toEndOf="@id/comment_icon"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/muli_extra_bold"
+                        android:gravity="start"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:minWidth="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/like_disable_text_color"
+                        android:textSize="@dimen/_7sdp"
+                        android:textStyle="bold"
+                        android:transitionName="@string/trans_desc"
+                        tools:text="123" />
+
+                </RelativeLayout>
+
+                <com.ziro.bullet.storyMaker.HorizontalStoriesProgressView
+                    android:id="@+id/stories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/progress_bar_height"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:clickable="false"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </RelativeLayout>
+
+        <include layout="@layout/article_status_layout" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/feed_seperator_line" />
+
+</LinearLayout>

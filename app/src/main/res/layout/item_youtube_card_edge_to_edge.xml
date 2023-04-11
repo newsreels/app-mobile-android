@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/cardMain"
+    android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
+    android:orientation="vertical">
+<!--    android:background="@color/card_bg"-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_16sdp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:clickable="false">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:clickable="false"
+            app:cardBackgroundColor="@color/card"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/odd_imageBack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/odd_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:pivotX="50%"
+                android:pivotY="50%"
+                android:scaleType="fitCenter" />
+
+            <ProgressBar
+                android:id="@+id/progressAudio"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:indeterminateBehavior="repeat"
+                android:indeterminateDrawable="@drawable/gradient_progress"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/play"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_youtube_icon" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/youtubeMain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:clickable="false"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="0dp">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:enableAutomaticInitialization="true"
+                app:showFullScreenButton="false"
+                app:showYouTubeButton="false" />
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:translationZ="5dp">
+
+            <LinearLayout
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <ImageView
+                        android:id="@+id/speaker"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_toStartOf="@+id/fullscreen"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_speaker_mute" />
+
+                    <ImageView
+                        android:id="@+id/fullscreen"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_fullscreen_icon" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/play_duration"
+                    style="@style/play_duration"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    app:drawableStartCompat="@drawable/ic_small_play_icon"
+                    tools:text="08:30" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:translationX="-181dp"
+            android:layoutDirection="ltr"
+            android:translationZ="@dimen/_10sdp">
+
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="wrap_content"
+                android:layoutDirection="locale"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_edge_black"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/source_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:fontFamily="@font/muli_extra_bold"
+                    android:includeFontPadding="false"
+                    android:maxWidth="@dimen/_150sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="italic"
+                    tools:text="NEW POST " />
+
+                <ImageView
+                    android:id="@+id/separator_dot_2"
+                    android:layout_width="@dimen/_3sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_dot"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/muli_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp"
+                    tools:text="1 min ago" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/article_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:fontFamily="@font/manuale_bold"
+        android:minHeight="@dimen/_60sdp"
+        android:textColor="@color/colorAccent"
+        android:textDirection="locale"
+        android:textSize="@dimen/_14sdp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

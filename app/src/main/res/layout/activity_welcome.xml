@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcomebg">
+
+    <FrameLayout
+        android:id="@+id/welcome_frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/_12sdp" />
+
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:scaleType="centerCrop"-->
+    <!--        android:tint="@color/background_tint_onboarding"-->
+    <!--        android:tintMode="src_over"-->
+    <!--        app:srcCompat="@drawable/welcomescreen" />-->
+
+    <RelativeLayout
+        android:id="@+id/langMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_16sdp"
+            app:cardCornerRadius="@dimen/_6sdp">
+
+            <TextView
+                android:id="@+id/tv_selected_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:maxLength="3"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/language"
+                android:textColor="@color/blacknew"
+                android:textSize="@dimen/_14sdp" />
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/_250sdp"-->
+    <!--        android:layout_above="@+id/buttons"-->
+    <!--        android:layout_alignStart="@+id/buttons"-->
+    <!--        android:layout_alignEnd="@+id/buttons"-->
+    <!--        android:layout_marginHorizontal="@dimen/_8sdp"-->
+    <!--        android:layout_marginTop="@dimen/_40sdp"-->
+    <!--        android:layout_marginBottom="@dimen/_30sdp"-->
+    <!--        android:elevation="@dimen/_16sdp"-->
+    <!--        android:scaleType="fitStart"-->
+    <!--        android:src="@drawable/welcomimg"-->
+    <!--        android:tint="@color/white" />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttons"
+        android:layout_alignStart="@+id/buttons"
+        android:layout_alignEnd="@+id/buttons"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:fontFamily="@font/lora_semi_bold"
+        android:includeFontPadding="false"
+        android:shadowColor="@color/white"
+        android:shadowDx="-1"
+        android:shadowDy="-1"
+        android:shadowRadius="1"
+        android:text="@string/the_world_at"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_30sdp"
+        android:visibility="visible" />
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:orientation="vertical">
+
+        <include layout="@layout/fill_btn_wid_progress" />
+
+        <include layout="@layout/outline_btn_wid_progress" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/tint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ad_button_list"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

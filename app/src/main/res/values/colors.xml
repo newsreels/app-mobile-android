@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryTrans">#80FFFFFF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="card">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDarkTrans">#80F9F9F9</color>
+    <color name="colorPrimaryDarkTransMore">#25F9F9F9</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorSecondary">#3D485F</color>
+    <color name="orange">#F67441</color>
+    <color name="navbar">#ffffff</color>
+    <color name="card_shadow">#8291AB</color>
+    <color name="transparent">#00000000</color>
+    <color name="admob">#F9F9F9</color>
+
+    <color name="popup_base">#FFFFFF</color>
+    <color name="popup_btn">#F6F7FB</color>
+
+    <color name="menu_header">#FFFFFF</color>
+    <color name="menu_content">#F5F6FA</color>
+    <color name="source_card">#FFFFFF</color>
+
+    <color name="icon_grey">#84838b</color>
+
+    <color name="main_category_text_color">#3D485F</color>
+    <color name="bullet_text">#000000</color>
+
+
+    <color name="signal">#C4C8CF</color>
+    <color name="card_text_1_color">#FFFFFF</color>
+    <color name="card_text_2_color">#3c456F</color>
+    <color name="card_text_3_color">#393737</color>
+    <color name="bullet_icon">#393737</color>
+    <color name="card_signal_icon">#BDC1CA</color>
+    <color name="dot_icon">#393737</color>
+
+    <color name="menu_enable_text">#3c4561</color>
+    <color name="menu_disable_text">#CACCD4</color>
+
+    <color name="details_bg">#F5F7FA</color>
+    <color name="details_text_1_color">#414B63</color>
+    <color name="details_text_2_color">#FFFFFF</color>
+    <color name="details_text_3_color">#3D485F</color>
+    <color name="details_text_4_color">#3D485F</color>
+    <color name="details_text_5_color">#0FEDDE</color>
+    <color name="details_text_6_color">#697389</color>
+    <color name="transparentBlack">#80000000</color>
+    <color name="card_end">#80141414</color>
+    <color name="background_tint_onboarding">#4D141414</color>
+
+
+    <color name="splash_text">#000000</color>
+
+    <color name="menu_divider">#CD787779</color>
+    <color name="menu_text">#000000</color>
+
+    <color name="lightTheme">#F6F7FB</color>
+    <color name="lightText">#3c456F</color>
+    <color name="darkTheme">#000000</color>
+    <color name="darkText">#FFFFFF</color>
+
+    <color name="email_icon">#C4C8CF</color>
+    <color name="whiteTrans">#4DFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gradiantbg">#47FFFFFF</color>
+    <color name="gradiantbgnew">#1EFFFFFF</color>
+    <color name="white80">#000000</color>
+    <color name="white100">#00FFFFFF</color>
+    <color name="bg_dot">#00000057</color>
+    <color name="green">#156012</color>
+    <color name="greennew">#21D184</color>
+    <color name="greyhint">#9B9B9C</color>
+    <color name="green_">#39AE49</color>
+    <color name="read_more">#FA0815</color>
+    <color name="active_dot">#FA0815</color>
+    <color name="inactive_dot">#80FA0815</color>
+    <color name="light_green">#833CDB9B</color>
+    <color name="green2">#68C579</color>
+    <color name="login_btn_border">#E01335</color>
+    <color name="guest_login_btn_border">#E01335</color>
+    <color name="fb_blue">#3875EA</color>
+    <color name="login_btn_bg">#1A1A1A</color>
+    <color name="primaryRed">@color/theme_color_1</color>
+    <color name="play_btn2">#33FA0815</color>
+    <color name="logo">#FFFFFF</color>
+    <color name="splash_bg">#213139</color>
+    <color name="black">#000000</color>
+    <color name="lighttext">#B4ACAD</color>
+    <color name="black100">#00000000</color>
+    <color name="black10">#19000000</color>
+    <color name="blackTrans">#B5000000</color>
+    <color name="blackTrans40">#66000000</color>
+    <color name="yellow">#FFC442</color>
+    <color name="grey_pale">#B2FFFFFF</color>
+    <color name="red">#E01335</color>
+    <color name="peach">#F26666</color>
+    <color name="background_light">#F7F7F7</color>
+    <color name="light_grey">#E0E0E0</color>
+    <color name="border_grey">#ADADAD</color>
+    <color name="grey_n">#E0E0E0</color>
+    <color name="grey_dis">#B1B1B1</color>
+    <color name="lightred">#F73458</color>
+    <color name="darkgreyup">#5A5A5A</color>
+    <color name="red_bright">#FC2C08</color>
+    <color name="darkgrey">#2B2A2F</color>
+    <color name="grey">#787779</color>
+    <color name="grey1">#817678</color>
+    <color name="bluegrey">#BECAD8</color>
+    <color name="grey_places">#646464</color>
+    <color name="search_text">#8E95A1</color>
+    <color name="tablayout_text">#697389</color>
+    <color name="search_text_new">#A8A8A8</color>
+    <color name="search_text_type_new">#000000</color>
+
+    <color name="module_see_all_color">#1885D1</color>
+    <color name="crpyto_color_modif">#4BC0A2</color>
+    <color name="greydull">#F3E6E6</color>
+
+    <color name="progress_primary">#FA0815</color>
+    <color name="progress_secondary">#C4C8CF</color>
+    <color name="progress_max_active">#FA0815</color>
+    <color name="progress_back">#C4C8CF</color>
+    <color name="view_color">#80D9D9D9</color>
+    <color name="gray_scale">#8affffff</color>
+    <color name="article_bg">#F1F1F1</color>
+    <color name="article_blk">#171717</color>
+    <color name="article_line">#2B2A2F</color>
+
+
+    <color name="tab_unselect">#909090</color>
+    <color name="tab_unselected">#909090</color>
+    <color name="tab_selected">#FFFFFF</color>
+
+    <color name="whitenew">#F5F7FA</color>
+    <color name="base">#FFFFFF</color>
+    <color name="textHeader">#3D485F</color>
+    <color name="blacknew1">#282828</color>
+    <color name="blacknew2">#23204A</color>
+    <color name="textHeaderHint">#4D4D4D</color>
+    <color name="textSmall">#3D485F</color>
+    <color name="appbarBg">#EFEEEE</color>
+    <color name="btnGreyBg">#E1E0E0</color>
+    <color name="btnGrey2">#E1E0E0</color>
+    <color name="btnGreyBgDark">#8E95A1</color>
+    <color name="textUnselected">#BA3A3A3A</color>
+
+    <color name="turquoiseGreen">#FA0815</color>
+    <color name="theme_tab_bg">#E3E5EA</color>
+    <color name="textSmallGrey">#697389</color>
+    <color name="textSmallGrey2">#5A5A5A</color>
+    <color name="btnUnSelectedBg">#C4C8CF</color>
+    <color name="btnUnSelectedText">#ffffff</color>
+    <color name="textSubTitleGrey">#8C8B91</color>
+    <color name="grey_light">#AFAFAF</color>
+    <color name="dashes">#C4C8CF</color>
+
+    <color name="collapse_unselected_card">#EDF0F4</color>
+    <color name="collapse_selected_card">#E7E7E7</color>
+
+    <color name="tabbar_icon_base_50op">#80E7E7E7</color>
+    <color name="tabbar_icon_base">#E7E7E7</color>
+    <color name="tabbar_icon">#393737</color>
+    <color name="tabbar_icon_50op">#80393737</color>
+
+    <color name="tabbar_bg">#E7E7E7</color>
+    <color name="tabbar_bg_unselected">#F3F3F3</color>
+    <color name="tabbar_textGreen">#000000</color>
+    <color name="tabbar_text_unselected">#909090</color>
+
+    <color name="pop_up_bg">#E7E7E7</color>
+    <color name="pop_up__title">#393737</color>
+
+    <color name="bottombar_bg">#FCFCFC</color>
+    <color name="bottombar_chip">#E7E7E7</color>
+    <color name="bottombar_textGreen">#393737</color>
+    <color name="newBg">#F6F6F6</color>
+
+    <color name="bottombar_gradient_start">#FFFFFF</color>
+    <color name="bottombar_gradient_center">#F9F9F9</color>
+    <color name="bottombar_gradient_end">#00FFFFFF</color>
+
+    <color name="listCardBg">#FFFFFF</color>
+
+    <color name="box">#EDEDED</color>
+    <color name="box_image">#A4A4A4</color>
+    <color name="box_text">#A4A4A4</color>
+    <color name="label_50op">#80000000</color>
+    <color name="label_30op">#4D000000</color>
+
+    <color name="search_black">#B3FFFFFF</color>
+
+    <color name="card_gradient_1">#00FFFFFF</color>
+    <color name="card_gradient_2">#E8FFFFFF</color>
+    <color name="card_gradient_3">#FFFFFF</color>
+    <color name="card_gradient_4">#FFFFFF</color>
+
+    <color name="greySubtle">#ECE9E9</color>
+
+    <color name="shadow">#000000</color>
+    <color name="shadow_end">#4D000000</color>
+    <color name="mainShadow">#B3FFFFFF</color>
+    <color name="transparentlayer">#E6FFFFFF</color>
+
+    <color name="heading_tabs">#F3F3F3</color>
+    <color name="heading_tabs_item">#FCFCFC</color>
+    <color name="heading_tabs__text">#CCFFFFFF</color>
+    <color name="heading_tabs_item_text">#FFFFFF</color>
+    <color name="heading_tabs_text_selected">#FA0815</color>
+    <color name="heading_tabs_text_unselected">#909090</color>
+    <color name="close_btn_color">#393737</color>
+
+    <color name="ad_button_list">#80FFFFFF</color>
+    <color name="ad_button_card">#F3F3F3</color>
+    <color name="ad_search_card">#EEEEEF</color>
+
+    <color name="popup_heading_bg">#F3F3F3</color>
+    <color name="popup_heading_text">#CC000000</color>
+    <color name="popup_item_bg">#E7E7E7</color>
+    <color name="popup_item_text">#000000</color>
+    <color name="popup_item_arrow">#84838B</color>
+
+    <color name="discover_header_text">#000000</color>
+    <color name="discover_sub_header_text">#4C545D</color>
+    <color name="discover_item_header_text">#FFFFFF</color>
+    <color name="discover_item_sub_header_text">#CCFFFFFF</color>
+    <color name="discover_icon_bg">#B3000000</color>
+    <color name="discover_source_item_bg">#FFFFFF</color>
+    <color name="discover_header_gradient_end_color">#00FFFFFF</color>
+    <color name="discover_header_gradient_center_color">#6EFFFFFF</color>
+    <color name="discover_header_gradient_start_color">#FFFFFF</color>
+
+    <color name="discover_textHeader">#000000</color>
+    <color name="static_tabbar_text_selected">#FA0815</color>
+    <color name="static_tabbar_text_unselected">#5A5A5A</color>
+    <color name="header_source">#909090</color>
+
+    <color name="blue_light">#E8EBEC</color>
+    <color name="blue">#582DFF</color>
+    <color name="themeGreen">#3AD9D2</color>
+    <color name="card_channel">#CC000000</color>
+    <color name="gradient">#FFFFFF</color>
+    <color name="blackwhite">#FFFFFF</color>
+    <color name="whiteblack">#000000</color>
+    <color name="static_tabbar_text_selected_new">#000000</color>
+
+    <color name="header_divider">#E5E4E9</color>
+    <color name="stripes">#E5E4E9</color>
+    <color name="comment_name">#000000</color>
+    <color name="comment_desc">#CC000000</color>
+    <color name="comment_time_reply">#6B6376</color>
+    <color name="comment_edittext">#F3F3F3</color>
+    <color name="comment_box">#05000000</color>
+
+    <color name="comment_like_icon_text_inactive">#393737</color>
+    <color name="comment_like_icon_text_active">#FFFFFF</color>
+    <color name="comment_like_box_inactive">#F3F3F3</color>
+    <color name="comment_like_box_active">@color/primaryRed</color>
+
+    <color name="discover_card_bg">#FFFFFF</color>
+    <color name="discover_card_search_bg">#FCFCFC</color>
+    <color name="discover_search_box_bg">#F1F1F1</color>
+    <color name="discover_search_text">#A8A8A8</color>
+    <color name="discover_search_icon">#84838B</color>
+    <color name="discover_card_grey_text">#84838B</color>
+    <color name="discover_card_title">#000000</color>
+    <color name="discover_card_white_text">#3D485F</color>
+    <color name="discover_card_white50_text">#803D485F</color>
+    <color name="discover_card_separator">#E7E9EC</color>
+    <color name="coming_soon_icon">#e0e0e2</color>
+
+    <color name="profile_edit_icon_bg">#F3F3F3</color>
+    <color name="dot_color">#84838B</color>
+
+    <color name="close_inner">#000</color>
+    <color name="large_source_name">#000000</color>
+    <color name="large_time">#333333</color>
+    <color name="like_heart_filled">#e01335</color>
+    <color name="like_disable_text_color">#84838B</color>
+
+    <color name="card_bg">#FFFFFF</color>
+    <color name="home_bg">#FBFBFB</color>
+    <color name="home_bg_main">#FBFBFB</color>
+
+    <color name="cover_pic_overlay_start">#ffffffff</color>
+    <color name="cover_pic_overlay_end">#00ffffff</color>
+    <color name="follow_icon_border">#F3F3F3</color>
+
+    <color name="discover_card_follow_bg">#FCFCFC</color>
+
+    <color name="contact_submit_text">#FFFFFF</color>
+
+    <color name="sorry_title">#000000</color>
+    <color name="sorry_msg">#AFAFAF</color>
+    <color name="menu_close_btn">#393737</color>
+
+    <color name="title_bar_title">#000000</color>
+    <color name="blacknew">#080808</color>
+    <color name="menu_bg">#fcfcfc</color>
+    <color name="menu_item_bg">#FCFCFC</color>
+    <color name="menu_line">#E7E9EC</color>
+    <color name="post_article_text">#67676B</color>
+
+    <color name="youtube_edit_text_bg">#0D000000</color>
+    <color name="youtube_edit_text">#A8A8A8</color>
+    <color name="youtube_popup_bg">#4DFFFFFF</color>
+    <color name="youtube_btn_bg">#F3F3F3</color>
+
+    <color name="tag_description">#909090</color>
+    <color name="tag_mx">#67676B</color>
+    <color name="tag_item_bg">#FBFBFB</color>
+    <color name="tag_separator">#E7E9EC</color>
+
+    <color name="picture_color_a83">#a8333333</color>
+    <color name="grey_33">#333333</color>
+    <color name="see_more">#84838B</color>
+    <color name="icon_post_article">#000000</color>
+    <color name="youtube_import_icon">#393737</color>
+    <color name="relevant_profile_borer">#FBFBFB</color>
+
+    <color name="disable_next_btn_bg">#F3F3F3</color>
+    <color name="disable_next_btn_text">#393737</color>
+
+    <color name="login_description">#393737</color>
+    <color name="channel_dis_edit">#393737</color>
+
+    <color name="social_icon">#000000</color>
+
+    <color name="whiteOpcacity5">#0D000000</color>
+    <color name="skeleton_view_item">#C5C5C5</color>
+
+    <color name="create_channel_btn_1">#FBFBFB</color>
+    <color name="create_channel_btn_2">#E2E2E2</color>
+    <color name="create_channel_btn_3">#84838B</color>
+    <color name="create_channel_btn_4">#84838B</color>
+    <color name="upload_image">#84838B</color>
+
+    <color name="reelBottomSheetCard">#f7f7f7</color>
+    <color name="discover_header_bg">#fcfcfc</color>
+    <color name="discover_bg">#f7f7f7</color>
+    <color name="articlebg">#F5F4F9</color>
+    <color name="menu_separator_bg">#E7E9EC</color>
+    <color name="menu_separator_view_bg">#f7f7f7</color>
+
+    <color name="shimmer_highlight">#C8C8C8</color>
+    <color name="shimmer_base">#A8A8A8</color>
+
+    <!--    <color name="for_you_gradient_start">#FFFFFF</color>-->
+    <!--    <color name="for_you_gradient_end">#F7F7F7</color>-->
+
+    <color name="for_you_gradient_start">#E9E9E9</color>
+    <color name="for_you_gradient_center">#F4F4F4</color>
+    <color name="for_you_gradient_end">#FFFFFF</color>
+
+    <color name="for_you_separator_bg">#d8d9d8</color>
+
+    <color name="card_icon_bg">#f6f6f6</color>
+    <color name="card_icon_fg">#FF000000</color>
+    <color name="community_line">#707070</color>
+
+    <color name="crop_icon_color">#707070</color>
+
+    <color name="discover_bg_night">#000000</color>
+    <color name="discover_header_bg_night">#090909</color>
+    <color name="discover_title_night">#FFFFFF</color>
+    <color name="discover_search_box_bg_night">#F1F1F1</color>
+    <color name="discover_card_title_night">#000000</color>
+
+    <color name="sub_item_grey">#84838b</color>
+    <color name="inactive_btn_bg">#707070</color>
+    <color name="black_search_box_bg">#17FFFFFF</color>
+
+    <color name="create_channel_btn_icon_1">#090909</color>
+    <color name="create_channel_btn_icon_2">#ffffff</color>
+    <color name="create_channel_btn_icon_3">#84838b</color>
+    <color name="create_channel_btn_icon_4">#84838b</color>
+
+    <color name="channel_separator_bg">#262628</color>
+
+    <color name="card_icon_bg_black">#0E0E0E</color>
+    <color name="card_icon_fg_black">#ffffff</color>
+
+    <color name="theme_color_1">#F73458</color>
+    <color name="theme_color_red">#EB5165</color>
+    <color name="theme_color_black">#080808</color>
+    <color name="theme_color_2">#6768AB</color>
+    <color name="disable_btn">#FDD8DF</color>
+    <color name="edittextHint">#BECAD8</color>
+    <color name="edittextredHint">#FDD8DF</color>
+    <color name="error">#722FDE</color>
+    <color name="selection">#DEE8F2</color>
+    <color name="icon">#6B6476</color>
+    <color name="alert_box">#27AE60</color>
+    <color name="page_bg">#E5E5E5</color>
+    <color name="greyad">#ADADAD</color>
+    <color name="inactive_tabs">#CCD2E3</color>
+    <color name="bottom_sheet_bg">#F2F4F7</color>
+    <color name="sport_status_color">#EA0B34</color>
+
+    <color name="endd">#25F9F9F9</color>
+    <color name="centerr">#80F9F9F9</color>
+    <color name="startt">#FFFFFF</color>
+
+    <color name="toolbar_icon">#23204A</color>
+
+    <color name="article_bg_blue">#F4FAFA</color>
+
+    <color name="sports_bg">#F84F6E</color>
+    <color name="settings_bg_color">#F6F6F6</color>
+    <color name="divider_color">#E6E6E7</color>
+    <color name="sports_tab_selected">#282828</color>
+    <color name="off_white_bg">#F7F7F7</color>
+    <color name="title_color">#080808</color>
+    <color name="sub_label_color">#5A5A5A</color>
+    <color name="selected_lang_bg">#EEEEEE</color>
+    <color name="following_text_color">#1170DA</color>
+    <color name="version_text_color">#282828</color>
+    <color name="social_links_bg">#080808</color>
+    <color name="time_text_color">#ADADAD</color>
+    <color name="dark_divider">#B4ACAD</color>
+    <color name="disabled_setting_btn">#FDD8DF</color>
+    <color name="region_spinner_text">#1C98F3</color>
+    <color name="region_dialog_bg">#F8F8F8</color>
+</resources>

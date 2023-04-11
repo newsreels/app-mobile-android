@@ -1,0 +1,5 @@
+<vector android:height="21.00026dp" android:viewportHeight="56.616"
+    android:viewportWidth="80.879" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/youtube_import_icon" android:pathData="M79.189,8.841a10.13,10.13 0,0 0,-7.151 -7.15c-6.307,-1.69 -31.6,-1.69 -31.6,-1.69s-25.291,0 -31.6,1.69a10.13,10.13 0,0 0,-7.151 7.15c-1.69,6.307 -1.69,19.467 -1.69,19.467s0,13.16 1.69,19.467a10.129,10.129 0,0 0,7.151 7.15c6.307,1.69 31.6,1.69 31.6,1.69s25.291,0 31.6,-1.69a10.129,10.129 0,0 0,7.151 -7.15c1.69,-6.307 1.69,-19.467 1.69,-19.467S80.879,15.148 79.189,8.841Z"/>
+    <path android:fillColor="@color/youtube_btn_bg" android:pathData="M32.352,40.44l21.012,-12.132 -21.012,-12.132Z"/>
+</vector>

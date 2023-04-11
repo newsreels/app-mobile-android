@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_3sdp"
+    android:paddingVertical="@dimen/_10sdp"
+    android:background="@color/card_bg"
+    android:id="@+id/cardData"
+    android:paddingHorizontal="@dimen/_10sdp">
+
+    <ImageView
+        app:layout_constraintEnd_toEndOf="@+id/desc_list"
+        app:layout_constraintBottom_toBottomOf="@+id/desc_list"
+        android:id="@+id/speaker"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_speaker_mute" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:id="@+id/desc_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/bullet_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        app:layout_constraintBottom_toBottomOf="@+id/desc_list"
+        app:layout_constraintTop_toTopOf="@+id/desc_list"
+        app:layout_constraintStart_toStartOf="@+id/desc_list"
+        android:id="@+id/leftArc"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/_92sdp"
+        android:background="@drawable/left_arc"
+        android:backgroundTint="@color/shadow"
+        android:clickable="false"
+        android:rotation="@integer/locale_mirror_flip"
+        android:visibility="gone"
+        app:tint="@color/shadow">
+
+        <ImageView
+            android:id="@+id/prev"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_prev"
+            app:tint="@color/shadow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        app:layout_constraintBottom_toBottomOf="@+id/desc_list"
+        app:layout_constraintTop_toTopOf="@+id/desc_list"
+        app:layout_constraintEnd_toEndOf="@+id/desc_list"
+        android:id="@+id/rightArc"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/_92sdp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/right_arc"
+        android:backgroundTint="@color/shadow"
+        android:clickable="false"
+        android:rotation="@integer/locale_mirror_flip"
+        android:visibility="gone"
+        app:tint="@color/shadow">
+
+        <ImageView
+            android:id="@+id/next"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_next"
+            app:tint="@color/shadow" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="invisible"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:id="@+id/dummyBulletForSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+        android:textColor="@color/bullet_text"
+        android:textDirection="locale"
+        android:textSize="@dimen/_9sdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/bullet_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/time_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/time_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_time" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/headingMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_green"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:transitionName="@string/trans_desc" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/imageSection"
+        android:layout_width="@dimen/_85sdp"
+        android:layout_height="@dimen/_85sdp"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintBottom_toBottomOf="@+id/bullet_image"
+        app:layout_constraintEnd_toEndOf="@+id/bullet_image"
+        app:layout_constraintStart_toStartOf="@+id/bullet_image"
+        app:layout_constraintTop_toTopOf="@+id/bullet_image" />
+
+
+    <ImageView
+        android:id="@+id/bullet_image"
+        android:layout_width="@dimen/_104sdp"
+        android:layout_height="@dimen/_104sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_place_holder"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/like_comment_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="@+id/desc_list"
+        app:layout_constraintStart_toStartOf="@+id/desc_list"
+        app:layout_constraintTop_toBottomOf="@+id/desc_list">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/source_image"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_border_color="@color/colorPrimaryDark"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="@dimen/_30sdp"
+            app:riv_oval="true"
+            tools:src="@drawable/img_place_holder" />
+
+        <TextView
+            android:id="@+id/source_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/large_source_name"
+            android:textSize="@dimen/_8sdp"
+            android:transitionName="@string/trans_desc"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/source_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Source name" />
+
+        <TextView
+            android:id="@+id/author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_bold"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:maxWidth="@dimen/_110sdp"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/large_time"
+            android:textSize="@dimen/_7sdp"
+            android:transitionName="@string/trans_desc"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/time"
+            app:layout_constraintStart_toEndOf="@+id/source_image"
+            app:layout_constraintTop_toTopOf="@+id/time"
+            tools:text="Source name"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/separator_dot"
+            android:layout_width="@dimen/_3sdp"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/time"
+            app:layout_constraintStart_toEndOf="@+id/author_name"
+            app:layout_constraintTop_toTopOf="@+id/time"
+            app:srcCompat="@drawable/ic_dot"
+            app:tint="@color/large_time"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textAllCaps="false"
+            android:textColor="@color/large_time"
+            android:textSize="@dimen/_7sdp"
+            android:transitionName="@string/trans_desc"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/separator_dot"
+            app:layout_constraintTop_toBottomOf="@+id/source_name"
+            tools:text="1 month ago" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.ziro.bullet.storyMaker.HorizontalStoriesProgressView
+        android:id="@+id/stories"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:visibility="visible"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/like_comment_layout"
+        app:layout_constraintEnd_toStartOf="@+id/like_comment_layout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/desc_list"
+        app:layout_constraintTop_toTopOf="@+id/like_comment_layout" />
+
+    <RelativeLayout
+        app:layout_constraintStart_toEndOf="@+id/stories"
+        app:layout_constraintTop_toTopOf="@+id/stories"
+        app:layout_constraintBottom_toBottomOf="@+id/stories"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/signal"-->
+        <!--                        android:layout_width="@dimen/_6sdp"-->
+        <!--                        android:layout_height="@dimen/_6sdp"-->
+        <!--                        android:rotation="@integer/locale_mirror_flip_270"-->
+        <!--                        app:srcCompat="@drawable/ic_wifi"-->
+        <!--                        app:tint="@color/dot_color" />-->
+
+        <ProgressBar
+            android:id="@+id/progressAudio"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:indeterminate="true"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/gradient_progress"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/like_comment_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/desc_list"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+
+        <RelativeLayout
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:id="@+id/likeMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/commentMain"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/like_icon"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_9sdp"
+                app:srcCompat="@drawable/ic_like_heart" />
+
+            <TextView
+                android:id="@+id/like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toEndOf="@id/like_icon"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_extra_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:minWidth="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textColor="@color/like_disable_text_color"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:transitionName="@string/trans_desc"
+                tools:text="123" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:translationX="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:id="@+id/commentMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dotImg"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/comment_icon"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_9sdp"
+                app:srcCompat="@drawable/ic_comment_box" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_toEndOf="@id/comment_icon"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_extra_bold"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:minWidth="@dimen/_10sdp"
+                android:textAllCaps="true"
+                android:textColor="@color/like_disable_text_color"
+                android:textSize="@dimen/_7sdp"
+                android:textStyle="bold"
+                android:transitionName="@string/trans_desc"
+                tools:text="123" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/dotImg"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_setting"
+            app:tint="@color/dot_color" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/article_status_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

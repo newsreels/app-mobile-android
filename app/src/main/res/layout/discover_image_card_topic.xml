@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transformationLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:background="@drawable/discover_card_shape"
+    android:elevation="@dimen/_13sdp"
+    android:transitionName="shared_element_container"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.07"
+            android:textAllCaps="true"
+            android:textColor="@color/discover_card_grey_text"
+            android:textSize="@dimen/_8sdp"
+            tools:text="This is dummy data" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/muli_bold"
+            android:includeFontPadding="false"
+            android:textAllCaps="false"
+            android:textColor="@color/discover_card_title"
+            android:textSize="@dimen/_22sdp"
+            tools:text="This is dummy data" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginBottom="@dimen/_20sdp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingStart="-50dp"
+                android:paddingEnd="0dp"
+                android:clipToPadding="false"
+                android:id="@+id/image_list_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_list_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_list_2" />
+
+            <!--            <View-->
+            <!--                android:visibility="gone"-->
+            <!--                android:id="@+id/view2"-->
+            <!--                android:layout_width="@dimen/_40sdp"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:background="@drawable/discovery_img_overlay_left"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            <View-->
+            <!--                android:visibility="gone"-->
+            <!--                android:id="@+id/view3"-->
+            <!--                android:layout_width="@dimen/_40sdp"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:background="@drawable/discovery_img_overlay_right"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
