@@ -96,71 +96,20 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     private static final int INTENT_REELS_VERSION = 3424;
     private static final String KEY_FOR_YOU = "for_you";
     private static final String KEY_FOLLOWING = "following";
-    private static final String HLS_DIR = "hls_files";
-    private static final String VIDEOS_DIR = "NewsReels";
+
     private static GoHome goHome;
-    private final Handler handleri = new Handler(Looper.getMainLooper());
-
-    Drawable ic_vol;
-    Drawable drawable;
-    Drawable icMuteboder;
-    int maxCharacters = 40;
-    boolean volumechanged = true;
-    int maxsize;
-    int currentAdapterPosition;
-    ReelsItem ri = new ReelsItem();
-    Handler handler2 = new Handler();
-    Handler mHandler = new Handler();
-    Handler HandlerVpdelay = new Handler();
-    Handler handlerseek = new Handler();
-
-    private boolean isSizereduced = false;
-    private AnimatedVectorDrawableCompat avd;
-    private AnimatedVectorDrawable avd2;
-    private TextView sourceName;
-    private TextView followtxt;
-    private String moreText;
-    private Boolean expand = false;
-    private LinearLayout ll_desc;
-    private ImageView comment_icon;
-    private TextView comment_text;
-    private LinearLayout ll_seekbar;
-    private ImageView like_icon;
     private LikePresenter presenter;
-    private TextView like_text;
-    private boolean playWhenReady = true;
-    private int currentItem = 0;
-    private TextView tvReelsViewmore;
-    //    private SeekBar seekBar;
-    private boolean isSeekBarBeingTouched = false;
     private boolean clickable = false;
-    private Handler handlernew = new Handler();
-    //    private SimpleOrientationListener mOrientationListener;
     private View view;
     private ViewPager2 viewPager;
-    private final Runnable runnableVpDelay = new Runnable() {
-        @Override
-        public void run() {
-            viewPager.setUserInputEnabled(true);
-        }
-    };
-    private ValueAnimator scrollAnimator;
     private int prevPosition = -1;
     private int curPosition = 0;
-    //    private VideoPagerAdapter pagerAdapter;
     private VideoAdapter pagerAdapter;
-    private ArrayList<ReelsItem> videoReelsItems = new ArrayList<>();
     private ReelPresenter reelPresenter;
     private String mNext = PAGE_START;
     private LinearLayout noRecordFoundContainer;
     private PrefConfig prefConfig;
     private int mCurrentPosition = -1;
-    private final Runnable runnable1 = new Runnable() {
-        @Override
-        public void run() {
-            viewPager.setCurrentItem(mCurrentPosition - 1, true);
-        }
-    };
     private int prevReelsize = 0;
     private SwipeRefreshLayout refresh;
     private boolean isRefresh = false;
@@ -173,31 +122,15 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     private FragmentManager fm = null;
     private String page = "";
     private ViewSwitcher reelsViewSwitcher;
+    private TextView tvLabel;
     private boolean isHidden = false;
     private ConstraintLayout ll_reels_info;
-    //    private ConstraintLayout container_parent;
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            showEndOfReelMsg(false);
-            viewPager.setCurrentItem(mCurrentPosition - 1, true);
-        }
-    };
-    private TextView tvLabel;
-    private TextView expandableTextView;
-    private TextView tvText;
-    private ScrollView scrollView;
-    private TextView showMore;
     private ProgressBar progbar;
     private ReelViewMoreSheet reelViewMoreSheet;
-    private DbHandler cacheManager;
     private CardView new_post;
     private ImageView notification;
     private ImageView dots;
-    private ImageView heart;
     private PictureLoadingDialog loadingDialog;
-    private ImageView userpic;
-    private LinearLayout ll_channel;
     private FollowUnfollowPresenter followUnfollowPresenter;
     private ReelsNewPresenter reelsNewPresenter;
     private ShareBottomSheet shareBottomSheet;
@@ -231,8 +164,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
         }
     };
-    private M3UParser m3UParser;
-    private int cachePosition = -1, maxCacheLimit = -1;
     private List<ReelsItem> reelsToSave = new ArrayList<>();
     private boolean isCaching = false;
     private boolean isSequenceUpdated = false;
@@ -289,7 +220,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 //                }
 //                , Constants.DARK);
         noRecordFoundContainer.setVisibility(View.VISIBLE);
-//        container_parent.setVisibility(View.GONE);
     }
 
     private void forYouSelect() {
@@ -314,19 +244,14 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     private void bindViews(View view) {
         notification = view.findViewById(R.id.notification);
-        scrollView = view.findViewById(R.id.scrollView);
         new_post = view.findViewById(R.id.new_post);
         refresh = view.findViewById(R.id.refresh);
         viewPager = view.findViewById(R.id.pager);
         reelsViewSwitcher = view.findViewById(R.id.reels_view_switcher);
-//        container_parent = view.findViewById(R.id.container_parent);
         noRecordFoundContainer = view.findViewById(R.id.no_record_found_container);
         ll_reels_info = view.findViewById(R.id.constraintLayoutReel);
         tvLabel = view.findViewById(R.id.tvLabel);
         progbar = view.findViewById(R.id.progbar);
-        heart = view.findViewById(R.id.imgHeart);
-//        seekBar = view.findViewById(R.id.seek_bar);
-
     }
 
     public void invalidateViews() {
@@ -341,12 +266,12 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         reelPresenter = new ReelPresenter(getActivity(), this);
         newsPresenter = new NewsPresenter(getActivity(), null);
         followUnfollowPresenter = new FollowUnfollowPresenter(getActivity());
-        reelsNewPresenter = new ReelsNewPresenter(getActivity(), this);
+        reelsNewPresenter = new ReelsNewPresenter(getActivity(),this);
         shareBottomSheetPresenter = new ShareBottomSheetPresenter(getActivity());
         homePresenter = new HomePresenter(getActivity(), homeCallback);
         homePresenter.getHome(Constants.CAT_TYPE_REELS);
         presenter = new LikePresenter(getActivity());
-        pagerAdapter = new VideoAdapter(viewPager, requireContext(), this, reelsNewPresenter);
+        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,reelsNewPresenter);
 //        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,followUnfollowPresenter);
         viewPager.setAdapter(pagerAdapter);
         Constants.reelfragment = true;
@@ -370,7 +295,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         }
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -402,7 +326,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                     @Override
                     public void run() {
                         viewPager.setUserInputEnabled(true);
-                        clickable = true;
+                        clickable=true;
                     }
                 }, 350);
 //                } else {
@@ -501,7 +425,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
             Utils.showSnacky(getView(), "Loading Categories...");
             return;
         }
-
         Constants.onResumeReels = false;
         Constants.rvmdailogopen = true;
 
@@ -535,9 +458,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                     forYouReelSheet.dismiss();
                 }
                 tvLabel.setText(item.getTitle());
-                if (cacheManager != null) {
-                    cacheManager.clearReelsDb();
-                }
                 refresh.setRefreshing(true);
                 reload();
             }
@@ -588,7 +508,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
         forYouReelSheet.getViewLifecycleOwnerLiveData().observe(getViewLifecycleOwner(), lifecycleOwner -> {
             //when lifecycleOwner is null fragment is destroyed
-
 
 //            Constants.fromfragment = true;
             if (lifecycleOwner == null) {
@@ -662,25 +581,20 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     public void showNoDataErrorView(boolean show) {
         noRecordFoundContainer.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     public void showErrorView(boolean show) {
         noRecordFoundContainer.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     private void showEndOfReelMsg(boolean show) {
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
         ll_reels_info.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+        Log.e("TAGfv", "onHiddenChanged: ");
 
         if (hidden) {
             onPause();
@@ -727,6 +641,8 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void error(String error) {
+        Log.e("TAGfv", "error: ");
+
         page = "";
         showErrorView(true);
         progbar.setVisibility(View.GONE);
@@ -755,7 +671,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         progbar.setVisibility(View.GONE);
         isLoading = false;
         Constants.onResumeReels = true;
-
         if (isRefresh) {
             videoItems.clear();
             viewPager.setAdapter(pagerAdapter);
@@ -784,13 +699,12 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                 prevReelsize = videoItems.size();
             }
         }
+
         if (reelResponse.getMeta() != null) {
             mNext = reelResponse.getMeta().getNext();
             if (TextUtils.isEmpty(mNext)) {
                 isLastPage = true;
-//                if (videoReelsItems != null && !videoReelsItems.isEmpty()) {
-//                    videoReelsItems.add(null);
-//                }
+//                videoItems.add(null);
             }
         }
 
@@ -858,8 +772,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 //            viewPager.removeAllViews();
         videoItems.clear();
         reelsToSave.clear();
-        cachePosition = -1;
-        maxCacheLimit = -1;
         isCaching = false;
         mNext = "";
         PRDownloader.cancelAll();
@@ -890,6 +802,9 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void onDestroy() {
+        Log.e("TAGfv", "onDestroy: ");
+
+        Log.e("testreel", "onDestroy ");
         super.onDestroy();
         pagerAdapter.releasePlayers();
 
@@ -914,52 +829,27 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void onResume() {
+        Log.e("TAGfv", "onResume: ");
+
         super.onResume();
         //shifa check this
-        if (Constants.onResumeReels && Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible) {
+        if (Constants.onResumeReels &&  Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible  ) {
             {
-                if (reelViewMoreSheet == null) {
+                if(reelViewMoreSheet == null){
                     pagerAdapter.resumePlayback(curPosition);
-                } else if (reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()) {
+                }else if(reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()){
                     pagerAdapter.resumePlayback(curPosition);
                 }
-            }
-        }
+            }}
 
 
     }
 
     @Override
     public void videoCached(ReelsItem reelsItem, int position) {
-        this.cachePosition = position;
 
-        try {
-            if (reelsItem != null) {
-                videoReelsItems.remove(position);
-                videoReelsItems.add(position, reelsItem);
-                if (mCurrentPosition != cachePosition) {
-                    pagerAdapter.notifyItemChanged(cachePosition);
-                }
-            }
-            if (position < maxCacheLimit && (position + 1) < videoReelsItems.size()) {
-                if (videoReelsItems.get(position + 1) != null && videoReelsItems.get(position + 1).getType() == null && videoReelsItems.get(position + 1).getMedia().startsWith("http") && !videoReelsItems.get(position + 1).isCached()) {
-//                    cacheVideo(videoReelsItems.get(position + 1), position + 1);
-                } else {
-                    isCaching = false;
-                }
-            } else {
-                isCaching = false;
-                Log.d("CACHE_TAG", "videoCached: Videos completed in current queue");
-            }
-        } catch (Exception e) {
-            isCaching = false;
-            e.printStackTrace();
-            Log.d(
-                    "CACHE_TAG",
-                    "onDownloadComplete:" + e.getLocalizedMessage()
-            );
-        }
     }
+
 
     @Override
     public void followChannelClick(@NonNull ReelsItem reelsItem) {
@@ -969,6 +859,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
             }
             return;
         }
+
         if (reelsItem.getSource() != null) {
             if (reelsItem.getSource().isFavorite()) {
                 followUnfollowPresenter.unFollowSource(reelsItem.getSource().getId(), 0, null);
@@ -1137,7 +1028,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
             });
         }
     }
-
     private Article getArticleFromReels(ReelsItem reels) {
         Article article = new Article();
         if (reels != null) {
@@ -1285,8 +1175,10 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     public void updateView() {
 
         if (reelViewMoreSheet != null && reelViewMoreSheet.isVisible()) {
-            Log.e(TAG, "updateView: ");
+            Log.e(TAG, "updateView: " );
             pagerAdapter.pauseCurPlayback(curPosition);
         }
+
     }
 }
+

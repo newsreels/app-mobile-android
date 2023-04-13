@@ -1,22 +1,22 @@
 package com.ziro.bullet.fragments.test
 
+import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.view.*
+import android.widget.*
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.*
@@ -41,6 +41,7 @@ import com.ziro.bullet.utills.Constants
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClick
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClickListener
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 class VideoAdapter(
     private val viewPager2: ViewPager2,
@@ -53,16 +54,22 @@ class VideoAdapter(
     private var mVideoList = ArrayList<ReelsItem>()
     private var currentPlaybackPosition = 0
     private var curAdapPosition = 0
-    var startPosition: Long = 0
+    private var isSeekBarBeingTouched = false
+    var handlerseek = Handler()
+    private val handlernew = Handler()
+    private var startPosition: Long = 0
     private var prevPostion = 0
+
     private var currentPlaybackState = Player.STATE_IDLE
     private var defaultBandwidthMeter: DefaultBandwidthMeter? = null
     private var dataSourceFactory: DataSource.Factory? = null
-    lateinit var mediaSource: MediaSource
+    private lateinit var mediaSource: MediaSource
     private var viewHolderArray = ArrayList<VideoViewHolder>()
     lateinit var exoPlayer: SimpleExoPlayer
     private var audioManager: AudioManager? = null
+
     private lateinit var curreelItem: ReelsItem
+
 //    val reelsItem = mVideoList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
@@ -74,14 +81,14 @@ class VideoAdapter(
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val reelsItem = mVideoList[position]
         curreelItem =reelsItem
-        if (reelsItem != null) {
-            if (!TextUtils.isEmpty(reelsItem.image)) {
-                holder.thumbnail.visibility = View.VISIBLE
-                Glide.with(mcontext).load(reelsItem.getImage()).into(holder.thumbnail);
-            } else {
-                holder.thumbnail.visibility = View.INVISIBLE
-            }
-        }
+//        if (reelsItem != null) {
+//            if (!TextUtils.isEmpty(reelsItem.image)) {
+////                holder.thumbnail.visibility = View.VISIBLE
+////                Glide.with(mcontext).load(reelsItem.getImage()).into(holder.thumbnail);
+//            } else {
+////                holder.thumbnail.visibility = View.INVISIBLE
+//            }
+//        }
 
         if (reelsItem != null) {
             val loadControl: LoadControl =
@@ -151,9 +158,8 @@ class VideoAdapter(
             }
         }
         if (reelsItem != null) {
-            holder.bind(reelsItem, mcontext, position)
+            holder.bind(reelsItem, mcontext, position,exoPlayer)
         }
-
 
     }
 
@@ -167,10 +173,8 @@ class VideoAdapter(
     }
 
     override fun onViewRecycled(holder: VideoViewHolder) {
-        Log.e("video", "onViewRecycled: ")
         Constants.mViewRecycled = true;
         if (holder in viewHolderArray) {
-            Log.e("TAGfv", "onViewRecycled:$holder ")
             viewHolderArray.remove(holder)
             holder.playerView.player.playWhenReady = false
             holder.playerView.player.release()
@@ -193,19 +197,16 @@ class VideoAdapter(
         }
     }
 
-    fun reelAnalyticsApical(prevViewHolder: VideoViewHolder) {
+    private fun reelAnalyticsApical(prevViewHolder: VideoViewHolder) {
         val params: MutableMap<String, String> = HashMap()
         params[Events.KEYS.REEL_ID] = mVideoList[prevPostion].id
         val endPosition = prevViewHolder?.playerView?.player?.currentPosition
         val elapsedTime: Long? = endPosition?.minus(startPosition)
         params[Events.KEYS.DURATION] = elapsedTime.toString()
         reelDurationEvent(mcontext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
-        Log.e("ReelFragment.TAG", "reelAnalyticsApical" + mVideoList[prevPostion].description + params)
-
     }
 
     fun resumePlayback(curPosition: Int) {
-        Log.e("todayr", "resumePlayback: ")
 //avoid the same player play again after viewrecycled
 //        if(curAdapPosition!=curPosition || curAdapPosition ==0) {
         this.curAdapPosition = curPosition;
@@ -215,7 +216,6 @@ class VideoAdapter(
             recyclerView?.findViewHolderForAdapterPosition(curPosition) as? VideoViewHolder
         curViewHolder?.playerView?.player?.playWhenReady = true
         curViewHolder?.playerView?.player?.seekTo(0)
-        Log.e("TAGf", "resumePlayback:$curViewHolder ")
 //        }
 
     }
@@ -231,9 +231,9 @@ class VideoAdapter(
     fun releasePlayers() {
         viewHolderArray.forEach { holder ->
             Log.e("TAGf", "releasePlayers: $holder")
-            holder?.playerView?.player?.playWhenReady = false
-            holder?.playerView?.player?.release()
-            holder?.playerView?.player = null
+            holder.playerView.player?.playWhenReady = false
+            holder.playerView.player?.release()
+            holder.playerView.player = null
         }
     }
 
@@ -242,24 +242,63 @@ class VideoAdapter(
         val playerView: PlayerView
         val userpic: CircleImageView
         val thumbnail: ImageView
+        lateinit var exoPlayerVh: SimpleExoPlayer
+        var container_parent: ConstraintLayout = itemView.findViewById(R.id.container_parent)
         val btn_comment: ImageView
         val img_share: ImageView
         val imgSelect: ImageView
         val imgLike: ImageView
+        val img_pause: ImageView
         val speaker: ImageView
         val sourceName: TextView?
         val followtxt: TextView?
         val like_text: TextView?
         val comment_text: TextView?
+        val textViewCurrentTime: TextView?
+        val textViewTotalTime: TextView?
         val ll_channel: LinearLayout?
         val ll_right: LinearLayout?
         val linear_bottom: LinearLayout?
         val tvDesc: TextView?
+        val rl_seek: RelativeLayout? = itemView.findViewById(R.id.rl_seek)
         val cons_header: ConstraintLayout
         val progbarada: ProgressBar
+        val heart: ImageView
+        var seekBar: SeekBar = itemView.findViewById(R.id.seek_bar)
+        var drawable: Drawable? = null
+        var runnablenew = Runnable {
+            if (!isSeekBarBeingTouched) {
+                container_parent.visibility = View.VISIBLE
+                rl_seek?.visibility = View.GONE
+                seekBar.progressDrawable =
+                    ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress)
+                seekBar.thumb =  ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_normal)
+
+            }
+        }
+        private val runnableseek: Runnable = object : Runnable {
+            override fun run() {
+                val positionseek: Int = exoPlayerVh.currentPosition.toInt() / 1000
+                seekBar.progress = positionseek
+                if (isSeekBarBeingTouched) {
+                    container_parent.visibility = View.GONE
+                    rl_seek?.visibility = View.VISIBLE
+                    seekBar.progressDrawable = ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress_big)
+                    seekBar.thumb = ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_pressed)
+                } else {
+                    handlernew.postDelayed(runnablenew, 5000) // Change back to original after 5 sec
+                }
+                handlerseek.postDelayed(this, 100)
+            }
+        }
+        private var avd: AnimatedVectorDrawableCompat? = null
+        private var avd2: AnimatedVectorDrawable? = null
 
         init {
             playerView = itemView.findViewById(R.id.video_view)
+            img_pause = itemView.findViewById(R.id.img_pause)
+            textViewCurrentTime = itemView.findViewById(R.id.textViewCurrentTime)
+            textViewTotalTime = itemView.findViewById(R.id.textViewTotalTime)
             userpic = itemView.findViewById(R.id.user_pic)
             thumbnail = itemView.findViewById(R.id.thumbnail)
             progbarada = itemView.findViewById(R.id.progbarada)
@@ -277,10 +316,11 @@ class VideoAdapter(
             followtxt = itemView.findViewById(R.id.user_follow_icon)
             tvDesc = itemView.findViewById(R.id.tv_desc)
             cons_header = itemView.findViewById(R.id.cons_header)
-
+            heart = itemView.findViewById(R.id.imgHeart)
         }
 
-        fun bind(reelsItem: ReelsItem, mcontext: Context, position: Int) {
+        fun bind(reelsItem: ReelsItem, mcontext: Context, position: Int, exoPlayerVh: SimpleExoPlayer) {
+            this@VideoViewHolder.exoPlayerVh = exoPlayerVh
             audioManager = mcontext.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
             linear_bottom?.isClickable = false
             ll_right?.isClickable = false
@@ -322,7 +362,92 @@ class VideoAdapter(
                     }
 
                     override fun onDoubleClick(view: View) {
-//                        reelFraInterface?.doubleClickLike(reelsItem)
+                        reelFraInterface?.doubleClickLike(reelsItem)
+                        if (reelsItem != null) {
+                            drawable = heart.drawable
+                            if (mcontext != null) {
+                                val drawable: Drawable =
+                                    ContextCompat.getDrawable(
+                                        mcontext,
+                                        R.drawable.ic_heartborderred
+                                    )!!
+                                imgLike.setImageDrawable(null)
+                                imgLike.setImageDrawable(drawable)
+                            }
+                            heart.visibility = View.VISIBLE
+                            heart.alpha = 1f
+                            if (drawable is AnimatedVectorDrawableCompat) {
+                                avd = drawable as AnimatedVectorDrawableCompat
+                                avd?.start()
+                            } else if (drawable is AnimatedVectorDrawable) {
+                                avd2 = drawable as AnimatedVectorDrawable
+                                avd2?.start()
+                            }
+                            val counter = intArrayOf(-1)
+                            if (!reelsItem.info.isLiked) {
+                                counter[0] = reelsItem.info.like_count
+                                counter[0]++
+                                like_text?.text = "" + counter[0]
+                                val drawable: Drawable? =
+                                    ContextCompat.getDrawable(
+                                        mcontext,
+                                        R.drawable.ic_heartborderred
+                                    )
+                                imgLike.setImageDrawable(null)
+                                imgLike.setImageDrawable(drawable)
+                                reelsItem.info.isLiked = true
+                                like_text?.visibility =
+                                    if (reelsItem.info.like_count + 1 > 0) View.VISIBLE else View.VISIBLE
+
+                                presenter?.like(reelsItem.id, object : LikeInterface {
+                                    override fun success(like: Boolean) {
+                                        if (mcontext == null || (mcontext as? Activity)?.isFinishing == true) {
+                                            return
+                                        }
+                                        imgLike.isEnabled = true
+                                        reelsItem.info.isLiked = like
+                                        reelsItem.info.like_count = counter[0]
+                                        like_text?.visibility =
+                                            if (reelsItem.info.like_count > 0) View.VISIBLE else View.VISIBLE
+
+                                        if (reelsItem.info.isLiked) {
+                                            val drawable: Drawable =
+                                                ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborderred)!!
+                                            imgLike.setImageDrawable(null)
+                                            imgLike.setImageDrawable(drawable)
+                                            DrawableCompat.setTint(
+                                                imgLike.drawable,
+                                                ContextCompat.getColor(mcontext, R.color.theme_color_1)
+                                            )
+                                        } else {
+                                            val drawable: Drawable? =
+                                                ContextCompat.getDrawable(mcontext,R.drawable.ic_heartborderwhite)
+                                            imgLike.setImageDrawable(drawable)
+                                        }
+                                    }
+
+                                    override fun failure() {
+                                        if (mcontext == null || (mcontext as? Activity)?.isFinishing == true) {
+                                            return
+                                        }
+                                        imgLike.isEnabled = true
+                                        if (counter[0] > 0) {
+                                            counter[0]--
+                                        } else {
+                                            counter[0] = 0
+                                        }
+//                                        DrawableCompat.setTint(
+//                                            imgLike.drawable,
+//                                            ContextCompat.getColor(mcontext, R.color.white)
+//                                        )
+                                        //                                like_text.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+//                                like_icon.setImageResource(R.drawable.ic_reel_like_inactive);
+                                        reelsItem.info.isLiked = false
+                                    }
+                                }, true)
+                            }
+
+                        }
                     }
                 }))
                 if (reelsItem?.info != null) {
@@ -348,7 +473,6 @@ class VideoAdapter(
                     }
                 }
                 imgSelect.setOnClickListener {
-                    Log.e("TAG", "bind:imgSelect ")
                     reelFraInterface?.dotsCkickOpen(reelsItem)
                 }
                 speaker.setOnClickListener {
@@ -460,7 +584,7 @@ class VideoAdapter(
                         .into(userpic)
                 }
             }
-            exoPlayer.addListener(object : Player.EventListener {
+            exoPlayerVh.addListener(object : Player.EventListener {
                 override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                     when (playbackState) {
                         Player.STATE_IDLE -> {
@@ -473,6 +597,13 @@ class VideoAdapter(
                             thumbnail.visibility = View.INVISIBLE
                             reelFraInterface?.updateView()
 
+                            handlerseek.removeCallbacks(runnableseek)
+                            seekBar.max = exoPlayerVh.duration.toInt() / 1000
+                            val positionseek: Int = exoPlayerVh.currentPosition.toInt() / 1000
+                            seekBar.progress = positionseek
+                            handlerseek.post(runnableseek)
+                            isSeekBarBeingTouched = false
+
                         }
                         Player.STATE_ENDED -> {
                             reelFraInterface?.nextReelVideo(position)
@@ -480,11 +611,66 @@ class VideoAdapter(
                     }
                 }
             })
+            seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    if (exoPlayerVh != null && fromUser) {
+                        exoPlayerVh.seekTo(progress * 1000L)
+                    }
+                    if (exoPlayerVh != null) {
+                        val currentTime: Long = exoPlayerVh.currentPosition
+                        val totalTime: Long =exoPlayerVh.duration
+                        textViewCurrentTime?.text = formatTime(currentTime)
+                        textViewTotalTime?.text = formatTime(totalTime)
+                    }
+                }
 
+                override fun onStartTrackingTouch(seekBar: SeekBar) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar) {
+//                container_parent.setVisibility(View.VISIBLE);
+//                rl_seek.setVisibility(View.GONE);
+                }
+            })
+
+            seekBar.setOnTouchListener { v, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        isSeekBarBeingTouched = true
+                        container_parent.visibility = View.GONE
+                        rl_seek!!.visibility = View.VISIBLE
+                        seekBar.progressDrawable =
+                            ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress_big)
+                        seekBar.thumb =
+                            ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_pressed)
+                        handlernew.removeCallbacks(runnablenew)
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        isSeekBarBeingTouched = false
+                        handlernew.postDelayed(
+                            runnablenew,
+                            5000
+                        ) // Change back to original after 5 sec
+//                        if (!isSeekBarBeingTouched && event.eventTime - event.downTime < ViewConfiguration.getTapTimeout()) {
+//                            v.performClick()
+//                        }
+                    }
+                }
+                false
+            }
         }
     }
+
 }
 
+private fun formatTime(millis: Long): String? {
+    val seconds = (millis / 1000).toInt() % 60
+    val minutes = (millis / (1000 * 60) % 60).toInt()
+    val hours = (millis / (1000 * 60 * 60) % 24).toInt()
+    return if (hours > 0) {
+        String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, seconds)
+    } else {
+        String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+    }
+}
 class SlowPageTransformer(private val viewPager: ViewPager2) : ViewPager2.PageTransformer {
     override fun transformPage(page: View, position: Float) {
 //        val absPos = abs(position)
