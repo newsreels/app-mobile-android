@@ -81,14 +81,7 @@ class VideoAdapter(
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val reelsItem = mVideoList[position]
         curreelItem =reelsItem
-//        if (reelsItem != null) {
-//            if (!TextUtils.isEmpty(reelsItem.image)) {
-////                holder.thumbnail.visibility = View.VISIBLE
-////                Glide.with(mcontext).load(reelsItem.getImage()).into(holder.thumbnail);
-//            } else {
-////                holder.thumbnail.visibility = View.INVISIBLE
-//            }
-//        }
+
 
         if (reelsItem != null) {
             val loadControl: LoadControl =
@@ -133,14 +126,13 @@ class VideoAdapter(
             Log.e("today", "placeholder ")
         }
         viewHolderArray.forEach { viewholder ->
-            //add a check if speaker clicked then to this check - pending
-//            if (viewholder.sourceName?.equals(reelsItem.source.name) == true) {
-//                if (reelsItem.source.isFavorite) {
-//                    viewholder.followtxt?.setText(R.string.following)
-//                } else {
-//                    viewholder.followtxt?.setText(R.string.follow)
-//                }
-//            }
+            if (viewholder.sourceName?.equals(reelsItem.source.name) == true) {
+                if (reelsItem.source.isFavorite) {
+                    viewholder.followtxt?.setText(R.string.following)
+                } else {
+                    viewholder.followtxt?.setText(R.string.follow)
+                }
+            }
             if (Constants.ReelsVolume) {
                 viewholder.speaker.setImageDrawable(
                     ContextCompat.getDrawable(
@@ -327,6 +319,12 @@ class VideoAdapter(
             cons_header.isClickable = false
 
             if (reelsItem != null) {
+            if (!TextUtils.isEmpty(reelsItem.image)) {
+                thumbnail.visibility = View.VISIBLE
+                Glide.with(mcontext).load(reelsItem.image).into(thumbnail);
+            } else {
+                thumbnail.visibility = View.INVISIBLE
+            }
                 if (Constants.ReelsVolume) {
                     audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
                     speaker.setImageDrawable(
@@ -472,6 +470,18 @@ class VideoAdapter(
                         imgLike.setImageDrawable(drawable)
                     }
                 }
+
+                img_pause.setOnClickListener {
+                    if (exoPlayerVh.playWhenReady) {
+                        isSeekBarBeingTouched = true
+                        exoPlayerVh.playWhenReady = false
+                        img_pause.setImageDrawable(ContextCompat.getDrawable(mcontext,R.drawable.playbtn))
+                    } else {
+                        isSeekBarBeingTouched = false
+                        exoPlayerVh.playWhenReady = true
+                        img_pause.setImageDrawable(ContextCompat.getDrawable(mcontext,R.drawable.pausebtn))
+                    }
+                }
                 imgSelect.setOnClickListener {
                     reelFraInterface?.dotsCkickOpen(reelsItem)
                 }
@@ -562,6 +572,15 @@ class VideoAdapter(
                         followtxt?.setText(R.string.follow)
                     } else {
                         followtxt?.setText(R.string.following)
+                    }
+                    viewHolderArray.forEach { viewholder ->
+                        if (viewholder.sourceName?.text?.equals(reelsItem.source.name) == true) {
+                            if (reelsItem.source.isFavorite) {
+                                viewholder.followtxt?.setText(R.string.following)
+                            } else {
+                                viewholder.followtxt?.setText(R.string.follow)
+                            }
+                        }
                     }
                     reelFraInterface?.followChannelClick(reelsItem)
                 }
