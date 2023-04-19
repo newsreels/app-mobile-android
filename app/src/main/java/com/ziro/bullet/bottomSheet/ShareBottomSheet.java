@@ -315,16 +315,16 @@ public class ShareBottomSheet implements ShareInterface {
                         holder.getFollow().setVisibility(View.GONE);
                     }
                 } else if (isGotoFollowShow && type != null && type.equalsIgnoreCase("ARTICLES")) {
-                    holder.getGotoChannel().setVisibility(View.VISIBLE);
-                    holder.getBlock().setVisibility(View.VISIBLE);
+                    holder.getGotoChannel().setVisibility(View.GONE);
+                    holder.getBlock().setVisibility(View.GONE);
                 } else if (isGotoFollowShow && type != null && !type.equalsIgnoreCase("ARCHIVE")) {
                     if (article.getSource() != null || (article.getAuthor() != null && article.getAuthor().size() > 0)) {
-                        holder.getGotoChannel().setVisibility(View.VISIBLE);
+                        holder.getGotoChannel().setVisibility(View.GONE);
                         holder.getFollow().setVisibility(View.GONE);
                         holder.getBlock().setVisibility(View.GONE);
                     } else {
                         holder.getBlock().setVisibility(View.GONE);
-                        holder.getGotoChannel().setVisibility(View.VISIBLE);
+                        holder.getGotoChannel().setVisibility(View.GONE);
                         holder.getFollow().setVisibility(View.GONE);
                     }
                 } else {

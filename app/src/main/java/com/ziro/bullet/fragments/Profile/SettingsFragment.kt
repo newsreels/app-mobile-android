@@ -112,6 +112,11 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
             iv_select_primary_lang.text = mPrefConfig?.prefPrimaryLang
             iv_select_second_lang.text = mPrefConfig?.prefSecondaryLang
+            if(mPrefConfig!!.isGuestUser){
+                tv_view_profile.setText(R.string.create_your_profile)
+                cl_logout.visibility=View.GONE
+            }
+
             user = mPrefConfig!!.isUserObject
             val isAutoPlay = mPrefConfig!!.isVideoAutoPlay
             frag_setting_sw_play.isChecked = isAutoPlay

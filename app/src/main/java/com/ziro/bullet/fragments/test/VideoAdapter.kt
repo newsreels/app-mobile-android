@@ -9,7 +9,10 @@ import android.net.Uri
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +35,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.ziro.bullet.R
+import com.ziro.bullet.analytics.AnalyticsEvents.logEventWithAPI
 import com.ziro.bullet.analytics.AnalyticsEvents.reelDurationEvent
 import com.ziro.bullet.analytics.Events
 import com.ziro.bullet.fragments.VideoInnerFragment
@@ -190,12 +194,20 @@ class VideoAdapter(
     }
 
     private fun reelAnalyticsApical(prevViewHolder: VideoViewHolder) {
+        //Analytics REEL DURATION
         val params: MutableMap<String, String> = HashMap()
         params[Events.KEYS.REEL_ID] = mVideoList[prevPostion].id
-        val endPosition = prevViewHolder?.playerView?.player?.currentPosition
+        val endPosition = prevViewHolder.playerView.player?.currentPosition
         val elapsedTime: Long? = endPosition?.minus(startPosition)
         params[Events.KEYS.DURATION] = elapsedTime.toString()
         reelDurationEvent(mcontext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
+
+        //Analytics REEL VIEW
+        val params1: MutableMap<String, String> = HashMap()
+        params1[Events.KEYS.ARTICLE_ID] = mVideoList[prevPostion].id
+        params1[Events.KEYS.DURATION] = elapsedTime.toString()
+        logEventWithAPI(mcontext, params, Events.REEL_VIEW)
+
     }
 
     fun resumePlayback(curPosition: Int) {

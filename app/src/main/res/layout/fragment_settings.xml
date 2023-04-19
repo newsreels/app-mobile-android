@@ -245,6 +245,7 @@
                         android:id="@+id/cl_change_second_lang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginStart="@dimen/_15sdp">
 
                         <ImageView
