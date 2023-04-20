@@ -115,6 +115,7 @@
             android:fontFamily="@font/roboto_medium"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:visibility="gone"
             android:textAllCaps="false"
             android:textColor="@color/greyad"
             android:textSize="@dimen/_8sdp"

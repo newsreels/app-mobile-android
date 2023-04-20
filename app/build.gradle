@@ -247,7 +247,7 @@ dependencies {
 //    implementation 'com.google.android.exoplayer:exoplayer-core:2.12.0'
     implementation "im.ene.toro3:toro:3.7.0.2010003"
     implementation "im.ene.toro3:toro-ext-exoplayer:3.7.0.2010003"
-    implementation "com.google.android.exoplayer:exoplayer:2.10.4"
+    implementation "com.google.android.exoplayer:exoplayer:2.18.5"
 //    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.0'
 //    implementation "com.google.android.exoplayer:exoplayer:2.15.0"
 
@@ -300,6 +300,8 @@ dependencies {
 
     implementation 'androidx.work:work-runtime:2.7.1'
 
+    //RemoteConfig
+    implementation 'com.google.firebase:firebase-config:21.3.0'
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
 }

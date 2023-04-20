@@ -51,7 +51,7 @@ public class DetailViewHolder extends RecyclerView.ViewHolder {
 
     public void pause() {
         if (bulletDetailPagerAdapter != null && bulletDetailPagerAdapter.getFragment() != null) {
-            bulletDetailPagerAdapter.getFragment().pause();
+//            bulletDetailPagerAdapter.getFragment().pause();
         }
     }
 

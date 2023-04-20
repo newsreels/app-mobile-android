@@ -8,18 +8,19 @@
     android:animateLayoutChanges="true"
     android:background="@color/white">
 
-    <FrameLayout
-        android:id="@+id/framereel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="@dimen/_8sdp" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/splash_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -39,7 +40,6 @@
                 android:id="@+id/cl_background"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@drawable/splash_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -87,11 +87,12 @@
                         android:src="@drawable/ic_play_with_bg" />
                 </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/cover"
+                <FrameLayout
+                    android:id="@+id/framereel"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:elevation="@dimen/_8sdp"
+                    tools:layout_editor_absoluteY="1dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -218,21 +219,20 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@id/cl_channel_info"
             android:background="@color/white"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/viewArticle"
             app:layout_constraintTop_toBottomOf="@id/cl_channel_info">
 
             <TextView
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/source_container"
                 android:layout_marginHorizontal="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/librefranklin_semibold"
@@ -242,34 +242,30 @@
                 android:textColor="@color/bullet_text"
                 android:textDirection="locale"
                 android:textSize="@dimen/_16sdp"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius " />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:layout_marginBottom="@dimen/_5sdp">
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/desc">
 
                 <TextView
-                    android:id="@+id/tv_view_article"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/view_video_source"
                     android:textColor="@color/greyad"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/line_arrow_right"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_view_article"
-                    app:layout_constraintStart_toEndOf="@id/tv_view_article"
-                    app:layout_constraintTop_toTopOf="@id/tv_view_article" />
 
                 <LinearLayout
                     android:id="@+id/ll_controls"
@@ -361,38 +357,39 @@
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:id="@+id/viewArticle"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="@dimen/_44sdp"-->
-            <!--                android:layout_marginHorizontal="@dimen/_15sdp"-->
-            <!--                android:layout_marginVertical="@dimen/_10sdp"-->
-            <!--                android:clickable="true"-->
-            <!--                android:focusable="true"-->
-            <!--                android:foreground="?android:attr/selectableItemBackground"-->
-            <!--                app:cardBackgroundColor="@color/theme_color_1"-->
-            <!--                app:cardCornerRadius="@dimen/_8sdp">-->
+        <LinearLayout
+            android:id="@+id/viewArticle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44sdp"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <!--                <TextView-->
-            <!--                    android:id="@+id/view_more_btn_txt"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="@dimen/_44sdp"-->
-            <!--                    android:layout_below="@+id/bullet_container"-->
-            <!--                    android:layout_marginHorizontal="@dimen/_14sdp"-->
-            <!--                    android:background="@drawable/bg_view_full_article_btn"-->
-            <!--                    android:fontFamily="@font/roboto_bold"-->
-            <!--                    android:gravity="center"-->
-            <!--                    android:paddingHorizontal="@dimen/_10sdp"-->
-            <!--                    android:paddingVertical="@dimen/_10sdp"-->
-            <!--                    android:text="@string/view_video_source"-->
-            <!--                    android:textAlignment="center"-->
-            <!--                    android:textColor="@color/white"-->
-            <!--                    android:textSize="@dimen/_13sdp" />-->
+            <TextView
+                android:id="@+id/tv_view_article"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/view_video_source"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            </androidx.cardview.widget.CardView>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/line_arrow_right"
+                app:layout_constraintBottom_toBottomOf="@id/tv_view_article"
+                app:layout_constraintStart_toEndOf="@id/tv_view_article"
+                app:layout_constraintTop_toTopOf="@id/tv_view_article"
+                app:tint="@color/white" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -319,6 +319,7 @@ public class LanguageActivity extends BaseActivity implements LanguageInterface,
 //                                preference.setLanguageForServer(languagesItemSelected.getId());
 //                                preference.setPrefPrimaryLang(languagesItemSelected.getName());
                                 presenter.updateLanguage(languagesItemSelected.getId(), operationType);
+                                presenter.updateLanguage(languagesItemSelected.getId(), Constants.SECONDARY_LANGUAGE );
                             } else {
                                 presenter.updateRegion(selectedRegion.getId());
                             }

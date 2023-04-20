@@ -96,97 +96,97 @@ class VideoTestAdapter(
 
 
         fun setVideoPath(streamUrl: String, absposition: Int, videoItem: ReelsItem) {
-
-            var replaceString = NetworkSpeedUtils.deviceRam(videoItem.media, context)
-
-            val loadControl: LoadControl =
-                DefaultLoadControl.Builder().setAllocator(DefaultAllocator(true, 16))
-                    .setBufferDurationsMs(
-                        VideoPlayerConfig.MIN_BUFFER_DURATION,
-                        VideoPlayerConfig.MAX_BUFFER_DURATION,
-                        VideoPlayerConfig.MIN_PLAYBACK_START_BUFFER,
-                        VideoPlayerConfig.MIN_PLAYBACK_RESUME_BUFFER
-                    )
-                    .setTargetBufferBytes(-1).setPrioritizeTimeOverSizeThresholds(true)
-                    .createDefaultLoadControl()
-
-            if (replaceString.endsWith(".m3u8")) {
-                val adaptiveTrackSelection = AdaptiveTrackSelection.Factory()
-
-                val rendererFactory = DefaultRenderersFactory(context)
-                rendererFactory.setEnableDecoderFallback(true)
-
-                exoPlayer = ExoPlayerFactory.newSimpleInstance(
-                    context,
-                    rendererFactory,
-                    DefaultTrackSelector(adaptiveTrackSelection),
-                    loadControl
-                )
-
-                defaultBandwidthMeter = DefaultBandwidthMeter()
-
-                dataSourceFactory = DefaultDataSourceFactory(
-                    context,
-                    Util.getUserAgent(context, "nib"),
-                    defaultBandwidthMeter
-                )
-
-                val uri = Uri.parse(replaceString)
-
-                mediaSource = HlsMediaSource.Factory(dataSourceFactory)
-                    .setAllowChunklessPreparation(true)
-                    .createMediaSource(uri)
-                itemView.findViewById<PlayerView>(R.id.video_view).player = exoPlayer
-
-                exoPlayer.seekTo(0)
-                exoPlayer.repeatMode = Player.REPEAT_MODE_OFF
-
-                exoPlayer.prepare(mediaSource)
-
-                playerView?.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
-
-                if (absposition == 0) {
-                    exoPlayer.playWhenReady = true
-                }
-//                itemView.setOnClickListener {
 //
-//                    videoPreparedListener.openReelviewmore()
+//            var replaceString = NetworkSpeedUtils.deviceRam(videoItem.media, context)
+//
+//            val loadControl: LoadControl =
+//                DefaultLoadControl.Builder().setAllocator(DefaultAllocator(true, 16))
+//                    .setBufferDurationsMs(
+//                        VideoPlayerConfig.MIN_BUFFER_DURATION,
+//                        VideoPlayerConfig.MAX_BUFFER_DURATION,
+//                        VideoPlayerConfig.MIN_PLAYBACK_START_BUFFER,
+//                        VideoPlayerConfig.MIN_PLAYBACK_RESUME_BUFFER
+//                    )
+//                    .setTargetBufferBytes(-1).setPrioritizeTimeOverSizeThresholds(true)
+//                    .createDefaultLoadControl()
+//
+//            if (replaceString.endsWith(".m3u8")) {
+//                val adaptiveTrackSelection = AdaptiveTrackSelection.Factory()
+//
+//                val rendererFactory = DefaultRenderersFactory(context)
+//                rendererFactory.setEnableDecoderFallback(true)
+//
+//                exoPlayer = ExoPlayerFactory.newSimpleInstance(
+//                    context,
+//                    rendererFactory,
+//                    DefaultTrackSelector(adaptiveTrackSelection),
+//                    loadControl
+//                )
+//
+//                defaultBandwidthMeter = DefaultBandwidthMeter()
+//
+//                dataSourceFactory = DefaultDataSourceFactory(
+//                    context,
+//                    Util.getUserAgent(context, "nib"),
+//                    defaultBandwidthMeter
+//                )
+//
+//                val uri = Uri.parse(replaceString)
+//
+//                mediaSource = HlsMediaSource.Factory(dataSourceFactory)
+//                    .setAllowChunklessPreparation(true)
+//                    .createMediaSource(uri)
+//                itemView.findViewById<PlayerView>(R.id.video_view).player = exoPlayer
+//
+//                exoPlayer.seekTo(0)
+//                exoPlayer.repeatMode = Player.REPEAT_MODE_OFF
+//
+//                exoPlayer.prepare(mediaSource)
+//
+//                playerView?.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
+//
+//                if (absposition == 0) {
+//                    exoPlayer.playWhenReady = true
 //                }
+////                itemView.setOnClickListener {
+////
+////                    videoPreparedListener.openReelviewmore()
+////                }
+////
+////
+////                itemView.setOnLongClickListener {
+////                    videoPreparedListener.doubleClickLike()
+////                    true
+////                }
 //
 //
-//                itemView.setOnLongClickListener {
-//                    videoPreparedListener.doubleClickLike()
-//                    true
-//                }
-
-
-                itemView.setOnClickListener(DoubleClick(object : DoubleClickListener {
-                    override fun onSingleClick(view: View) {
-                        videoPreparedListener.openReelviewmore()
-                    }
-
-                    override fun onDoubleClick(view: View) {
-                        videoPreparedListener.doubleClickLike()
-                    }
-                }))
-
-                videoPreparedListener.onVideoFun(VideoItemRes(exoPlayer, absposition, videoItem))
-
-
-//            text2.setOnTouchListener((view, motionEvent) -> {
-//                constraintL2.setVisibility(View.GONE);
-//                return gestureDetectorCompat.onTouchEvent(motionEvent);
-//                // return false;
-//            });
-//            text2.setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//                    return false;
-//                }
-//            });
-
-            }
-
+//                itemView.setOnClickListener(DoubleClick(object : DoubleClickListener {
+//                    override fun onSingleClick(view: View) {
+//                        videoPreparedListener.openReelviewmore()
+//                    }
+//
+//                    override fun onDoubleClick(view: View) {
+//                        videoPreparedListener.doubleClickLike()
+//                    }
+//                }))
+//
+//                videoPreparedListener.onVideoFun(VideoItemRes(exoPlayer, absposition, videoItem))
+//
+//
+////            text2.setOnTouchListener((view, motionEvent) -> {
+////                constraintL2.setVisibility(View.GONE);
+////                return gestureDetectorCompat.onTouchEvent(motionEvent);
+////                // return false;
+////            });
+////            text2.setOnTouchListener(new View.OnTouchListener() {
+////                @Override
+////                public boolean onTouch(View v, MotionEvent event) {
+////                    return false;
+////                }
+////            });
+//
+//            }
+//
         }
     }
 

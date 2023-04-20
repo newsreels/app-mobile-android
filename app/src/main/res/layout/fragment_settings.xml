@@ -130,7 +130,7 @@
                             android:layout_marginHorizontal="@dimen/_15sdp"
                             android:layout_marginVertical="@dimen/_12sdp"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="@string/view_and_edit_your_profile"
+                            android:text="@string/sign_up_login"
                             android:textColor="@color/blacknew"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"
@@ -245,6 +245,7 @@
                         android:id="@+id/cl_change_second_lang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_marginStart="@dimen/_15sdp">
 
                         <ImageView

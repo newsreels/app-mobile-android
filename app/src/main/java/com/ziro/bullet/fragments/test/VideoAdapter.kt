@@ -3,7 +3,6 @@ package com.ziro.bullet.fragments.test
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,16 +19,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.analytics.DefaultAnalyticsCollector
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultAllocator
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.*
+import com.google.android.exoplayer2.util.SystemClock
 import com.google.android.exoplayer2.util.Util
 import com.ziro.bullet.R
 import com.ziro.bullet.analytics.AnalyticsEvents.reelDurationEvent
@@ -42,9 +39,10 @@ import com.ziro.bullet.utills.DoubleClickHandler.DoubleClick
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClickListener
 import de.hdodenhof.circleimageview.CircleImageView
 
+
 class VideoAdapter(
     private val viewPager2: ViewPager2,
-    private val mcontext: Context,
+    private val mContext: Context,
     private var reelFraInterface: ReelFraInterface?,
     private var presenter: ReelsNewPresenter?,
 
@@ -56,28 +54,29 @@ class VideoAdapter(
     var startPosition: Long = 0
     private var prevPostion = 0
     private var currentPlaybackState = Player.STATE_IDLE
-    private var defaultBandwidthMeter: DefaultBandwidthMeter? = null
+    private var defaultBandwidthMeter: BandwidthMeter? = null
     private var dataSourceFactory: DataSource.Factory? = null
-    lateinit var mediaSource: MediaSource
+    lateinit var mediaSource: HlsMediaSource.Factory
     private var viewHolderArray = ArrayList<VideoViewHolder>()
-    lateinit var exoPlayer: SimpleExoPlayer
+    lateinit var exoPlayer: ExoPlayer
     private var audioManager: AudioManager? = null
     private lateinit var curreelItem: ReelsItem
 //    val reelsItem = mVideoList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_video_test, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_video_test, parent, false)
         return VideoViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
+        Log.d("VideoAdapterBind_TAG", "onBindViewHolder: $position")
         val reelsItem = mVideoList[position]
-        curreelItem =reelsItem
+        curreelItem = reelsItem
         if (reelsItem != null) {
             if (!TextUtils.isEmpty(reelsItem.image)) {
                 holder.thumbnail.visibility = View.VISIBLE
-                Glide.with(mcontext).load(reelsItem.getImage()).into(holder.thumbnail);
+                Glide.with(mContext).load(reelsItem.getImage()).into(holder.thumbnail);
             } else {
                 holder.thumbnail.visibility = View.INVISIBLE
             }
@@ -91,35 +90,66 @@ class VideoAdapter(
                         VideoInnerFragment.VideoPlayerConfig.MAX_BUFFER_DURATION,
                         VideoInnerFragment.VideoPlayerConfig.MIN_PLAYBACK_START_BUFFER,
                         VideoInnerFragment.VideoPlayerConfig.MIN_PLAYBACK_RESUME_BUFFER
-                    )
-                    .setTargetBufferBytes(-1).setPrioritizeTimeOverSizeThresholds(true)
-                    .createDefaultLoadControl()
+                    ).setTargetBufferBytes(C.LENGTH_UNSET).setPrioritizeTimeOverSizeThresholds(true)
+                    .build()
 
             val adaptiveTrackSelection = AdaptiveTrackSelection.Factory()
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(
-                mcontext,
-                DefaultTrackSelector(adaptiveTrackSelection),
-                loadControl
-            )
 
+            val defaultTrackSelector = DefaultTrackSelector(mContext, adaptiveTrackSelection).also {
+//                it.setParameters(
+//                    it.buildUponParameters()
+//                        .setMaxVideoSize(1280, 720)
+//                        .setMinVideoSize(640, 480)
+////                        .setForceLowestBitrate(true)
+//                        .setAllowMultipleAdaptiveSelections(false)
+//                )
+            }
+
+            val rendererFactory = DefaultRenderersFactory(mContext)
+            rendererFactory.setEnableDecoderFallback(true)
+
+//            exoPlayer = SimpleExoPlayer.newSimpleInstance(
+//                mContext,
+//                rendererFactory,
+//                DefaultTrackSelector(adaptiveTrackSelection),
+//                loadControl
+//            )
             if (reelsItem.media.endsWith(".m3u8")) {
-                defaultBandwidthMeter = DefaultBandwidthMeter()
+                defaultBandwidthMeter = DefaultBandwidthMeter.Builder(mContext).setInitialBitrateEstimate(1400000L).build()
 
                 dataSourceFactory = DefaultDataSourceFactory(
-                    mcontext,
-                    Util.getUserAgent(mcontext, "nib"),
-                    defaultBandwidthMeter
+                    mContext,
+                    Util.getUserAgent(mContext, "nib")
                 )
-                mediaSource = HlsMediaSource.Factory(dataSourceFactory)
-                    .setAllowChunklessPreparation(true)
-                    .createMediaSource(Uri.parse(reelsItem.media))
+                mediaSource =
+                    HlsMediaSource.Factory(dataSourceFactory!!).setAllowChunklessPreparation(false)
 
+                exoPlayer = ExoPlayer.Builder(
+                    mContext,
+                    rendererFactory,
+                    mediaSource,
+                    defaultTrackSelector,
+                    loadControl,
+                    defaultBandwidthMeter!!,
+                    DefaultAnalyticsCollector(SystemClock.DEFAULT)
+                ).build()
+
+//                exoPlayer = ExoPlayer.Builder(
+//                    mContext,
+//                    rendererFactory,
+//                    mediaSource,
+//                    defaultTrackSelector,
+//                    loadControl,
+//                    defaultBandwidthMeter!!,
+//                    this
+//                ).build()
+                val mediaItem = MediaItem.fromUri(reelsItem.media)
                 holder.playerView.player = exoPlayer
                 holder.playerView.requestFocus()
                 viewHolderArray.add(holder)
-                exoPlayer.seekTo(0)
                 exoPlayer.repeatMode = Player.REPEAT_MODE_OFF
-                exoPlayer.prepare(mediaSource)
+                exoPlayer.setMediaItem(mediaItem)
+                exoPlayer.prepare()
                 holder.playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
             }
         } else {
@@ -137,21 +167,19 @@ class VideoAdapter(
             if (Constants.ReelsVolume) {
                 viewholder.speaker.setImageDrawable(
                     ContextCompat.getDrawable(
-                        mcontext,
-                        R.drawable.ic_volume
+                        mContext, R.drawable.ic_volume
                     )
                 )
             } else {
                 viewholder.speaker.setImageDrawable(
                     ContextCompat.getDrawable(
-                        mcontext,
-                        R.drawable.ic_volmute
+                        mContext, R.drawable.ic_volmute
                     )
                 )
             }
         }
         if (reelsItem != null) {
-            holder.bind(reelsItem, mcontext, position)
+            holder.bind(reelsItem, mContext, position)
         }
 
 
@@ -172,8 +200,8 @@ class VideoAdapter(
         if (holder in viewHolderArray) {
             Log.e("TAGfv", "onViewRecycled:$holder ")
             viewHolderArray.remove(holder)
-            holder.playerView.player.playWhenReady = false
-            holder.playerView.player.release()
+            holder.playerView.player?.playWhenReady = false
+            holder.playerView.player?.release()
             holder.playerView.player = null
         }
         super.onViewRecycled(holder)
@@ -186,6 +214,7 @@ class VideoAdapter(
         val prevViewHolder =
             recyclerView?.findViewHolderForAdapterPosition(prevPostion) as? VideoViewHolder
         prevViewHolder?.playerView?.player?.playWhenReady = false
+        prevViewHolder?.playerView?.player?.seekTo(0)
         currentPlaybackState =
             prevViewHolder?.playerView?.player?.playbackState ?: Player.STATE_IDLE
         if (prevViewHolder != null) {
@@ -199,8 +228,10 @@ class VideoAdapter(
         val endPosition = prevViewHolder?.playerView?.player?.currentPosition
         val elapsedTime: Long? = endPosition?.minus(startPosition)
         params[Events.KEYS.DURATION] = elapsedTime.toString()
-        reelDurationEvent(mcontext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
-        Log.e("ReelFragment.TAG", "reelAnalyticsApical" + mVideoList[prevPostion].description + params)
+        reelDurationEvent(mContext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
+        Log.e(
+            "ReelFragment.TAG", "reelAnalyticsApical" + mVideoList[prevPostion].description + params
+        )
 
     }
 
@@ -214,8 +245,6 @@ class VideoAdapter(
         val curViewHolder =
             recyclerView?.findViewHolderForAdapterPosition(curPosition) as? VideoViewHolder
         curViewHolder?.playerView?.player?.playWhenReady = true
-        curViewHolder?.playerView?.player?.seekTo(0)
-        Log.e("TAGf", "resumePlayback:$curViewHolder ")
 //        }
 
     }
@@ -226,6 +255,7 @@ class VideoAdapter(
         val curViewHolder =
             recyclerView?.findViewHolderForAdapterPosition(curPosition) as? VideoViewHolder
         curViewHolder?.playerView?.player?.playWhenReady = false
+        curViewHolder?.playerView?.player?.seekTo(0)
     }
 
     fun releasePlayers() {
@@ -291,15 +321,13 @@ class VideoAdapter(
                     audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
                     speaker.setImageDrawable(
                         ContextCompat.getDrawable(
-                            mcontext,
-                            R.drawable.ic_volume
+                            mcontext, R.drawable.ic_volume
                         )
                     )
                 } else {
                     speaker.setImageDrawable(
                         ContextCompat.getDrawable(
-                            mcontext,
-                            R.drawable.ic_volmute
+                            mcontext, R.drawable.ic_volmute
                         )
                     )
                     audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, true);
@@ -356,8 +384,7 @@ class VideoAdapter(
                         audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, true);
                         speaker.setImageDrawable(
                             ContextCompat.getDrawable(
-                                mcontext,
-                                R.drawable.ic_volmute
+                                mcontext, R.drawable.ic_volmute
                             )
                         )
                         Constants.ReelsVolume = false
@@ -365,8 +392,7 @@ class VideoAdapter(
                         audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
                         speaker.setImageDrawable(
                             ContextCompat.getDrawable(
-                                mcontext,
-                                R.drawable.ic_volume
+                                mcontext, R.drawable.ic_volume
                             )
                         )
                         Constants.ReelsVolume = true
@@ -455,26 +481,92 @@ class VideoAdapter(
 
 
                 if (reelsItem.sourceImageToDisplay != null && reelsItem.sourceImageToDisplay !== "") {
-                    Glide.with(itemView.context)
-                        .load(reelsItem.sourceImageToDisplay)
-                        .into(userpic)
+                    Glide.with(itemView.context).load(reelsItem.sourceImageToDisplay).into(userpic)
                 }
             }
-            exoPlayer.addListener(object : Player.EventListener {
+            exoPlayer.addListener(object : Player.Listener {
+
+                override fun onTracksChanged(tracks: Tracks) {
+                    super.onTracksChanged(tracks)
+                    tracks.groups.forEachIndexed { index, group ->
+                        if (group.isSelected) {
+                            for (i in 0 until group.length) {
+//                                Log.d(
+//                                    "VideoAdapter_TAG",
+//                                    "onTrackChanged: " + group.getTrackFormat(i).width + "x" + group.getTrackFormat(
+//                                        i
+//                                    ).height
+//                                )
+                                if (group.isTrackSelected(i) && group.getTrackFormat(i).width != -1) {
+                                    Log.d(
+                                        "VideoAdapter_TAG",
+                                        "onTrackChanged->$adapterPosition->: Selected" + group.getTrackFormat(
+                                            i
+                                        ).width + "x" + group.getTrackFormat(
+                                            i
+                                        ).height
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+//                override fun onTracksChanged(
+//                    trackGroups: TrackGroupArray,
+//                    trackSelections: TrackSelectionArray
+//                ) {
+//
+//                    try {
+//                        val trackSelectionArray = trackSelections
+//                        if (trackSelectionArray.length > 0) {
+//                            val rendererIndex =
+//                                0 // index of the renderer for which you want to get the resolution
+//
+//                            for (i in 0 until trackSelectionArray.length) {
+//                                val track = trackSelectionArray[i]
+//                                for (j in 0 until track!!.length()) {
+//                                    val trackFormat = track.getFormat(j)
+//                                    Log.d(
+//                                        "VideoAdapter_TAG",
+//                                        "onTrackChanged: " + trackFormat.width + "x" + trackFormat.height
+//                                    )
+//                                }
+//                            }
+//                        }
+//                    } catch (e: Exception) {
+//                        Log.d(
+//                            "VideoAdapter_TAG",
+//                            "onTrackChanged: ${e.localizedMessage}"
+//                        )
+//                    }
+//                }
+
                 override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                     when (playbackState) {
                         Player.STATE_IDLE -> {
                         }
                         Player.STATE_BUFFERING -> {
-                            progbarada.visibility= View.VISIBLE
+//                            Log.d(
+//                                "VideoAdapterBind_TAG",
+//                                "onPlayerStateChanged: Buffering $adapterPosition"
+//                            )
+                            progbarada.visibility = View.VISIBLE
                         }
                         Player.STATE_READY -> {
-                            progbarada.visibility= View.GONE
+//                            Log.d(
+//                                "VideoAdapterBind_TAG",
+//                                "onPlayerStateChanged: PlayerReady $adapterPosition"
+//                            )
+                            progbarada.visibility = View.GONE
                             thumbnail.visibility = View.INVISIBLE
                             reelFraInterface?.updateView()
 
                         }
                         Player.STATE_ENDED -> {
+                            Log.d(
+                                "VideoAdapterBind_TAG",
+                                "onPlayerStateChanged: moving to next video $position"
+                            )
                             reelFraInterface?.nextReelVideo(position)
                         }
                     }
@@ -482,15 +574,6 @@ class VideoAdapter(
             })
 
         }
-    }
-}
-
-class SlowPageTransformer(private val viewPager: ViewPager2) : ViewPager2.PageTransformer {
-    override fun transformPage(page: View, position: Float) {
-//        val absPos = abs(position)
-//        val swipeSpeed = 0.1f // Adjust this value to control the scroll speed
-//        val height = page.height
-//        page.translationY = absPos * swipeSpeed * height
     }
 }
 

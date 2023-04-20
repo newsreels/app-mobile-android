@@ -250,7 +250,7 @@
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/channel_btn"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:clickable="true"
@@ -266,8 +266,8 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="@font/roboto_medium"
                                     android:includeFontPadding="false"
-                                    android:paddingHorizontal="@dimen/_9sdp"
-                                    android:paddingVertical="@dimen/_10sdp"
+                                    android:paddingHorizontal="@dimen/_20sdp"
+                                    android:paddingVertical="@dimen/_6sdp"
                                     android:text="@string/follow"
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
@@ -458,32 +458,43 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+            <TextView
+                android:id="@+id/tabname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:drawableStart="@drawable/video_square"
+                android:gravity="center"
+                android:textColor="@color/theme_color_1"
+                android:textSize="@dimen/_11sdp" />
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 style="@style/TabMain"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="2dp"
                 android:layout_below="@+id/card"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/base"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:tabGravity="center"
-                app:tabIndicatorColor="@color/theme_color_1"
+                app:tabIndicatorColor="@color/transparent"
                 app:tabMode="fixed"
                 app:tabPaddingEnd="@dimen/_16sdp"
                 app:tabPaddingStart="@dimen/_16sdp"
                 app:tabSelectedTextColor="@color/theme_color_1"
-                app:tabTextColor="@color/static_tabbar_text_unselected">
+                app:tabTextColor="@color/black">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/reels" />
+                    android:visibility="gone" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/articles" />
+                <!--                <com.google.android.material.tabs.TabItem-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="@string/articles" />-->
 
             </com.google.android.material.tabs.TabLayout>
 

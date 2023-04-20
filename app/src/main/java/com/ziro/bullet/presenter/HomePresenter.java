@@ -45,6 +45,7 @@ public class HomePresenter {
     }
 
     public void getHome(String type) {
+        Log.d("Network_TAG", "getHome: ");
         if (!InternetCheckHelper.isConnected()) {
             homeCallback.loaderShow(false);
             homeCallback.error(errorInternet);
