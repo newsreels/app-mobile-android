@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.net.Uri
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
@@ -13,8 +12,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
+import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -22,17 +26,26 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.LoadControl
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.Tracks
+import com.google.android.exoplayer2.analytics.DefaultAnalyticsCollector
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.BandwidthMeter
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultAllocator
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.util.SystemClock
 import com.google.android.exoplayer2.util.Util
 import com.ziro.bullet.R
 import com.ziro.bullet.analytics.AnalyticsEvents.logEventWithAPI
@@ -45,11 +58,11 @@ import com.ziro.bullet.utills.Constants
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClick
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClickListener
 import de.hdodenhof.circleimageview.CircleImageView
-import java.util.*
+import java.util.Locale
 
 class VideoAdapter(
     private val viewPager2: ViewPager2,
-    private val mcontext: Context,
+    private val mContext: Context,
     private var reelFraInterface: ReelFraInterface?,
     private var presenter: ReelsNewPresenter?,
 
@@ -65,11 +78,11 @@ class VideoAdapter(
     private var prevPostion = 0
 
     private var currentPlaybackState = Player.STATE_IDLE
-    private var defaultBandwidthMeter: DefaultBandwidthMeter? = null
+    private var defaultBandwidthMeter: BandwidthMeter? = null
     private var dataSourceFactory: DataSource.Factory? = null
-    private lateinit var mediaSource: MediaSource
+    lateinit var mediaSource: HlsMediaSource.Factory
     private var viewHolderArray = ArrayList<VideoViewHolder>()
-    lateinit var exoPlayer: SimpleExoPlayer
+    lateinit var exoPlayer: ExoPlayer
     private var audioManager: AudioManager? = null
 
     private lateinit var curreelItem: ReelsItem
@@ -84,7 +97,7 @@ class VideoAdapter(
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val reelsItem = mVideoList[position]
-        curreelItem =reelsItem
+        curreelItem = reelsItem
 
 
         if (reelsItem != null) {
@@ -95,35 +108,68 @@ class VideoAdapter(
                         VideoInnerFragment.VideoPlayerConfig.MAX_BUFFER_DURATION,
                         VideoInnerFragment.VideoPlayerConfig.MIN_PLAYBACK_START_BUFFER,
                         VideoInnerFragment.VideoPlayerConfig.MIN_PLAYBACK_RESUME_BUFFER
-                    )
-                    .setTargetBufferBytes(-1).setPrioritizeTimeOverSizeThresholds(true)
-                    .createDefaultLoadControl()
+                    ).setTargetBufferBytes(C.LENGTH_UNSET).setPrioritizeTimeOverSizeThresholds(true)
+                    .build()
 
             val adaptiveTrackSelection = AdaptiveTrackSelection.Factory()
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(
-                mcontext,
-                DefaultTrackSelector(adaptiveTrackSelection),
-                loadControl
-            )
 
+            val defaultTrackSelector = DefaultTrackSelector(mContext, adaptiveTrackSelection).also {
+//                it.setParameters(
+//                    it.buildUponParameters()
+//                        .setMaxVideoSize(1280, 720)
+//                        .setMinVideoSize(640, 480)
+////                        .setForceLowestBitrate(true)
+//                        .setAllowMultipleAdaptiveSelections(false)
+//                )
+            }
+
+            val rendererFactory = DefaultRenderersFactory(mContext)
+            rendererFactory.setEnableDecoderFallback(true)
+
+//            exoPlayer = SimpleExoPlayer.newSimpleInstance(
+//                mContext,
+//                rendererFactory,
+//                DefaultTrackSelector(adaptiveTrackSelection),
+//                loadControl
+//            )
             if (reelsItem.media.endsWith(".m3u8")) {
-                defaultBandwidthMeter = DefaultBandwidthMeter()
+                defaultBandwidthMeter =
+                    DefaultBandwidthMeter.Builder(mContext).setInitialBitrateEstimate(1400000L)
+                        .build()
 
                 dataSourceFactory = DefaultDataSourceFactory(
-                    mcontext,
-                    Util.getUserAgent(mcontext, "nib"),
-                    defaultBandwidthMeter
+                    mContext,
+                    Util.getUserAgent(mContext, "nib")
                 )
-                mediaSource = HlsMediaSource.Factory(dataSourceFactory)
-                    .setAllowChunklessPreparation(true)
-                    .createMediaSource(Uri.parse(reelsItem.media))
+                mediaSource =
+                    HlsMediaSource.Factory(dataSourceFactory!!).setAllowChunklessPreparation(false)
 
+                exoPlayer = ExoPlayer.Builder(
+                    mContext,
+                    rendererFactory,
+                    mediaSource,
+                    defaultTrackSelector,
+                    loadControl,
+                    defaultBandwidthMeter!!,
+                    DefaultAnalyticsCollector(SystemClock.DEFAULT)
+                ).build()
+
+//                exoPlayer = ExoPlayer.Builder(
+//                    mContext,
+//                    rendererFactory,
+//                    mediaSource,
+//                    defaultTrackSelector,
+//                    loadControl,
+//                    defaultBandwidthMeter!!,
+//                    this
+//                ).build()
+                val mediaItem = MediaItem.fromUri(reelsItem.media)
                 holder.playerView.player = exoPlayer
                 holder.playerView.requestFocus()
                 viewHolderArray.add(holder)
-                exoPlayer.seekTo(0)
                 exoPlayer.repeatMode = Player.REPEAT_MODE_OFF
-                exoPlayer.prepare(mediaSource)
+                exoPlayer.setMediaItem(mediaItem)
+                exoPlayer.prepare()
                 holder.playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
             }
         } else {
@@ -140,21 +186,21 @@ class VideoAdapter(
             if (Constants.ReelsVolume) {
                 viewholder.speaker.setImageDrawable(
                     ContextCompat.getDrawable(
-                        mcontext,
+                        mContext,
                         R.drawable.ic_volume
                     )
                 )
             } else {
                 viewholder.speaker.setImageDrawable(
                     ContextCompat.getDrawable(
-                        mcontext,
+                        mContext,
                         R.drawable.ic_volmute
                     )
                 )
             }
         }
         if (reelsItem != null) {
-            holder.bind(reelsItem, mcontext, position,exoPlayer)
+            holder.bind(reelsItem, mContext, position, exoPlayer)
         }
 
     }
@@ -172,8 +218,8 @@ class VideoAdapter(
         Constants.mViewRecycled = true;
         if (holder in viewHolderArray) {
             viewHolderArray.remove(holder)
-            holder.playerView.player.playWhenReady = false
-            holder.playerView.player.release()
+            holder.playerView.player?.playWhenReady = false
+            holder.playerView.player?.release()
             holder.playerView.player = null
         }
         super.onViewRecycled(holder)
@@ -200,13 +246,13 @@ class VideoAdapter(
         val endPosition = prevViewHolder.playerView.player?.currentPosition
         val elapsedTime: Long? = endPosition?.minus(startPosition)
         params[Events.KEYS.DURATION] = elapsedTime.toString()
-        reelDurationEvent(mcontext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
+        reelDurationEvent(mContext, params, Events.REEL_DURATION, mVideoList[prevPostion].id)
 
         //Analytics REEL VIEW
         val params1: MutableMap<String, String> = HashMap()
         params1[Events.KEYS.ARTICLE_ID] = mVideoList[prevPostion].id
         params1[Events.KEYS.DURATION] = elapsedTime.toString()
-        logEventWithAPI(mcontext, params, Events.REEL_VIEW)
+        logEventWithAPI(mContext, params, Events.REEL_VIEW)
 
     }
 
@@ -235,9 +281,9 @@ class VideoAdapter(
     fun releasePlayers() {
         viewHolderArray.forEach { holder ->
             Log.e("TAGf", "releasePlayers: $holder")
-            holder.playerView.player?.playWhenReady = false
-            holder.playerView.player?.release()
-            holder.playerView.player = null
+            holder?.playerView?.player?.playWhenReady = false
+            holder?.playerView?.player?.release()
+            holder?.playerView?.player = null
         }
     }
 
@@ -246,7 +292,7 @@ class VideoAdapter(
         val playerView: PlayerView
         val userpic: CircleImageView
         val thumbnail: ImageView
-        lateinit var exoPlayerVh: SimpleExoPlayer
+        lateinit var exoPlayerVh: ExoPlayer
         var container_parent: ConstraintLayout = itemView.findViewById(R.id.container_parent)
         val btn_comment: ImageView
         val img_share: ImageView
@@ -275,8 +321,9 @@ class VideoAdapter(
                 container_parent.visibility = View.VISIBLE
                 rl_seek?.visibility = View.GONE
                 seekBar.progressDrawable =
-                    ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress)
-                seekBar.thumb =  ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_normal)
+                    ContextCompat.getDrawable(mContext, R.drawable.custom_seekbar_progress)
+                seekBar.thumb =
+                    ContextCompat.getDrawable(mContext, R.drawable.custom_seekbar_thumb_normal)
 
             }
         }
@@ -287,8 +334,10 @@ class VideoAdapter(
                 if (isSeekBarBeingTouched) {
                     container_parent.visibility = View.GONE
                     rl_seek?.visibility = View.VISIBLE
-                    seekBar.progressDrawable = ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress_big)
-                    seekBar.thumb = ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_pressed)
+                    seekBar.progressDrawable =
+                        ContextCompat.getDrawable(mContext, R.drawable.custom_seekbar_progress_big)
+                    seekBar.thumb =
+                        ContextCompat.getDrawable(mContext, R.drawable.custom_seekbar_thumb_pressed)
                 } else {
                     handlernew.postDelayed(runnablenew, 5000) // Change back to original after 5 sec
                 }
@@ -323,32 +372,37 @@ class VideoAdapter(
             heart = itemView.findViewById(R.id.imgHeart)
         }
 
-        fun bind(reelsItem: ReelsItem, mcontext: Context, position: Int, exoPlayerVh: SimpleExoPlayer) {
+        fun bind(
+            reelsItem: ReelsItem,
+            mContext: Context,
+            position: Int,
+            exoPlayerVh: ExoPlayer
+        ) {
             this@VideoViewHolder.exoPlayerVh = exoPlayerVh
-            audioManager = mcontext.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+            audioManager = mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
             linear_bottom?.isClickable = false
             ll_right?.isClickable = false
             cons_header.isClickable = false
 
             if (reelsItem != null) {
-            if (!TextUtils.isEmpty(reelsItem.image)) {
-                thumbnail.visibility = View.VISIBLE
-                Glide.with(mcontext).load(reelsItem.image).into(thumbnail);
-            } else {
-                thumbnail.visibility = View.INVISIBLE
-            }
+                if (!TextUtils.isEmpty(reelsItem.image)) {
+                    thumbnail.visibility = View.VISIBLE
+                    Glide.with(mContext).load(reelsItem.image).into(thumbnail);
+                } else {
+                    thumbnail.visibility = View.INVISIBLE
+                }
                 if (Constants.ReelsVolume) {
                     audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
                     speaker.setImageDrawable(
                         ContextCompat.getDrawable(
-                            mcontext,
+                            mContext,
                             R.drawable.ic_volume
                         )
                     )
                 } else {
                     speaker.setImageDrawable(
                         ContextCompat.getDrawable(
-                            mcontext,
+                            mContext,
                             R.drawable.ic_volmute
                         )
                     )
@@ -375,10 +429,10 @@ class VideoAdapter(
                         reelFraInterface?.doubleClickLike(reelsItem)
                         if (reelsItem != null) {
                             drawable = heart.drawable
-                            if (mcontext != null) {
+                            if (mContext != null) {
                                 val drawable: Drawable =
                                     ContextCompat.getDrawable(
-                                        mcontext,
+                                        mContext,
                                         R.drawable.ic_heartborderred
                                     )!!
                                 imgLike.setImageDrawable(null)
@@ -400,7 +454,7 @@ class VideoAdapter(
                                 like_text?.text = "" + counter[0]
                                 val drawable: Drawable? =
                                     ContextCompat.getDrawable(
-                                        mcontext,
+                                        mContext,
                                         R.drawable.ic_heartborderred
                                     )
                                 imgLike.setImageDrawable(null)
@@ -411,7 +465,7 @@ class VideoAdapter(
 
                                 presenter?.like(reelsItem.id, object : LikeInterface {
                                     override fun success(like: Boolean) {
-                                        if (mcontext == null || (mcontext as? Activity)?.isFinishing == true) {
+                                        if (mContext == null || (mContext as? Activity)?.isFinishing == true) {
                                             return
                                         }
                                         imgLike.isEnabled = true
@@ -422,22 +476,31 @@ class VideoAdapter(
 
                                         if (reelsItem.info.isLiked) {
                                             val drawable: Drawable =
-                                                ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborderred)!!
+                                                ContextCompat.getDrawable(
+                                                    mContext,
+                                                    R.drawable.ic_heartborderred
+                                                )!!
                                             imgLike.setImageDrawable(null)
                                             imgLike.setImageDrawable(drawable)
                                             DrawableCompat.setTint(
                                                 imgLike.drawable,
-                                                ContextCompat.getColor(mcontext, R.color.theme_color_1)
+                                                ContextCompat.getColor(
+                                                    mContext,
+                                                    R.color.theme_color_1
+                                                )
                                             )
                                         } else {
                                             val drawable: Drawable? =
-                                                ContextCompat.getDrawable(mcontext,R.drawable.ic_heartborderwhite)
+                                                ContextCompat.getDrawable(
+                                                    mContext,
+                                                    R.drawable.ic_heartborderwhite
+                                                )
                                             imgLike.setImageDrawable(drawable)
                                         }
                                     }
 
                                     override fun failure() {
-                                        if (mcontext == null || (mcontext as? Activity)?.isFinishing == true) {
+                                        if (mContext == null || (mContext as? Activity)?.isFinishing == true) {
                                             return
                                         }
                                         imgLike.isEnabled = true
@@ -448,7 +511,7 @@ class VideoAdapter(
                                         }
 //                                        DrawableCompat.setTint(
 //                                            imgLike.drawable,
-//                                            ContextCompat.getColor(mcontext, R.color.white)
+//                                            ContextCompat.getColor(mContext, R.color.white)
 //                                        )
                                         //                                like_text.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
 //                                like_icon.setImageResource(R.drawable.ic_reel_like_inactive);
@@ -469,16 +532,16 @@ class VideoAdapter(
                         if (reelsItem.info.like_count > 0) View.VISIBLE else View.GONE
                     if (reelsItem.info.isLiked) {
                         val drawable: Drawable =
-                            ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborderred)!!
+                            ContextCompat.getDrawable(mContext, R.drawable.ic_heartborderred)!!
                         imgLike.setImageDrawable(null)
                         imgLike.setImageDrawable(drawable)
                         DrawableCompat.setTint(
                             imgLike.drawable,
-                            ContextCompat.getColor(mcontext, R.color.theme_color_1)
+                            ContextCompat.getColor(mContext, R.color.theme_color_1)
                         )
                     } else {
                         val drawable: Drawable =
-                            ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborderwhite)!!
+                            ContextCompat.getDrawable(mContext, R.drawable.ic_heartborderwhite)!!
                         imgLike.setImageDrawable(drawable)
                     }
                 }
@@ -487,11 +550,21 @@ class VideoAdapter(
                     if (exoPlayerVh.playWhenReady) {
                         isSeekBarBeingTouched = true
                         exoPlayerVh.playWhenReady = false
-                        img_pause.setImageDrawable(ContextCompat.getDrawable(mcontext,R.drawable.playbtn))
+                        img_pause.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                mContext,
+                                R.drawable.playbtn
+                            )
+                        )
                     } else {
                         isSeekBarBeingTouched = false
                         exoPlayerVh.playWhenReady = true
-                        img_pause.setImageDrawable(ContextCompat.getDrawable(mcontext,R.drawable.pausebtn))
+                        img_pause.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                mContext,
+                                R.drawable.pausebtn
+                            )
+                        )
                     }
                 }
                 imgSelect.setOnClickListener {
@@ -502,7 +575,7 @@ class VideoAdapter(
                         audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, true);
                         speaker.setImageDrawable(
                             ContextCompat.getDrawable(
-                                mcontext,
+                                mContext,
                                 R.drawable.ic_volmute
                             )
                         )
@@ -511,7 +584,7 @@ class VideoAdapter(
                         audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
                         speaker.setImageDrawable(
                             ContextCompat.getDrawable(
-                                mcontext,
+                                mContext,
                                 R.drawable.ic_volume
                             )
                         )
@@ -535,19 +608,19 @@ class VideoAdapter(
                     val flag = reelsItem.info.isLiked
                     if (!flag) {
                         val drawable: Drawable =
-                            ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborderred)!!
+                            ContextCompat.getDrawable(mContext, R.drawable.ic_heartborderred)!!
                         imgLike.setImageDrawable(null)
                         imgLike.setImageDrawable(drawable)
                         DrawableCompat.setTint(
                             imgLike.drawable,
-                            ContextCompat.getColor(mcontext, R.color.theme_color_1)
+                            ContextCompat.getColor(mContext, R.color.theme_color_1)
                         )
                         like_text?.text = " ${(reelsItem.info.like_count + 1).toString()}"
                         like_text?.visibility =
                             if (reelsItem.info.like_count + 1 > 0) View.VISIBLE else View.GONE
                     } else {
                         val drawable: Drawable =
-                            ContextCompat.getDrawable(mcontext, R.drawable.ic_heartborder)!!
+                            ContextCompat.getDrawable(mContext, R.drawable.ic_heartborder)!!
                         imgLike.setImageDrawable(drawable)
                         like_text?.text = " ${(reelsItem.info.like_count - 1).toString()}"
                         like_text?.visibility =
@@ -555,7 +628,7 @@ class VideoAdapter(
                     }
                     presenter?.like(reelsItem.id, object : LikeInterface {
                         override fun success(like: Boolean) {
-                            if (mcontext == null) return
+                            if (mContext == null) return
 //                            imgLike.setEnabled(true)
                             reelsItem.info.isLiked = like
                             var counter = reelsItem.info.like_count
@@ -615,16 +688,74 @@ class VideoAdapter(
                         .into(userpic)
                 }
             }
-            exoPlayerVh.addListener(object : Player.EventListener {
+            exoPlayer.addListener(object : Player.Listener {
+
+                override fun onTracksChanged(tracks: Tracks) {
+                    super.onTracksChanged(tracks)
+                    tracks.groups.forEachIndexed { index, group ->
+                        if (group.isSelected) {
+                            for (i in 0 until group.length) {
+//                                Log.d(
+//                                    "VideoAdapter_TAG",
+//                                    "onTrackChanged: " + group.getTrackFormat(i).width + "x" + group.getTrackFormat(
+//                                        i
+//                                    ).height
+//                                )
+                                if (group.isTrackSelected(i) && group.getTrackFormat(i).width != -1) {
+                                    Log.d(
+                                        "VideoAdapter_TAG",
+                                        "onTrackChanged->$adapterPosition->: Selected" + group.getTrackFormat(
+                                            i
+                                        ).width + "x" + group.getTrackFormat(
+                                            i
+                                        ).height
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+//                override fun onTracksChanged(
+//                    trackGroups: TrackGroupArray,
+//                    trackSelections: TrackSelectionArray
+//                ) {
+//
+//                    try {
+//                        val trackSelectionArray = trackSelections
+//                        if (trackSelectionArray.length > 0) {
+//                            val rendererIndex =
+//                                0 // index of the renderer for which you want to get the resolution
+//
+//                            for (i in 0 until trackSelectionArray.length) {
+//                                val track = trackSelectionArray[i]
+//                                for (j in 0 until track!!.length()) {
+//                                    val trackFormat = track.getFormat(j)
+//                                    Log.d(
+//                                        "VideoAdapter_TAG",
+//                                        "onTrackChanged: " + trackFormat.width + "x" + trackFormat.height
+//                                    )
+//                                }
+//                            }
+//                        }
+//                    } catch (e: Exception) {
+//                        Log.d(
+//                            "VideoAdapter_TAG",
+//                            "onTrackChanged: ${e.localizedMessage}"
+//                        )
+//                    }
+//                }
+
                 override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                     when (playbackState) {
                         Player.STATE_IDLE -> {
                         }
+
                         Player.STATE_BUFFERING -> {
-                            progbarada.visibility= View.VISIBLE
+                            progbarada.visibility = View.VISIBLE
                         }
+
                         Player.STATE_READY -> {
-                            progbarada.visibility= View.GONE
+                            progbarada.visibility = View.GONE
                             thumbnail.visibility = View.INVISIBLE
                             reelFraInterface?.updateView()
 
@@ -636,6 +767,7 @@ class VideoAdapter(
                             isSeekBarBeingTouched = false
 
                         }
+
                         Player.STATE_ENDED -> {
                             reelFraInterface?.nextReelVideo(position)
                         }
@@ -649,7 +781,7 @@ class VideoAdapter(
                     }
                     if (exoPlayerVh != null) {
                         val currentTime: Long = exoPlayerVh.currentPosition
-                        val totalTime: Long =exoPlayerVh.duration
+                        val totalTime: Long = exoPlayerVh.duration
                         textViewCurrentTime?.text = formatTime(currentTime)
                         textViewTotalTime?.text = formatTime(totalTime)
                     }
@@ -663,17 +795,25 @@ class VideoAdapter(
             })
 
             seekBar.setOnTouchListener { v, event ->
+
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         isSeekBarBeingTouched = true
                         container_parent.visibility = View.GONE
                         rl_seek!!.visibility = View.VISIBLE
                         seekBar.progressDrawable =
-                            ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_progress_big)
+                            ContextCompat.getDrawable(
+                                mContext,
+                                R.drawable.custom_seekbar_progress_big
+                            )
                         seekBar.thumb =
-                            ContextCompat.getDrawable(mcontext,R.drawable.custom_seekbar_thumb_pressed)
+                            ContextCompat.getDrawable(
+                                mContext,
+                                R.drawable.custom_seekbar_thumb_pressed
+                            )
                         handlernew.removeCallbacks(runnablenew)
                     }
+
                     MotionEvent.ACTION_UP -> {
                         isSeekBarBeingTouched = false
                         handlernew.postDelayed(
@@ -702,6 +842,7 @@ private fun formatTime(millis: Long): String? {
         String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 }
+
 class SlowPageTransformer(private val viewPager: ViewPager2) : ViewPager2.PageTransformer {
     override fun transformPage(page: View, position: Float) {
 //        val absPos = abs(position)
