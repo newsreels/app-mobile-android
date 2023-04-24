@@ -2,10 +2,13 @@ package com.ziro.bullet.fragments.Reels;
 
 import static com.ziro.bullet.utills.PaginationListener.PAGE_START;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -31,8 +35,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.downloader.PRDownloader;
 import com.ziro.bullet.CacheData.DbHandler;
 import com.ziro.bullet.R;
 import com.ziro.bullet.activities.AuthorActivity;
@@ -70,11 +76,13 @@ import com.ziro.bullet.model.articles.Bullet;
 import com.ziro.bullet.model.articles.MediaMeta;
 import com.ziro.bullet.presenter.FollowUnfollowPresenter;
 import com.ziro.bullet.presenter.HomePresenter;
+import com.ziro.bullet.presenter.LikePresenter;
 import com.ziro.bullet.presenter.NewsPresenter;
 import com.ziro.bullet.presenter.ReelPresenter;
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter;
 import com.ziro.bullet.utills.Constants;
 import com.ziro.bullet.utills.InternetCheckHelper;
+import com.ziro.bullet.utills.M3UParser;
 import com.ziro.bullet.utills.Utils;
 
 import java.util.ArrayList;
@@ -83,24 +91,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ReelFragment extends Fragment implements VideoInterface, ReelFraInterface {
+public class ReelFragment extends Fragment implements VideoInterface, M3UParser.VideoCacheListener, ReelFraInterface {
     private static final String TAG = "VideoFragment";
     private static final int INTENT_REELS_VERSION = 3424;
     private static final String KEY_FOR_YOU = "for_you";
     private static final String KEY_FOLLOWING = "following";
-    private static final String HLS_DIR = "hls_files";
-    private static final String VIDEOS_DIR = "NewsReels";
+
     private static GoHome goHome;
+    private LikePresenter presenter;
     private boolean clickable = false;
-    private Handler handlernew = new Handler();
-    //    private SimpleOrientationListener mOrientationListener;
     private View view;
     private ViewPager2 viewPager;
     private int prevPosition = -1;
     private int curPosition = 0;
-    //    private VideoPagerAdapter pagerAdapter;
     private VideoAdapter pagerAdapter;
-    private ArrayList<ReelsItem> videoReelsItems = new ArrayList<>();
     private ReelPresenter reelPresenter;
     private String mNext = PAGE_START;
     private LinearLayout noRecordFoundContainer;
@@ -113,27 +117,19 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
     private NewsPresenter newsPresenter;
     private HomePresenter homePresenter;
     private HomeModel homeModel;
+    private boolean isLoading = false;
     private boolean isLastPage = false;
     private FragmentManager fm = null;
     private String page = "";
     private ViewSwitcher reelsViewSwitcher;
+    private TextView tvLabel;
     private boolean isHidden = false;
     private ConstraintLayout ll_reels_info;
-    //    private ConstraintLayout container_parent;
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            showEndOfReelMsg(false);
-            viewPager.setCurrentItem(mCurrentPosition - 1, true);
-        }
-    };
-    private TextView tvLabel;
     private ProgressBar progbar;
     private ReelViewMoreSheet reelViewMoreSheet;
     private CardView new_post;
     private ImageView notification;
     private ImageView dots;
-    private ImageView heart;
     private PictureLoadingDialog loadingDialog;
     private FollowUnfollowPresenter followUnfollowPresenter;
     private ReelsNewPresenter reelsNewPresenter;
@@ -141,10 +137,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
     private ShareBottomSheetPresenter shareBottomSheetPresenter;
     private ForYouReelSheet forYouReelSheet;
     private String mode = KEY_FOR_YOU;
-
-    private boolean isLoading;
-
-    private DbHandler cacheManager;
     private String context = "";
     private final HomeCallback homeCallback = new HomeCallback() {
         @Override
@@ -172,8 +164,8 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
         }
     };
-    private int cachePosition = -1, maxCacheLimit = -1;
     private List<ReelsItem> reelsToSave = new ArrayList<>();
+    private boolean isCaching = false;
     private boolean isSequenceUpdated = false;
     private boolean isHomeTabClicked = false;
     private boolean isFollowingShow = false;
@@ -228,7 +220,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 //                }
 //                , Constants.DARK);
         noRecordFoundContainer.setVisibility(View.VISIBLE);
-//        container_parent.setVisibility(View.GONE);
     }
 
     private void forYouSelect() {
@@ -261,8 +252,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
         ll_reels_info = view.findViewById(R.id.constraintLayoutReel);
         tvLabel = view.findViewById(R.id.tvLabel);
         progbar = view.findViewById(R.id.progbar);
-        heart = view.findViewById(R.id.imgHeart);
-        cacheManager = new DbHandler(requireContext());
     }
 
     public void invalidateViews() {
@@ -277,16 +266,18 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
         reelPresenter = new ReelPresenter(getActivity(), this);
         newsPresenter = new NewsPresenter(getActivity(), null);
         followUnfollowPresenter = new FollowUnfollowPresenter(getActivity());
-        reelsNewPresenter = new ReelsNewPresenter(getActivity(), this);
+        reelsNewPresenter = new ReelsNewPresenter(getActivity(),this);
         shareBottomSheetPresenter = new ShareBottomSheetPresenter(getActivity());
         homePresenter = new HomePresenter(getActivity(), homeCallback);
         homePresenter.getHome(Constants.CAT_TYPE_REELS);
-        pagerAdapter = new VideoAdapter(viewPager, requireContext(), this, reelsNewPresenter);
+        presenter = new LikePresenter(getActivity());
+        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,reelsNewPresenter);
 //        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,followUnfollowPresenter);
         viewPager.setAdapter(pagerAdapter);
         Constants.reelfragment = true;
 //        viewPager.setOffscreenPageLimit(2);
 //        viewPager.setPageTransformer(new SlowPageTransformer(viewPager));
+
 
         double availableRam = NetworkSpeedUtils.Companion.availableRam(requireContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -304,10 +295,10 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
         }
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+
 //
 //                if (!Constants.mViewRecycled) {
                 Log.e("TAGfv", "onPageSelected:true " + position);
@@ -335,9 +326,9 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
                     @Override
                     public void run() {
                         viewPager.setUserInputEnabled(true);
-                        clickable = true;
+                        clickable=true;
                     }
-                }, 500);
+                }, 350);
 //                } else {
 //                    Log.e("TAGfv", "onPageSelected:false " );
 //                    Constants.mViewRecycled = false;
@@ -347,6 +338,8 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//                viewPager.setPageTransformer(new SlowPageTransformer(viewPager));
+//                pagerAdapter.reelAnalyticsApical();
 
             }
         });
@@ -432,7 +425,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
             Utils.showSnacky(getView(), "Loading Categories...");
             return;
         }
-
         Constants.onResumeReels = false;
         Constants.rvmdailogopen = true;
 
@@ -466,9 +458,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
                     forYouReelSheet.dismiss();
                 }
                 tvLabel.setText(item.getTitle());
-                if (cacheManager != null) {
-                    cacheManager.clearReelsDb();
-                }
                 refresh.setRefreshing(true);
                 reload();
             }
@@ -519,7 +508,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
         forYouReelSheet.getViewLifecycleOwnerLiveData().observe(getViewLifecycleOwner(), lifecycleOwner -> {
             //when lifecycleOwner is null fragment is destroyed
-
 
 //            Constants.fromfragment = true;
             if (lifecycleOwner == null) {
@@ -593,25 +581,20 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
     public void showNoDataErrorView(boolean show) {
         noRecordFoundContainer.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     public void showErrorView(boolean show) {
         noRecordFoundContainer.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     private void showEndOfReelMsg(boolean show) {
-//        container_parent.setVisibility(show ? View.GONE : View.VISIBLE);
         ll_reels_info.setVisibility(show ? View.GONE : View.VISIBLE);
-//        seekBar.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+        Log.e("TAGfv", "onHiddenChanged: ");
 
         if (hidden) {
             onPause();
@@ -631,10 +614,35 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
 
         if (flag) isLoading = flag;
+
+//        if (flag && refresh.isRefreshing()) {
+//            viewPager.setUserInputEnabled(false);
+//            if (currentFragment instanceof VideoInnerFragment) {
+//                ((VideoInnerFragment) currentFragment).clickEnabling(false);
+//            }
+//        } else {
+//            viewPager.setUserInputEnabled(true);
+//            if (currentFragment instanceof VideoInnerFragment) {
+//                ((VideoInnerFragment) currentFragment).clickEnabling(true);
+//            }
+//        }
+//        if (mNext.equals("")) {
+//        if (mNext != null && mNext.equals("") && !refresh.isRefreshing()) {
+////        if (videoItems == null || videoItems.size() <= 0) {
+//            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, flag);
+//        } else {
+//            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
+//        }
+
+//        if (!flag) {
+//            refresh.setRefreshing(false);
+//        }
     }
 
     @Override
     public void error(String error) {
+        Log.e("TAGfv", "error: ");
+
         page = "";
         showErrorView(true);
         progbar.setVisibility(View.GONE);
@@ -663,7 +671,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
         progbar.setVisibility(View.GONE);
         isLoading = false;
         Constants.onResumeReels = true;
-
         if (isRefresh) {
             videoItems.clear();
             viewPager.setAdapter(pagerAdapter);
@@ -692,13 +699,12 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
                 prevReelsize = videoItems.size();
             }
         }
+
         if (reelResponse.getMeta() != null) {
             mNext = reelResponse.getMeta().getNext();
             if (TextUtils.isEmpty(mNext)) {
                 isLastPage = true;
-//                if (videoReelsItems != null && !videoReelsItems.isEmpty()) {
-//                    videoReelsItems.add(null);
-//                }
+//                videoItems.add(null);
             }
         }
 
@@ -757,17 +763,23 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
             refresh.setRefreshing(false);
             return;
         }
+
+//            refresh.setRefreshing(true);
+//            currentAdapterPosition = viewPager.getCurrentItem();
+//            viewPager.setCurrentItem(0, true);
+
         viewPager.setAdapter(null);
+//            viewPager.removeAllViews();
         videoItems.clear();
         reelsToSave.clear();
-        cachePosition = -1;
-        maxCacheLimit = -1;
+        isCaching = false;
         mNext = "";
+        PRDownloader.cancelAll();
+//            pagerAdapter.notifyDataSetChanged();
         isRefresh = true;
         mNext = "";
         page = "";
         new_post.setVisibility(View.GONE);
-//        homePresenter.getHome(Constants.CAT_TYPE_REELS);
         reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, false, "");
 
 //            loadCacheData();//api cal
@@ -790,6 +802,9 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
     @Override
     public void onDestroy() {
+        Log.e("TAGfv", "onDestroy: ");
+
+        Log.e("testreel", "onDestroy ");
         super.onDestroy();
         pagerAdapter.releasePlayers();
 
@@ -814,18 +829,27 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
 
     @Override
     public void onResume() {
+        Log.e("TAGfv", "onResume: ");
+
         super.onResume();
         //shifa check this
-        if (Constants.onResumeReels && Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible) {
+        if (Constants.onResumeReels &&  Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible  ) {
             {
-                if (reelViewMoreSheet == null) {
+                if(reelViewMoreSheet == null){
                     pagerAdapter.resumePlayback(curPosition);
-                } else if (reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()) {
+                }else if(reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()){
                     pagerAdapter.resumePlayback(curPosition);
                 }
-            }
-        }
+            }}
+
+
     }
+
+    @Override
+    public void videoCached(ReelsItem reelsItem, int position) {
+
+    }
+
 
     @Override
     public void followChannelClick(@NonNull ReelsItem reelsItem) {
@@ -835,6 +859,7 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
             }
             return;
         }
+
         if (reelsItem.getSource() != null) {
             if (reelsItem.getSource().isFavorite()) {
                 followUnfollowPresenter.unFollowSource(reelsItem.getSource().getId(), 0, null);
@@ -844,6 +869,18 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
                 reelsItem.getSource().setFavorite(true);
             }
         }
+
+//        if (videoItems != null && !videoItems.isEmpty()) {
+//            for (int i = 0; i < videoItems.size(); i++) {
+//                if (videoItems.get(i).getSource().getName().equals(reelsItem.getSource().getName())) {
+//                    if (reelsItem.getSource().isFavorite()) {
+//                        videoItems.get(i).getSource().setFavorite(true);
+//                        pagerAdapter.notifyItemChanged(i);
+//                    }
+//                }
+//            }
+//        }
+
     }
 
     @Override
@@ -923,6 +960,64 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
                     sendIntent.setType("text/plain");
                     Intent shareIntent = Intent.createChooser(sendIntent, null);
                     getActivity().startActivity(shareIntent);
+
+//                    reelsBottomSheet = new MediaShare.Builder(getActivity())
+//                            .setId(reelsItem.getId())
+//                            .isArticle(false)
+//                            .setShareInfo(shareInfo)
+//                            .setFragmentContextVal(VideoInnerFragment.this)
+//                            .setArticle(article)
+//                            .setonDismissListener(dialog -> {
+//                                if (!isIgnoreDismiss[0])
+//                                    onResume();
+//                            })
+//                            .setReelBottomSheetCallback(new ReelBottomSheetCallback() {
+//                                @Override
+//                                public void onReport() {
+//                                    isIgnoreDismiss[0] = true;
+//                                    AnalyticsEvents.INSTANCE.logEvent(getContext(),
+//                                            Events.REPORT_CLICK);
+//                                    if (reelsItem == null) {
+//                                        return;
+//                                    }
+//                                    ReportBottomSheet reportBottomSheet = new ReportBottomSheet(getActivity(), new DismissBottomSheet() {
+//                                        @Override
+//                                        public void dismiss(boolean flag) {
+//                                            if (flag) {
+//                                                // on hide Bottom sheet
+//                                                onResume();
+//                                            }
+//                                        }
+//                                    });
+//                                    reportBottomSheet.show(reelsItem.getId(), "articles");
+//                                }
+//
+//                                @Override
+//                                public void onSave    () {
+//                                    if (!TextUtils.isEmpty(reelsItem.getId())) {
+//                                        if (sharePresenter != null)
+//                                            sharePresenter.archive(reelsItem.getId(), shareInfo.isArticle_archived());
+//                                    }
+//                                    onResume();
+//                                }
+//
+//                                @Override
+//                                public void onNotInterested() {
+//                                    if (!TextUtils.isEmpty(reelsItem.getId())) {
+//                                        if (sharePresenter != null)
+//                                            sharePresenter.less(reelsItem.getId());
+//                                    }
+//                                    onResume();
+//                                }
+//
+//                                @Override
+//                                public void onIgnore() {
+//                                    isIgnoreDismiss[0] = true;
+//                                }
+//                            })
+//                            .build();
+//                    reelsBottomSheet.show();
+
                 }
 
                 @Override
@@ -933,7 +1028,6 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
             });
         }
     }
-
     private Article getArticleFromReels(ReelsItem reels) {
         Article article = new Article();
         if (reels != null) {
@@ -1081,8 +1175,10 @@ public class ReelFragment extends Fragment implements VideoInterface, ReelFraInt
     public void updateView() {
 
         if (reelViewMoreSheet != null && reelViewMoreSheet.isVisible()) {
-            Log.e(TAG, "updateView: ");
+            Log.e(TAG, "updateView: " );
             pagerAdapter.pauseCurPlayback(curPosition);
         }
+
     }
 }
+

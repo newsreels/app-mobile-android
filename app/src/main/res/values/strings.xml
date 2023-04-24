@@ -145,7 +145,7 @@
     <string name="news_in_bullets">Newsreels</string>
     <string name="go_to_guardian">Go to</string>
     <string name="follow_guardian">Follow</string>
-    <string name="block_guardian">Block articles from</string>
+    <string name="block_guardian">Block reels from</string>
     <string name="suggest_less_like_this">I don\'t like this</string>
     <string name="report_sent">Report sent</string>
     <string name="once_blocked_you_won_t_be_able_to">Once blocked, you wont be able to see any Articles from this source.</string>

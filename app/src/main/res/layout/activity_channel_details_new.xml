@@ -457,18 +457,16 @@
                 </com.google.android.material.appbar.MaterialToolbar>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-
             <TextView
                 android:id="@+id/tabname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_6sdp"
-                android:drawableStart="@drawable/video_square"
-                android:gravity="center"
                 android:textColor="@color/theme_color_1"
-                android:textSize="@dimen/_11sdp" />
-
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/video_square" />
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 style="@style/TabMain"
@@ -485,11 +483,10 @@
                 app:tabPaddingStart="@dimen/_16sdp"
                 app:tabSelectedTextColor="@color/theme_color_1"
                 app:tabTextColor="@color/black">
-
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" />
 
                 <!--                <com.google.android.material.tabs.TabItem-->
                 <!--                    android:layout_width="wrap_content"-->

@@ -46,6 +46,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgHeart"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_centerInParent="true"
+            android:alpha="0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_heart_anim"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_parent"
             android:layout_width="0dp"
@@ -85,7 +99,7 @@
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
                         android:src="@drawable/ic_heartborderwhite"
-                        app:tint="@color/white" />
+                    />
 
                     <TextView
                         android:id="@+id/like_text"
@@ -390,7 +404,7 @@
             android:paddingStart="0dp"
             android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:progressBackgroundTint="#5A5A5A"
             android:progressTint="#F8F8F8"
             android:splitTrack="false"
@@ -406,7 +420,7 @@
             android:background="@color/black"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/_3sdp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
