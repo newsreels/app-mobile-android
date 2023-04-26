@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.ziro.bullet.R;
 import com.ziro.bullet.activities.BulletDetailActivity;
 import com.ziro.bullet.activities.CommentsActivity;
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew;
 import com.ziro.bullet.adapters.relevant.SearchRelevantMainAdapter;
 import com.ziro.bullet.adapters.relevant.callbacks.SourceFollowingCallback;
 import com.ziro.bullet.adapters.relevant.callbacks.TopicsFollowingCallback;
@@ -161,6 +162,17 @@ public class SearchAllFragment extends Fragment implements SearchTabsInterface {
 
             @Override
             public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
+
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("type", "type");
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                intent.putExtra("mContextId", article.getId());
+                intent.putExtra("NextPageApi", "");
+                startActivityForResult(intent, Constants.CommentsRequestCode);
 
             }
 

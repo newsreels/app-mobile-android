@@ -297,12 +297,12 @@ class ArticleAdapter(private val context:Context,
         private fun addBullets(article: Article) {
             bulletContainer.removeAllViews()
             for ((i, bullet) in article.bullets.withIndex()) {
-                if (i < 2) {
+//                if (i < 2) {
                     if (i != 0 || (bullet.data.trim { it <= ' ' } == article.title.trim { it <= ' ' } || bullet.data.trim { it <= ' ' } != article.getTitle()
                             .trim { it <= ' ' })) {
                         bulletContainer.addView(createBullet(bullet, article.languageCode, article))
                     }
-                }
+//                }
             }
 
         }

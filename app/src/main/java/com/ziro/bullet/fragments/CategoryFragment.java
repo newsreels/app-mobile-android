@@ -2112,6 +2112,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                 intent.putExtra("type", type);
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);
+                Log.e(TAG, "onNewDetailClick: "+mContextId );
                 intent.putExtra("mContextId", mContextId);
                 intent.putExtra("NextPageApi", mNextPage);
                 startActivityForResult(intent, Constants.CommentsRequestCode);

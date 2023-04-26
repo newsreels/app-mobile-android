@@ -34,6 +34,7 @@ import com.ziro.bullet.activities.BulletDetailActivity;
 import com.ziro.bullet.activities.ChannelDetailsActivity;
 import com.ziro.bullet.activities.CommentsActivity;
 import com.ziro.bullet.activities.VideoFullScreenActivity;
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew;
 import com.ziro.bullet.adapters.feed.FeedAdapter;
 import com.ziro.bullet.adapters.feed.LargeCardViewHolder;
 import com.ziro.bullet.adapters.feed.SmallCardViewHolder;
@@ -477,6 +478,18 @@ public class SaveArticleFragment extends Fragment implements NewsCallback {
 
             @Override
             public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
+
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("type", "type");
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                intent.putExtra("mContextId", "");
+                intent.putExtra("isLastPage", true);
+                intent.putExtra("NextPageApi", "");
+                startActivityForResult(intent, Constants.CommentsRequestCode);
 
             }
 

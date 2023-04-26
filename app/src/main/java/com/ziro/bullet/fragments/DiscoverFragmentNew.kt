@@ -30,6 +30,7 @@ import com.google.gson.Gson
 import com.ziro.bullet.BuildConfig
 import com.ziro.bullet.R
 import com.ziro.bullet.activities.*
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew
 import com.ziro.bullet.adapters.discover_new.DiscoverAdapterNew
 import com.ziro.bullet.adapters.searchhistory.SearchHistoryAdapter
 import com.ziro.bullet.data.PrefConfig
@@ -396,7 +397,18 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                             article: Article?,
                             articlelist: MutableList<Article>?
                         ) {
-                            TODO("Not yet implemented")
+                            val intent = Intent(context, ArticleDetailNew::class.java)
+                            var itemsa: ArrayList<Article?>? =
+                                ArrayList() // your ArrayList of Article objects
+
+                            itemsa = articlelist as ArrayList<Article?>?
+                            intent.putParcelableArrayListExtra("myArrayList", itemsa)
+                            intent.putExtra("type", "type")
+                            intent.putExtra("articleID", article!!.id)
+                            intent.putExtra("position", position)
+                            intent.putExtra("mContextId", article.id)
+                            intent.putExtra("NextPageApi", "")
+                            startActivityForResult(intent, Constants.CommentsRequestCode)
                         }
 
                         override fun fullscreen(
