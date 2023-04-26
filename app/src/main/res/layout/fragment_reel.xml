@@ -105,6 +105,7 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 app:layout_constraintBottom_toBottomOf="parent"

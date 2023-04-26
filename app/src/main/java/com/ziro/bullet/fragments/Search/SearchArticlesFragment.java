@@ -31,6 +31,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.ziro.bullet.R;
 import com.ziro.bullet.activities.BulletDetailActivity;
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew;
 import com.ziro.bullet.adapters.discover_new.DiscoverArticlesAdapter;
 import com.ziro.bullet.adapters.feed.FeedAdapter;
 import com.ziro.bullet.data.PrefConfig;
@@ -271,6 +272,20 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
             }
 
             @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>();
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("type", "type");
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                intent.putExtra("mContextId", article.getId());
+                intent.putExtra("NextPageApi", "");
+                startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
             public void fullscreen(int position, Article article, long duration, String mode, boolean isManual) {
 
             }
@@ -404,6 +419,22 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
                 intent.putExtra("article", new Gson().toJson(article));
                 intent.putExtra("position", position);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
+
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("type", "type");
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                intent.putExtra("mContextId", article.getId());
+                intent.putExtra("NextPageApi", "");
+                startActivityForResult(intent, Constants.CommentsRequestCode);
+
             }
 
             @Override

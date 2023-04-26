@@ -50,6 +50,7 @@ import com.ziro.bullet.utills.PaginationScrollListener;
 import com.ziro.bullet.utills.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -272,6 +273,11 @@ public class CustomDiscoverListActivity extends BaseActivity implements NewsCall
                             intent.putExtra("type", type);
                             intent.putExtra("position", position);
                             startActivityForResult(intent, Constants.CommentsRequestCode);
+                        }
+
+                        @Override
+                        public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
                         }
 
                         @Override

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.ziro.bullet.R
 import com.ziro.bullet.activities.*
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew
 import com.ziro.bullet.adapters.feed.FeedAdapter
 import com.ziro.bullet.adapters.searchhistory.SearchHistoryAdapter
 import com.ziro.bullet.data.PrefConfig
@@ -240,6 +241,27 @@ class PlacesListFragmentNew : Fragment(), DiscoverResponseInterface,
                         startActivityForResult(intent, Constants.CommentsRequestCode)
                     }
 
+                    override fun onNewDetailClick(
+                        position: Int,
+                        article: Article?,
+                        articlelist: MutableList<Article>?
+                    ) {
+                        val intent = Intent(context, ArticleDetailNew::class.java)
+                        var itemsa: ArrayList<Article?>? =
+                            ArrayList() // your ArrayList of Article objects
+
+
+                        itemsa = articlelist as ArrayList<Article?>?
+                        intent.putParcelableArrayListExtra("myArrayList", itemsa)
+                        intent.putExtra("type", "type")
+                        intent.putExtra("articleID", article!!.id)
+                        intent.putExtra("position", position)
+                        intent.putExtra("mContextId", article.id)
+                        intent.putExtra("NextPageApi", "")
+                        startActivityForResult(intent, Constants.CommentsRequestCode)
+
+                    }
+
                     override fun fullscreen(
                         position: Int,
                         article: Article,
@@ -317,6 +339,14 @@ class PlacesListFragmentNew : Fragment(), DiscoverResponseInterface,
                     //                intent.putExtra("type", type);
                     intent.putExtra("position", position)
                     startActivityForResult(intent, Constants.CommentsRequestCode)
+                }
+
+                override fun onNewDetailClick(
+                    position: Int,
+                    article: Article?,
+                    articlelist: MutableList<Article>?
+                ) {
+                    TODO("Not yet implemented")
                 }
 
                 override fun fullscreen(

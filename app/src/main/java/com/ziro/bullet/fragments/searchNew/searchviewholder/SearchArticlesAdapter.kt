@@ -91,9 +91,10 @@ class SearchArticlesAdapter(val searchedArticles: List<Article>?) :
                     params,
                     Events.ARTICLE_OPEN
                 )
-                commentClick?.onDetailClick(
+                commentClick?.onNewDetailClick(
                     position,
-                    searchedArticles[position]
+                    searchedArticles[position],
+                    searchedArticles
                 )
             }
 

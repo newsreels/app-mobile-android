@@ -64,8 +64,7 @@ class VideoAdapter(
     private val viewPager2: ViewPager2,
     private val mContext: Context,
     private var reelFraInterface: ReelFraInterface?,
-    private var presenter: ReelsNewPresenter?,
-
+    private var presenter: ReelsNewPresenter?
     ) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     private var mVideoList = ArrayList<ReelsItem>()

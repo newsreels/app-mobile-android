@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +48,7 @@ import com.ziro.bullet.activities.BulletDetailActivity;
 import com.ziro.bullet.activities.CommentsActivity;
 import com.ziro.bullet.activities.PostArticleActivity;
 import com.ziro.bullet.activities.YoutubeFullScreenActivity;
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew;
 import com.ziro.bullet.adapters.NewFeed.HomeAdapter;
 import com.ziro.bullet.adapters.NewFeed.YoutubeViewHolderEdge;
 import com.ziro.bullet.adapters.NewFeed.newHomeArticle.HomeArticlesAdapterNew;
@@ -64,6 +67,7 @@ import com.ziro.bullet.data.PrefConfig;
 import com.ziro.bullet.data.TYPE;
 import com.ziro.bullet.data.models.NewFeed.HomeResponse;
 import com.ziro.bullet.data.models.NewFeed.SectionsItem;
+import com.ziro.bullet.fragments.test.ReelInnerActivity;
 import com.ziro.bullet.interfaces.AdFailedListener;
 import com.ziro.bullet.interfaces.AudioCallback;
 import com.ziro.bullet.interfaces.CommentClick;
@@ -144,6 +148,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
     private ArrayList<Article> contentArrayList = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private CardView back;
+    private List<Article> articlelistNew;
     private LinearLayout noRecordFoundContainer;
     private RecyclerView mListRV;
     //    private Container mListRV;
@@ -2077,6 +2082,12 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 //                intent.putExtra("position", position);
 //                startActivityForResult(intent, Constants.CommentsRequestCode);
             }
+
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
+            }
         });
 
         mCardAdapter = new HomeAdapter(isDark, new CommentClick() {
@@ -2087,6 +2098,23 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                 intent.putExtra("article", new Gson().toJson(article));
                 intent.putExtra("type", type);
                 intent.putExtra("position", position);
+                startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                //shifa
+
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("type", type);
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                Log.e(TAG, "onNewDetailClick: "+mContextId );
+                intent.putExtra("mContextId", mContextId);
+                intent.putExtra("NextPageApi", mNextPage);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
             }
 

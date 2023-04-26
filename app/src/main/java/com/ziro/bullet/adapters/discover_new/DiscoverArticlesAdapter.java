@@ -96,7 +96,7 @@ public class DiscoverArticlesAdapter extends RecyclerView.Adapter<DiscoverArticl
                     .override(Constants.targetWidth, Constants.targetHeight)
                     .into(ivBulletIcon);
 
-            itemView.setOnClickListener(view -> commentClick.onDetailClick(position, discoverArticles.get(position)));
+            itemView.setOnClickListener(view -> commentClick.onNewDetailClick(position, discoverArticles.get(position),discoverArticles));
         }
 
         private void createShader(TextView view, int[] colorCode) {
