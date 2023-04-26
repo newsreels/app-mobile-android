@@ -119,13 +119,13 @@ android {
             signingConfig signingConfigs.staging
         }
         production {
-            buildConfigField "String", 'BASE_URL', '"https://api.bullets.app/"'
+            buildConfigField "String", 'BASE_URL', '"https://api.newsreels.app/"'
 //            buildConfigField "String", 'BASE_URL', '"https://api.india.bullets.app"'
             buildConfigField "String", 'AUTH_CLIENT_ID', '"zvrRTNKY0An6YuC"'
             buildConfigField "String", 'AUTH_CLIENT_SECRET', '"v8BV52pOl8HdWGSuGWoNdnJzP4U4vr"'
-            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.bullets.app/"'
+            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.newsreels.app/"'
 //            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.india.bullets.app"'
-            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.bullets.app/oauth/token"'
+            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.newsreels.app/oauth/token"'
 //            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.india.bullets.app/oauth/token"'
             buildConfigField "String", 'CRYPTO_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/crypto/tickers"'
             buildConfigField "String", 'FOREX_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/forex/tickers"'

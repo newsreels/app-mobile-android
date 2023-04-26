@@ -10,8 +10,6 @@
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:auto_show="true"
-        app:show_buffering="never"
         app:shutter_background_color="@android:color/transparent"
         app:surface_type="texture_view"
         app:use_controller="false" />
@@ -24,24 +22,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ProgressBar
             android:id="@+id/progbarada"
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
-            android:visibility="gone"
             android:indeterminateBehavior="repeat"
             android:indeterminateDrawable="@drawable/gradient_progress"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/thumbnail"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="invisible"
             android:scaleType="centerCrop"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +53,11 @@
             android:layout_centerInParent="true"
             android:alpha="0"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_heart_anim"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_heart_anim" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_parent"
@@ -98,8 +97,7 @@
                         android:id="@+id/imgLike"
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
-                        android:src="@drawable/ic_heartborderwhite"
-                    />
+                        android:src="@drawable/ic_heartborderwhite" />
 
                     <TextView
                         android:id="@+id/like_text"
@@ -242,8 +240,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginVertical="@dimen/_2sdp"
-                    android:gravity="center_vertical"
                     android:clickable="false"
+                    android:gravity="center_vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -328,11 +326,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:padding="@dimen/_2sdp"
-                        android:scrollbars = "vertical"
                         android:maxLines="1"
-                        android:textSize="@dimen/_12sdp"
-                        android:textColor="@color/white" />
+                        android:padding="@dimen/_2sdp"
+                        android:scrollbars="vertical"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
                 <!--                    android:scrollbars = "vertical"-->
@@ -404,11 +402,11 @@
             android:paddingStart="0dp"
             android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="0dp"
-            android:visibility="visible"
             android:progressBackgroundTint="#5A5A5A"
             android:progressTint="#F8F8F8"
             android:splitTrack="false"
             android:thumb="@drawable/custom_seekbar_thumb_normal"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -425,6 +423,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/ll_end_of_reel_msg"
         android:layout_width="match_parent"

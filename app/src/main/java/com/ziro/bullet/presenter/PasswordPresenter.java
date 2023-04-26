@@ -113,6 +113,8 @@ public class PasswordPresenter {
     }
 
     public void normalLogin(String uname, String pwd) {
+        Log.d("PasswordPresenter_TAG", "normalLogin: Username  " + uname);
+        Log.d("PasswordPresenter_TAG", "normalLogin: Password   " + pwd);
         passwordInterface.loaderShow(true);
 
         if (!InternetCheckHelper.isConnected()) {
@@ -122,20 +124,20 @@ public class PasswordPresenter {
             mTokenGenerator.login(uname, pwd, mPrefconfig.isLanguagePushedToServer(), response -> {
                 if (activity != null) {
                     try {
-                    activity.runOnUiThread(() -> {
-                        passwordInterface.loaderShow(false);
-                        if (response.isSuccessful()) {
-                            AnalyticsEvents.INSTANCE.logEvent(activity,
-                                    Events.SIGNUP_EMAIL);
-                            mPrefconfig.setAccessToken(response.getAccessToken());
-                            mPrefconfig.setRefreshToken(response.getRefreshToken());
-                            mPrefconfig.setUserEmail(uname);
-                            passwordInterface.success(true);
-                        } else {
-                            passwordInterface.error("" + response.getOAuthError().getErrorDescription());
-                        }
-                    });
-                }catch (Exception e){
+                        activity.runOnUiThread(() -> {
+                            passwordInterface.loaderShow(false);
+                            if (response.isSuccessful()) {
+                                AnalyticsEvents.INSTANCE.logEvent(activity,
+                                        Events.SIGNUP_EMAIL);
+                                mPrefconfig.setAccessToken(response.getAccessToken());
+                                mPrefconfig.setRefreshToken(response.getRefreshToken());
+                                mPrefconfig.setUserEmail(uname);
+                                passwordInterface.success(true);
+                            } else {
+                                passwordInterface.error("" + response.getOAuthError().getErrorDescription());
+                            }
+                        });
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

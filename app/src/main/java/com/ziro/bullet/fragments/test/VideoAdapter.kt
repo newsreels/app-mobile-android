@@ -748,6 +748,7 @@ class VideoAdapter(
                 override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                     when (playbackState) {
                         Player.STATE_IDLE -> {
+                            progbarada.visibility = View.VISIBLE
                         }
 
                         Player.STATE_BUFFERING -> {
