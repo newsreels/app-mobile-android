@@ -262,6 +262,14 @@ class SearchResultFragment : Fragment(), SearchResultsViewInterface, SearchFirst
                     startActivityForResult(intent, Constants.CommentsRequestCode)
                 }
 
+                override fun onNewDetailClick(
+                    position: Int,
+                    article: Article?,
+                    articlelist: MutableList<Article>?
+                ) {
+                    TODO("Not yet implemented")
+                }
+
                 override fun fullscreen(
                     position: Int,
                     article: Article,

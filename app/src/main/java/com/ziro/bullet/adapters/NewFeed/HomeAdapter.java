@@ -300,7 +300,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             ((SmallCardViewHolder) holder).bind(position, article);
         } else*/
         if (holder instanceof NewHomeArticlesViewHolder) {
-            ((NewHomeArticlesViewHolder) holder).onBind(article, position);
+            ((NewHomeArticlesViewHolder) holder).onBind(article, position,items);
         } /*else if (holder instanceof EdgeToEdgeImage) {
             ((EdgeToEdgeImage) holder).bind(article);
         } else if (holder instanceof EdgeToEdgeYoutube) {

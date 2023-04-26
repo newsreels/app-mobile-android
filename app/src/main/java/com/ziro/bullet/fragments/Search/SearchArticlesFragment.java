@@ -271,6 +271,11 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
             }
 
             @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
+            }
+
+            @Override
             public void fullscreen(int position, Article article, long duration, String mode, boolean isManual) {
 
             }
@@ -404,6 +409,11 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
                 intent.putExtra("article", new Gson().toJson(article));
                 intent.putExtra("position", position);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
             }
 
             @Override

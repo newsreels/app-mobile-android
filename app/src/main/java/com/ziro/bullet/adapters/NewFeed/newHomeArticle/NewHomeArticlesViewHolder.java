@@ -77,7 +77,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
         ivDots = itemView.findViewById(R.id.dotImg);
     }
 
-    public void onBind(Article article, int position) {
+    public void onBind(Article article, int position ,List<Article> articlelist ) {
 
         if (article != null && article.getType() != null) {
             Log.d("DEBUG_TAG", "onBind: ArticleType:: " + article.getType());
@@ -110,7 +110,8 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                 AnalyticsEvents.INSTANCE.logEvent(itemView.getContext(),
                         params,
                         Events.ARTICLE_OPEN);
-                commentClick.onDetailClick(position, article);
+
+                commentClick.onNewDetailClick(position, article, articlelist);
             });
 
             ivDots.setOnClickListener(v -> {

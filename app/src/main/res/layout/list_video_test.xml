@@ -169,7 +169,7 @@
                     android:layout_height="@dimen/_22sdp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_24sdp"
-                    android:src="@drawable/ic_sharewhite"
+                    android:src="@drawable/shareicon"
                     app:tint="@color/white" />
 
 

@@ -390,6 +390,7 @@
     <string name="feedback_">Feedback</string>
     <string name="email_address">Email Address</string>
     <string name="view_full_article">View full article</string>
+    <string name="tap_to_read_more">Tap to Read more  </string>
     <string name="view_count">%s View</string>
     <string name="related_articles">Related Articles</string>
     <string name="comments">Comments</string>

@@ -1,7 +1,9 @@
 package com.ziro.bullet.adapters.feed;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,7 @@ public class RelatedFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static final int TYPE_HORIZONTAL_ARTICLES = 9;
 
     private List<Article> items;
+    private List<Article> articleList;
     private AppCompatActivity context;
     private Article currentArticle;
 
@@ -218,7 +221,7 @@ public class RelatedFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Article article = null;
         if (items.size() > position && position >= 0) {
             article = items.get(position);
@@ -229,7 +232,7 @@ public class RelatedFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else if (holder instanceof SmallCardViewHolder) {
             ((SmallCardViewHolder) holder).bind(position, article);
         } else if (holder instanceof NewHomeArticlesViewHolder) {
-            ((NewHomeArticlesViewHolder) holder).onBind(article, position);
+            ((NewHomeArticlesViewHolder) holder).onBind(article, position, articleList);
         } else if (holder instanceof YoutubeViewHolder) {
             ((YoutubeViewHolder) holder).bind(position, article);
         } else if (holder instanceof VideoViewHolder) {

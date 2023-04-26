@@ -240,6 +240,14 @@ class PlacesListFragmentNew : Fragment(), DiscoverResponseInterface,
                         startActivityForResult(intent, Constants.CommentsRequestCode)
                     }
 
+                    override fun onNewDetailClick(
+                        position: Int,
+                        article: Article?,
+                        articlelist: MutableList<Article>?
+                    ) {
+                        TODO("Not yet implemented")
+                    }
+
                     override fun fullscreen(
                         position: Int,
                         article: Article,
@@ -317,6 +325,14 @@ class PlacesListFragmentNew : Fragment(), DiscoverResponseInterface,
                     //                intent.putExtra("type", type);
                     intent.putExtra("position", position)
                     startActivityForResult(intent, Constants.CommentsRequestCode)
+                }
+
+                override fun onNewDetailClick(
+                    position: Int,
+                    article: Article?,
+                    articlelist: MutableList<Article>?
+                ) {
+                    TODO("Not yet implemented")
                 }
 
                 override fun fullscreen(

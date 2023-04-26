@@ -92,7 +92,7 @@ public class HomeArticlesAdapterNew extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Article article = items.get(position);
         if (holder instanceof NewHomeArticlesViewHolder) {
-            ((NewHomeArticlesViewHolder) holder).onBind(article, position);
+            ((NewHomeArticlesViewHolder) holder).onBind(article, position,items);
         } else if (holder instanceof SuggestedReelsHolder) {
             if (article != null) {
                 ((SuggestedReelsHolder) holder).bind(article.getTitle(), article.getReels(),

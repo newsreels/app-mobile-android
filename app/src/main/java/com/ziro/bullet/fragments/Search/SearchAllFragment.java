@@ -160,6 +160,11 @@ public class SearchAllFragment extends Fragment implements SearchTabsInterface {
             }
 
             @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
+            }
+
+            @Override
             public void fullscreen(int position, Article article, long duration, String mode, boolean isManual) {
 
             }
