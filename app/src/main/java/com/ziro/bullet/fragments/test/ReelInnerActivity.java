@@ -742,34 +742,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
     @Override
     public void nextVideo(int position) {
-//        if (position > -1) {
-//            int next = position;
-//            next++;
-//            if (next < videoReelsItems.size()) {
-//                viewPager.setCurrentItem(next, true);
-//            }
-//        }
-    }
 
-    public void scrollToTop() {
-//        new_post.setVisibility(View.GONE);
-//        if (viewPager.getCurrentItem() == 0) {
-//            refresh.setRefreshing(true);
-//            viewPager.setAdapter(null);
-//            videoReelsItems.clear();
-//            reelsToSave.clear();
-//            cachePosition = -1;
-//            maxCacheLimit = -1;
-//            isCaching = false;
-//            mNext = "";
-//            page = "";
-//            PRDownloader.cancelAll();
-//            pagerAdapter.notifyDataSetChanged();
-//            reload();
-//            loaderShow(true);
-//        } else {
-//            viewPager.setCurrentItem(0, false);
-//        }
     }
 
     public void reload() {
@@ -805,8 +778,6 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
             mPage = "";
             new_post.setVisibility(View.GONE);
             reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, false, "");
-
-//            loadCacheData();//api cal
         }
     }
 
@@ -1156,7 +1127,14 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
     @Override
     public void nextReelVideo(int pos) {
-
+        Log.d("NextVideo_TAG", "nextVideo: " + pos);
+        if (pos > -1) {
+            int next = pos;
+            next++;
+            if (next < videoItems.size()) {
+                viewPager.setCurrentItem(next, true);
+            }
+        }
     }
 
     @Override

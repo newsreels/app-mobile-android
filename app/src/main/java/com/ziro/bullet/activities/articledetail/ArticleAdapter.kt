@@ -2,7 +2,6 @@ package com.ziro.bullet.activities.articledetail
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -18,28 +17,22 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.squareup.picasso.Picasso
 import com.ziro.bullet.R
-import com.ziro.bullet.activities.CommentsActivity
-import com.ziro.bullet.analytics.AnalyticsEvents.logEvent
-import com.ziro.bullet.analytics.Events
 import com.ziro.bullet.data.PrefConfig
-import com.ziro.bullet.data.models.ShareInfo
-import com.ziro.bullet.fragments.test.ReelFraInterface
 import com.ziro.bullet.interfaces.LikeInterface
-import com.ziro.bullet.interfaces.ShareInfoInterface
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet
 import com.ziro.bullet.presenter.LikePresenter
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter
-import com.ziro.bullet.utills.Constants
-import com.ziro.bullet.utills.InternetCheckHelper
 import com.ziro.bullet.utills.Utils
 import jp.wasabeef.picasso.transformations.BlurTransformation
 
-class ArticleAdapter(private val context:Context,
-                     private val mprefConfig: PrefConfig,
-                     private var articleFragInterface: ArticleFragInterface?,
-                     private var likePresenter: LikePresenter?,
-                     private var shareBottomSheetPresenter: ShareBottomSheetPresenter?) :
+class ArticleAdapter(
+    private val context: Context,
+    private val mprefConfig: PrefConfig,
+    private var articleFragInterface: ArticleFragInterface?,
+    private var likePresenter: LikePresenter?,
+    private var shareBottomSheetPresenter: ShareBottomSheetPresenter?
+) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
     private var articleId: String? = null
     private var prefConfig: PrefConfig? = null
@@ -54,7 +47,7 @@ class ArticleAdapter(private val context:Context,
         this.prefConfig = mprefConfig
         val article = articleList[position]
         holder.sourceName.text = article.sourceNameToDisplay
-        holder.loadData(article,context)
+        holder.loadData(article, context)
     }
 
     override fun getItemCount(): Int {
@@ -71,10 +64,6 @@ class ArticleAdapter(private val context:Context,
         var backImg: ImageView
         var sourceImage: ImageView
         var favIcon: ImageView
-        var back: ImageView
-        var playImage: ImageView
-        var speaker: ImageView
-        var fullscreen: ImageView
         var articleTitle: TextView
         var commentCount: TextView
         var viewCount: TextView
@@ -87,16 +76,9 @@ class ArticleAdapter(private val context:Context,
         var llFavIcon: LinearLayout
         var bulletContainer: LinearLayout
         var comment: LinearLayout
-        var sourceContainer: ConstraintLayout
-        var playerContainer: ConstraintLayout
-        var buttonPanel: RelativeLayout
-        var bottom_rl: RelativeLayout
-        var videoPlayer: PlayerView
-        var youtubeView: YouTubePlayerView
 
         init {
             postImage = itemView.findViewById(R.id.post_image)
-            bottom_rl = itemView.findViewById(R.id.bottom_rl)
             backImg = itemView.findViewById(R.id.back_img)
             articleTitle = itemView.findViewById(R.id.article_title)
             share = itemView.findViewById(R.id.share)
@@ -108,20 +90,11 @@ class ArticleAdapter(private val context:Context,
             postImage = itemView.findViewById(R.id.post_image)
             articleTitle = itemView.findViewById(R.id.article_title)
             bulletContainer = itemView.findViewById(R.id.bullet_container)
-            sourceContainer = itemView.findViewById(R.id.source_container)
             sourceName = itemView.findViewById(R.id.source_name)
             sourceImage = itemView.findViewById(R.id.source_image)
             postTime = itemView.findViewById(R.id.post_time)
             viewCount = itemView.findViewById(R.id.view_count)
             viewFullArticle = itemView.findViewById(R.id.view_full_article)
-            playImage = itemView.findViewById(R.id.play_image)
-            videoPlayer = itemView.findViewById(R.id.video_player)
-            youtubeView = itemView.findViewById(R.id.youtube_view)
-            playerContainer = itemView.findViewById(R.id.post_display_container)
-            speaker = itemView.findViewById(R.id.speaker)
-            back = itemView.findViewById(R.id.bullet_detail_img_left_arrow)
-            fullscreen = itemView.findViewById(R.id.fullscreen)
-            buttonPanel = itemView.findViewById(R.id.buttonPanel)
             authorName = itemView.findViewById(R.id.author_name)
         }
 
@@ -145,7 +118,7 @@ class ArticleAdapter(private val context:Context,
                     favIcon.setImageResource(R.drawable.ic_reel_like_active)
                     favCount.setTextColor(
                         ContextCompat.getColor(
-                           context,
+                            context,
                             R.color.theme_color_1
                         )
                     )
@@ -162,7 +135,7 @@ class ArticleAdapter(private val context:Context,
                         context.resources.getColor(R.color.greyad)
                     )
                 }
-                if (article.info != null){
+                if (article.info != null) {
                     commentCount.text = "" + article.info.comment_count
                     favCount.text = "" + article.info.like_count
 
@@ -172,9 +145,6 @@ class ArticleAdapter(private val context:Context,
                         if (article.info.like_count > 0) View.VISIBLE else View.GONE
                 }
 
-                youtubeView.getPlayerUiController().enableLiveVideoUi(
-                    article.bullets != null && article.bullets.size > 0 && article.bullets[0].duration == 0
-                )
                 Glide.with(sourceImage)
                     .load(article.sourceImageToDisplay)
                     .into(sourceImage)
@@ -220,18 +190,18 @@ class ArticleAdapter(private val context:Context,
                         )
                     }
                 }
-                    loadImagePost(article)
+                loadImagePost(article)
 
-                    addBullets(article)
-
-                    buttonPanel.visibility = View.GONE
+                addBullets(article)
 
             }
             share.setOnClickListener {
-                articleFragInterface?.share(article) }
+                articleFragInterface?.share(article)
+            }
 
             viewFullArticle.setOnClickListener {
-                articleFragInterface?.viewFullArticle(article) }
+                articleFragInterface?.viewFullArticle(article)
+            }
 
             comment.setOnClickListener {
                 articleFragInterface?.commentsPage(article)
@@ -298,19 +268,17 @@ class ArticleAdapter(private val context:Context,
             bulletContainer.removeAllViews()
             for ((i, bullet) in article.bullets.withIndex()) {
 //                if (i < 2) {
-                    if (i != 0 || (bullet.data.trim { it <= ' ' } == article.title.trim { it <= ' ' } || bullet.data.trim { it <= ' ' } != article.getTitle()
-                            .trim { it <= ' ' })) {
-                        bulletContainer.addView(createBullet(bullet, article.languageCode, article))
-                    }
+                if (i != 0 || (bullet.data.trim { it <= ' ' } == article.title.trim { it <= ' ' } || bullet.data.trim { it <= ' ' } != article.getTitle()
+                        .trim { it <= ' ' })) {
+                    bulletContainer.addView(createBullet(bullet, article.languageCode, article))
+                }
 //                }
             }
 
         }
 
         private fun loadImagePost(article: Article) {
-            playImage.visibility = View.GONE
-            videoPlayer.visibility = View.GONE
-            youtubeView.visibility = View.GONE
+
             if (article != null && !TextUtils.isEmpty(article.originalLink)) viewFullArticle.visibility =
                 View.VISIBLE else viewFullArticle.visibility = View.GONE
 
@@ -322,8 +290,6 @@ class ArticleAdapter(private val context:Context,
                     override fun onSuccess() {
                         // Image successfully loaded
 
-                        bottom_rl.background = backImg.drawable
-
                     }
 
 
@@ -333,7 +299,7 @@ class ArticleAdapter(private val context:Context,
                 })
         }
 
-        private fun createBullet(bullet: Bullet, langCode: String,article: Article): View {
+        private fun createBullet(bullet: Bullet, langCode: String, article: Article): View {
             val vi =
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val v: View =
@@ -352,8 +318,8 @@ class ArticleAdapter(private val context:Context,
             return v
         }
 
-        }
-
-
     }
+
+
+}
 

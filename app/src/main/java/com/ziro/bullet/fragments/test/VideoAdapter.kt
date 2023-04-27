@@ -769,7 +769,8 @@ class VideoAdapter(
                         }
 
                         Player.STATE_ENDED -> {
-                            reelFraInterface?.nextReelVideo(position)
+                            Log.d("NextVideo_TAG", "nextVideoAdapter: $position")
+                            reelFraInterface!!.nextReelVideo(position)
                         }
                     }
                 }

@@ -73,11 +73,12 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         likePresenter = LikePresenter(this)
         shareBottomSheetPresenter = ShareBottomSheetPresenter(this)
 
-        articlelist = intent.getParcelableArrayListExtra<Article>("myArrayList")//list of articles received
+        articlelist =
+            intent.getParcelableArrayListExtra<Article>("myArrayList")//list of articles received
         articleID = intent.getStringExtra("articleID")
         mNextPage = intent.getStringExtra("NextPageApi")
         mContextId = intent.getStringExtra("mContextId")
-        isLastPage = intent.getBooleanExtra("isLastPage",false)
+        isLastPage = intent.getBooleanExtra("isLastPage", false)
 //        if (mNextPage?.isNotEmpty() == true) {
 //            page = mNextPage
 //        }
@@ -130,10 +131,10 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 val currentPage = viewPager.currentItem
-                Log.e("TAG", "onPageSelected: uu${articlelist!!.size}" )
+                Log.e("TAG", "onPageSelected: uu${articlelist!!.size}")
                 if (articlelist != null && articlelist!!.isNotEmpty() && newsPresenter != null && !isLastPage) {
                     if (InternetCheckHelper.isConnected()) {
-                        if (articlelist!!.size - position < 10 ) {
+                        if (articlelist!!.size - position < 10) {
                             newsPresenter!!.updatedArticles(
                                 mContextId,
                                 prefConfig!!.isReaderMode,
@@ -246,7 +247,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
 
             if (homeResponse.getMeta() != null) {
-                mNextPage =homeResponse.getMeta().next
+                mNextPage = homeResponse.getMeta().next
                 if (TextUtils.isEmpty(mNextPage)) {
                     isLastPage = true
                     //                videoItems.add(null);
