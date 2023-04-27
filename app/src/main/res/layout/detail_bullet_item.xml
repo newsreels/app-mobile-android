@@ -4,46 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_4sdp"
     tools:background="@color/colorPrimaryDark">
 
-    <View
-        android:id="@+id/spacer"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_14sdp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/bullet_icon"
-        android:layout_width="@dimen/_8sdp"
-        android:layout_height="@dimen/_8sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="4dp"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spacer"
-        app:srcCompat="@drawable/ic_bullet"
-        app:tint="@color/theme_color_1" />
-
-    <TextView
-        android:id="@+id/bullet_text"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:ellipsize="end"
-        android:fontFamily="@font/librefranklin_regular"
-        android:lineSpacingMultiplier="1.4"
-        android:letterSpacing="0.02"
-        android:includeFontPadding="false"
-        android:textColor="@color/black"
-        android:textDirection="locale"
-        android:textSize="@dimen/_10sdp"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@id/bullet_icon"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spacer"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" />
+        android:orientation="horizontal"
+        android:padding="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/bullet_icon"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacer"
+            app:srcCompat="@drawable/ic_bullet"
+            app:tint="@color/theme_color_1" />
+
+        <TextView
+            android:id="@+id/bullet_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/librefranklin_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.02"
+            android:lineSpacingMultiplier="1.4"
+
+            android:textColor="@color/black"
+            android:textDirection="locale"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@id/bullet_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacer"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
