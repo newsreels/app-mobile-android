@@ -134,7 +134,7 @@
         android:includeFontPadding="false"
         android:textColor="@color/blacknew"
         android:textDirection="locale"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_14sdp"
         tools:text="Lorem ipsum  consectetur adipiscing elit, sed do eius" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
