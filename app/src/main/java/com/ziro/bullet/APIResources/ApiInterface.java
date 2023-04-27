@@ -160,7 +160,6 @@ public interface ApiInterface {
             @Path("id") String id,
             @Body Map<String, String> duration
     );
-
     @POST("analytics/articleview/{articleId}")
     Call<ResponseBody> articleViewCount(@Header("Authorization") String token, @Path("articleId") String articleId);
 

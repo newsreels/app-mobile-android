@@ -130,7 +130,7 @@
                             android:layout_marginHorizontal="@dimen/_15sdp"
                             android:layout_marginVertical="@dimen/_12sdp"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="@string/view_and_edit_your_profile"
+                            android:text="@string/sign_up_login"
                             android:textColor="@color/blacknew"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"
@@ -245,8 +245,8 @@
                         android:id="@+id/cl_change_second_lang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginStart="@dimen/_15sdp">
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/iv_second_lang"
@@ -1094,35 +1094,35 @@
                     android:background="@color/social_links_bg"
                     android:paddingVertical="@dimen/_20sdp">
 
-                    <LinearLayout
-                        android:id="@+id/tiktok_link"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_7sdp"
-                        app:layout_constraintEnd_toStartOf="@+id/twitter_link"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/facebook_link">
+                    <!--                    <LinearLayout-->
+                    <!--                        android:id="@+id/tiktok_link"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:padding="@dimen/_7sdp"-->
+                    <!--                        android:visibility="gone"-->
+                    <!--                        app:layout_constraintEnd_toStartOf="@+id/twitter_link"-->
+                    <!--                        app:layout_constraintHorizontal_bias="0.5"-->
+                    <!--                        app:layout_constraintHorizontal_chainStyle="packed"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="@+id/facebook_link">-->
 
-                        <ImageView
-                            android:id="@+id/tiktok_icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_tiktok" />
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/tiktok_icon"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:src="@drawable/ic_tiktok" />-->
 
-                    </LinearLayout>
+                    <!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:id="@+id/twitter_link"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_16sdp"
                         android:padding="@dimen/_7sdp"
                         app:layout_constraintEnd_toStartOf="@+id/facebook_link"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@+id/tiktok_link"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/facebook_link">
 
                         <ImageView

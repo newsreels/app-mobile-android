@@ -602,13 +602,19 @@ public class YoutubeViewHolder extends RecyclerView.ViewHolder {
                             @Override
                             public void response(ShareInfo shareInfo) {
                                 showOptionsLoaderCallback.showLoader(false);
-                                adapterCallback.showShareBottomSheet(shareInfo, article, dialog -> bulletResume());
+                                adapterCallback.showShareBottomSheet(shareInfo, article, dialog -> {
+                                    bulletResume();
+                                    Constants.sharePgNotVisible = true;
+                                });
                             }
 
                             @Override
                             public void error(String error) {
                                 showOptionsLoaderCallback.showLoader(false);
-                                adapterCallback.showShareBottomSheet(null, article, dialog -> bulletResume());
+                                adapterCallback.showShareBottomSheet(null, article, dialog -> {
+                                    bulletResume();
+                                    Constants.sharePgNotVisible = true;
+                                });
                             }
                         });
                     }

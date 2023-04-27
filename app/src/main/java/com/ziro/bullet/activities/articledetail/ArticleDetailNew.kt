@@ -15,8 +15,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.ziro.bullet.R
-import com.ziro.bullet.activities.*
+import com.ziro.bullet.activities.BaseActivity
+import com.ziro.bullet.activities.ChannelDetailsActivity
+import com.ziro.bullet.activities.ChannelPostActivity
+import com.ziro.bullet.activities.CommentsActivity
+import com.ziro.bullet.activities.WebViewActivity
 import com.ziro.bullet.bottomSheet.ShareBottomSheet
 import com.ziro.bullet.data.PrefConfig
 import com.ziro.bullet.data.TYPE
@@ -24,7 +29,11 @@ import com.ziro.bullet.data.models.NewFeed.HomeResponse
 import com.ziro.bullet.data.models.ShareInfo
 import com.ziro.bullet.following.ui.FollowingFragment.Companion.goHome
 import com.ziro.bullet.fragments.BulletDetailFragment
-import com.ziro.bullet.interfaces.*
+import com.ziro.bullet.interfaces.AdapterCallback
+import com.ziro.bullet.interfaces.NewsCallback
+import com.ziro.bullet.interfaces.OnGotoChannelListener
+import com.ziro.bullet.interfaces.ShareInfoInterface
+import com.ziro.bullet.interfaces.ShareToMainInterface
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.ArticleResponse
 import com.ziro.bullet.presenter.LikePresenter
@@ -69,7 +78,6 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         init()
     }
 
-
     fun bindView() {
         viewPager = findViewById(R.id.viewPager)
         ivBack = findViewById(R.id.ivBack)
@@ -81,12 +89,13 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         likePresenter = LikePresenter(this)
         shareBottomSheetPresenter = ShareBottomSheetPresenter(this)
 
-        articlelist = intent.getParcelableArrayListExtra<Article>("myArrayList")//list of articles received
+        val arrayString = intent.extras?.getString("myArrayList")
+        articlelist = Gson().fromJson(arrayString, object : TypeToken<ArrayList<Article>>() {}.type)
         articleID = intent.getStringExtra("articleID")
         type = intent.getStringExtra("type")
         mNextPage = intent.getStringExtra("NextPageApi")
         mContextId = intent.getStringExtra("mContextId")
-        isLastPage = intent.getBooleanExtra("isLastPage",false)
+        isLastPage = intent.getBooleanExtra("isLastPage", false)
 //        if (mNextPage?.isNotEmpty() == true) {
 //            page = mNextPage
 //        }
@@ -104,17 +113,21 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
             }
             if (curarticle != null && shareBottomSheetPresenter != null) {
                 loaderShow(true)
-                shareBottomSheetPresenter!!.share_msg(curarticle!!.getId(), object : ShareInfoInterface {
-                    override fun response(shareInfo: ShareInfo) {
-                        loaderShow(false)
-                        showBottomSheetDialog(shareInfo, curarticle!!,
-                            DialogInterface.OnDismissListener { })
-                    }
+                shareBottomSheetPresenter!!.share_msg(
+                    curarticle!!.getId(),
+                    object : ShareInfoInterface {
+                        override fun response(shareInfo: ShareInfo) {
+                            loaderShow(false)
+                            showBottomSheetDialog(shareInfo, curarticle!!,
+                                DialogInterface.OnDismissListener {
+                                    Constants.sharePgNotVisible = true
+                                })
+                        }
 
-                    override fun error(error: String) {
-                        loaderShow(false)
-                    }
-                })
+                        override fun error(error: String) {
+                            loaderShow(false)
+                        }
+                    })
             }
         })
 
@@ -159,6 +172,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
         viewPager.adapter = articleAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        viewPager.offscreenPageLimit = 3
 //        viewPager.setPageTransformer(VerticalPageTransformer())
 
 
@@ -169,7 +183,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
                 if (articlelist != null && articlelist!!.isNotEmpty() && newsPresenter != null && !isLastPage) {
                     if (InternetCheckHelper.isConnected()) {
-                        if (articlelist!!.size - position < 10 ) {
+                        if (articlelist!!.size - position < 10) {
                             newsPresenter!!.updatedArticles(
                                 mContextId,
                                 prefConfig!!.isReaderMode,
@@ -185,6 +199,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         })
 
     }
+
     var onGotoChannelListener: OnGotoChannelListener = object : OnGotoChannelListener {
         override fun onItemClicked(type: TYPE, id: String, name: String, favorite: Boolean) {
             Constants.articleId = ""
@@ -223,6 +238,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
         override fun onArticleSelected(article: Article) {}
     }
+
     private fun showBottomSheetDialog(
         shareInfo: ShareInfo,
         article: Article,
@@ -232,7 +248,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         if (shareInfo.isArticle_archived) {
             artyp = ""
         }
-        Log.e("utt", "showBottomSheetDialog:typ "+type )
+        Log.e("utt", "showBottomSheetDialog:typ " + type)
         val shareBottomSheet = ShareBottomSheet(this, object : ShareToMainInterface {
             override fun removeItem(id: String, position: Int) {}
             override fun onItemClicked(type: TYPE, id: String, name: String, favorite: Boolean) {
@@ -243,6 +259,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         }, true, type + artyp)
         shareBottomSheet.show(article, onDismissListener, shareInfo)
     }
+
     private fun filterArray(filterarticles: ArrayList<Article>): ArrayList<Article> {
         val itemsToRemove = ArrayList<Article>()
         for (item in filterarticles!!) {
@@ -338,7 +355,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
 
             if (homeResponse.getMeta() != null) {
-                mNextPage =homeResponse.getMeta().next
+                mNextPage = homeResponse.getMeta().next
                 if (TextUtils.isEmpty(mNextPage)) {
                     isLastPage = true
                     //                videoItems.add(null);

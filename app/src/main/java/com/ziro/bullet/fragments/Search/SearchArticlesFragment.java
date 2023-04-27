@@ -276,7 +276,7 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
                 Intent intent = new Intent(getContext(), ArticleDetailNew.class);
                 ArrayList<Article> itemsa = new ArrayList<>();
                 itemsa = (ArrayList<Article>) articlelist;
-                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("myArrayList", new Gson().toJson(itemsa));
                 intent.putExtra("type", "type");
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);
@@ -427,7 +427,7 @@ public class SearchArticlesFragment extends Fragment implements SearchTabsInterf
                 ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
 
                 itemsa = (ArrayList<Article>) articlelist;
-                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("myArrayList", new Gson().toJson(itemsa));
                 intent.putExtra("type", "type");
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);

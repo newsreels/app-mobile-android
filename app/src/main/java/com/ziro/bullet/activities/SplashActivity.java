@@ -39,6 +39,7 @@ import com.ziro.bullet.presenter.SocialLoginPresenter;
 import com.ziro.bullet.presenter.UserConfigPresenter;
 import com.ziro.bullet.utills.Components;
 import com.ziro.bullet.utills.Constants;
+import com.ziro.bullet.utills.InternetCheckHelper;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -72,6 +73,7 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
         pushpresenter = new PushNotificationPresenter(this, this);
         prefConfig = new PrefConfig(this);
         AnalyticsEvents.INSTANCE.logEvent(this, Events.APP_OPEN);
+        InternetCheckHelper.getInstance().startObservingConnection(getApplicationContext());
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {

@@ -18,7 +18,16 @@ import com.ziro.bullet.analytics.AnalyticsEvents.logEvent
 import com.ziro.bullet.analytics.Events
 import com.ziro.bullet.data.PrefConfig
 import com.ziro.bullet.data.models.ShareInfo
-import com.ziro.bullet.interfaces.*
+import com.ziro.bullet.interfaces.AdFailedListener
+import com.ziro.bullet.interfaces.AdapterCallback
+import com.ziro.bullet.interfaces.CommentClick
+import com.ziro.bullet.interfaces.DetailsActivityInterface
+import com.ziro.bullet.interfaces.GoHome
+import com.ziro.bullet.interfaces.OnGotoChannelListener
+import com.ziro.bullet.interfaces.ShareInfoInterface
+import com.ziro.bullet.interfaces.ShareToMainInterface
+import com.ziro.bullet.interfaces.ShowOptionsLoaderCallback
+import com.ziro.bullet.interfaces.TempCategorySwipeListener
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter
@@ -91,11 +100,24 @@ class SearchArticlesAdapter(val searchedArticles: List<Article>?) :
                     params,
                     Events.ARTICLE_OPEN
                 )
-                commentClick?.onNewDetailClick(
-                    position,
-                    searchedArticles[position],
-                    searchedArticles
-                )
+
+                if (position + 10 < searchedArticles.size) {
+                    val copyArray: List<Article> =
+                        ArrayList<Article>(searchedArticles.subList(position, position + 10))
+                    commentClick?.onNewDetailClick(
+                        position,
+                        searchedArticles[position],
+                      copyArray
+                    )
+                } else {
+                    val copyArray: List<Article> =
+                        ArrayList<Article>(searchedArticles.subList(position, searchedArticles.size))
+                    commentClick?.onNewDetailClick(
+                        position,
+                        searchedArticles[position],
+                       copyArray
+                    )
+                }
             }
 
             ivDots.setOnClickListener { v: View? ->
@@ -123,6 +145,7 @@ class SearchArticlesAdapter(val searchedArticles: List<Article>?) :
                                 ) {
                                     if (detailsActivityInterface != null) {
                                         detailsActivityInterface?.resume()
+                                        Constants.sharePgNotVisible = true
                                     }
                                 }
                             }
@@ -134,6 +157,7 @@ class SearchArticlesAdapter(val searchedArticles: List<Article>?) :
                                 ) { dialog: DialogInterface? ->
                                     if (detailsActivityInterface != null) {
                                         detailsActivityInterface?.resume()
+                                        Constants.sharePgNotVisible = true
                                     }
                                 }
                             }

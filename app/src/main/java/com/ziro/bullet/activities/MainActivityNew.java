@@ -11,6 +11,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
@@ -21,11 +22,13 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,6 +46,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
@@ -50,6 +55,13 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.google.gson.Gson;
+import com.ziro.bullet.BuildConfig;
 import com.ziro.bullet.CacheData.DbHandler;
 import com.ziro.bullet.R;
 import com.ziro.bullet.analytics.AnalyticsEvents;
@@ -81,6 +93,7 @@ import com.ziro.bullet.interfaces.MainInterface;
 import com.ziro.bullet.interfaces.UserConfigCallback;
 import com.ziro.bullet.model.AudioObject;
 import com.ziro.bullet.model.Menu.CategoryResponse;
+import com.ziro.bullet.model.RemoteConfigModel;
 import com.ziro.bullet.model.articles.ArticleResponse;
 import com.ziro.bullet.presenter.MainPresenter;
 import com.ziro.bullet.presenter.UserConfigPresenter;
@@ -88,6 +101,7 @@ import com.ziro.bullet.texttospeech.TextToAudioPlayerHelper;
 import com.ziro.bullet.utills.ClearGlideCacheAsyncTask;
 import com.ziro.bullet.utills.Components;
 import com.ziro.bullet.utills.Constants;
+import com.ziro.bullet.utills.InternetCheckHelper;
 import com.ziro.bullet.utills.MessageEvent;
 import com.ziro.bullet.utills.NetworkUtil;
 import com.ziro.bullet.utills.Utils;
@@ -102,7 +116,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
+public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
     public static final int RESULT_INTENT_ADD_LOCATION = 3781;
     public static final int RESULT_INTENT_CHANGE_LANGUAGE = 3891;
     public static final int RESULT_INTENT_CHANGE_EDITION = 3111;
@@ -143,6 +158,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     private boolean loadingReelFirst;
     //for header follow/unfollow
     private boolean isSearchNavigate = false;
+    private AlertDialog appUpdateDialog;
 
     @Override
     public void sendAudioEvent(String event) {
@@ -367,21 +383,21 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //            prefConfig.setProfileChange(false);
 //        }
         //shifa test 2 api calls take place because of this
-//        if (prefConfig != null) {
-//            long appBgTime = prefConfig.getBgTime();
-//            if (Math.abs(System.currentTimeMillis() - appBgTime) > TimeUnit.MINUTES.toMillis(Constants.refreshTime)) {
-//                prefConfig.setBgTime(System.currentTimeMillis());
-//                Log.e("BGtimRE", "appBgTime is older than 2 minutes");
-//                Constants.reelDataUpdate = true;
-//                Constants.homeDataUpdate = true;
-//                Constants.menuDataUpdate = true;
-//                reloadFragments();
-//            } else {
-//                Log.e("BGtimRE", "appBgTime is not more than 2 minutes");
-//            }
-//        } else {
-//            isAppFirstTimeOpen = false;
-//        }
+        if (prefConfig != null) {
+            long appBgTime = prefConfig.getBgTime();
+            if (Math.abs(System.currentTimeMillis() - appBgTime) > TimeUnit.MINUTES.toMillis(Constants.refreshTime)) {
+                prefConfig.setBgTime(System.currentTimeMillis());
+                Log.e("BGtimRE", "appBgTime is older than 2 minutes");
+                Constants.reelDataUpdate = true;
+                Constants.homeDataUpdate = true;
+                Constants.menuDataUpdate = true;
+                reloadFragments();
+            } else {
+                Log.e("BGtimRE", "appBgTime is not more than 2 minutes");
+            }
+        } else {
+            isAppFirstTimeOpen = false;
+        }
 
 //        showBottomBar();
     }
@@ -409,6 +425,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         Log.d(TAG, "onCreate: savedInstanceState = " + savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+
         setContentView(R.layout.content);
 
         bindView();
@@ -425,6 +442,8 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             prefConfig.setHasAskedNotificationPermission(true);
             checkNotificationPermission();
         }
+
+        checkRemoteConfig();
 
         userConfigPresenter = new UserConfigPresenter(this, new UserConfigCallback() {
             @Override
@@ -550,6 +569,96 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //        }
 //        invalidateViews(true);
         updateWidget();
+    }
+
+    private void checkRemoteConfig() {
+        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(3600)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+
+        mFirebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
+                try {
+                    if (task != null && task.isSuccessful()) {
+                        String version = mFirebaseRemoteConfig.getString("app_version");
+                        RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
+                        if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
+                            showUpdateDialog(configModel.getAndroid().getForce_update());
+                        Log.d("RemoteConfig_TAG", "onComplete: Android Version-> " + version);
+                    }
+                } catch (Exception e) {
+                    Log.d("RemoteConfig_TAG", "exception: " + e.getLocalizedMessage());
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("RemoteConfig_TAG", "onFailure: " + e.getLocalizedMessage());
+            }
+        });
+
+        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
+            @Override
+            public void onUpdate(ConfigUpdate configUpdate) {
+                Log.d(TAG, "Updated keys: " + configUpdate.getUpdatedKeys());
+
+                if (configUpdate.getUpdatedKeys().contains("welcome_message")) {
+                    mFirebaseRemoteConfig.activate()
+                            .addOnCompleteListener(task -> {
+                                String version = mFirebaseRemoteConfig.getString("app_version");
+                                RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
+                                if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
+                                    showUpdateDialog(configModel.getAndroid().getForce_update());
+                                Log.d("RemoteConfig_TAG", "addOnCompleteListener: Android Version-> " + version);
+                            });
+                }
+            }
+
+            @Override
+            public void onError(FirebaseRemoteConfigException error) {
+                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
+            }
+        });
+    }
+
+    private void showUpdateDialog(boolean force_update) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.udpate_app_dialog, null, false);
+        builder.setView(dialogView);
+        appUpdateDialog = builder.create();
+        appUpdateDialog.show();
+
+        if (force_update) {
+            dialogView.findViewById(R.id.update_group).setVisibility(View.GONE);
+            dialogView.findViewById(R.id.tv_confirm_update_big).setVisibility(View.VISIBLE);
+        } else {
+            dialogView.findViewById(R.id.update_group).setVisibility(View.VISIBLE);
+            dialogView.findViewById(R.id.tv_confirm_update_big).setVisibility(View.GONE);
+        }
+        dialogView.findViewById(R.id.tv_confirm_update).setOnClickListener(v -> {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        dialogView.findViewById(R.id.tv_confirm_update_big).setOnClickListener(v -> {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        dialogView.findViewById(R.id.tv_cancel_update).setOnClickListener(v -> appUpdateDialog.dismiss());
     }
 
     private void checkNotificationPermission() {

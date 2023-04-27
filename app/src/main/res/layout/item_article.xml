@@ -24,102 +24,17 @@
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:background="@color/grey_n"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-           >
+            app:layout_constraintTop_toTopOf="parent">
 
             <tag
                 android:id="@+id/zoomable"
                 android:value="ZoomableViewTag" />
         </ImageView>
-
-        <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/video_player"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/card_bg"
-            app:auto_show="false"
-            app:controller_layout_id="@layout/list_exoplayer_controller_view"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:resize_mode="fit"
-            app:surface_type="texture_view"
-            app:use_controller="true" />
-
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/youtube_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:enableAutomaticInitialization="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:showFullScreenButton="false"
-            app:showYouTubeButton="false" />
-
-        <ImageView
-            android:id="@+id/play_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/icon_video_play"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/bullet_detail_img_left_arrow"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_margin="@dimen/_15sdp"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/cross_white_bg"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <RelativeLayout
-            android:id="@+id/buttonPanel"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_6sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:translationZ="@dimen/_5sdp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:id="@+id/speaker"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_toStartOf="@+id/fullscreen"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_speaker_mute" />
-
-            <ImageView
-                android:id="@+id/fullscreen"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/_6sdp"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_fullscreen_icon" />
-
-        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -129,7 +44,6 @@
         android:layout_below="@+id/source_container"
         android:layout_marginHorizontal="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_4sdp"
         android:fontFamily="@font/librefranklin_semibold"
         android:includeFontPadding="false"
         android:textColor="@color/blacknew"
@@ -332,15 +246,6 @@
         android:layout_below="@+id/summary"
         android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/bullet_container"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:orientation="vertical" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/post_author"
             android:layout_width="match_parent"
@@ -407,20 +312,20 @@
                     android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/_6sdp">
-
 
                     <ImageView
                         android:id="@+id/shareicon"
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
-                        android:padding="@dimen/_2sdp"
                         android:layout_gravity="center"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/shareicon"
                         app:tint="@color/greyad" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -437,8 +342,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
@@ -465,8 +370,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
@@ -489,38 +394,50 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/bullet_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/bottom_rl"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/grey_n"
-            android:layout_marginTop="@dimen/_15sdp">
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/grey_n">
 
             <TextView
                 android:id="@+id/view_full_article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawableEnd="@drawable/rightarrow"
                 android:elevation="@dimen/_4sdp"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="@string/tap_to_read_more"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_13sdp"
+                app:drawableEndCompat="@drawable/rightarrow" />
 
             <ImageView
                 android:id="@+id/back_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" />
+                android:scaleType="fitXY" />
         </RelativeLayout>
     </LinearLayout>
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

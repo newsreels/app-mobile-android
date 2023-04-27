@@ -140,8 +140,8 @@
         android:id="@+id/source_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_below="@+id/post_display_container"
+        android:visibility="gone"
         app:layout_constrainedWidth="true">
 
         <com.makeramen.roundedimageview.RoundedImageView

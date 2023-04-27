@@ -24,7 +24,17 @@ import com.squareup.picasso.Picasso
 import com.ziro.bullet.BuildConfig
 import com.ziro.bullet.CacheData.DbHandler
 import com.ziro.bullet.R
-import com.ziro.bullet.activities.*
+import com.ziro.bullet.activities.AboutUsActivity
+import com.ziro.bullet.activities.AccSettingActivity
+import com.ziro.bullet.activities.BlockActivity
+import com.ziro.bullet.activities.FontSizeActivity
+import com.ziro.bullet.activities.HelpFeedbackActivity
+import com.ziro.bullet.activities.LanguageActivity
+import com.ziro.bullet.activities.LoginPopupActivity
+import com.ziro.bullet.activities.PersonalInfoActivity
+import com.ziro.bullet.activities.PushNotificationActivity
+import com.ziro.bullet.activities.SavedPostActivity
+import com.ziro.bullet.activities.WebViewActivity
 import com.ziro.bullet.activities.logs.DebugLogsActivity
 import com.ziro.bullet.analytics.AnalyticsEvents.logEvent
 import com.ziro.bullet.analytics.Events
@@ -38,8 +48,36 @@ import com.ziro.bullet.utills.Constants
 import com.ziro.bullet.utills.InternetCheckHelper
 import com.ziro.bullet.utills.Utils
 import com.ziro.bullet.widget.CollectionWidget
-import kotlinx.android.synthetic.main.fragment_settings.*
-import kotlinx.android.synthetic.main.progress.*
+import kotlinx.android.synthetic.main.fragment_settings.app_version
+import kotlinx.android.synthetic.main.fragment_settings.cl_change_email
+import kotlinx.android.synthetic.main.fragment_settings.cl_change_primary_lang
+import kotlinx.android.synthetic.main.fragment_settings.cl_change_region
+import kotlinx.android.synthetic.main.fragment_settings.cl_change_second_lang
+import kotlinx.android.synthetic.main.fragment_settings.cl_font_size
+import kotlinx.android.synthetic.main.fragment_settings.cl_logout
+import kotlinx.android.synthetic.main.fragment_settings.cl_notifications_setting
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_about
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_block_list
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_debug_logs
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_guidelines
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_help
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_policy
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_saved
+import kotlinx.android.synthetic.main.fragment_settings.cl_show_terms
+import kotlinx.android.synthetic.main.fragment_settings.cl_view_profile
+import kotlinx.android.synthetic.main.fragment_settings.facebook_link
+import kotlinx.android.synthetic.main.fragment_settings.frag_setting_sw_play
+import kotlinx.android.synthetic.main.fragment_settings.instagram_link
+import kotlinx.android.synthetic.main.fragment_settings.iv_select_primary_lang
+import kotlinx.android.synthetic.main.fragment_settings.iv_select_second_lang
+import kotlinx.android.synthetic.main.fragment_settings.roundedImageView
+import kotlinx.android.synthetic.main.fragment_settings.switch_reader_mode
+import kotlinx.android.synthetic.main.fragment_settings.tv_view_profile
+import kotlinx.android.synthetic.main.fragment_settings.twitter_link
+import kotlinx.android.synthetic.main.fragment_settings.username
+import kotlinx.android.synthetic.main.fragment_settings.view_profile_text
+import kotlinx.android.synthetic.main.fragment_settings.youtube_link
+import kotlinx.android.synthetic.main.progress.progress
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -112,9 +150,12 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
             iv_select_primary_lang.text = mPrefConfig?.prefPrimaryLang
             iv_select_second_lang.text = mPrefConfig?.prefSecondaryLang
-            if(mPrefConfig!!.isGuestUser){
-                tv_view_profile.setText(R.string.create_your_profile)
-                cl_logout.visibility=View.GONE
+            if (mPrefConfig!!.isGuestUser) {
+                tv_view_profile.setText(R.string.sign_up_login)
+                cl_logout.visibility = View.GONE
+            } else {
+                tv_view_profile.setText(R.string.view_and_edit_your_profile)
+                cl_logout.visibility = View.VISIBLE
             }
 
             user = mPrefConfig!!.isUserObject
@@ -166,7 +207,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         cl_show_guidelines.setOnClickListener(this)
         cl_show_about.setOnClickListener(this)
         cl_show_help.setOnClickListener(this)
-        tiktok_link.setOnClickListener(this)
+//        tiktok_link.setOnClickListener(this)
         twitter_link.setOnClickListener(this)
         facebook_link.setOnClickListener(this)
         youtube_link.setOnClickListener(this)
@@ -190,23 +231,27 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 intent.putExtra("type", Constants.PRIMARY_LANGUAGE)
                 startActivity(intent)
             }
+
             R.id.cl_change_second_lang -> {
                 var intent = Intent(requireActivity(), LanguageActivity::class.java)
                 intent.putExtra("flow", "setting")
                 intent.putExtra("type", Constants.SECONDARY_LANGUAGE)
                 startActivity(intent)
             }
+
             R.id.cl_change_region -> {
                 var intent = Intent(requireActivity(), LanguageActivity::class.java)
                 intent.putExtra("flow", "setting")
                 intent.putExtra("type", Constants.REGION)
                 startActivity(intent)
             }
+
             R.id.cl_font_size -> {
                 if (activity != null) {
                     startActivity(Intent(requireActivity(), FontSizeActivity::class.java))
                 }
             }
+
             R.id.cl_change_email -> {
                 if (mPrefConfig!!.isGuestUser) {
                     LoginPopupActivity.start(activity)
@@ -225,11 +270,13 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     }
                 }
             }
+
             R.id.cl_show_saved -> {
                 if (activity != null) {
                     requireActivity().startActivity(Intent(activity, SavedPostActivity::class.java))
                 }
             }
+
             R.id.cl_notifications_setting -> {
                 if (activity != null) {
                     requireActivity().startActivity(
@@ -240,11 +287,13 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     )
                 }
             }
+
             R.id.cl_show_block_list -> {
                 if (activity != null) {
                     requireActivity().startActivity(Intent(activity, BlockActivity::class.java))
                 }
             }
+
             R.id.cl_view_profile -> {
                 if (mPrefConfig!!.isGuestUser) {
                     LoginPopupActivity.start(activity)
@@ -263,6 +312,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     }
                 }
             }
+
             R.id.cl_show_help -> {
                 if (activity != null) {
                     requireActivity().startActivity(
@@ -273,6 +323,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     )
                 }
             }
+
             R.id.cl_show_terms -> {
                 Utils.openWebView(
                     requireContext(),
@@ -280,6 +331,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     getString(R.string.terms_conditions)
                 )
             }
+
             R.id.cl_show_policy -> {
                 Utils.openWebView(
                     requireContext(),
@@ -287,6 +339,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     getString(R.string.privacy_policy)
                 )
             }
+
             R.id.cl_show_guidelines -> {
                 Utils.openWebView(
                     requireContext(),
@@ -294,19 +347,23 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     getString(R.string.community_guideline_)
                 )
             }
+
             R.id.cl_show_about -> {
                 startActivity(Intent(requireActivity(), AboutUsActivity::class.java))
             }
+
             R.id.cl_logout -> {
                 logoutAPI()
             }
-            R.id.tiktok_link -> {
-                logEvent(
-                    context,
-                    Events.MENU_TIKTOK_OPEN
-                )
-                openSocialLink(Constants.SOCIAL_LINKS.TIKTOK)
-            }
+
+//            R.id.tiktok_link -> {
+//                logEvent(
+//                    context,
+//                    Events.MENU_TIKTOK_OPEN
+//                )
+//                openSocialLink(Constants.SOCIAL_LINKS.TIKTOK)
+//            }
+
             R.id.twitter_link -> {
                 logEvent(
                     context,
@@ -314,6 +371,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 )
                 openSocialLink(Constants.SOCIAL_LINKS.TWITTER)
             }
+
             R.id.facebook_link -> {
                 logEvent(
                     context,
@@ -328,6 +386,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     openSocialLink(fbUrl)
                 }
             }
+
             R.id.youtube_link -> {
                 logEvent(
                     context,
@@ -335,6 +394,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 )
                 openSocialLink(Constants.SOCIAL_LINKS.YOUTUBE)
             }
+
             R.id.instagram_link -> {
                 logEvent(
                     context,
@@ -342,6 +402,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 )
                 openSocialLink(Constants.SOCIAL_LINKS.IG)
             }
+
             R.id.cl_show_debug_logs -> {
                 if (activity != null) {
                     requireActivity().startActivity(Intent(activity, DebugLogsActivity::class.java))

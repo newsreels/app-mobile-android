@@ -119,13 +119,13 @@ android {
             signingConfig signingConfigs.staging
         }
         production {
-            buildConfigField "String", 'BASE_URL', '"https://api.bullets.app/"'
+            buildConfigField "String", 'BASE_URL', '"https://api.newsreels.app/"'
 //            buildConfigField "String", 'BASE_URL', '"https://api.india.bullets.app"'
             buildConfigField "String", 'AUTH_CLIENT_ID', '"zvrRTNKY0An6YuC"'
             buildConfigField "String", 'AUTH_CLIENT_SECRET', '"v8BV52pOl8HdWGSuGWoNdnJzP4U4vr"'
-            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.bullets.app/"'
+            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.newsreels.app/"'
 //            buildConfigField "String", 'AUTH_BASE_URL', '"https://account.india.bullets.app"'
-            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.bullets.app/oauth/token"'
+            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.newsreels.app/oauth/token"'
 //            buildConfigField "String", 'AUTH_ACCOUNT_URL', '"https://account.india.bullets.app/oauth/token"'
             buildConfigField "String", 'CRYPTO_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/crypto/tickers"'
             buildConfigField "String", 'FOREX_URL', '"https://api.polygon.io/v2/snapshot/locale/global/markets/forex/tickers"'
@@ -248,7 +248,7 @@ dependencies {
 //    implementation 'com.google.android.exoplayer:exoplayer-core:2.12.0'
     implementation "im.ene.toro3:toro:3.7.0.2010003"
     implementation "im.ene.toro3:toro-ext-exoplayer:3.7.0.2010003"
-    implementation "com.google.android.exoplayer:exoplayer:2.10.4"
+    implementation "com.google.android.exoplayer:exoplayer:2.18.5"
 //    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.0'
 //    implementation "com.google.android.exoplayer:exoplayer:2.15.0"
 
@@ -301,6 +301,8 @@ dependencies {
 
     implementation 'androidx.work:work-runtime:2.7.1'
 
+    //RemoteConfig
+    implementation 'com.google.firebase:firebase-config:21.3.0'
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
 }

@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -31,14 +30,13 @@ import io.reactivex.schedulers.Schedulers;
 @SuppressLint("LogNotTimber")
 public class InternetCheckHelper {
 
-    private static InternetCheckHelper internetCheckHelper;
-
     private static final String TAG = InternetCheckHelper.class.getSimpleName() + "_TAG";
+    private static InternetCheckHelper internetCheckHelper;
+    private static boolean isConnected = false;
+    private static Context mContext;
     // CALL BACK
     private InternetCheckListener internetCheckListener;
-    private Context mContext;
-
-    private static boolean isConnected = false;
+    private Disposable disposable;
 
 
     /**
@@ -66,12 +64,6 @@ public class InternetCheckHelper {
     private InternetCheckHelper() {
     }
 
-    public static InternetCheckHelper getInstance() {
-        if (internetCheckHelper == null)
-            internetCheckHelper = new InternetCheckHelper();
-        return internetCheckHelper;
-    }
-
     /**
      * CONSTRUCTOR
      */
@@ -86,33 +78,10 @@ public class InternetCheckHelper {
         }
     }
 
-    public void startObservingConnection(Context context) {
-        ReactiveNetwork
-                .observeNetworkConnectivity(context)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Connectivity>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Connectivity connectivity) {
-                        Log.d(TAG, "onNext: ");
-                        isConnected = connectivity.state() == NetworkInfo.State.CONNECTED;
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+    public static InternetCheckHelper getInstance() {
+        if (internetCheckHelper == null)
+            internetCheckHelper = new InternetCheckHelper();
+        return internetCheckHelper;
     }
 
     /**
@@ -146,9 +115,47 @@ public class InternetCheckHelper {
 //        // get internet status
 //        internetCheck = inetAddress != null && !TextUtils.isEmpty(inetAddress.toString());
 
-        return isConnected;
+//        return isConnected;
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+
     }
 
+    public static void  startObservingConnection(Context context) {
+        mContext = context;
+//        ReactiveNetwork
+//                .observeNetworkConnectivity(context)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<Connectivity>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        disposable = d;
+//                    }
+//
+//                    @Override
+//                    public void onNext(Connectivity connectivity) {
+//                        isConnected = connectivity.state() == NetworkInfo.State.CONNECTED;
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
+
+    }
+
+    public void unsubscribeNetworkObserver() {
+        if (disposable != null && !disposable.isDisposed())
+            disposable.dispose();
+    }
 
     /**
      * STOP INTERNET CHECK BROADCAST RECEIVER

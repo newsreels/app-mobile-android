@@ -50,6 +50,8 @@ public class ApiClient {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator(activity))
+                .followRedirects(true)
+                .followSslRedirects(true)
                 .addInterceptor(chain -> {
                     Request request = chain.request().
                             newBuilder()
@@ -111,6 +113,8 @@ public class ApiClient {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .authenticator(new TokenAuthenticator())
+                .followRedirects(true)
+                .followSslRedirects(true)
                 .addInterceptor(chain -> {
                     Request request = chain.request().
                             newBuilder()

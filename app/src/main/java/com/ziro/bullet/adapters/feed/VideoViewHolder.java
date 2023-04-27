@@ -426,6 +426,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder implements ToroPlay
                                 showOptionsLoaderCallback.showLoader(false);
                                 adapterCallback.showShareBottomSheet(shareInfo, article, dialog -> {
                                     bulletResume();
+                                    Constants.sharePgNotVisible = true;
                                 });
                             }
 
@@ -434,6 +435,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder implements ToroPlay
                                 showOptionsLoaderCallback.showLoader(false);
                                 adapterCallback.showShareBottomSheet(null, article, dialog -> {
                                     bulletResume();
+                                    Constants.sharePgNotVisible = true;
                                 });
                             }
                         });

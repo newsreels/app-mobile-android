@@ -135,7 +135,7 @@ import java.util.regex.Pattern;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class VideoInnerFragment extends Fragment implements CaptionApiCallback, ShareInterface, Player.EventListener, ProgressTracker.PositionListener {
+public class VideoInnerFragment extends Fragment implements CaptionApiCallback, ShareInterface, Player.Listener, ProgressTracker.PositionListener {
     private static final int MIN_LINES = 2;
     private static final String TWO_SPACES = "  ";
     private static final String TAG = "VideoInnerFragment";
@@ -1948,19 +1948,19 @@ public class VideoInnerFragment extends Fragment implements CaptionApiCallback, 
         playerView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 
-    @Override
-    public void onPlayerError(ExoPlaybackException error) {
-//        player.stop();
-//        Start(0);
-        Log.d(TAG, "onPlayerError: " + error);
-        if (listener != null) {
-            listener.nextVideo(position);
-        }
-
-//        player.release();
-//        initializePlayer();
-        playPauseBtn.setImageResource(R.drawable.ic_playbg);
-    }
+//    @Override
+//    public void onPlayerError(ExoPlaybackException error) {
+////        player.stop();
+////        Start(0);
+//        Log.d(TAG, "onPlayerError: " + error);
+//        if (listener != null) {
+//            listener.nextVideo(position);
+//        }
+//
+////        player.release();
+////        initializePlayer();
+//        playPauseBtn.setImageResource(R.drawable.ic_playbg);
+//    }
 
     @Override
     public void loaderShow(boolean flag) {

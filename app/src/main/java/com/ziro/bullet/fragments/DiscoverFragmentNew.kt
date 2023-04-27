@@ -402,7 +402,7 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                                 ArrayList() // your ArrayList of Article objects
 
                             itemsa = articlelist as ArrayList<Article?>?
-                            intent.putParcelableArrayListExtra("myArrayList", itemsa)
+                            intent.putExtra("myArrayList", Gson().toJson(itemsa))
                             intent.putExtra("type", "type")
                             intent.putExtra("articleID", article!!.id)
                             intent.putExtra("position", position)
@@ -954,7 +954,7 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
 //                        }
 //                    }
                     "SPORTS" -> {
-                        discoverTopicsArray.add(it)
+//                        discoverTopicsArray.add(it)
                         val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
                         val calendar = Calendar.getInstance()
                         val date = sdf.format(calendar.time)
