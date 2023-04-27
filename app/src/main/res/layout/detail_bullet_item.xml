@@ -23,7 +23,7 @@
             android:id="@+id/bullet_icon"
             android:layout_width="@dimen/_8sdp"
             android:layout_height="@dimen/_8sdp"
-            android:layout_gravity="center"
+            android:layout_gravity="top"
             android:layout_marginTop="4dp"
             android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
