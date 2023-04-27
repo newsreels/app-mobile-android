@@ -172,6 +172,7 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
         viewPager.adapter = articleAdapter
         viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        viewPager.offscreenPageLimit = 3
 //        viewPager.setPageTransformer(VerticalPageTransformer())
 
 

@@ -100,11 +100,24 @@ class SearchArticlesAdapter(val searchedArticles: List<Article>?) :
                     params,
                     Events.ARTICLE_OPEN
                 )
-                commentClick?.onNewDetailClick(
-                    position,
-                    searchedArticles[position],
-                    searchedArticles
-                )
+
+                if (position + 10 < searchedArticles.size) {
+                    val copyArray: List<Article> =
+                        ArrayList<Article>(searchedArticles.subList(position, position + 10))
+                    commentClick?.onNewDetailClick(
+                        position,
+                        searchedArticles[position],
+                      copyArray
+                    )
+                } else {
+                    val copyArray: List<Article> =
+                        ArrayList<Article>(searchedArticles.subList(position, searchedArticles.size))
+                    commentClick?.onNewDetailClick(
+                        position,
+                        searchedArticles[position],
+                       copyArray
+                    )
+                }
             }
 
             ivDots.setOnClickListener { v: View? ->

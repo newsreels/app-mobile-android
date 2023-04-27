@@ -246,15 +246,6 @@
         android:layout_below="@+id/summary"
         android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/bullet_container"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:orientation="vertical" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/post_author"
             android:layout_width="match_parent"
@@ -321,19 +312,20 @@
                     android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
                         android:id="@+id/shareicon"
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
-                        android:padding="@dimen/_2sdp"
                         android:layout_gravity="center"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/shareicon"
                         app:tint="@color/greyad" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -350,8 +342,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
@@ -378,8 +370,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
@@ -446,7 +438,6 @@
                 android:scaleType="fitXY" />
         </RelativeLayout>
     </LinearLayout>
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

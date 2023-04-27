@@ -11,7 +11,6 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import com.ziro.bullet.R
 import com.ziro.bullet.data.PrefConfig
@@ -103,9 +102,29 @@ class ArticleAdapter(
 //                showLoaderInActivity(false)
                 articleId = article.id
 
-                Glide.with(postImage)
+//                Glide.with(postImage)
+//                    .load(article.image)
+//                    .into(postImage)
+                Picasso.get()
                     .load(article.image)
                     .into(postImage)
+
+                Picasso.get()
+                    .load(article.image)
+                    .transform(BlurTransformation(context, 45, 3))
+                    .into(backImg, object : com.squareup.picasso.Callback {
+                        override fun onSuccess() {
+                            // Image successfully loaded
+
+                            bottom_rl.background = backImg.drawable
+
+                        }
+
+
+                        override fun onError(e: Exception?) {
+                            // Handle error if needed
+                        }
+                    })
                 try {
 //                    updateFollowColor(article.getSource().isFavorite())
                 } catch (e: Exception) {
@@ -143,10 +162,6 @@ class ArticleAdapter(
                     favCount.visibility =
                         if (article.info.like_count > 0) View.VISIBLE else View.GONE
                 }
-
-                Glide.with(sourceImage)
-                    .load(article.sourceImageToDisplay)
-                    .into(sourceImage)
 
                 sourceName.text = article.sourceNameToDisplay
                 if (Utils.getLanguageDirectionForView(article.languageCode) == View.TEXT_DIRECTION_LTR) {
@@ -283,23 +298,6 @@ class ArticleAdapter(
             if (article != null && !TextUtils.isEmpty(article.originalLink)) viewFullArticle.visibility =
                 View.VISIBLE else viewFullArticle.visibility = View.GONE
 
-
-            Picasso.get()
-                .load(article.image)
-                .transform(BlurTransformation(context, 45, 3))
-                .into(backImg, object : com.squareup.picasso.Callback {
-                    override fun onSuccess() {
-                        // Image successfully loaded
-
-                        bottom_rl.background = backImg.drawable
-
-                    }
-
-
-                    override fun onError(e: Exception?) {
-                        // Handle error if needed
-                    }
-                })
         }
 
         private fun createBullet(bullet: Bullet, langCode: String, article: Article): View {
