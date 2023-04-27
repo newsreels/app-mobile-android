@@ -793,8 +793,6 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                     LinearLayoutManager layoutManager = ((LinearLayoutManager) mListRV.getLayoutManager());
 
-                    final int firstPosition = layoutManager.findFirstVisibleItemPosition();
-                    final int lastPosition = layoutManager.findLastVisibleItemPosition();
                     int firstVisibleChild = cardLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
                     int lastVisibleChild = cardLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                     long totalVisibleChild = Math.max(0, (lastVisibleChild - firstVisibleChild));
@@ -809,147 +807,6 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                     if (!fragmentVisible)
                         return;
-//                    new Handler().postDelayed(() -> {
-//                        if (fragmentVisible) {
-//
-//                            if (firstPosition != -1 && mListRV != null) {
-//                                Rect rvRect = new Rect();
-//                                mListRV.getGlobalVisibleRect(rvRect);
-//
-//                                Rect rowRect = new Rect();
-//
-//                                if (layoutManager.findViewByPosition(firstPosition) == null)
-//                                    return;
-//
-//                                layoutManager.findViewByPosition(firstPosition).getGlobalVisibleRect(rowRect);
-//
-//                                int percentFirst;
-//                                if (rowRect.bottom >= rvRect.bottom) {
-//                                    int visibleHeightFirst = rvRect.bottom - rowRect.top;
-//                                    percentFirst = (visibleHeightFirst * 100) / layoutManager.findViewByPosition(firstPosition).getHeight();
-//                                } else {
-//                                    int visibleHeightFirst = rowRect.bottom - rvRect.top;
-//                                    percentFirst = (visibleHeightFirst * 100) / layoutManager.findViewByPosition(firstPosition).getHeight();
-//                                }
-//
-//                                if (percentFirst > 100)
-//                                    percentFirst = 100;
-//
-//                                int VISIBILITY_PERCENTAGE = 90;
-//
-//                                int copyOfmArticlePosition = mArticlePosition;
-//
-//                                Log.d("slections", "onScrollStateChanged: percentFirst = " + percentFirst);
-//                                Log.d("slections", "onScrollStateChanged: position = " + copyOfmArticlePosition);
-//
-//                                /* based on percentage of item visibility, select current or next article
-//                                 *  if prev position is same as new pos then dont reset the article
-//                                 * */
-//                                if (percentFirst >= VISIBILITY_PERCENTAGE) {
-//                                    Log.d("slections", "onScrollStateChanged: percentage greater");
-//                                    mArticlePosition = firstPosition;
-//                                    if (mArticlePosition == 0) {
-//
-//                                        selectCardPosition(mArticlePosition);
-//
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 868");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//
-//                                    } else if (mArticlePosition == contentArrayList.size() - 1) {
-//
-//                                        //on fast scrolling select the last one in the last
-//                                        selectCardPosition(mArticlePosition);
-//
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 878");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//                                    } else if (copyOfmArticlePosition == mArticlePosition) {
-//                                        Log.d("slections", "onScrollStateChanged: copy = new pos");
-//                                        //scroll rested on same article so resume audio and bullet
-//                                        try {
-//                                            RecyclerView.ViewHolder holder = mListRV.findViewHolderForAdapterPosition(mArticlePosition);
-//                                            if (holder != null) {
-//                                                if (holder instanceof LargeCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((LargeCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof SmallCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((SmallCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof YoutubeViewHolder) {
-//                                                    ((YoutubeViewHolder) holder).youtubeResume();
-//                                                } else {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                                }
-//                                            } else {
-//                                                Log.d("audiotest", "scroll : stop_destroy");
-//                                                if (goHomeMainActivity != null)
-//                                                    goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                            }
-//
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    } else {
-//                                        if (copyOfmArticlePosition != mArticlePosition) {
-//                                            //scrolled to a new pos, so select new article
-//                                            selectCardPosition(mArticlePosition);
-//
-//                                            if (mCardAdapter != null) {
-//                                                Log.e("@@##@@##", "notifyDataSetChanged 916");
-//                                                mCardAdapter.notifyDataSetChanged();
-//                                            }
-//                                        }
-//                                    }
-//                                } else {
-//                                    mArticlePosition = firstPosition;
-//                                    mArticlePosition++;
-//
-//                                    if (copyOfmArticlePosition != mArticlePosition) {
-//                                        //scrolled to a new pos, so select new article
-//                                        selectCardPosition(mArticlePosition);
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 929");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//                                    } else {
-//                                        //scroll rested on same article so resume audio and bullet
-//                                        try {
-//                                            RecyclerView.ViewHolder holder = mListRV.findViewHolderForAdapterPosition(mArticlePosition);
-//                                            if (holder != null) {
-//                                                if (holder instanceof LargeCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((LargeCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof SmallCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((SmallCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof YoutubeViewHolder) {
-//                                                    ((YoutubeViewHolder) holder).youtubeResume();
-//                                                } else {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                                }
-//                                            } else {
-//                                                Log.d("audiotest", "scroll : stop_destroy");
-//                                                if (goHomeMainActivity != null)
-//                                                    goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                            }
-//
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }, 500);
                 }
             }
 
@@ -957,7 +814,8 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                Log.d(TAG, "onScrolled: DyValue" + dy);
+//                Log.d(TAG, "onScrolled: DyValue: " + dy);
+
 
                 if (contentArrayList.size() - 20 <= cardLinearLayoutManager.findLastVisibleItemPosition() && !isLast()) {
                     if (!isApiCalling) {
@@ -993,6 +851,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                     if ((isVisible && dy > 0) || (!isVisible && dy < 0)) {
                         scrollDist += dy;
+                        Log.d(TAG, "onScrolled: scrollDist: " + scrollDist);
                     }
                 }
 
@@ -2108,7 +1967,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                 Intent intent = new Intent(getContext(), ArticleDetailNew.class);
                 ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
                 itemsa = (ArrayList<Article>) articlelist;
-                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("myArrayList", new Gson().toJson(itemsa));
                 intent.putExtra("type", type);
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);

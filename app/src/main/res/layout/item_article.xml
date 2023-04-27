@@ -24,13 +24,12 @@
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:background="@color/grey_n"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-           >
+            app:layout_constraintTop_toTopOf="parent">
 
             <tag
                 android:id="@+id/zoomable"
@@ -246,23 +245,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/summary"
         android:orientation="vertical">
-
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:id="@+id/bullet_container"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
-                android:orientation="vertical" />
-        </ScrollView>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/post_author"
             android:layout_width="match_parent"
@@ -402,36 +384,50 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:id="@+id/bottom_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_44sdp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:background="@color/grey_n">
-
-        <TextView
-            android:id="@+id/view_full_article"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:elevation="@dimen/_4sdp"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center"
-            android:text="@string/tap_to_read_more"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_13sdp"
-            app:drawableEndCompat="@drawable/rightarrow" />
-
-        <ImageView
-            android:id="@+id/back_img"
+        <LinearLayout
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"/>
-    </RelativeLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/bullet_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/grey_n">
+
+            <TextView
+                android:id="@+id/view_full_article"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="@dimen/_4sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/tap_to_read_more"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:drawableEndCompat="@drawable/rightarrow" />
+
+            <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loading_container"

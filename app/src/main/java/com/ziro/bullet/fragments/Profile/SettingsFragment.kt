@@ -72,7 +72,6 @@ import kotlinx.android.synthetic.main.fragment_settings.iv_select_primary_lang
 import kotlinx.android.synthetic.main.fragment_settings.iv_select_second_lang
 import kotlinx.android.synthetic.main.fragment_settings.roundedImageView
 import kotlinx.android.synthetic.main.fragment_settings.switch_reader_mode
-import kotlinx.android.synthetic.main.fragment_settings.tiktok_link
 import kotlinx.android.synthetic.main.fragment_settings.tv_view_profile
 import kotlinx.android.synthetic.main.fragment_settings.twitter_link
 import kotlinx.android.synthetic.main.fragment_settings.username
@@ -208,7 +207,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         cl_show_guidelines.setOnClickListener(this)
         cl_show_about.setOnClickListener(this)
         cl_show_help.setOnClickListener(this)
-        tiktok_link.setOnClickListener(this)
+//        tiktok_link.setOnClickListener(this)
         twitter_link.setOnClickListener(this)
         facebook_link.setOnClickListener(this)
         youtube_link.setOnClickListener(this)
@@ -357,13 +356,13 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                 logoutAPI()
             }
 
-            R.id.tiktok_link -> {
-                logEvent(
-                    context,
-                    Events.MENU_TIKTOK_OPEN
-                )
-                openSocialLink(Constants.SOCIAL_LINKS.TIKTOK)
-            }
+//            R.id.tiktok_link -> {
+//                logEvent(
+//                    context,
+//                    Events.MENU_TIKTOK_OPEN
+//                )
+//                openSocialLink(Constants.SOCIAL_LINKS.TIKTOK)
+//            }
 
             R.id.twitter_link -> {
                 logEvent(

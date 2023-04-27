@@ -482,7 +482,7 @@ public class SaveArticleFragment extends Fragment implements NewsCallback {
                 ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
 
                 itemsa = (ArrayList<Article>) articlelist;
-                intent.putParcelableArrayListExtra("myArrayList", itemsa);
+                intent.putExtra("myArrayList", new Gson().toJson(itemsa));
                 intent.putExtra("type", "type");
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);

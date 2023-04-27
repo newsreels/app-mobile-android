@@ -402,7 +402,7 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                                 ArrayList() // your ArrayList of Article objects
 
                             itemsa = articlelist as ArrayList<Article?>?
-                            intent.putParcelableArrayListExtra("myArrayList", itemsa)
+                            intent.putExtra("myArrayList", Gson().toJson(itemsa))
                             intent.putExtra("type", "type")
                             intent.putExtra("articleID", article!!.id)
                             intent.putExtra("position", position)

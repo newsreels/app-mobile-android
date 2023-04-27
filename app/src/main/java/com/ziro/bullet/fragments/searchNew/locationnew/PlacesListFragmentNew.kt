@@ -252,7 +252,7 @@ class PlacesListFragmentNew : Fragment(), DiscoverResponseInterface,
 
 
                         itemsa = articlelist as ArrayList<Article?>?
-                        intent.putParcelableArrayListExtra("myArrayList", itemsa)
+                        intent.putExtra("myArrayList", Gson().toJson(itemsa))
                         intent.putExtra("type", "type")
                         intent.putExtra("articleID", article!!.id)
                         intent.putExtra("position", position)
