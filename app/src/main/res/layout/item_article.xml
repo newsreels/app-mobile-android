@@ -245,12 +245,22 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/summary"
         android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/bullet_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:orientation="vertical" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/post_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:elevation="@dimen/_4sdp">
 
             <TextView
@@ -258,14 +268,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/roboto_medium"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:maxWidth="@dimen/_110sdp"
                 android:maxLines="1"
                 android:textAllCaps="false"
-                android:textColor="@color/textSubTitleGrey"
-                android:textSize="@dimen/_8sdp"
+                android:textColor="@color/greyad"
+                android:textSize="@dimen/_12sdp"
                 android:transitionName="@string/trans_desc"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +295,7 @@
                 android:maxWidth="@dimen/_110sdp"
                 android:maxLines="1"
                 android:textAllCaps="false"
-                android:textColor="@color/textSubTitleGrey"
+                android:textColor="@color/greyad"
                 android:textSize="@dimen/_8sdp"
                 android:transitionName="@string/trans_desc"
                 android:visibility="gone"
@@ -311,22 +321,26 @@
                     android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:id="@+id/shareicon"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:padding="@dimen/_2sdp"
+                        android:layout_gravity="center"
                         android:src="@drawable/shareicon"
                         app:tint="@color/greyad" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/greyad"
-                        android:textSize="@dimen/_9sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
 
@@ -337,12 +351,14 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
                         android:id="@+id/favIcon"
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_heartborderwhite"
                         app:tint="@color/greyad" />
 
@@ -353,7 +369,7 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/greyad"
-                        android:textSize="@dimen/_9sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
 
@@ -363,11 +379,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:padding="@dimen/_6sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_commentsquare"
                         app:tint="@color/greyad" />
 
@@ -378,7 +396,7 @@
                         android:layout_marginStart="@dimen/_2sdp"
                         android:fontFamily="@font/roboto_regular"
                         android:textColor="@color/greyad"
-                        android:textSize="@dimen/_9sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -429,6 +447,8 @@
         </RelativeLayout>
     </LinearLayout>
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loading_container"
         android:layout_width="wrap_content"
@@ -444,6 +464,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

@@ -114,7 +114,7 @@ class ArticleAdapter(
 
 
                 if (article.info.isLiked) {
-                    favIcon.setImageResource(R.drawable.ic_reel_like_active)
+                    favIcon.setImageResource(R.drawable.ic_heartborderred)
                     favCount.setTextColor(
                         ContextCompat.getColor(
                             context,
@@ -229,7 +229,7 @@ class ArticleAdapter(
                             if (article.info.like_count > 0) View.VISIBLE else View.VISIBLE
 
                         if (article.info.isLiked) {
-                            favIcon.setImageResource(R.drawable.ic_reel_like_active)
+                            favIcon.setImageResource(R.drawable.ic_heartborderred)
                             favCount.setTextColor(
                                 ContextCompat.getColor(
                                     context,
@@ -241,7 +241,7 @@ class ArticleAdapter(
                                 context.resources.getColor(R.color.theme_color_1)
                             )
                         } else {
-                            favIcon.setImageResource(R.drawable.ic_reel_like_inactive)
+                            favIcon.setImageResource(R.drawable.ic_heartborderwhite)
                             favCount.setTextColor(
                                 ContextCompat.getColor(
                                     context,
