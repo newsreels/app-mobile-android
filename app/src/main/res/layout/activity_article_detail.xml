@@ -10,7 +10,6 @@
     tools:context=".activities.BulletDetailActivity">
 
 
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -24,9 +23,9 @@
         android:id="@+id/constraintLayoutReel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginTop="@dimen/_40sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -43,33 +42,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
+            <ImageView
                 android:id="@+id/ivBack"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true">
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_12sdp"
+                app:srcCompat="@drawable/arrow_left_circle" />
 
-                <ImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_centerInParent="true"
-                    android:rotation="@integer/locale_mirror_flip"
-                    app:srcCompat="@drawable/arrow_left_circle"
-                    tools:tint="@color/black" />
-
-                <ImageView
-                    android:id="@+id/dot_img"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:padding="@dimen/_5sdp"
-                    android:layout_alignParentEnd="true"
-                    android:rotation="@integer/locale_mirror_flip"
-                    app:srcCompat="@drawable/more_circle"
-                    tools:tint="@color/black" />
-
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/dot_img"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:srcCompat="@drawable/more_circle" />
 
             <TextView
                 android:id="@+id/tvLabel"
@@ -81,9 +69,9 @@
                 android:fontFamily="@font/muli_extra_bold"
                 android:includeFontPadding="false"
                 android:text="@string/newsreels"
-                android:visibility="gone"
                 android:textColor="@color/white"
-                android:textSize="@dimen/toolbarTitleTextSize" />
+                android:textSize="@dimen/toolbarTitleTextSize"
+                android:visibility="gone" />
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

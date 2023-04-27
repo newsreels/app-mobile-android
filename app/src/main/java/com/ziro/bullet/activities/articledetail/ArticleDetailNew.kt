@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.viewpager2.widget.ViewPager2
@@ -68,7 +69,6 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
         bindView()
         init()
     }
-
 
     fun bindView() {
         viewPager = findViewById(R.id.viewPager)
