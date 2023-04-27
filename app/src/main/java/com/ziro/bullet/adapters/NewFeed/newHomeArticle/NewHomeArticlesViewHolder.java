@@ -135,6 +135,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                                 @Override
                                 public void onDismiss(DialogInterface dialog) {
                                     if (listener != null) {
+                                        Constants.sharePgNotVisible = true;
                                         listener.resume();
                                     }
                                 }
@@ -147,6 +148,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                             adapterCallback.showShareBottomSheet(null, article, dialog -> {
                                 if (listener != null) {
                                     listener.resume();
+                                    Constants.sharePgNotVisible = true;
                                 }
                             });
                         }

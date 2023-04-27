@@ -954,7 +954,7 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
 //                        }
 //                    }
                     "SPORTS" -> {
-                        discoverTopicsArray.add(it)
+//                        discoverTopicsArray.add(it)
                         val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
                         val calendar = Calendar.getInstance()
                         val date = sdf.format(calendar.time)

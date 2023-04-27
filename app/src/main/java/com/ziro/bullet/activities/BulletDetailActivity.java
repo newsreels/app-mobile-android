@@ -97,7 +97,7 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
     private AudioCallback audioCallback;
 
     private Article article;
-    private   List<Article> articlelist;
+    private List<Article> articlelist;
 
     private NewsPresenter presenter;
     private MainPresenter mainPresenter;
@@ -536,7 +536,7 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
                                 showBottomSheetDialog(shareInfo, article, new DialogInterface.OnDismissListener() {
                                     @Override
                                     public void onDismiss(DialogInterface dialog) {
-
+                                        Constants.sharePgNotVisible = true;
                                     }
                                 });
                             }

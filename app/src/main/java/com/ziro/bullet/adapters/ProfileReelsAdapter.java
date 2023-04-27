@@ -173,6 +173,7 @@ public class ProfileReelsAdapter extends RecyclerView.Adapter<ProfileReelsAdapte
                                     public void onDismiss(DialogInterface dialog) {
                                         if (listener != null) {
                                             listener.resume();
+                                            Constants.sharePgNotVisible = true;
                                         }
                                     }
                                 });
@@ -184,6 +185,7 @@ public class ProfileReelsAdapter extends RecyclerView.Adapter<ProfileReelsAdapte
                                 adapterCallback.showShareBottomSheet(null, getArticleFromReels(reelsItem), dialog -> {
                                     if (listener != null) {
                                         listener.resume();
+                                        Constants.sharePgNotVisible = true;
                                     }
                                 });
                             }

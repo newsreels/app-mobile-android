@@ -2,13 +2,10 @@ package com.ziro.bullet.fragments.Reels;
 
 import static com.ziro.bullet.utills.PaginationListener.PAGE_START;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -35,11 +31,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.downloader.PRDownloader;
-import com.ziro.bullet.CacheData.DbHandler;
 import com.ziro.bullet.R;
 import com.ziro.bullet.activities.AuthorActivity;
 import com.ziro.bullet.activities.ChannelDetailsActivity;
@@ -266,12 +260,12 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         reelPresenter = new ReelPresenter(getActivity(), this);
         newsPresenter = new NewsPresenter(getActivity(), null);
         followUnfollowPresenter = new FollowUnfollowPresenter(getActivity());
-        reelsNewPresenter = new ReelsNewPresenter(getActivity(),this);
+        reelsNewPresenter = new ReelsNewPresenter(getActivity(), this);
         shareBottomSheetPresenter = new ShareBottomSheetPresenter(getActivity());
         homePresenter = new HomePresenter(getActivity(), homeCallback);
         homePresenter.getHome(Constants.CAT_TYPE_REELS);
         presenter = new LikePresenter(getActivity());
-        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,reelsNewPresenter);
+        pagerAdapter = new VideoAdapter(viewPager, requireContext(), this, reelsNewPresenter);
 //        pagerAdapter = new VideoAdapter(viewPager, requireContext(),this,followUnfollowPresenter);
         viewPager.setAdapter(pagerAdapter);
         Constants.reelfragment = true;
@@ -326,7 +320,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                     @Override
                     public void run() {
                         viewPager.setUserInputEnabled(true);
-                        clickable=true;
+                        clickable = true;
                     }
                 }, 350);
 //                } else {
@@ -833,14 +827,15 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
         super.onResume();
         //shifa check this
-        if (Constants.onResumeReels &&  Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible  ) {
+        if (Constants.onResumeReels && Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_VIDEO && Constants.sharePgNotVisible) {
             {
-                if(reelViewMoreSheet == null){
+                if (reelViewMoreSheet == null) {
                     pagerAdapter.resumePlayback(curPosition);
-                }else if(reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()){
+                } else if (reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()) {
                     pagerAdapter.resumePlayback(curPosition);
                 }
-            }}
+            }
+        }
 
 
     }
@@ -1028,6 +1023,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
             });
         }
     }
+
     private Article getArticleFromReels(ReelsItem reels) {
         Article article = new Article();
         if (reels != null) {
@@ -1175,7 +1171,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     public void updateView() {
 
         if (reelViewMoreSheet != null && reelViewMoreSheet.isVisible()) {
-            Log.e(TAG, "updateView: " );
+            Log.e(TAG, "updateView: ");
             pagerAdapter.pauseCurPlayback(curPosition);
         }
 

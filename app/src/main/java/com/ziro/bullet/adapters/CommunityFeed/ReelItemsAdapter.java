@@ -146,6 +146,7 @@ public class ReelItemsAdapter extends RecyclerView.Adapter<ReelItemsAdapter.View
                                 public void onDismiss(DialogInterface dialog) {
                                     if (listener != null) {
                                         listener.resume();
+                                        Constants.sharePgNotVisible = true;
                                     }
                                 }
                             });
@@ -157,6 +158,7 @@ public class ReelItemsAdapter extends RecyclerView.Adapter<ReelItemsAdapter.View
                             adapterCallback.showShareBottomSheet(null, getArticleFromReels(item), dialog -> {
                                 if (listener != null) {
                                     listener.resume();
+                                    Constants.sharePgNotVisible = true;
                                 }
                             });
                         }
