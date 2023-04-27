@@ -2,34 +2,44 @@ package com.ziro.bullet.activities.articledetail
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.exoplayer2.ui.PlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.squareup.picasso.Picasso
 import com.ziro.bullet.R
+import com.ziro.bullet.activities.CommentsActivity
+import com.ziro.bullet.analytics.AnalyticsEvents.logEvent
+import com.ziro.bullet.analytics.Events
 import com.ziro.bullet.data.PrefConfig
+import com.ziro.bullet.data.models.ShareInfo
+import com.ziro.bullet.fragments.test.ReelFraInterface
 import com.ziro.bullet.interfaces.LikeInterface
+import com.ziro.bullet.interfaces.ShareInfoInterface
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet
 import com.ziro.bullet.presenter.LikePresenter
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter
+import com.ziro.bullet.utills.Constants
+import com.ziro.bullet.utills.InternetCheckHelper
 import com.ziro.bullet.utills.Utils
 import jp.wasabeef.picasso.transformations.BlurTransformation
 
-class ArticleAdapter(
-    private val context: Context,
-    private val mprefConfig: PrefConfig,
-    private var articleFragInterface: ArticleFragInterface?,
-    private var likePresenter: LikePresenter?,
-    private var shareBottomSheetPresenter: ShareBottomSheetPresenter?
-) :
+class ArticleAdapter(private val context:Context,
+                     private val mprefConfig: PrefConfig,
+                     private var articleFragInterface: ArticleFragInterface?,
+                     private var likePresenter: LikePresenter?,
+                     private var shareBottomSheetPresenter: ShareBottomSheetPresenter?) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
     private var articleId: String? = null
     private var prefConfig: PrefConfig? = null
@@ -44,7 +54,7 @@ class ArticleAdapter(
         this.prefConfig = mprefConfig
         val article = articleList[position]
         holder.sourceName.text = article.sourceNameToDisplay
-        holder.loadData(article, context)
+        holder.loadData(article,context)
     }
 
     override fun getItemCount(): Int {
@@ -115,7 +125,7 @@ class ArticleAdapter(
                     favIcon.setImageResource(R.drawable.ic_reel_like_active)
                     favCount.setTextColor(
                         ContextCompat.getColor(
-                            context,
+                           context,
                             R.color.theme_color_1
                         )
                     )
@@ -132,7 +142,7 @@ class ArticleAdapter(
                         context.resources.getColor(R.color.greyad)
                     )
                 }
-                if (article.info != null) {
+                if (article.info != null){
                     commentCount.text = "" + article.info.comment_count
                     favCount.text = "" + article.info.like_count
 
@@ -187,18 +197,16 @@ class ArticleAdapter(
                         )
                     }
                 }
-                loadImagePost(article)
+                    loadImagePost(article)
 
-                addBullets(article)
+                    addBullets(article)
 
             }
             share.setOnClickListener {
-                articleFragInterface?.share(article)
-            }
+                articleFragInterface?.share(article) }
 
             viewFullArticle.setOnClickListener {
-                articleFragInterface?.viewFullArticle(article)
-            }
+                articleFragInterface?.viewFullArticle(article) }
 
             comment.setOnClickListener {
                 articleFragInterface?.commentsPage(article)
@@ -289,6 +297,8 @@ class ArticleAdapter(
                     override fun onSuccess() {
                         // Image successfully loaded
 
+                        bottom_rl.background = backImg.drawable
+
                     }
 
 
@@ -298,7 +308,7 @@ class ArticleAdapter(
                 })
         }
 
-        private fun createBullet(bullet: Bullet, langCode: String, article: Article): View {
+        private fun createBullet(bullet: Bullet, langCode: String,article: Article): View {
             val vi =
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val v: View =
@@ -317,8 +327,8 @@ class ArticleAdapter(
             return v
         }
 
+        }
+
+
     }
-
-
-}
 

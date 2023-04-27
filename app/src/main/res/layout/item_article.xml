@@ -24,12 +24,13 @@
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/grey_n"
             android:scaleType="centerCrop"
+            android:background="@color/grey_n"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+           >
 
             <tag
                 android:id="@+id/zoomable"
@@ -242,16 +243,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/summary"
-        android:orientation="vertical"
-        android:weightSum="4">
+        android:orientation="vertical">
 
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:id="@+id/bullet_container"
@@ -259,6 +259,7 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
                 android:orientation="vertical" />
         </ScrollView>
 
@@ -268,7 +269,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_3sdp"
-            android:layout_weight="1"
             android:elevation="@dimen/_4sdp">
 
             <TextView
@@ -401,7 +401,6 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/bottom_rl"
