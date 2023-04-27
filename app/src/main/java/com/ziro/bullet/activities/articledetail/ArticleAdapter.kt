@@ -238,10 +238,9 @@ class ArticleAdapter(private val context:Context,
 
             }
 
-
-            llFavIcon.setOnClickListener { v: View? ->
+            llFavIcon.setOnClickListener {
                 llFavIcon.isEnabled = false
-                if (article != null) likePresenter?.like(article.id, object : LikeInterface {
+                likePresenter?.like(article.id, object : LikeInterface {
                     override fun success(like: Boolean) {
                         llFavIcon.isEnabled = true
                         article.info.isLiked = like
@@ -257,6 +256,9 @@ class ArticleAdapter(private val context:Context,
                         }
                         article.info.like_count = counter
                         favCount.text = "" + counter
+                        favCount.visibility =
+                            if (article.info.like_count > 0) View.VISIBLE else View.VISIBLE
+
                         if (article.info.isLiked) {
                             favIcon.setImageResource(R.drawable.ic_reel_like_active)
                             favCount.setTextColor(
@@ -267,7 +269,7 @@ class ArticleAdapter(private val context:Context,
                             )
                             DrawableCompat.setTint(
                                 favIcon.drawable,
-                                context.getResources().getColor(R.color.theme_color_1)
+                                context.resources.getColor(R.color.theme_color_1)
                             )
                         } else {
                             favIcon.setImageResource(R.drawable.ic_reel_like_inactive)
@@ -279,7 +281,7 @@ class ArticleAdapter(private val context:Context,
                             )
                             DrawableCompat.setTint(
                                 favIcon.drawable,
-                                context.getResources().getColor(R.color.greyad)
+                                context.resources.getColor(R.color.greyad)
                             )
                         }
                     }
@@ -297,12 +299,12 @@ class ArticleAdapter(private val context:Context,
         private fun addBullets(article: Article) {
             bulletContainer.removeAllViews()
             for ((i, bullet) in article.bullets.withIndex()) {
-//                if (i < 2) {
+                if (i < 2) {
                     if (i != 0 || (bullet.data.trim { it <= ' ' } == article.title.trim { it <= ' ' } || bullet.data.trim { it <= ' ' } != article.getTitle()
                             .trim { it <= ' ' })) {
                         bulletContainer.addView(createBullet(bullet, article.languageCode, article))
                     }
-//                }
+                }
             }
 
         }
