@@ -168,6 +168,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/roboto_bold"
                 android:includeFontPadding="false"
+                android:visibility="gone"
                 android:text="@string/username"
                 android:textColor="@color/blacknew1"
                 android:textDirection="locale"
@@ -178,6 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:visibility="gone"
                 android:background="@drawable/normal_edittext_theme">
 
                 <RelativeLayout
@@ -212,6 +214,7 @@
                     android:fontFamily="@font/muli_semi_bold"
                     android:hint="@string/username"
                     android:includeFontPadding="false"
+                    android:visibility="gone"
                     android:inputType="textPersonName"
                     android:maxLength="25"
                     android:paddingStart="@dimen/_10sdp"

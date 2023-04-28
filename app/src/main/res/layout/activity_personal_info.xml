@@ -156,6 +156,7 @@
                     android:layout_marginTop="@dimen/_25sdp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/username"
+                    android:visibility="gone"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_12sdp" />
 
@@ -166,6 +167,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/white"
+                    android:visibility="gone"
                     app:cardCornerRadius="@dimen/_5sdp"
                     app:cardElevation="0dp">
 
@@ -218,6 +220,7 @@
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:fontFamily="@font/roboto_regular"
+                    android:visibility="gone"
                     android:textColor="@color/red"
                     android:textSize="@dimen/_8sdp"
                     tools:text="Error" />

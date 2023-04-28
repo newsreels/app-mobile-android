@@ -46,7 +46,7 @@ public class ProfileNameActivity extends BaseActivity {
     private TextView button_text;
     private ImageView icon;
     private ProgressBar progress;
-    private CardView button;
+    private CardView cvContinue;
     private boolean isPopUpLogin;
     private boolean isUsernameValid;
     private String validUsername;
@@ -160,7 +160,7 @@ public class ProfileNameActivity extends BaseActivity {
 
     private void setListener() {
         back.setOnClickListener(v -> onBackPressed());
-        button.setOnClickListener(v -> {
+        cvContinue.setOnClickListener(v -> {
             if (TextUtils.isEmpty(first_name.getText().toString().trim()) || first_name.getText().toString().trim().length() < 3) {
                 Utils.showPopupMessageWithCloseButton(
                         this,
@@ -171,15 +171,15 @@ public class ProfileNameActivity extends BaseActivity {
                 return;
             }
 
-            if (!isUsernameValid) {
-                Utils.showPopupMessageWithCloseButton(
-                        this,
-                        2000,
-                        getString(R.string.username_not_valid),
-                        true
-                );
-                return;
-            }
+//            if (!isUsernameValid) {
+//                Utils.showPopupMessageWithCloseButton(
+//                        this,
+//                        2000,
+//                        getString(R.string.username_not_valid),
+//                        true
+//                );
+//                return;
+//            }
 
             if (profilePresenter != null)
                 profilePresenter.updateProfile(first_name.getText().toString().trim(), null, null, true, validUsername);
@@ -272,8 +272,8 @@ public class ProfileNameActivity extends BaseActivity {
     }
 
     private void checkButton() {
-        if (first_name.getText().length() > 0 && username.getText().length() > 0) {
-            button.setEnabled(true);
+        if (first_name.getText().length() >= 3) {
+            cvContinue.setEnabled(true);
             button_color.setBackgroundColor(
                     (ContextCompat.getColor(
                             this,
@@ -287,7 +287,7 @@ public class ProfileNameActivity extends BaseActivity {
                     ))
             );
         } else {
-            button.setEnabled(false);
+            cvContinue.setEnabled(true);
             button_color.setBackgroundColor(
                     (ContextCompat.getColor(
                             this,
@@ -307,7 +307,7 @@ public class ProfileNameActivity extends BaseActivity {
         progress.setVisibility(View.INVISIBLE);
         icon.setImageResource(R.drawable.ic_username_check);
         icon.setVisibility(View.VISIBLE);
-        button.setEnabled(true);
+        cvContinue.setEnabled(true);
         button_color.setBackgroundColor(
                 (ContextCompat.getColor(
                         this,
@@ -326,7 +326,7 @@ public class ProfileNameActivity extends BaseActivity {
         progress.setVisibility(View.INVISIBLE);
         icon.setImageResource(R.drawable.ic_username_cross);
         icon.setVisibility(View.VISIBLE);
-        button.setEnabled(false);
+        cvContinue.setEnabled(true);
         button_color.setBackgroundColor(
                 (ContextCompat.getColor(
                         this,
@@ -345,7 +345,7 @@ public class ProfileNameActivity extends BaseActivity {
         progress.setVisibility(View.VISIBLE);
         icon.setImageResource(R.drawable.ic_username_cross);
         icon.setVisibility(View.GONE);
-        button.setEnabled(false);
+        cvContinue.setEnabled(true);
         button_color.setBackgroundColor(
                 (ContextCompat.getColor(
                         this,
@@ -372,11 +372,11 @@ public class ProfileNameActivity extends BaseActivity {
         countFn = findViewById(R.id.countFn);
 
         count_username = findViewById(R.id.count_username);
-        button = findViewById(R.id.button);
+        cvContinue = findViewById(R.id.button);
         button_text = findViewById(R.id.button_text);
         button_text.setText(getString(R.string.continuee));
 //        button.setBackground(getResources().getDrawable(R.drawable.shape_with_stroke));
-        button.setEnabled(false);
+        cvContinue.setEnabled(true);
         button_color.setBackgroundColor(
                 (ContextCompat.getColor(
                         this,
