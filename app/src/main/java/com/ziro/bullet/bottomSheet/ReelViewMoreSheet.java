@@ -546,6 +546,12 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
             startActivityForResult(intent, ChannelDetailsActivity.FOLLOW_REQUEST);
         });
 
+        if (mReelsItem!= null && mReelsItem.getLink() != null  ) {
+            viewArticle.setVisibility(View.VISIBLE);
+        }else{
+            viewArticle.setVisibility(View.GONE);
+        }
+
         viewArticle.setOnClickListener(v -> {
             if (getContext() == null) return;
             AnalyticsEvents.INSTANCE.logEvent(getContext(),

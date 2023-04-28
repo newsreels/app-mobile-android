@@ -247,9 +247,6 @@ public class BulletDetailFragment extends Fragment implements NewsCallback, Shar
                 AnalyticsEvents.INSTANCE.logEventWithAPI(getContext(),
                         params,
                         Events.ARTICLE_DURATION);
-                AnalyticsEvents.INSTANCE.logEventWithAPI(getContext(),
-                        params,
-                        Events.ARTICLE_DURATION);
             }
         }
     }
