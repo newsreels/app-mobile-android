@@ -12,7 +12,7 @@
         android:id="@+id/bottom_sheet_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/splash_bg"
+        android:background="@color/grey_n"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -69,6 +69,7 @@
                     android:layout_height="0dp"
                     android:layout_marginBottom="@dimen/_75sdp"
                     app:cardCornerRadius="@dimen/_16sdp"
+                    android:backgroundTint="@color/centerr"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -369,7 +370,7 @@
             android:id="@+id/viewArticle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_44sdp"
-            android:background="@null"
+           android:background="@null"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
@@ -382,6 +383,8 @@
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/view_video_source"
                 android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:elevation="@dimen/_4sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
