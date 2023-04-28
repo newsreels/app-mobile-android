@@ -75,7 +75,7 @@ public class ReelPresenter {
 
     public void getReelsHome(String type, String context, String page, boolean reload, boolean showShimmer, boolean isPagination, String hashtag) {
 //        Log.d(TAG, "getReelsHome: Token:: " + mPrefs.getAccessToken());
-        videoInterface.loaderShow(showShimmer);
+//        videoInterface.loaderShow(showShimmer);
         if (!InternetCheckHelper.isConnected()) {
             videoInterface.loaderShow(false);
             Toast.makeText(activity, "" + activity.getString(R.string.network_error), Toast.LENGTH_SHORT).show();
