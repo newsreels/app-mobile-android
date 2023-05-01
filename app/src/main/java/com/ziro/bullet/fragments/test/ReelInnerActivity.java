@@ -457,7 +457,8 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
                 @Override
                 public void viewMoreDismissed() {
                     Log.e(TAG, "viewMoreDismissed: ");
-                    onResume();
+                    if (!isFinishing())
+                        onResume();
                 }
             });
 
