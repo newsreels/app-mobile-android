@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,7 +65,6 @@ import com.ziro.bullet.data.PrefConfig;
 import com.ziro.bullet.data.TYPE;
 import com.ziro.bullet.data.models.NewFeed.HomeResponse;
 import com.ziro.bullet.data.models.NewFeed.SectionsItem;
-import com.ziro.bullet.fragments.test.ReelInnerActivity;
 import com.ziro.bullet.interfaces.AdFailedListener;
 import com.ziro.bullet.interfaces.AudioCallback;
 import com.ziro.bullet.interfaces.CommentClick;
@@ -223,10 +220,9 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
         super.onResume();
         // bottom bar control vars reset
 //        scrollDist = 0;
-        isVisible = true;
+//        isVisible = true;
         fragmentVisible = true;
         fragmentResumed = true;
-
 //        updateMuteButton();
     }
 
@@ -827,13 +823,11 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                 if (goHomeTempHome != null && goHomeMainActivity != null) {
                     if (dy > 0) {
-//                        Log.e("RecyclerView_scrolled", "scroll up!");
                         goHomeTempHome.scrollUp();
-                        //goHomeMainActivity.scrollUp();
+//                        goHomeMainActivity.scrollUp();
                     } else {
-//                        Log.e("RecyclerView_scrolled", "scroll down!");
                         goHomeTempHome.scrollDown();
-                        //goHomeMainActivity.scrollDown();
+//                        goHomeMainActivity.scrollDown();
                     }
                 }
 
@@ -851,7 +845,6 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                     if ((isVisible && dy > 0) || (!isVisible && dy < 0)) {
                         scrollDist += dy;
-                        Log.d(TAG, "onScrolled: scrollDist: " + scrollDist);
                     }
                 }
 
@@ -1971,7 +1964,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                 intent.putExtra("type", type);
                 intent.putExtra("articleID", article.getId());
                 intent.putExtra("position", position);
-                Log.e(TAG, "onNewDetailClick: "+mContextId );
+                Log.e(TAG, "onNewDetailClick: " + mContextId);
                 intent.putExtra("mContextId", mContextId);
                 intent.putExtra("NextPageApi", mNextPage);
                 startActivityForResult(intent, Constants.CommentsRequestCode);

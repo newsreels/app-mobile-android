@@ -611,10 +611,10 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                     )
                 }
                 "SPORTS" -> {
-                    val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
-                    val calendar = Calendar.getInstance()
-                    val date = sdf.format(calendar.time)
-                    discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
+//                    val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
+//                    val calendar = Calendar.getInstance()
+//                    val date = sdf.format(calendar.time)
+//                    discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
                 }
                 "ARTICLE" -> {
                     discoverPresenter.getDiscoverTrendingNews(
@@ -955,10 +955,10 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
 //                    }
                     "SPORTS" -> {
 //                        discoverTopicsArray.add(it)
-                        val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
-                        val calendar = Calendar.getInstance()
-                        val date = sdf.format(calendar.time)
-                        discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
+//                        val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
+//                        val calendar = Calendar.getInstance()
+//                        val date = sdf.format(calendar.time)
+//                        discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
                     }
                     "ARTICLE" -> {
                         articlesIndex = index

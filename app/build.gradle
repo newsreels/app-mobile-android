@@ -40,10 +40,10 @@ android {
         applicationId "app.newsinbullets"
         minSdkVersion 21
         targetSdkVersion 33
-//        versionCode 88
-//        versionName "2.4.7"
-        versionCode 99
-        versionName "9.8.7"
+        versionCode 91
+        versionName "2.5.0"
+//        versionCode 99
+//        versionName "9.8.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         setProperty("archivesBaseName", "Newsreel" + "-v" + versionCode + "(" + versionName + ")")

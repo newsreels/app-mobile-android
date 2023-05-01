@@ -170,12 +170,11 @@ class SettingsFragment : Fragment(), View.OnClickListener {
                     username.setText(R.string.create_your_profile)
                 }
 
-                if (!TextUtils.isEmpty(user!!.username)) {
-                    view_profile_text.visibility = View.VISIBLE
-                    view_profile_text.text = String.format("%s", user!!.username)
-                } else {
-                    view_profile_text.visibility = View.GONE
-                }
+//                if (!TextUtils.isEmpty(user!!.username)) {
+//                    view_profile_text.visibility = View.GONE
+////                    view_profile_text.visibility = View.VISIBLE
+////                    view_profile_text.text = String.format("%s", user!!.username)
+//                }
                 if (!TextUtils.isEmpty(user!!.profile_image)) {
                     Picasso.get().load(user!!.profile_image)
                         .placeholder(R.drawable.ic_placeholder_user)

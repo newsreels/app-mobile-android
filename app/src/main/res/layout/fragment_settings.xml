@@ -101,6 +101,7 @@
                             android:text="@string/view_your_profile"
                             android:textColor="@color/textSubTitleGrey"
                             android:textSize="@dimen/_10sdp"
+                            android:visibility="gone"
                             app:layout_constrainedWidth="true"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

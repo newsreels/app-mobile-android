@@ -257,6 +257,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 
     @Override
     public void scrollDown() {
+        Log.d("RecyclerView_scrolled", "ShowingBottomBar");
         showBottomBar();
     }
 

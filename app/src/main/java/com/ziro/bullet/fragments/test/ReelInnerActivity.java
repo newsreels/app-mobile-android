@@ -400,10 +400,6 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
         refresh.setOnRefreshListener(this::reload);
 
-        ll_reels_info.setOnClickListener(view -> {
-            forYouBottomSheet();
-        });
-
         notification.setOnClickListener(view -> {
             startActivity(new Intent(this, NotificationActivity.class));
         });
@@ -461,7 +457,8 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
                 @Override
                 public void viewMoreDismissed() {
                     Log.e(TAG, "viewMoreDismissed: ");
-                    onResume();
+                    if (!isFinishing())
+                        onResume();
                 }
             });
 
