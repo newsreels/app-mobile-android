@@ -634,7 +634,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void error(String error) {
-        Log.e("TAGfv", "error: ");
+        Log.e("TAGfv", "error : ");
 
         page = "";
         showErrorView(true);
