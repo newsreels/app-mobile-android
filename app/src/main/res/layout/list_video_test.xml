@@ -295,12 +295,11 @@
                     <TextView
                         android:id="@+id/user_follow_icon"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginVertical="@dimen/_4sdp"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@drawable/white_border"
-                        android:drawablePadding="@dimen/_6sdp"
                         android:fontFamily="@font/roboto_medium"
                         android:gravity="center"
                         android:paddingHorizontal="@dimen/_6sdp"
@@ -309,6 +308,8 @@
                         android:textColor="@color/background_light"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/ll_channel"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
