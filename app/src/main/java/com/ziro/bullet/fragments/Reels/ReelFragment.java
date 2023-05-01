@@ -599,7 +599,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void loaderShow(boolean flag) {
-        Log.e("TAGfv", "loaderShow: ");
         if (flag) {
             progbar.setVisibility(View.VISIBLE);
         } else {
