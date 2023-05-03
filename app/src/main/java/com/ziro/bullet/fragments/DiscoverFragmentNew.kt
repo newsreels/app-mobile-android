@@ -703,19 +703,23 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
             discoverAdapterNew?.notifyDataSetChanged()
         }
 
-        if (discoverTopicsArray != null) {
-            discoverTopicsArray.forEach {
-                when (it.type) {
-                    "TOPICS" -> {
-                        discoverPresenter.getDiscoverTrendingTopics(it.context)
-                    }
-                    "CHANNELS" -> {
-                        discoverPresenter.getDiscoverTrendingChannels(
-                            it.context
-                        )
+        try {
+            if (discoverTopicsArray != null) {
+                discoverTopicsArray.forEach {
+                    when (it.type) {
+                        "TOPICS" -> {
+                            discoverPresenter.getDiscoverTrendingTopics(it.context)
+                        }
+                        "CHANNELS" -> {
+                            discoverPresenter.getDiscoverTrendingChannels(
+                                it.context
+                            )
+                        }
                     }
                 }
             }
+        } catch (e: Exception) {
+
         }
 
     }

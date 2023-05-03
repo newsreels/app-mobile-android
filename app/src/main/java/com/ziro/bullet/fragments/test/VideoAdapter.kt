@@ -65,7 +65,7 @@ class VideoAdapter(
     private val mContext: Context,
     private var reelFraInterface: ReelFraInterface?,
     private var presenter: ReelsNewPresenter?
-    ) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     private var mVideoList = ArrayList<ReelsItem>()
     private var currentPlaybackPosition = 0
@@ -153,23 +153,16 @@ class VideoAdapter(
                     DefaultAnalyticsCollector(SystemClock.DEFAULT)
                 ).build()
 
-//                exoPlayer = ExoPlayer.Builder(
-//                    mContext,
-//                    rendererFactory,
-//                    mediaSource,
-//                    defaultTrackSelector,
-//                    loadControl,
-//                    defaultBandwidthMeter!!,
-//                    this
-//                ).build()
                 val mediaItem = MediaItem.fromUri(reelsItem.media)
+                exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
                 holder.playerView.player = exoPlayer
+                holder.playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
                 holder.playerView.requestFocus()
                 viewHolderArray.add(holder)
                 exoPlayer.repeatMode = Player.REPEAT_MODE_OFF
                 exoPlayer.setMediaItem(mediaItem)
                 exoPlayer.prepare()
-                holder.playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
+//                holder.playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
             }
         } else {
             Log.e("today", "placeholder ")
@@ -264,7 +257,7 @@ class VideoAdapter(
         val curViewHolder =
             recyclerView?.findViewHolderForAdapterPosition(curPosition) as? VideoViewHolder
         curViewHolder?.playerView?.player?.playWhenReady = true
-        curViewHolder?.playerView?.player?.seekTo(0)
+//        curViewHolder?.playerView?.player?.seekTo(0)
 //        }
 
     }
@@ -658,11 +651,13 @@ class VideoAdapter(
                         followtxt?.setText(R.string.following)
                     }
                     viewHolderArray.forEach { viewholder ->
-                        if (viewholder.sourceName?.text?.equals(reelsItem.source.name) == true) {
-                            if (reelsItem.source.isFavorite) {
-                                viewholder.followtxt?.setText(R.string.following)
-                            } else {
-                                viewholder.followtxt?.setText(R.string.follow)
+                        if (viewholder != this) {
+                            if (viewholder.sourceName?.text?.equals(reelsItem.source.name) == true) {
+                                if (reelsItem.source.isFavorite) {
+                                    viewholder.followtxt?.setText(R.string.following)
+                                } else {
+                                    viewholder.followtxt?.setText(R.string.follow)
+                                }
                             }
                         }
                     }

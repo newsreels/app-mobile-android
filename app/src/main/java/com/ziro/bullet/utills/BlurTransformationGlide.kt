@@ -1,4 +1,4 @@
-package com.ziro.bullet.fragments.searchNew
+package com.ziro.bullet.utills
 import android.content.Context
 import android.graphics.Bitmap
 import android.renderscript.Element

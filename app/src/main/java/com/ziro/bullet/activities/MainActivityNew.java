@@ -62,13 +62,10 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.gson.Gson;
 import com.ziro.bullet.BuildConfig;
-import com.ziro.bullet.CacheData.DbHandler;
 import com.ziro.bullet.R;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
 import com.ziro.bullet.background.BackgroundEvent;
-import com.ziro.bullet.background.UploadInfo;
-import com.ziro.bullet.background.VideoProcessorService;
 import com.ziro.bullet.bottomSheet.FeatureAlertBottomSheet;
 import com.ziro.bullet.data.PrefConfig;
 import com.ziro.bullet.data.TYPE;
@@ -101,7 +98,6 @@ import com.ziro.bullet.texttospeech.TextToAudioPlayerHelper;
 import com.ziro.bullet.utills.ClearGlideCacheAsyncTask;
 import com.ziro.bullet.utills.Components;
 import com.ziro.bullet.utills.Constants;
-import com.ziro.bullet.utills.InternetCheckHelper;
 import com.ziro.bullet.utills.MessageEvent;
 import com.ziro.bullet.utills.NetworkUtil;
 import com.ziro.bullet.utills.Utils;
@@ -110,7 +106,6 @@ import com.ziro.bullet.widget.CollectionWidget;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -389,9 +384,6 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             if (Math.abs(System.currentTimeMillis() - appBgTime) > TimeUnit.MINUTES.toMillis(Constants.refreshTime)) {
                 prefConfig.setBgTime(System.currentTimeMillis());
                 Log.e("BGtimRE", "appBgTime is older than 2 minutes");
-                Constants.reelDataUpdate = true;
-                Constants.homeDataUpdate = true;
-                Constants.menuDataUpdate = true;
                 reloadFragments();
             } else {
                 Log.e("BGtimRE", "appBgTime is not more than 2 minutes");
@@ -873,6 +865,8 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         }
         active = getSearchFragment();
         Constants.HomeSelectedFragment = Constants.BOTTOM_TAB_SEARCH;
+        if (getSearchFragment() != null && Constants.updateDiscover)
+            getSearchFragment().reload();
         if (getSearchFragment() != null && getSearchFragment().isAdded()) {
             getSearchFragment().selectFirst();
             getSearchFragment().init();
@@ -986,10 +980,10 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //            }
 //        }
 
-//        if (getVideoFragment() != null && Constants.reelDataUpdate) {
-//            getVideoFragment().reload();
-//            Constants.reelDataUpdate = false;
-//        }
+        if (getVideoFragment() != null && Constants.reelDataUpdate) {
+            getVideoFragment().reload();
+            Constants.reelDataUpdate = false;
+        }
 
         Constants.canAudioPlay = false;
 
@@ -1279,45 +1273,45 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     }
 
 
-    @Override
-    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
-        savedInstanceState.putInt("selected_pos", Constants.HomeSelectedFragment);
-        savedInstanceState.putBoolean("onresumereels", Constants.onResumeReels);
-        Log.d(TAG, "onSaveInstanceState: ");
-        // etc.
-    }
+//    @Override
+//    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
+//        super.onSaveInstanceState(savedInstanceState);
+//        // Save UI state changes to the savedInstanceState.
+//        // This bundle will be passed to onCreate if the process is
+//        // killed and restarted.
+//        savedInstanceState.putInt("selected_pos", Constants.HomeSelectedFragment);
+//        savedInstanceState.putBoolean("onresumereels", Constants.onResumeReels);
+//        Log.d(TAG, "onSaveInstanceState: ");
+//        // etc.
+//    }
 
-    @Override
-    public void onRestoreInstanceState(@NotNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, "onRestoreInstanceState: ");
-        // Restore UI state (from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        Constants.HomeSelectedFragment = savedInstanceState.getInt("selected_pos");
-
-        if (savedInstanceState.containsKey("onresumereels"))
-            Constants.onResumeReels = savedInstanceState.getBoolean("onresumereels");
-
-        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_FOLLOWING) {
-            active = followingFragment;
-            fm.beginTransaction().hide(homeFragment).show(followingFragment).commitAllowingStateLoss();
-            dynamicColorBottomTabs();
-        }
-
-        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_ACCOUNT) {
-            active = menuFragment;
-            fm.beginTransaction().hide(homeFragment).show(menuFragment).commitAllowingStateLoss();
-            staticDarkColorBottomTabs();
-        }
-        Constants.reelDataUpdate = true;
-        Constants.homeDataUpdate = true;
-        Constants.menuDataUpdate = true;
-        reloadFragments();
-    }
+//    @Override
+//    public void onRestoreInstanceState(@NotNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        Log.d(TAG, "onRestoreInstanceState: ");
+//        // Restore UI state (from the savedInstanceState.
+//        // This bundle has also been passed to onCreate.
+//        Constants.HomeSelectedFragment = savedInstanceState.getInt("selected_pos");
+//
+//        if (savedInstanceState.containsKey("onresumereels"))
+//            Constants.onResumeReels = savedInstanceState.getBoolean("onresumereels");
+//
+//        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_FOLLOWING) {
+//            active = followingFragment;
+//            fm.beginTransaction().hide(homeFragment).show(followingFragment).commitAllowingStateLoss();
+//            dynamicColorBottomTabs();
+//        }
+//
+//        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_ACCOUNT) {
+//            active = menuFragment;
+//            fm.beginTransaction().hide(homeFragment).show(menuFragment).commitAllowingStateLoss();
+//            staticDarkColorBottomTabs();
+//        }
+//        Constants.reelDataUpdate = true;
+//        Constants.homeDataUpdate = true;
+//        Constants.menuDataUpdate = true;
+//        reloadFragments();
+//    }
 
     private void checkIntent() {
         if (getIntent().hasExtra("topic_id")) {
@@ -1365,6 +1359,9 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
                 ifOffline = false;
                 Utils.showPopupMessageWithCloseButton(this, 3000, getString(R.string.back_online), false);
                 reloadFragments();
+                Constants.reelDataUpdate = true;
+                Constants.homeDataUpdate = true;
+                Constants.updateDiscover = true;
             }
         }
     }
@@ -1470,18 +1467,18 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             }
         }
 
-        try {
-            DbHandler dbHandler = new DbHandler(this);
-            ArrayList<UploadInfo> allTasks = dbHandler.getAllTasks();
-            if (allTasks != null && allTasks.size() > 0) {
-                if (!Utils.isMyServiceRunning(MainActivityNew.this, VideoProcessorService.class)) {
-                    Intent intent = new Intent(this, VideoProcessorService.class);
-                    startService(intent);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DbHandler dbHandler = new DbHandler(this);
+//            ArrayList<UploadInfo> allTasks = dbHandler.getAllTasks();
+//            if (allTasks != null && allTasks.size() > 0) {
+//                if (!Utils.isMyServiceRunning(MainActivityNew.this, VideoProcessorService.class)) {
+//                    Intent intent = new Intent(this, VideoProcessorService.class);
+//                    startService(intent);
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

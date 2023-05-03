@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.squareup.picasso.Picasso
 import com.ziro.bullet.R
 import com.ziro.bullet.data.PrefConfig
-import com.ziro.bullet.fragments.searchNew.BlurTransformationGlide
+import com.ziro.bullet.utills.BlurTransformationGlide
 import com.ziro.bullet.interfaces.LikeInterface
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet

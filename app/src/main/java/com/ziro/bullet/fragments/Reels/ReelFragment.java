@@ -636,16 +636,21 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     public void error(String error) {
         Log.e("TAGfv", "error : ");
 
-        page = "";
-        showErrorView(true);
-        progbar.setVisibility(View.GONE);
-        isLoading = false;
-        Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
-        if (!TextUtils.isEmpty(error)) {
-            if (error.equalsIgnoreCase("Canceled") || error.contains("reset") || error.contains("closed"))
-                return;
-            if (getActivity() != null) {
-                Utils.showSnacky(getActivity().getWindow().getDecorView().getRootView(), "" + error);
+        if (videoItems == null || videoItems.isEmpty()) {
+            if (pagerAdapter != null) {
+                pagerAdapter.pauseCurPlayback(curPosition);
+            }
+            page = "";
+            showErrorView(true);
+            progbar.setVisibility(View.GONE);
+            isLoading = false;
+            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
+            if (!TextUtils.isEmpty(error)) {
+                if (error.equalsIgnoreCase("Canceled") || error.contains("reset") || error.contains("closed"))
+                    return;
+                if (getActivity() != null) {
+                    Utils.showSnacky(getActivity().getWindow().getDecorView().getRootView(), "" + error);
+                }
             }
         }
     }
@@ -673,18 +678,10 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
         showNoDataErrorView(false);
         refresh.setRefreshing(false);
-//        if (reelResponse != null && reelResponse.getReels() != null && reelResponse.getReels().size() > 0 && pagerAdapter != null) {
-//
-//            videoItems.addAll(reelResponse.getReels());
-//            Log.e("testss", "success: " + videoItems.size());
-//            pagerAdapter.setVideoList((ArrayList<ReelsItem>) videoItems);
-//        }
         if (reelResponse != null && reelResponse.getReels() != null && reelResponse.getReels().size() > 0 && pagerAdapter != null) {
             if (videoItems.size() <= 0) {
                 videoItems.addAll(0, reelResponse.getReels());
                 pagerAdapter.setVideoList((ArrayList<ReelsItem>) videoItems);
-//                viewPager.setCurrentItem(currentAdapterPosition);
-//                prevReelsize = videoReelsItems.size();
             } else if (!mNext.equals(reelResponse.getMeta().getNext())) {
                 prevReelsize = videoItems.size();
                 videoItems.addAll(prevReelsize, (reelResponse.getReels()));
@@ -703,7 +700,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
         if (reelResponse != null && !isLastPage) {
             if (reelResponse.getReels() != null) {
-                if (reelResponse.getReels().size() < 5) {
+                if (reelResponse.getReels().size() < 5 && (videoItems.size() - curPosition) <= 5) {
                     reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, true, "");
                 }
             }
@@ -773,7 +770,11 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         mNext = "";
         page = "";
         new_post.setVisibility(View.GONE);
-        reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, false, "");
+        if (homeModel != null) {
+            reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, false, "");
+        } else {
+            homePresenter.getHome(Constants.CAT_TYPE_REELS);
+        }
 
 //            loadCacheData();//api cal
     }
