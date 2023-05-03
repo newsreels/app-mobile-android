@@ -13,15 +13,12 @@ import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ziro.bullet.R
-import com.ziro.bullet.activities.BaseActivity
-import com.ziro.bullet.activities.ChannelDetailsActivity
-import com.ziro.bullet.activities.ChannelPostActivity
-import com.ziro.bullet.activities.CommentsActivity
-import com.ziro.bullet.activities.WebViewActivity
+import com.ziro.bullet.activities.*
 import com.ziro.bullet.bottomSheet.ShareBottomSheet
 import com.ziro.bullet.data.PrefConfig
 import com.ziro.bullet.data.TYPE
@@ -29,11 +26,7 @@ import com.ziro.bullet.data.models.NewFeed.HomeResponse
 import com.ziro.bullet.data.models.ShareInfo
 import com.ziro.bullet.following.ui.FollowingFragment.Companion.goHome
 import com.ziro.bullet.fragments.BulletDetailFragment
-import com.ziro.bullet.interfaces.AdapterCallback
-import com.ziro.bullet.interfaces.NewsCallback
-import com.ziro.bullet.interfaces.OnGotoChannelListener
-import com.ziro.bullet.interfaces.ShareInfoInterface
-import com.ziro.bullet.interfaces.ShareToMainInterface
+import com.ziro.bullet.interfaces.*
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.ArticleResponse
 import com.ziro.bullet.presenter.LikePresenter
@@ -99,7 +92,16 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 //        if (mNextPage?.isNotEmpty() == true) {
 //            page = mNextPage
 //        }
-
+        //pre loading small images article
+        if (!articlelist.isNullOrEmpty()) {
+            for (article in articlelist!!) {
+                Glide.with(this)
+                    .load(article.image)
+                    .encodeQuality(50)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .preload()
+            }
+        }
         ivBack?.setOnClickListener { onBackPressed() }
 
         dotImg!!.setOnClickListener(View.OnClickListener {
@@ -178,9 +180,16 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                val currentPage = viewPager.currentItem
                 curarticle = articlelist!![position]
 
+                if (articlelist?.size!! > (position + 1)) {
+                    Glide.with(this@ArticleDetailNew)
+                        .load(articlelist!![position + 1])
+                        .encodeQuality(50)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .priority(Priority.IMMEDIATE)
+                        .preload()
+                }
                 if (articlelist != null && articlelist!!.isNotEmpty() && newsPresenter != null && !isLastPage) {
                     if (InternetCheckHelper.isConnected()) {
                         if (articlelist!!.size - position < 10) {

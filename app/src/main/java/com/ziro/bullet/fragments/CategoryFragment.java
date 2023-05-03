@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -797,6 +798,13 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                             Article article = contentArrayList.get(firstVisibleChild + i);
                             if (article.getType() != null && (article.getType().equals("EXTENDED") || article.getType().equals("SIMPLE"))) {
                                 AnalyticsEvents.INSTANCE.articleViewEvent(requireContext(), article.getId());
+                                Log.e(TAG, "onScrollStateChanged: here");
+                                Glide.with(requireContext())
+                                        .load(article.getImage())
+                                        .encodeQuality(50)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .priority(Priority.IMMEDIATE)
+                                        .preload();
                             }
                         }
                     }
@@ -919,6 +927,14 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void preloadImage(String image) {
+        Glide.with(this)
+                .load(image)
+                .encodeQuality(50)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .preload();
     }
 
     public void pauseOnlyBullets() {
@@ -1207,10 +1223,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                         if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                             for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                 if (getActivity() != null && !getActivity().isDestroyed()) {
-                                                    Glide.with(this)
-                                                            .load(bullet.getImage())
-                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                            .preload();
+                                                    preloadImage(bullet.getImage());
                                                 }
                                             }
                                         }
@@ -1219,10 +1232,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             contentArrayList.addAll(section.getData().getArticles());
                                             for (Article article : section.getData().getArticles()) {
                                                 if (getActivity() != null && !getActivity().isDestroyed()) {
-                                                    Glide.with(this)
-                                                            .load(article.getImage())
-                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                            .preload();
+                                                    preloadImage(article.getImage());
                                                 }
                                             }
                                         }
@@ -1558,9 +1568,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                                 for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                     if (getActivity() != null) {
-                                                        Glide.with(this)
-                                                                .load(bullet.getImage())
-                                                                .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                        preloadImage(bullet.getImage());
                                                     }
                                                 }
                                             }
@@ -1569,9 +1577,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             if (section.getData().getArticles() != null && section.getData().getArticles().size() > 0) {
                                                 for (Article article : section.getData().getArticles()) {
                                                     if (getActivity() != null) {
-                                                        Glide.with(this)
-                                                                .load(article.getImage())
-                                                                .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                        preloadImage(article.getImage());
                                                     }
                                                 }
                                                 Article article = new Article();
@@ -1606,9 +1612,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                                 if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                                     for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                         if (getActivity() != null) {
-                                                            Glide.with(this)
-                                                                    .load(bullet.getImage())
-                                                                    .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                            preloadImage(bullet.getImage());
                                                         }
                                                     }
                                                 }
@@ -1617,10 +1621,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                                     contentArrayList.addAll(section.getData().getArticles());
                                                     for (Article article : section.getData().getArticles()) {
                                                         if (getActivity() != null) {
-                                                            Glide.with(this)
-                                                                    .load(article.getImage())
-                                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                                    .preload();
+                                                            preloadImage(article.getImage());
                                                         }
                                                     }
                                                 }

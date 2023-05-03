@@ -2,7 +2,9 @@ package com.ziro.bullet.activities.articledetail
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +13,21 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.squareup.picasso.Picasso
 import com.ziro.bullet.R
 import com.ziro.bullet.data.PrefConfig
+import com.ziro.bullet.fragments.searchNew.BlurTransformationGlide
 import com.ziro.bullet.interfaces.LikeInterface
 import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet
 import com.ziro.bullet.presenter.LikePresenter
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter
 import com.ziro.bullet.utills.Utils
-import jp.wasabeef.picasso.transformations.BlurTransformation
+
 
 class ArticleAdapter(
     private val context: Context,
@@ -85,7 +92,6 @@ class ArticleAdapter(
             favIcon = itemView.findViewById(R.id.favIcon)
             llFavIcon = itemView.findViewById(R.id.ll_favorite)
             favCount = itemView.findViewById(R.id.favCount)
-            postImage = itemView.findViewById(R.id.post_image)
             articleTitle = itemView.findViewById(R.id.article_title)
             bulletContainer = itemView.findViewById(R.id.bullet_container)
             sourceName = itemView.findViewById(R.id.source_name)
@@ -102,35 +108,35 @@ class ArticleAdapter(
 //                showLoaderInActivity(false)
                 articleId = article.id
 
-//                Glide.with(postImage)
-//                    .load(article.image)
-//                    .into(postImage)
-                Picasso.get()
-                    .load(article.image)
-                    .into(postImage)
+                try {
+                    Glide.with(postImage)
+                        .load(article.image)
+                        .encodeQuality(50)
+                        .into(postImage)
+                } catch (e: GlideException) {
+                    Picasso.get()
+                        .load(article.image)
+                        .into(postImage)
+                }
 
-                Picasso.get()
+                Glide.with(context)
                     .load(article.image)
-                    .transform(BlurTransformation(context, 45, 3))
-                    .into(backImg, object : com.squareup.picasso.Callback {
-                        override fun onSuccess() {
+                    .transform(BlurTransformationGlide(context,45, 3))
+                    .into(object : CustomTarget<Drawable>() {
+                        override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                             // Image successfully loaded
-
+                            backImg.background = resource
                             bottom_rl.background = backImg.drawable
-
                         }
 
+                        override fun onLoadCleared(placeholder: Drawable?) {
+                            // called when imageView is cleared
+                        }
 
-                        override fun onError(e: Exception?) {
+                        override fun onLoadFailed(errorDrawable: Drawable?) {
                             // Handle error if needed
                         }
                     })
-                try {
-//                    updateFollowColor(article.getSource().isFavorite())
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
 
                 if (article.info.isLiked) {
                     favIcon.setImageResource(R.drawable.ic_heartborderred)

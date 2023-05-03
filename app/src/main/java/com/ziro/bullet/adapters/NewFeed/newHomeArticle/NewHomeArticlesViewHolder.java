@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 import com.ziro.bullet.R;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
@@ -83,12 +85,24 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                 float textSize = Utils.getBulletDimens(new PrefConfig(itemView.getContext()), context);
                 tvBulletHeadline.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             }
-
-            Glide.with(itemView.getContext())
-                    .load(article.getImage())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(Constants.targetWidth, Constants.targetHeight)
-                    .into(ivBulletCover);
+            int width = (int) (70 * itemView.getContext().getResources().getDisplayMetrics().density);
+            int height = (int) (70 * itemView.getContext().getResources().getDisplayMetrics().density);
+            try {
+                Glide.with(itemView.getContext())
+                        .load(article.getImage())
+                        .encodeQuality(50)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .override(width, height)
+                        .skipMemoryCache(false) // enable memory caching
+                        .priority(Priority.HIGH)
+                        .into(ivBulletCover);
+            } catch (Exception e) {
+                Picasso.get()
+                        .load(article.getImage())
+                        .resize(width, height)
+                        .centerCrop()
+                        .into(ivBulletCover);
+            }
 
             if (article.getSource() != null && !TextUtils.isEmpty(article.getSource().getName())) {
                 tvSource.setText(article.getSource().getName());

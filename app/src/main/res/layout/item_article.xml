@@ -406,7 +406,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_2sdp"
                 android:orientation="vertical" />
         </LinearLayout>
 
@@ -414,7 +414,7 @@
             android:id="@+id/bottom_rl"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_44sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:background="@color/grey_n">
 
             <TextView
