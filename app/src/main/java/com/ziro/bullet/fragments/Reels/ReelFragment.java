@@ -589,7 +589,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         Log.e("TAGfv", "onHiddenChanged: ");
-
+        isHidden = hidden;
         if (hidden) {
             onPause();
         } else {
@@ -836,8 +836,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                 }
             }
         }
-
-
     }
 
     @Override
@@ -864,18 +862,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                 reelsItem.getSource().setFavorite(true);
             }
         }
-
-//        if (videoItems != null && !videoItems.isEmpty()) {
-//            for (int i = 0; i < videoItems.size(); i++) {
-//                if (videoItems.get(i).getSource().getName().equals(reelsItem.getSource().getName())) {
-//                    if (reelsItem.getSource().isFavorite()) {
-//                        videoItems.get(i).getSource().setFavorite(true);
-//                        pagerAdapter.notifyItemChanged(i);
-//                    }
-//                }
-//            }
-//        }
-
     }
 
     @Override
@@ -955,64 +941,6 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                     sendIntent.setType("text/plain");
                     Intent shareIntent = Intent.createChooser(sendIntent, null);
                     getActivity().startActivity(shareIntent);
-
-//                    reelsBottomSheet = new MediaShare.Builder(getActivity())
-//                            .setId(reelsItem.getId())
-//                            .isArticle(false)
-//                            .setShareInfo(shareInfo)
-//                            .setFragmentContextVal(VideoInnerFragment.this)
-//                            .setArticle(article)
-//                            .setonDismissListener(dialog -> {
-//                                if (!isIgnoreDismiss[0])
-//                                    onResume();
-//                            })
-//                            .setReelBottomSheetCallback(new ReelBottomSheetCallback() {
-//                                @Override
-//                                public void onReport() {
-//                                    isIgnoreDismiss[0] = true;
-//                                    AnalyticsEvents.INSTANCE.logEvent(getContext(),
-//                                            Events.REPORT_CLICK);
-//                                    if (reelsItem == null) {
-//                                        return;
-//                                    }
-//                                    ReportBottomSheet reportBottomSheet = new ReportBottomSheet(getActivity(), new DismissBottomSheet() {
-//                                        @Override
-//                                        public void dismiss(boolean flag) {
-//                                            if (flag) {
-//                                                // on hide Bottom sheet
-//                                                onResume();
-//                                            }
-//                                        }
-//                                    });
-//                                    reportBottomSheet.show(reelsItem.getId(), "articles");
-//                                }
-//
-//                                @Override
-//                                public void onSave    () {
-//                                    if (!TextUtils.isEmpty(reelsItem.getId())) {
-//                                        if (sharePresenter != null)
-//                                            sharePresenter.archive(reelsItem.getId(), shareInfo.isArticle_archived());
-//                                    }
-//                                    onResume();
-//                                }
-//
-//                                @Override
-//                                public void onNotInterested() {
-//                                    if (!TextUtils.isEmpty(reelsItem.getId())) {
-//                                        if (sharePresenter != null)
-//                                            sharePresenter.less(reelsItem.getId());
-//                                    }
-//                                    onResume();
-//                                }
-//
-//                                @Override
-//                                public void onIgnore() {
-//                                    isIgnoreDismiss[0] = true;
-//                                }
-//                            })
-//                            .build();
-//                    reelsBottomSheet.show();
-
                 }
 
                 @Override
@@ -1169,11 +1097,15 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     @Override
     public void updateView() {
-
         if (reelViewMoreSheet != null && reelViewMoreSheet.isVisible()) {
-            Log.e(TAG, "updateView: ");
             pagerAdapter.pauseCurPlayback(curPosition);
         }
+
+        if (forYouReelSheet != null && forYouReelSheet.isVisible())
+            pagerAdapter.pauseCurPlayback(curPosition);
+
+        if (isHidden)
+            pagerAdapter.pauseCurPlayback(curPosition);
 
     }
 }

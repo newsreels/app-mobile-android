@@ -798,13 +798,18 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                             Article article = contentArrayList.get(firstVisibleChild + i);
                             if (article.getType() != null && (article.getType().equals("EXTENDED") || article.getType().equals("SIMPLE"))) {
                                 AnalyticsEvents.INSTANCE.articleViewEvent(requireContext(), article.getId());
-                                Log.e(TAG, "onScrollStateChanged: here");
-                                Glide.with(requireContext())
-                                        .load(article.getImage())
-                                        .encodeQuality(50)
-                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                        .priority(Priority.IMMEDIATE)
-                                        .preload();
+                                try {
+                                    if (!requireActivity().isFinishing()) {
+                                        Glide.with(requireContext())
+                                                .load(article.getImage())
+                                                .encodeQuality(50)
+                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .priority(Priority.IMMEDIATE)
+                                                .preload();
+                                    }
+                                } catch (Exception e) {
+
+                                }
                             }
                         }
                     }

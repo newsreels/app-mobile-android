@@ -792,21 +792,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("testreel", "onResume: " + curPosition);
-//        pagerAdapter.resumePlayback(curPosition);
-//        if (Constants.onResumeReels) {
-//            {
-//                if(reelViewMoreSheet == null){
-//                    pagerAdapter.resumePlayback(curPosition);
-//                }else if(reelViewMoreSheet != null && !reelViewMoreSheet.isVisible()){
-//                    pagerAdapter.resumePlayback(curPosition);
-//                }
-//
-//            }}
         pagerAdapter.resumePlayback(curPosition);
-//        if((reelViewMoreSheet == null || !reelViewMoreSheet.isVisible()) && (shareBottomSheet == null || !shareBottomSheet.isShowing() )){
-//            pagerAdapter.resumePlayback(curPosition);
-//        }
     }
 
     @Override

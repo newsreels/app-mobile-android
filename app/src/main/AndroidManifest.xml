@@ -356,26 +356,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="www.newsinbullets.app"
-                    android:scheme="https" />
+                <data android:scheme="https" />
+                <data android:host="www.newsinbullets.app" />
 
-                <data
-                    android:host="view.newsreels.app"
-                    android:scheme="https" />
-                <data
-                    android:host="view.newsreels.app"
-                    android:scheme="http" />
-                <data
-                    android:host="m.bullets.app"
-                    android:scheme="https" />
-                <data
-                    android:host="newsin.bullets.app"
-                    android:scheme="https" />
-<!--                <data-->
-<!--                    android:host="getreel.onelink.me"-->
-<!--                    android:pathPrefix="/xU9P"-->
-<!--                    android:scheme="https" />-->
+                <data android:scheme="https" />
+                <data android:host="view.newsreels.app" />
+                <data android:scheme="http" />
+                <data android:host="view.newsreels.app" />
+                <data android:scheme="https" />
+                <data android:host="m.bullets.app" />
+                <data android:scheme="https" />
+                <data android:host="newsin.bullets.app" />
+                <!--                <data-->
+                <!--                    android:host="getreel.onelink.me"-->
+                <!--                    android:pathPrefix="/xU9P"-->
+                <!--                    android:scheme="https" />-->
             </intent-filter>
 
             <intent-filter>
@@ -499,16 +494,16 @@
         <!--            </intent-filter>-->
         <!--        </receiver>-->
 
-<!--        <meta-data-->
-<!--            android:name="com.onesignal.NotificationServiceExtension"-->
-<!--            android:value="com.ziro.bullet.services.OneSignalNotificationServiceExtension" />-->
+        <!--        <meta-data-->
+        <!--            android:name="com.onesignal.NotificationServiceExtension"-->
+        <!--            android:value="com.ziro.bullet.services.OneSignalNotificationServiceExtension" />-->
 
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"
-            android:value="true"/>
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
-            android:value="true"/>
+            android:value="true" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
