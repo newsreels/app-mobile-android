@@ -485,7 +485,7 @@ public class ChannelDetailsActivity extends BaseActivity
                 desc.setText(source.getDescription());
                 desc.setVisibility(View.VISIBLE);
             } else {
-                desc.setVisibility(View.GONE);
+//                desc.setVisibility(View.GONE);
             }
 
 //            dot_.setVisibility(View.VISIBLE);

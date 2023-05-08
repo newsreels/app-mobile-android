@@ -101,10 +101,9 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/muli_regular"
                             android:maxLines="3"
-                            android:text=""
                             android:textColor="@color/greyad"
                             android:textSize="@dimen/_9sdp"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                         <LinearLayout
                             android:id="@+id/labels"
@@ -113,7 +112,7 @@
                             android:layout_marginHorizontal="@dimen/_16sdp"
                             android:layout_marginVertical="@dimen/_12sdp"
                             android:orientation="horizontal"
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:weightSum="3">
 
                             <LinearLayout

@@ -326,7 +326,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             R.id.cl_show_terms -> {
                 Utils.openWebView(
                     requireContext(),
-                    "https://www.newsinbullets.app/terms?header=false",
+                    "https://www.newsreels.app/terms-conditions.html",
                     getString(R.string.terms_conditions)
                 )
             }
@@ -334,7 +334,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             R.id.cl_show_policy -> {
                 Utils.openWebView(
                     requireContext(),
-                    "https://www.newsinbullets.app/privacy?header=false",
+                    "https://www.newsreels.app/privacy-policy.html",
                     getString(R.string.privacy_policy)
                 )
             }
@@ -342,7 +342,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             R.id.cl_show_guidelines -> {
                 Utils.openWebView(
                     requireContext(),
-                    "https://www.newsinbullets.app/community-guidelines?header=false",
+                    "https://www.newsreels.app/community-guidelines.html",
                     getString(R.string.community_guideline_)
                 )
             }
