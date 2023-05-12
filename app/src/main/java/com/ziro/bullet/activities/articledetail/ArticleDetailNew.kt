@@ -94,6 +94,14 @@ class ArticleDetailNew : BaseActivity(), NewsCallback, ArticleFragInterface {
 //        }
         //pre loading small images article
         if (!articlelist.isNullOrEmpty()) {
+            if (articlelist!![0] != null) {
+                Glide.with(this)
+                    .load(articlelist!![0].image)
+                    .encodeQuality(50)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .priority(Priority.IMMEDIATE)
+                    .preload()
+            }
             for (article in articlelist!!) {
                 Glide.with(this)
                     .load(article.image)

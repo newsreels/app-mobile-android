@@ -4,14 +4,17 @@ import static com.ziro.bullet.utills.PaginationListener.PAGE_START;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +123,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
     private boolean isHidden = false;
     private ConstraintLayout ll_reels_info;
     private ProgressBar progbar;
+    AudioManager audioManager;
     private ReelViewMoreSheet reelViewMoreSheet;
     private CardView new_post;
     private ImageView notification;
@@ -177,6 +181,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         bindViews(view);
 
         init();
+        audioManager = (AudioManager) requireContext().getSystemService(Context.AUDIO_SERVICE);
 
 //        noRecordFound();
 
@@ -564,6 +569,17 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
 
     }
 
+    public void onMyKeyDown(int key, KeyEvent event) {
+        if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0) {
+            pagerAdapter.updateIcon(false);
+        }
+    }
+
+    public void onMyKeyUp(int key, KeyEvent event) {
+        if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0) {
+            pagerAdapter.updateIcon(true);
+        }
+    }
 
     private void loadCacheData() {
         Log.e("TAGfv", "loadCacheData: ");

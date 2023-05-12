@@ -12,13 +12,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.SeekBar
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -26,25 +21,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.LoadControl
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Tracks
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.analytics.DefaultAnalyticsCollector
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.BandwidthMeter
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultAllocator
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.*
 import com.google.android.exoplayer2.util.SystemClock
 import com.google.android.exoplayer2.util.Util
 import com.ziro.bullet.R
@@ -58,7 +42,7 @@ import com.ziro.bullet.utills.Constants
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClick
 import com.ziro.bullet.utills.DoubleClickHandler.DoubleClickListener
 import de.hdodenhof.circleimageview.CircleImageView
-import java.util.Locale
+import java.util.*
 
 class VideoAdapter(
     private val viewPager2: ViewPager2,
@@ -75,7 +59,7 @@ class VideoAdapter(
     private val handlernew = Handler()
     private var startPosition: Long = 0
     private var prevPostion = 0
-
+    var speaker: ImageView? = null
     private var currentPlaybackState = Player.STATE_IDLE
     private var defaultBandwidthMeter: BandwidthMeter? = null
     private var dataSourceFactory: DataSource.Factory? = null
@@ -176,14 +160,14 @@ class VideoAdapter(
                 }
             }
             if (Constants.ReelsVolume) {
-                viewholder.speaker.setImageDrawable(
+                speaker?.setImageDrawable(
                     ContextCompat.getDrawable(
                         mContext,
                         R.drawable.ic_volume
                     )
                 )
             } else {
-                viewholder.speaker.setImageDrawable(
+                speaker?.setImageDrawable(
                     ContextCompat.getDrawable(
                         mContext,
                         R.drawable.ic_volmute
@@ -200,6 +184,29 @@ class VideoAdapter(
     fun setVideoList(videoList: ArrayList<ReelsItem>) {
         mVideoList = videoList
         notifyDataSetChanged()
+    }
+
+    fun updateIcon( volume: Boolean) {
+        Constants.ReelsVolume = volume
+        viewHolderArray.forEach { viewholder ->
+            if (Constants.ReelsVolume) {
+                audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, false);
+                viewholder.speaker.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        mContext,
+                        R.drawable.ic_volume
+                    )
+                )
+            } else {
+                viewholder.speaker.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        mContext,
+                        R.drawable.ic_volmute
+                    )
+                )
+                audioManager?.setStreamMute(AudioManager.STREAM_MUSIC, true);
+            }
+        }
     }
 
     override fun getItemCount(): Int {

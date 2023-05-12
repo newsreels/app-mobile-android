@@ -108,7 +108,7 @@ class ArticleAdapter(
                 articleId = article.id
 
                 try {
-                    Glide.with(postImage)
+                    Glide.with(context)
                         .load(article.image)
                         .encodeQuality(50)
                         .into(postImage)

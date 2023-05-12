@@ -4,15 +4,18 @@ import static com.ziro.bullet.utills.PaginationListener.PAGE_START;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -54,6 +57,8 @@ import com.ziro.bullet.data.TYPE;
 import com.ziro.bullet.data.models.ShareInfo;
 import com.ziro.bullet.data.models.home.HomeModel;
 import com.ziro.bullet.data.models.userInfo.User;
+import com.ziro.bullet.fragments.Reels.ReelFragment;
+import com.ziro.bullet.fragments.VideoInnerFragment;
 import com.ziro.bullet.interfaces.BottomSheetInterface;
 import com.ziro.bullet.interfaces.GoHome;
 import com.ziro.bullet.interfaces.HomeCallback;
@@ -225,6 +230,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
     private boolean isFollowingShow = false;
     private RelativeLayout rvReelInfo;
     private LinearLayout llReelOptions;
+    AudioManager audioManager;
 
     public static ReelInnerActivity newInstance(GoHome goHome1) {
         goHome = goHome1;
@@ -252,7 +258,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
         bindViews();
         getBundle();
         init();
-
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
 
 
@@ -404,6 +410,23 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
             startActivity(new Intent(this, NotificationActivity.class));
         });
     }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP) {
+            if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0) {
+                pagerAdapter.updateIcon(true);
+                return true;
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0) {
+                pagerAdapter.updateIcon(false);
+                return true;
+            }
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
 
     @Override
     public void onBackPressed() {

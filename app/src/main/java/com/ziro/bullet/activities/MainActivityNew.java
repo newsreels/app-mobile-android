@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -292,6 +293,25 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         super.onStop();
     }
 
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP) {
+            if (active instanceof ReelFragment) {
+                ReelFragment reelFragment = (ReelFragment) active;
+                reelFragment.onMyKeyUp(keyCode, event);
+                return true;
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            if (active instanceof ReelFragment) {
+                ReelFragment reelFragment = (ReelFragment) active;
+                reelFragment.onMyKeyDown(keyCode, event);
+                return true;
+            }
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.getType() == MessageEvent.TYPE_COUNT_API_CALL) {
@@ -417,7 +437,6 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: savedInstanceState = " + savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
 
         setContentView(R.layout.content);
 

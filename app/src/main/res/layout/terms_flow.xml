@@ -23,7 +23,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/roboto_bold"
         android:padding="@dimen/_10sdp"
-        android:text="@string/terms_and_condition"
+        android:text="@string/"
         android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
         android:visibility="invisible" />
