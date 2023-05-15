@@ -454,8 +454,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
     }
 
     private void showBottomSheet(ReelsItem reelsItem, int position) {
-        if (reelsItem != null) {
-            reelViewMoreSheet = ReelViewMoreSheet.getInstance(reelsItem, position, new ReelViewMoreSheet.OnShareListener() {
+        if (reelsItem != null) {            reelViewMoreSheet = ReelViewMoreSheet.getInstance(reelsItem, position, new ReelViewMoreSheet.OnShareListener() {
                 @Override
                 public void onShareClicked() {
                     share(reelsItem);
