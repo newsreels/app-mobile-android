@@ -114,7 +114,7 @@
             android:layout_height="@dimen/_10sdp"
             android:layout_alignBottom="@+id/reply"
             android:layout_alignParentEnd="true"
-            app:srcCompat="@drawable/ic_like_heart_filled" />
+            app:srcCompat="@drawable/ic_heartborder" />
     </RelativeLayout>
 
     <RelativeLayout

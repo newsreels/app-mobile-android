@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/comments_bottom_sheet"
     android:background="@color/colorPrimaryDark"
     tools:context=".activities.CommentsActivity">
 
@@ -31,6 +33,19 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp" />
 
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_cancel"
+                app:tint="@color/black" />
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ca_img_left_arrow"
                 android:layout_width="@dimen/_32sdp"
@@ -46,21 +61,11 @@
 
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comments"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar"
-        android:layout_below="@+id/card"
-        android:paddingTop="@dimen/_16sdp"
-        tools:listitem="@layout/comment_item" />
-
     <RelativeLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/card"
         android:layout_marginBottom="@dimen/_10sdp">
 
         <View
@@ -231,6 +236,14 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bottomBar"
+        android:paddingTop="@dimen/_16sdp"
+        tools:listitem="@layout/comment_item" />
 
     <include layout="@layout/progress" />
 

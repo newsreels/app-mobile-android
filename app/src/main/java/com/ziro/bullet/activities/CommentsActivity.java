@@ -221,6 +221,8 @@ public class CommentsActivity extends BaseActivity implements CommentInterface {
                     }
                     startActivity(intent);
                 }
+
+
             }
 
             @Override

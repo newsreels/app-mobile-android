@@ -45,6 +45,7 @@ import com.ziro.bullet.activities.NotificationActivity;
 import com.ziro.bullet.activities.ProfileActivity;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
+import com.ziro.bullet.bottomSheet.CommentsBottomSheetDialog;
 import com.ziro.bullet.bottomSheet.ForYouReelSheet;
 import com.ziro.bullet.bottomSheet.ReelViewMoreSheet;
 import com.ziro.bullet.bottomSheet.ShareBottomSheet;
@@ -922,13 +923,14 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         if (getActivity() != null) {
             Map<String, String> params = new HashMap<>();
             params.put(Events.KEYS.REEL_ID, reelsItem.getId());
-            AnalyticsEvents.INSTANCE.logEvent(getContext(),
-                    params,
-                    Events.REELS_COMMENT);
-            Intent intent = new Intent(getActivity(), CommentsActivity.class);
-            intent.putExtra("article_id", reelsItem.getId());
-            intent.putExtra("position", mCurrentPosition);
-            startActivityForResult(intent, Constants.CommentsRequestCode);
+            AnalyticsEvents.INSTANCE.logEvent(getContext(), params, Events.REELS_COMMENT);
+
+            CommentsBottomSheetDialog bottomSheetDialog = new CommentsBottomSheetDialog();
+            Bundle args = new Bundle();
+            args.putString("article_id", reelsItem.getId());
+            args.putInt("position", mCurrentPosition);
+            bottomSheetDialog.setArguments(args);
+            bottomSheetDialog.show(getParentFragmentManager(), "CommentsBottomSheetDialog");
         }
 
     }

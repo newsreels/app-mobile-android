@@ -65,6 +65,7 @@
                 android:layout_toEndOf="@+id/line"
                 android:fontFamily="@font/roboto_regular"
                 android:includeFontPadding="false"
+                android:padding="@dimen/_2sdp"
                 android:lineSpacingExtra="1dp"
                 android:textColor="@color/darkgreyup"
                 android:textSize="@dimen/_10sdp"
@@ -82,6 +83,7 @@
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="1dp"
                 tools:text="time"
+                android:padding="@dimen/_4sdp"
                 android:textColor="@color/comment_time_reply"
                 android:textSize="@dimen/_10sdp" />
 
@@ -96,10 +98,11 @@
                 android:layout_toEndOf="@+id/time"
                 android:fontFamily="@font/roboto_regular"
                 android:includeFontPadding="false"
+                android:padding="@dimen/_4sdp"
                 android:lineSpacingExtra="1dp"
                 android:text="@string/reply"
                 android:textColor="@color/comment_time_reply"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_14sdp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/replies"
