@@ -29,6 +29,7 @@ import com.ziro.bullet.interfaces.ShowOptionsLoaderCallback;
 import com.ziro.bullet.model.articles.Article;
 import com.ziro.bullet.presenter.LikePresenter;
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter;
+import com.ziro.bullet.utills.Constants;
 import com.ziro.bullet.utills.Utils;
 import jp.wasabeef.picasso.transformations.BlurTransformation;
 public class ListSmallCardViewHolder extends RecyclerView.ViewHolder {
@@ -170,6 +171,7 @@ public class ListSmallCardViewHolder extends RecyclerView.ViewHolder {
                         public void response(ShareInfo shareInfo) {
                             showOptionsLoaderCallback.showLoader(false);
                             adapterCallback.showShareBottomSheet(shareInfo, articlesItem, dialog -> {
+                                Constants.sharePgNotVisible = true;
 
                             });
                         }

@@ -293,7 +293,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         } else if (holder instanceof SmallCardViewHolder) {
             ((SmallCardViewHolder) holder).bind(position, article);
         } else if (holder instanceof NewHomeArticlesViewHolder) {
-            ((NewHomeArticlesViewHolder) holder).onBind(article, position);
+            ((NewHomeArticlesViewHolder) holder).onBind(article, position,items);
         } else if (holder instanceof YoutubeViewHolder) {
             ((YoutubeViewHolder) holder).bind(position, article);
         } else if (holder instanceof ReelViewHolder) {

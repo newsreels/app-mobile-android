@@ -654,6 +654,7 @@ public class SmallCardViewHolder extends RecyclerView.ViewHolder {
                                     public void onDismiss(DialogInterface dialog) {
                                         if (listener != null) {
                                             listener.resume();
+                                            Constants.sharePgNotVisible = true;
                                         }
                                         if (goHomeMainActivity != null)
                                             goHomeMainActivity.sendAudioEvent("resume");
@@ -667,6 +668,7 @@ public class SmallCardViewHolder extends RecyclerView.ViewHolder {
                                 adapterCallback.showShareBottomSheet(null, article, dialog -> {
                                     if (listener != null) {
                                         listener.resume();
+                                        Constants.sharePgNotVisible = true;
                                     }
                                     if (goHomeMainActivity != null)
                                         goHomeMainActivity.sendAudioEvent("resume");

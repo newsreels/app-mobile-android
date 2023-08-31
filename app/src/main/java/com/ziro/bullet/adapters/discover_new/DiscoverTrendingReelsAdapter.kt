@@ -23,6 +23,7 @@ import com.ziro.bullet.model.articles.Article
 import com.ziro.bullet.model.articles.Bullet
 import com.ziro.bullet.model.articles.MediaMeta
 import com.ziro.bullet.presenter.ShareBottomSheetPresenter
+import com.ziro.bullet.utills.Constants
 import com.ziro.bullet.utills.Utils
 
 class DiscoverTrendingReelsAdapter(val context: AppCompatActivity? = null) :
@@ -123,6 +124,7 @@ class DiscoverTrendingReelsAdapter(val context: AppCompatActivity? = null) :
                                     ) {
                                         if (listener != null) {
                                             listener?.resume()
+                                            Constants.sharePgNotVisible = true
                                         }
                                     }
                                 }
@@ -135,6 +137,7 @@ class DiscoverTrendingReelsAdapter(val context: AppCompatActivity? = null) :
                                     ) {
                                         if (listener != null) {
                                             listener!!.resume()
+                                            Constants.sharePgNotVisible = true
                                         }
                                     }
                                 }

@@ -16,8 +16,7 @@
         <com.ziro.bullet.utills.CustomViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/yellow"/>
+            android:layout_height="match_parent"/>
 
         <ImageView
             android:id="@+id/gradient2"

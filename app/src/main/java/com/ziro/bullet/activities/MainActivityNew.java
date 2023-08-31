@@ -11,6 +11,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
@@ -21,11 +22,13 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,6 +46,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
@@ -50,13 +55,17 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.Task;
-import com.ziro.bullet.CacheData.DbHandler;
+import com.google.firebase.remoteconfig.ConfigUpdate;
+import com.google.firebase.remoteconfig.ConfigUpdateListener;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.google.gson.Gson;
+import com.ziro.bullet.BuildConfig;
 import com.ziro.bullet.R;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
 import com.ziro.bullet.background.BackgroundEvent;
-import com.ziro.bullet.background.UploadInfo;
-import com.ziro.bullet.background.VideoProcessorService;
 import com.ziro.bullet.bottomSheet.FeatureAlertBottomSheet;
 import com.ziro.bullet.data.PrefConfig;
 import com.ziro.bullet.data.TYPE;
@@ -81,6 +90,7 @@ import com.ziro.bullet.interfaces.MainInterface;
 import com.ziro.bullet.interfaces.UserConfigCallback;
 import com.ziro.bullet.model.AudioObject;
 import com.ziro.bullet.model.Menu.CategoryResponse;
+import com.ziro.bullet.model.RemoteConfigModel;
 import com.ziro.bullet.model.articles.ArticleResponse;
 import com.ziro.bullet.presenter.MainPresenter;
 import com.ziro.bullet.presenter.UserConfigPresenter;
@@ -96,13 +106,13 @@ import com.ziro.bullet.widget.CollectionWidget;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
+public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener,
+        ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
     public static final int RESULT_INTENT_ADD_LOCATION = 3781;
     public static final int RESULT_INTENT_CHANGE_LANGUAGE = 3891;
     public static final int RESULT_INTENT_CHANGE_EDITION = 3111;
@@ -143,6 +153,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     private boolean loadingReelFirst;
     //for header follow/unfollow
     private boolean isSearchNavigate = false;
+    private AlertDialog appUpdateDialog;
 
     @Override
     public void sendAudioEvent(String event) {
@@ -241,6 +252,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 
     @Override
     public void scrollDown() {
+        Log.d("RecyclerView_scrolled", "ShowingBottomBar");
         showBottomBar();
     }
 
@@ -367,21 +379,18 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //            prefConfig.setProfileChange(false);
 //        }
         //shifa test 2 api calls take place because of this
-//        if (prefConfig != null) {
-//            long appBgTime = prefConfig.getBgTime();
-//            if (Math.abs(System.currentTimeMillis() - appBgTime) > TimeUnit.MINUTES.toMillis(Constants.refreshTime)) {
-//                prefConfig.setBgTime(System.currentTimeMillis());
-//                Log.e("BGtimRE", "appBgTime is older than 2 minutes");
-//                Constants.reelDataUpdate = true;
-//                Constants.homeDataUpdate = true;
-//                Constants.menuDataUpdate = true;
-//                reloadFragments();
-//            } else {
-//                Log.e("BGtimRE", "appBgTime is not more than 2 minutes");
-//            }
-//        } else {
-//            isAppFirstTimeOpen = false;
-//        }
+        if (prefConfig != null) {
+            long appBgTime = prefConfig.getBgTime();
+            if (Math.abs(System.currentTimeMillis() - appBgTime) > TimeUnit.MINUTES.toMillis(Constants.refreshTime)) {
+                prefConfig.setBgTime(System.currentTimeMillis());
+                Log.e("BGtimRE", "appBgTime is older than 2 minutes");
+                reloadFragments();
+            } else {
+                Log.e("BGtimRE", "appBgTime is not more than 2 minutes");
+            }
+        } else {
+            isAppFirstTimeOpen = false;
+        }
 
 //        showBottomBar();
     }
@@ -409,6 +418,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         Log.d(TAG, "onCreate: savedInstanceState = " + savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+
         setContentView(R.layout.content);
 
         bindView();
@@ -425,6 +435,8 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             prefConfig.setHasAskedNotificationPermission(true);
             checkNotificationPermission();
         }
+
+        checkRemoteConfig();
 
         userConfigPresenter = new UserConfigPresenter(this, new UserConfigCallback() {
             @Override
@@ -550,6 +562,96 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //        }
 //        invalidateViews(true);
         updateWidget();
+    }
+
+    private void checkRemoteConfig() {
+        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(3600)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+
+        mFirebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
+                try {
+                    if (task != null && task.isSuccessful()) {
+                        String version = mFirebaseRemoteConfig.getString("app_version");
+                        RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
+                        if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
+                            showUpdateDialog(configModel.getAndroid().getForce_update());
+                        Log.d("RemoteConfig_TAG", "onComplete: Android Version-> " + version);
+                    }
+                } catch (Exception e) {
+                    Log.d("RemoteConfig_TAG", "exception: " + e.getLocalizedMessage());
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("RemoteConfig_TAG", "onFailure: " + e.getLocalizedMessage());
+            }
+        });
+
+        mFirebaseRemoteConfig.addOnConfigUpdateListener(new ConfigUpdateListener() {
+            @Override
+            public void onUpdate(ConfigUpdate configUpdate) {
+                Log.d(TAG, "Updated keys: " + configUpdate.getUpdatedKeys());
+
+                if (configUpdate.getUpdatedKeys().contains("welcome_message")) {
+                    mFirebaseRemoteConfig.activate()
+                            .addOnCompleteListener(task -> {
+                                String version = mFirebaseRemoteConfig.getString("app_version");
+                                RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
+                                if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
+                                    showUpdateDialog(configModel.getAndroid().getForce_update());
+                                Log.d("RemoteConfig_TAG", "addOnCompleteListener: Android Version-> " + version);
+                            });
+                }
+            }
+
+            @Override
+            public void onError(FirebaseRemoteConfigException error) {
+                Log.w(TAG, "Config update error with code: " + error.getCode(), error);
+            }
+        });
+    }
+
+    private void showUpdateDialog(boolean force_update) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.udpate_app_dialog, null, false);
+        builder.setView(dialogView);
+        appUpdateDialog = builder.create();
+        appUpdateDialog.show();
+
+        if (force_update) {
+            dialogView.findViewById(R.id.update_group).setVisibility(View.GONE);
+            dialogView.findViewById(R.id.tv_confirm_update_big).setVisibility(View.VISIBLE);
+        } else {
+            dialogView.findViewById(R.id.update_group).setVisibility(View.VISIBLE);
+            dialogView.findViewById(R.id.tv_confirm_update_big).setVisibility(View.GONE);
+        }
+        dialogView.findViewById(R.id.tv_confirm_update).setOnClickListener(v -> {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        dialogView.findViewById(R.id.tv_confirm_update_big).setOnClickListener(v -> {
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        });
+
+        dialogView.findViewById(R.id.tv_cancel_update).setOnClickListener(v -> appUpdateDialog.dismiss());
     }
 
     private void checkNotificationPermission() {
@@ -763,6 +865,8 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         }
         active = getSearchFragment();
         Constants.HomeSelectedFragment = Constants.BOTTOM_TAB_SEARCH;
+        if (getSearchFragment() != null && Constants.updateDiscover)
+            getSearchFragment().reload();
         if (getSearchFragment() != null && getSearchFragment().isAdded()) {
             getSearchFragment().selectFirst();
             getSearchFragment().init();
@@ -876,10 +980,10 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //            }
 //        }
 
-//        if (getVideoFragment() != null && Constants.reelDataUpdate) {
-//            getVideoFragment().reload();
-//            Constants.reelDataUpdate = false;
-//        }
+        if (getVideoFragment() != null && Constants.reelDataUpdate) {
+            getVideoFragment().reload();
+            Constants.reelDataUpdate = false;
+        }
 
         Constants.canAudioPlay = false;
 
@@ -1169,45 +1273,45 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     }
 
 
-    @Override
-    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
-        savedInstanceState.putInt("selected_pos", Constants.HomeSelectedFragment);
-        savedInstanceState.putBoolean("onresumereels", Constants.onResumeReels);
-        Log.d(TAG, "onSaveInstanceState: ");
-        // etc.
-    }
+//    @Override
+//    public void onSaveInstanceState(@NotNull Bundle savedInstanceState) {
+//        super.onSaveInstanceState(savedInstanceState);
+//        // Save UI state changes to the savedInstanceState.
+//        // This bundle will be passed to onCreate if the process is
+//        // killed and restarted.
+//        savedInstanceState.putInt("selected_pos", Constants.HomeSelectedFragment);
+//        savedInstanceState.putBoolean("onresumereels", Constants.onResumeReels);
+//        Log.d(TAG, "onSaveInstanceState: ");
+//        // etc.
+//    }
 
-    @Override
-    public void onRestoreInstanceState(@NotNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, "onRestoreInstanceState: ");
-        // Restore UI state (from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
-        Constants.HomeSelectedFragment = savedInstanceState.getInt("selected_pos");
-
-        if (savedInstanceState.containsKey("onresumereels"))
-            Constants.onResumeReels = savedInstanceState.getBoolean("onresumereels");
-
-        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_FOLLOWING) {
-            active = followingFragment;
-            fm.beginTransaction().hide(homeFragment).show(followingFragment).commitAllowingStateLoss();
-            dynamicColorBottomTabs();
-        }
-
-        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_ACCOUNT) {
-            active = menuFragment;
-            fm.beginTransaction().hide(homeFragment).show(menuFragment).commitAllowingStateLoss();
-            staticDarkColorBottomTabs();
-        }
-        Constants.reelDataUpdate = true;
-        Constants.homeDataUpdate = true;
-        Constants.menuDataUpdate = true;
-        reloadFragments();
-    }
+//    @Override
+//    public void onRestoreInstanceState(@NotNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        Log.d(TAG, "onRestoreInstanceState: ");
+//        // Restore UI state (from the savedInstanceState.
+//        // This bundle has also been passed to onCreate.
+//        Constants.HomeSelectedFragment = savedInstanceState.getInt("selected_pos");
+//
+//        if (savedInstanceState.containsKey("onresumereels"))
+//            Constants.onResumeReels = savedInstanceState.getBoolean("onresumereels");
+//
+//        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_FOLLOWING) {
+//            active = followingFragment;
+//            fm.beginTransaction().hide(homeFragment).show(followingFragment).commitAllowingStateLoss();
+//            dynamicColorBottomTabs();
+//        }
+//
+//        if (Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_ACCOUNT) {
+//            active = menuFragment;
+//            fm.beginTransaction().hide(homeFragment).show(menuFragment).commitAllowingStateLoss();
+//            staticDarkColorBottomTabs();
+//        }
+//        Constants.reelDataUpdate = true;
+//        Constants.homeDataUpdate = true;
+//        Constants.menuDataUpdate = true;
+//        reloadFragments();
+//    }
 
     private void checkIntent() {
         if (getIntent().hasExtra("topic_id")) {
@@ -1255,6 +1359,9 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
                 ifOffline = false;
                 Utils.showPopupMessageWithCloseButton(this, 3000, getString(R.string.back_online), false);
                 reloadFragments();
+                Constants.reelDataUpdate = true;
+                Constants.homeDataUpdate = true;
+                Constants.updateDiscover = true;
             }
         }
     }
@@ -1360,18 +1467,18 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             }
         }
 
-        try {
-            DbHandler dbHandler = new DbHandler(this);
-            ArrayList<UploadInfo> allTasks = dbHandler.getAllTasks();
-            if (allTasks != null && allTasks.size() > 0) {
-                if (!Utils.isMyServiceRunning(MainActivityNew.this, VideoProcessorService.class)) {
-                    Intent intent = new Intent(this, VideoProcessorService.class);
-                    startService(intent);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DbHandler dbHandler = new DbHandler(this);
+//            ArrayList<UploadInfo> allTasks = dbHandler.getAllTasks();
+//            if (allTasks != null && allTasks.size() > 0) {
+//                if (!Utils.isMyServiceRunning(MainActivityNew.this, VideoProcessorService.class)) {
+//                    Intent intent = new Intent(this, VideoProcessorService.class);
+//                    startService(intent);
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override

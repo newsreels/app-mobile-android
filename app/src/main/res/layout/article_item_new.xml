@@ -100,6 +100,7 @@
             android:layout_toEndOf="@+id/time"
             android:background="@drawable/bg_circle"
             android:backgroundTint="@color/icon"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/time"
             app:layout_constraintStart_toEndOf="@id/time"
             app:layout_constraintTop_toTopOf="@id/time" />
@@ -115,6 +116,7 @@
             android:fontFamily="@font/roboto_medium"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:visibility="gone"
             android:textAllCaps="false"
             android:textColor="@color/greyad"
             android:textSize="@dimen/_8sdp"

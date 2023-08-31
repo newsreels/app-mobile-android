@@ -400,10 +400,6 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
         refresh.setOnRefreshListener(this::reload);
 
-        ll_reels_info.setOnClickListener(view -> {
-            forYouBottomSheet();
-        });
-
         notification.setOnClickListener(view -> {
             startActivity(new Intent(this, NotificationActivity.class));
         });
@@ -461,7 +457,8 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
                 @Override
                 public void viewMoreDismissed() {
                     Log.e(TAG, "viewMoreDismissed: ");
-                    onResume();
+                    if (!isFinishing())
+                        onResume();
                 }
             });
 
@@ -598,41 +595,21 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
         if (flag) isLoading = flag;
 
-//        if (flag && refresh.isRefreshing()) {
-//            viewPager.setUserInputEnabled(false);
-//            if (currentFragment instanceof VideoInnerFragment) {
-//                ((VideoInnerFragment) currentFragment).clickEnabling(false);
-//            }
-//        } else {
-//            viewPager.setUserInputEnabled(true);
-//            if (currentFragment instanceof VideoInnerFragment) {
-//                ((VideoInnerFragment) currentFragment).clickEnabling(true);
-//            }
-//        }
-//        if (mNext.equals("")) {
-//        if (mNext != null && mNext.equals("") && !refresh.isRefreshing()) {
-////        if (videoItems == null || videoItems.size() <= 0) {
-//            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, flag);
-//        } else {
-//            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
-//        }
-
-//        if (!flag) {
-//            refresh.setRefreshing(false);
-//        }
     }
 
     @Override
     public void error(String error) {
-        mPage = "";
-        showErrorView(true);
-        progress_barreel.setVisibility(View.GONE);
-        isLoading = false;
-        Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
-        if (!TextUtils.isEmpty(error)) {
-            if (error.equalsIgnoreCase("Canceled") || error.contains("reset") || error.contains("closed"))
-                return;
-            Utils.showSnacky(ReelInnerActivity.this.getWindow().getDecorView().getRootView(), "" + error);
+        if (videoItems == null || videoItems.isEmpty()) {
+            mPage = "";
+            showErrorView(true);
+            progress_barreel.setVisibility(View.GONE);
+            isLoading = false;
+            Utils.loadSkeletonLoaderReels(reelsViewSwitcher, false);
+            if (!TextUtils.isEmpty(error)) {
+                if (error.equalsIgnoreCase("Canceled") || error.contains("reset") || error.contains("closed"))
+                    return;
+                Utils.showSnacky(ReelInnerActivity.this.getWindow().getDecorView().getRootView(), "" + error);
+            }
         }
     }
 
@@ -672,7 +649,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
         if (reelResponse != null && !isLastPage) {
             if (reelResponse.getReels() != null) {
-                if (reelResponse.getReels().size() < 5) {
+                if (reelResponse.getReels().size() < 5 && (videoItems.size() - curPosition) <= 5) {
                     reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, true, "");
                 }
             }
@@ -729,7 +706,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
         if (reelResponse != null && !isLastPage) {
             if (reelResponse.getReels() != null) {
-                if (reelResponse.getReels().size() < 5) {
+                if (reelResponse.getReels().size() < 5 && (videoItems.size() - curPosition) <= 5) {
                     reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, true, "");
                 }
             }
@@ -742,34 +719,7 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
     @Override
     public void nextVideo(int position) {
-//        if (position > -1) {
-//            int next = position;
-//            next++;
-//            if (next < videoReelsItems.size()) {
-//                viewPager.setCurrentItem(next, true);
-//            }
-//        }
-    }
 
-    public void scrollToTop() {
-//        new_post.setVisibility(View.GONE);
-//        if (viewPager.getCurrentItem() == 0) {
-//            refresh.setRefreshing(true);
-//            viewPager.setAdapter(null);
-//            videoReelsItems.clear();
-//            reelsToSave.clear();
-//            cachePosition = -1;
-//            maxCacheLimit = -1;
-//            isCaching = false;
-//            mNext = "";
-//            page = "";
-//            PRDownloader.cancelAll();
-//            pagerAdapter.notifyDataSetChanged();
-//            reload();
-//            loaderShow(true);
-//        } else {
-//            viewPager.setCurrentItem(0, false);
-//        }
     }
 
     public void reload() {
@@ -805,8 +755,6 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
             mPage = "";
             new_post.setVisibility(View.GONE);
             reelPresenter.getReelsHome(prefConfig.getReelsType(), context, mNext, false, true, false, "");
-
-//            loadCacheData();//api cal
         }
     }
 
@@ -1156,7 +1104,14 @@ public class ReelInnerActivity extends BaseActivity implements VideoInterface, S
 
     @Override
     public void nextReelVideo(int pos) {
-
+        Log.d("NextVideo_TAG", "nextVideo: " + pos);
+        if (pos > -1) {
+            int next = pos;
+            next++;
+            if (next < videoItems.size()) {
+                viewPager.setCurrentItem(next, true);
+            }
+        }
     }
 
     @Override

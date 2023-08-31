@@ -35,13 +35,13 @@ class DiscoverTrendingReelsViewHolder(itemView: View, val context: AppCompatActi
             text = context.getString(R.string.trending_reels)
         }
 
-        if (reelsList.size >= 5) {
-            itemView.findViewById<TextView>(R.id.tv_more).setOnClickListener {
-                discoverChildInterface.searchChildOnClick(reelsList)
-            }
-        } else {
-            itemView.findViewById<TextView>(R.id.tv_more).visibility = View.GONE
-        }
+//        if (reelsList.size >= 5) {
+//            itemView.findViewById<TextView>(R.id.tv_more).setOnClickListener {
+//                discoverChildInterface.searchChildOnClick(reelsList)
+//            }
+//        } else {
+//            itemView.findViewById<TextView>(R.id.tv_more).visibility = View.GONE
+//        }
         itemView.findViewById<TextView>(R.id.tv_more).setOnClickListener {
             discoverChildInterface.searchChildOnClick(reelsList)
         }

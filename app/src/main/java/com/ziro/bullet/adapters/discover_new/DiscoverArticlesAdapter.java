@@ -25,6 +25,7 @@ import com.ziro.bullet.model.articles.Bullet;
 import com.ziro.bullet.utills.Constants;
 import com.ziro.bullet.utills.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -96,7 +97,15 @@ public class DiscoverArticlesAdapter extends RecyclerView.Adapter<DiscoverArticl
                     .override(Constants.targetWidth, Constants.targetHeight)
                     .into(ivBulletIcon);
 
-            itemView.setOnClickListener(view -> commentClick.onDetailClick(position, discoverArticles.get(position)));
+            itemView.setOnClickListener(view -> {
+                if (position + 10 < discoverArticles.size()) {
+                    List<Article> copyArray = new ArrayList<>(discoverArticles.subList(position, position + 10));
+                    commentClick.onNewDetailClick(position, discoverArticles.get(position), copyArray);
+                } else {
+                    List<Article> copyArray = new ArrayList<>(discoverArticles.subList(position, discoverArticles.size()));
+                    commentClick.onNewDetailClick(position, discoverArticles.get(position), copyArray);
+                }
+            });
         }
 
         private void createShader(TextView view, int[] colorCode) {

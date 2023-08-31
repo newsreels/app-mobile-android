@@ -337,7 +337,7 @@ public class ChannelDetailsActivity extends BaseActivity
             tabLayout.setVisibility(View.VISIBLE);
             mTabTitleList.add(getString(R.string.newsreels));
         }
-        mTabTitleList.add(getString(R.string.articles));
+//        mTabTitleList.add(getString(R.string.articles));
 //        mTabTitleList.add(getString(R.string.favorite));
         channelPagerAdapter = new ChannelPagerAdapter(getSupportFragmentManager(), source, mTabTitleList.size(), type, new UpdateCallback() {
             @Override
@@ -485,7 +485,7 @@ public class ChannelDetailsActivity extends BaseActivity
                 desc.setText(source.getDescription());
                 desc.setVisibility(View.VISIBLE);
             } else {
-                desc.setVisibility(View.GONE);
+//                desc.setVisibility(View.GONE);
             }
 
 //            dot_.setVisibility(View.VISIBLE);
@@ -963,30 +963,36 @@ public class ChannelDetailsActivity extends BaseActivity
     }
 
     private final int[] tabTextActive = {
-            R.string.reels,
-            R.string.articles
+            R.string.reels
     };
 
     private final int[] tabTextInActive = {
-            R.string.reels,
-            R.string.articles
+            R.string.reels
     };
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setText(tabTextActive[0]);
-        if (mTabTitleList.size() > 1) {
-            tabLayout.getTabAt(1).setText(tabTextInActive[1]);
-        }
+//        tabLayout.getTabAt(0).setText(tabTextActive[0]).setIcon(R.drawable.video_square);
+//        tabLayout.getTabAt(0).setIcon(R.drawable.video_square);
+
+
+
+//        if (mTabTitleList.size() > 1) {
+//            tabLayout.getTabAt(1).setText(tabTextInActive[1]);
+//        }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tab.setText(tabTextActive[tab.getPosition()]);
+//                tabLayout.getTabAt(0).setIcon(R.drawable.video_square);
+//                tabLayout.getTabAt(0).setText(tabTextActive[0]).setIcon(R.drawable.video_square);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.setText(tabTextInActive[tab.getPosition()]);
+//                tabLayout.getTabAt(0).setIcon(R.drawable.video_square);
+//                tabLayout.getTabAt(0).setText(tabTextActive[0]).setIcon(R.drawable.video_square);
+
+
             }
 
             @Override
@@ -1000,7 +1006,7 @@ public class ChannelDetailsActivity extends BaseActivity
 
     private static class ChannelPagerAdapter extends FragmentStatePagerAdapter {
 
-        private int NUM_PAGES = 2;
+        private int NUM_PAGES = 1;
         private Source source;
         private TYPE type;
         private ProfileArticleFragment fragment;
@@ -1018,23 +1024,16 @@ public class ChannelDetailsActivity extends BaseActivity
         @NotNull
         @Override
         public Fragment getItem(int position) {
-            if (source.isOwn()) {
-                if (position == 0 && NUM_PAGES == 2) {
-                    return ProfileReelsFragment.newInstance(source.getId());
-                } else {
-                    fragment = ProfileArticleFragment.newInstance(source.getId());
-                    fragment.setCallbackListener(updateCallback);
-                    return fragment;
-                }
-            } else {
-                if (position == 0 && NUM_PAGES == 2) {
-                    return AuthorReelsFragment.newInstance(source.getContext());
-                } else {
-                    fragment2 = AuthorArticleFragment.newInstance(source.getContext());
-                    fragment2.setCallbackListener(updateCallback);
-                    return fragment2;
-                }
-            }
+//            if (source.isOwn()) {
+//                if (position == 0 && NUM_PAGES == 2) {
+//                    return ProfileReelsFragment.newInstance(source.getId());
+//                }
+//            } else {
+//                if (position == 0 && NUM_PAGES == 2) {
+//                    return AuthorReelsFragment.newInstance(source.getContext());
+//                }
+//            }
+            return  ProfileReelsFragment.newInstance(source.getId());
         }
 
         @Override

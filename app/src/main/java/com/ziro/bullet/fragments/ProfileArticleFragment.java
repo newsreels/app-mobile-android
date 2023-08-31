@@ -64,6 +64,7 @@ import com.ziro.bullet.utills.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import im.ene.toro.PlayerSelector;
 import im.ene.toro.widget.Container;
@@ -490,6 +491,11 @@ public class ProfileArticleFragment extends Fragment implements NewsCallback {
                 intent.putExtra("type", "MY_ARTICLES");
                 intent.putExtra("position", position);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
             }
 
             @Override

@@ -1,7 +1,6 @@
 package com.ziro.bullet.adapters.NewFeed.newHomeArticle;
 
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -10,16 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Picasso;
 import com.ziro.bullet.R;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
@@ -36,6 +32,7 @@ import com.ziro.bullet.presenter.ShareBottomSheetPresenter;
 import com.ziro.bullet.utills.Constants;
 import com.ziro.bullet.utills.Utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +74,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
         ivDots = itemView.findViewById(R.id.dotImg);
     }
 
-    public void onBind(Article article, int position) {
+    public void onBind(Article article, int position, List<Article> articlelist) {
 
         if (article != null && article.getType() != null) {
             Log.d("DEBUG_TAG", "onBind: ArticleType:: " + article.getType());
@@ -88,12 +85,24 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                 float textSize = Utils.getBulletDimens(new PrefConfig(itemView.getContext()), context);
                 tvBulletHeadline.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             }
-
-            Glide.with(itemView.getContext())
-                    .load(article.getImage())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(Constants.targetWidth, Constants.targetHeight)
-                    .into(ivBulletCover);
+            int width = (int) (70 * itemView.getContext().getResources().getDisplayMetrics().density);
+            int height = (int) (70 * itemView.getContext().getResources().getDisplayMetrics().density);
+            try {
+                Glide.with(itemView.getContext())
+                        .load(article.getImage())
+                        .encodeQuality(50)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .override(width, height)
+                        .skipMemoryCache(false) // enable memory caching
+                        .priority(Priority.HIGH)
+                        .into(ivBulletCover);
+            } catch (Exception e) {
+                Picasso.get()
+                        .load(article.getImage())
+                        .resize(width, height)
+                        .centerCrop()
+                        .into(ivBulletCover);
+            }
 
             if (article.getSource() != null && !TextUtils.isEmpty(article.getSource().getName())) {
                 tvSource.setText(article.getSource().getName());
@@ -110,7 +119,14 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                 AnalyticsEvents.INSTANCE.logEvent(itemView.getContext(),
                         params,
                         Events.ARTICLE_OPEN);
-                commentClick.onDetailClick(position, article);
+
+                if (position + 10 < articlelist.size()) {
+                    List<Article> copyArray = new ArrayList<>(articlelist.subList(position, position + 10));
+                    commentClick.onNewDetailClick(position, article, copyArray);
+                } else {
+                    List<Article> copyArray = new ArrayList<>(articlelist.subList(position, articlelist.size()));
+                    commentClick.onNewDetailClick(position, article, copyArray);
+                }
             });
 
             ivDots.setOnClickListener(v -> {
@@ -134,6 +150,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                                 @Override
                                 public void onDismiss(DialogInterface dialog) {
                                     if (listener != null) {
+                                        Constants.sharePgNotVisible = true;
                                         listener.resume();
                                     }
                                 }
@@ -146,6 +163,7 @@ public class NewHomeArticlesViewHolder extends RecyclerView.ViewHolder {
                             adapterCallback.showShareBottomSheet(null, article, dialog -> {
                                 if (listener != null) {
                                     listener.resume();
+                                    Constants.sharePgNotVisible = true;
                                 }
                             });
                         }

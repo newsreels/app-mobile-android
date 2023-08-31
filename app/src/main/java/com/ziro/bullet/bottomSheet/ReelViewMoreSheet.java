@@ -1,16 +1,11 @@
 package com.ziro.bullet.bottomSheet;
 
-import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING;
-import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE;
-import static com.ziro.bullet.utills.Constants.isApiCalling;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -30,13 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -44,21 +36,13 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.ziro.bullet.R;
 import com.ziro.bullet.activities.AuthorActivity;
-import com.ziro.bullet.activities.BulletDetailActivity;
 import com.ziro.bullet.activities.ChannelDetailsActivity;
 import com.ziro.bullet.activities.ChannelPostActivity;
 import com.ziro.bullet.activities.CommentsActivity;
 import com.ziro.bullet.activities.ProfileActivity;
-import com.ziro.bullet.activities.VideoFullScreenActivity;
-import com.ziro.bullet.adapters.NewFeed.HomeAdapter;
-import com.ziro.bullet.adapters.feed.LargeCardViewHolder;
-import com.ziro.bullet.adapters.feed.SmallCardViewHolder;
-import com.ziro.bullet.adapters.feed.VideoViewHolder;
-import com.ziro.bullet.adapters.feed.YoutubeViewHolder;
 import com.ziro.bullet.analytics.AnalyticsEvents;
 import com.ziro.bullet.analytics.Events;
 import com.ziro.bullet.data.PrefConfig;
@@ -69,18 +53,13 @@ import com.ziro.bullet.data.models.ShareInfo;
 import com.ziro.bullet.data.models.userInfo.User;
 import com.ziro.bullet.fragments.Reels.ReelsPageInterface;
 import com.ziro.bullet.fragments.test.ReelInnerActivity;
-import com.ziro.bullet.interfaces.AdFailedListener;
 import com.ziro.bullet.interfaces.AudioCallback;
-import com.ziro.bullet.interfaces.CommentClick;
 import com.ziro.bullet.interfaces.CommunityCallback;
-import com.ziro.bullet.interfaces.CommunityItemCallback;
-import com.ziro.bullet.interfaces.DetailsActivityInterface;
 import com.ziro.bullet.interfaces.GoHome;
 import com.ziro.bullet.interfaces.LikeInterface;
 import com.ziro.bullet.interfaces.OnGotoChannelListener;
 import com.ziro.bullet.interfaces.ShareInfoInterface;
 import com.ziro.bullet.interfaces.ShareToMainInterface;
-import com.ziro.bullet.interfaces.ShowOptionsLoaderCallback;
 import com.ziro.bullet.interfaces.TempCategorySwipeListener;
 import com.ziro.bullet.model.AudioObject;
 import com.ziro.bullet.model.Reel.ReelResponse;
@@ -115,7 +94,7 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
     private static int position;
     private static OnShareListener listener;
     private AppBarLayout appBarLayout;
-//    private RecyclerView mListRV;
+    //    private RecyclerView mListRV;
 //    private HomeAdapter mCardAdapter;
 //    private ProgressBar progress;
     private ArrayList<Article> contentArrayList = new ArrayList<>();
@@ -124,6 +103,7 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
     private LikePresenter likePresenter;
     private int mArticlePosition = 0;
     private RelativeLayout rlChannelDetail;
+    private TextView tvTime;
     private TempCategorySwipeListener swipeListener = new TempCategorySwipeListener() {
         @Override
         public void swipe(boolean enable) {
@@ -150,8 +130,8 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
 
         }
     };
-//    private CardView gotoTop;
-    private TextView viewArticle;
+    //    private CardView gotoTop;
+    private LinearLayout viewArticle;
     private CardView tag;
     private CardView cvVideoThumbnail;
     private CircleImageView image;
@@ -565,6 +545,12 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
             }
             startActivityForResult(intent, ChannelDetailsActivity.FOLLOW_REQUEST);
         });
+
+        if (mReelsItem!= null && mReelsItem.getLink() != null  ) {
+            viewArticle.setVisibility(View.VISIBLE);
+        }else{
+            viewArticle.setVisibility(View.GONE);
+        }
 
         viewArticle.setOnClickListener(v -> {
             if (getContext() == null) return;
@@ -1018,7 +1004,6 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
 //            e.printStackTrace();
 //        }
 //    }
-
     private void initView(View dialogView) {
         setting2 = dialogView.findViewById(R.id.setting2);
         tag = dialogView.findViewById(R.id.tag);
@@ -1041,7 +1026,7 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
         desc = dialogView.findViewById(R.id.desc);
         username = dialogView.findViewById(R.id.username);
         channel_btn = dialogView.findViewById(R.id.channel_btn);
-        viewArticle = dialogView.findViewById(R.id.tv_view_article);
+        viewArticle = dialogView.findViewById(R.id.viewArticle);
         noData = dialogView.findViewById(R.id.noData);
 //        mListRV = dialogView.findViewById(R.id.viewMoreList);
 //        gotoTop = dialogView.findViewById(R.id.gotoTop);
@@ -1049,10 +1034,14 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
 //        progress = dialogView.findViewById(R.id.progress);
         cvVideoThumbnail = dialogView.findViewById(R.id.cardViewImg);
         rlChannelDetail = dialogView.findViewById(R.id.rl_channel_detail);
+        tvTime = dialogView.findViewById(R.id.tv_time);
         Constants.rvm = (Constants.rvm) + 1;
-        Log.e("rvm", "initView:rvm " + Constants.rvm);
 
         String time = Utils.getTimeAgo(Utils.getDate(mReelsItem.getPublishTime()), getContext());
+
+        if (!TextUtils.isEmpty(time)) {
+            tvTime.setText(time);
+        }
 
         if (!TextUtils.isEmpty(mReelsItem.getLink())) {
             viewArticle.setVisibility(View.VISIBLE);
@@ -1176,8 +1165,8 @@ public class ReelViewMoreSheet extends BottomSheetDialogFragment implements Comm
     public void scrollToTop() {
 //        if (mListRV != null)
 //            mListRV.scrollToPosition(0);
-            if (cardLinearLayoutManager != null)
-                cardLinearLayoutManager.scrollToPositionWithOffset(0, 0);
+        if (cardLinearLayoutManager != null)
+            cardLinearLayoutManager.scrollToPositionWithOffset(0, 0);
     }
 
     private void callNextPage() {

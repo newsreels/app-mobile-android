@@ -15,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -33,7 +32,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aghajari.zoomhelper.ZoomHelper;
 import com.google.gson.Gson;
 import com.ziro.bullet.R;
 import com.ziro.bullet.adapters.feed.DetailViewHolder;
@@ -86,6 +84,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import im.ene.toro.PlayerSelector;
@@ -98,6 +97,7 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
     private AudioCallback audioCallback;
 
     private Article article;
+    private List<Article> articlelist;
 
     private NewsPresenter presenter;
     private MainPresenter mainPresenter;
@@ -356,6 +356,7 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
         textToAudio = new TextToAudioPlayerHelper(this);
         likePresenter = new LikePresenter(this);
         shareBottomSheetPresenter = new ShareBottomSheetPresenter(this);
+        Log.e("FCM", "FCM token To Server : " + prefConfig.getFirebaseToken());
 
         presenter = new NewsPresenter(this, this);
         mainPresenter = new MainPresenter(this, new MainInterface() {
@@ -405,6 +406,12 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
+        }
+        if (getIntent().hasExtra("position")) {
+            position = getIntent().getIntExtra("position", -1);
+        }
+        if (getIntent().hasExtra("myArrayList")) {
+            articlelist = getIntent().getParcelableArrayListExtra("myArrayList");
         }
 
         if (getIntent().hasExtra("article")) {
@@ -529,7 +536,7 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
                                 showBottomSheetDialog(shareInfo, article, new DialogInterface.OnDismissListener() {
                                     @Override
                                     public void onDismiss(DialogInterface dialog) {
-
+                                        Constants.sharePgNotVisible = true;
                                     }
                                 });
                             }
@@ -742,6 +749,11 @@ public class BulletDetailActivity extends BaseActivity implements NewsCallback, 
                 intent.putExtra("position", position);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
                 finish();
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
             }
 
             @Override

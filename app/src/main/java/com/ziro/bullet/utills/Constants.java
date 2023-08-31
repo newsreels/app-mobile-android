@@ -128,6 +128,7 @@ public class Constants {
     public static String followStatus = null;
     public static DataItem articleTabItem = null;
     public static boolean isFontSizeUpdated = false;
+    public static boolean updateDiscover = false;
 
 //    public static class Events {
 //        public static final String ARTICLE_VIDEO_COMPLETE = "ARTICLE_VIDEO_COMPLETE";

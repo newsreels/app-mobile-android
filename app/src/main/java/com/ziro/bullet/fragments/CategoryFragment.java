@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -46,6 +47,7 @@ import com.ziro.bullet.activities.BulletDetailActivity;
 import com.ziro.bullet.activities.CommentsActivity;
 import com.ziro.bullet.activities.PostArticleActivity;
 import com.ziro.bullet.activities.YoutubeFullScreenActivity;
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew;
 import com.ziro.bullet.adapters.NewFeed.HomeAdapter;
 import com.ziro.bullet.adapters.NewFeed.YoutubeViewHolderEdge;
 import com.ziro.bullet.adapters.NewFeed.newHomeArticle.HomeArticlesAdapterNew;
@@ -144,6 +146,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
     private ArrayList<Article> contentArrayList = new ArrayList<>();
     private SwipeRefreshLayout refresh;
     private CardView back;
+    private List<Article> articlelistNew;
     private LinearLayout noRecordFoundContainer;
     private RecyclerView mListRV;
     //    private Container mListRV;
@@ -218,10 +221,9 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
         super.onResume();
         // bottom bar control vars reset
 //        scrollDist = 0;
-        isVisible = true;
+//        isVisible = true;
         fragmentVisible = true;
         fragmentResumed = true;
-
 //        updateMuteButton();
     }
 
@@ -788,8 +790,6 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                     LinearLayoutManager layoutManager = ((LinearLayoutManager) mListRV.getLayoutManager());
 
-                    final int firstPosition = layoutManager.findFirstVisibleItemPosition();
-                    final int lastPosition = layoutManager.findLastVisibleItemPosition();
                     int firstVisibleChild = cardLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
                     int lastVisibleChild = cardLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                     long totalVisibleChild = Math.max(0, (lastVisibleChild - firstVisibleChild));
@@ -798,153 +798,19 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                             Article article = contentArrayList.get(firstVisibleChild + i);
                             if (article.getType() != null && (article.getType().equals("EXTENDED") || article.getType().equals("SIMPLE"))) {
                                 AnalyticsEvents.INSTANCE.articleViewEvent(requireContext(), article.getId());
+                                Log.e(TAG, "onScrollStateChanged: here");
+                                Glide.with(requireContext())
+                                        .load(article.getImage())
+                                        .encodeQuality(50)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .priority(Priority.IMMEDIATE)
+                                        .preload();
                             }
                         }
                     }
 
                     if (!fragmentVisible)
                         return;
-//                    new Handler().postDelayed(() -> {
-//                        if (fragmentVisible) {
-//
-//                            if (firstPosition != -1 && mListRV != null) {
-//                                Rect rvRect = new Rect();
-//                                mListRV.getGlobalVisibleRect(rvRect);
-//
-//                                Rect rowRect = new Rect();
-//
-//                                if (layoutManager.findViewByPosition(firstPosition) == null)
-//                                    return;
-//
-//                                layoutManager.findViewByPosition(firstPosition).getGlobalVisibleRect(rowRect);
-//
-//                                int percentFirst;
-//                                if (rowRect.bottom >= rvRect.bottom) {
-//                                    int visibleHeightFirst = rvRect.bottom - rowRect.top;
-//                                    percentFirst = (visibleHeightFirst * 100) / layoutManager.findViewByPosition(firstPosition).getHeight();
-//                                } else {
-//                                    int visibleHeightFirst = rowRect.bottom - rvRect.top;
-//                                    percentFirst = (visibleHeightFirst * 100) / layoutManager.findViewByPosition(firstPosition).getHeight();
-//                                }
-//
-//                                if (percentFirst > 100)
-//                                    percentFirst = 100;
-//
-//                                int VISIBILITY_PERCENTAGE = 90;
-//
-//                                int copyOfmArticlePosition = mArticlePosition;
-//
-//                                Log.d("slections", "onScrollStateChanged: percentFirst = " + percentFirst);
-//                                Log.d("slections", "onScrollStateChanged: position = " + copyOfmArticlePosition);
-//
-//                                /* based on percentage of item visibility, select current or next article
-//                                 *  if prev position is same as new pos then dont reset the article
-//                                 * */
-//                                if (percentFirst >= VISIBILITY_PERCENTAGE) {
-//                                    Log.d("slections", "onScrollStateChanged: percentage greater");
-//                                    mArticlePosition = firstPosition;
-//                                    if (mArticlePosition == 0) {
-//
-//                                        selectCardPosition(mArticlePosition);
-//
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 868");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//
-//                                    } else if (mArticlePosition == contentArrayList.size() - 1) {
-//
-//                                        //on fast scrolling select the last one in the last
-//                                        selectCardPosition(mArticlePosition);
-//
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 878");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//                                    } else if (copyOfmArticlePosition == mArticlePosition) {
-//                                        Log.d("slections", "onScrollStateChanged: copy = new pos");
-//                                        //scroll rested on same article so resume audio and bullet
-//                                        try {
-//                                            RecyclerView.ViewHolder holder = mListRV.findViewHolderForAdapterPosition(mArticlePosition);
-//                                            if (holder != null) {
-//                                                if (holder instanceof LargeCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((LargeCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof SmallCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((SmallCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof YoutubeViewHolder) {
-//                                                    ((YoutubeViewHolder) holder).youtubeResume();
-//                                                } else {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                                }
-//                                            } else {
-//                                                Log.d("audiotest", "scroll : stop_destroy");
-//                                                if (goHomeMainActivity != null)
-//                                                    goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                            }
-//
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    } else {
-//                                        if (copyOfmArticlePosition != mArticlePosition) {
-//                                            //scrolled to a new pos, so select new article
-//                                            selectCardPosition(mArticlePosition);
-//
-//                                            if (mCardAdapter != null) {
-//                                                Log.e("@@##@@##", "notifyDataSetChanged 916");
-//                                                mCardAdapter.notifyDataSetChanged();
-//                                            }
-//                                        }
-//                                    }
-//                                } else {
-//                                    mArticlePosition = firstPosition;
-//                                    mArticlePosition++;
-//
-//                                    if (copyOfmArticlePosition != mArticlePosition) {
-//                                        //scrolled to a new pos, so select new article
-//                                        selectCardPosition(mArticlePosition);
-//                                        if (mCardAdapter != null) {
-//                                            Log.e("@@##@@##", "notifyDataSetChanged 929");
-//                                            mCardAdapter.notifyDataSetChanged();
-//                                        }
-//                                    } else {
-//                                        //scroll rested on same article so resume audio and bullet
-//                                        try {
-//                                            RecyclerView.ViewHolder holder = mListRV.findViewHolderForAdapterPosition(mArticlePosition);
-//                                            if (holder != null) {
-//                                                if (holder instanceof LargeCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((LargeCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof SmallCardViewHolder) {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("resume");
-//                                                    ((SmallCardViewHolder) holder).storiesProgressView.resume();
-//                                                } else if (holder instanceof YoutubeViewHolder) {
-//                                                    ((YoutubeViewHolder) holder).youtubeResume();
-//                                                } else {
-//                                                    if (goHomeMainActivity != null)
-//                                                        goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                                }
-//                                            } else {
-//                                                Log.d("audiotest", "scroll : stop_destroy");
-//                                                if (goHomeMainActivity != null)
-//                                                    goHomeMainActivity.sendAudioEvent("stop_destroy");
-//                                            }
-//
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }, 500);
                 }
             }
 
@@ -952,7 +818,8 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                Log.d(TAG, "onScrolled: DyValue" + dy);
+//                Log.d(TAG, "onScrolled: DyValue: " + dy);
+
 
                 if (contentArrayList.size() - 20 <= cardLinearLayoutManager.findLastVisibleItemPosition() && !isLast()) {
                     if (!isApiCalling) {
@@ -964,13 +831,11 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 
                 if (goHomeTempHome != null && goHomeMainActivity != null) {
                     if (dy > 0) {
-//                        Log.e("RecyclerView_scrolled", "scroll up!");
                         goHomeTempHome.scrollUp();
-                        //goHomeMainActivity.scrollUp();
+//                        goHomeMainActivity.scrollUp();
                     } else {
-//                        Log.e("RecyclerView_scrolled", "scroll down!");
                         goHomeTempHome.scrollDown();
-                        //goHomeMainActivity.scrollDown();
+//                        goHomeMainActivity.scrollDown();
                     }
                 }
 
@@ -1062,6 +927,14 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void preloadImage(String image) {
+        Glide.with(this)
+                .load(image)
+                .encodeQuality(50)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .preload();
     }
 
     public void pauseOnlyBullets() {
@@ -1350,10 +1223,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                         if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                             for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                 if (getActivity() != null && !getActivity().isDestroyed()) {
-                                                    Glide.with(this)
-                                                            .load(bullet.getImage())
-                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                            .preload();
+                                                    preloadImage(bullet.getImage());
                                                 }
                                             }
                                         }
@@ -1362,10 +1232,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             contentArrayList.addAll(section.getData().getArticles());
                                             for (Article article : section.getData().getArticles()) {
                                                 if (getActivity() != null && !getActivity().isDestroyed()) {
-                                                    Glide.with(this)
-                                                            .load(article.getImage())
-                                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                            .preload();
+                                                    preloadImage(article.getImage());
                                                 }
                                             }
                                         }
@@ -1701,9 +1568,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                                 for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                     if (getActivity() != null) {
-                                                        Glide.with(this)
-                                                                .load(bullet.getImage())
-                                                                .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                        preloadImage(bullet.getImage());
                                                     }
                                                 }
                                             }
@@ -1712,9 +1577,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                             if (section.getData().getArticles() != null && section.getData().getArticles().size() > 0) {
                                                 for (Article article : section.getData().getArticles()) {
                                                     if (getActivity() != null) {
-                                                        Glide.with(this)
-                                                                .load(article.getImage())
-                                                                .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                        preloadImage(article.getImage());
                                                     }
                                                 }
                                                 Article article = new Article();
@@ -1749,9 +1612,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                                 if (section.getData().getArticles().get(0).getBullets() != null && section.getData().getArticles().get(0).getBullets().size() > 0) {
                                                     for (Bullet bullet : section.getData().getArticles().get(0).getBullets()) {
                                                         if (getActivity() != null) {
-                                                            Glide.with(this)
-                                                                    .load(bullet.getImage())
-                                                                    .diskCacheStrategy(DiskCacheStrategy.ALL).preload();
+                                                            preloadImage(bullet.getImage());
                                                         }
                                                     }
                                                 }
@@ -1760,10 +1621,7 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                                                     contentArrayList.addAll(section.getData().getArticles());
                                                     for (Article article : section.getData().getArticles()) {
                                                         if (getActivity() != null) {
-                                                            Glide.with(this)
-                                                                    .load(article.getImage())
-                                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                                    .preload();
+                                                            preloadImage(article.getImage());
                                                         }
                                                     }
                                                 }
@@ -2077,6 +1935,12 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
 //                intent.putExtra("position", position);
 //                startActivityForResult(intent, Constants.CommentsRequestCode);
             }
+
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
+            }
         });
 
         mCardAdapter = new HomeAdapter(isDark, new CommentClick() {
@@ -2087,6 +1951,23 @@ public class CategoryFragment extends Fragment implements NewsCallback, ShareToM
                 intent.putExtra("article", new Gson().toJson(article));
                 intent.putExtra("type", type);
                 intent.putExtra("position", position);
+                startActivityForResult(intent, Constants.CommentsRequestCode);
+            }
+
+            @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+                //shifa
+
+                Intent intent = new Intent(getContext(), ArticleDetailNew.class);
+                ArrayList<Article> itemsa = new ArrayList<>(); // your ArrayList of Article objects
+                itemsa = (ArrayList<Article>) articlelist;
+                intent.putExtra("myArrayList", new Gson().toJson(itemsa));
+                intent.putExtra("type", type);
+                intent.putExtra("articleID", article.getId());
+                intent.putExtra("position", position);
+                Log.e(TAG, "onNewDetailClick: " + mContextId);
+                intent.putExtra("mContextId", mContextId);
+                intent.putExtra("NextPageApi", mNextPage);
                 startActivityForResult(intent, Constants.CommentsRequestCode);
             }
 

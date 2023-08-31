@@ -1332,6 +1332,11 @@ public class CommunityFeedFragment extends Fragment implements CommunityCallback
             }
 
             @Override
+            public void onNewDetailClick(int position, Article article, List<Article> articlelist) {
+
+            }
+
+            @Override
             public void fullscreen(int position, Article article, long duration, String mode, boolean isManual) {
                 Intent intent = new Intent(getContext(), VideoFullScreenActivity.class);
                 intent.putExtra("url", article.getLink());

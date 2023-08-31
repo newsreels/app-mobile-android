@@ -185,89 +185,89 @@ class PersonalInfoActivity : BaseActivity(), View.OnClickListener, ProfileApiCal
             }
         })
 
-        edittextUsername.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                errorUsername.text = ""
-                errorUsername.visibility = VISIBLE
-                username_icon.visibility = INVISIBLE
-                frame_username.background = getDrawable(R.drawable.normal_edittext_theme)
-                edittextUsername.setTextColor(
-                    (ContextCompat.getColor(
-                        this@PersonalInfoActivity, R.color.black
-                    ))
-                )
-
-                continue_.isEnabled = false
-                btn_color.setBackgroundColor(
-                    (ContextCompat.getColor(
-                        this@PersonalInfoActivity, R.color.disable_btn
-                    ))
-                )
-                btn_text.setTextColor(
-                    (ContextCompat.getColor(
-                        this@PersonalInfoActivity, R.color.edittextHint
-                    ))
-                )
-                OAuthAPIClient.cancelAll()
-                isUsernameValid = false
-                val usernameCopy = s.toString()
-                if (!s!!.isNullOrEmpty()) {
-                    profilePresenter!!.checkUsername(usernameCopy, object : ApiCallbacks {
-                        override fun loaderShow(flag: Boolean) {
-                            if (flag) {
-                                setUsernameLoading()
-                            }
-                        }
-
-                        override fun error(error: String?) {
-                            error(
-                                errorUsername,
-                                frame_username,
-                                edittextUsername,
-                                btn_color,
-                                btn_text,
-                                error
-                            )
-                        }
-
-                        override fun error404(error: String?) {
-                            error(
-                                errorUsername,
-                                frame_username,
-                                edittextUsername,
-                                btn_color,
-                                btn_text,
-                                error
-                            )
-                        }
-
-                        override fun success(response: Any?) {
-                            if (response is Boolean) {
-                                if (response) {
-                                    validUsername = usernameCopy
-                                    isUsernameValid = true
-                                    continue_.isEnabled = true
-                                    setUsernameValidIcon()
-                                } else {
-                                    isUsernameValid = false
-                                    setUsernameInvalidIcon()
-                                }
-                            } else {
-                                isUsernameValid = false
-                                setUsernameInvalidIcon()
-                            }
-                        }
-                    })
-                }
-            }
-        })
+//        edittextUsername.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {
+//
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                errorUsername.text = ""
+//                errorUsername.visibility = VISIBLE
+//                username_icon.visibility = INVISIBLE
+//                frame_username.background = getDrawable(R.drawable.normal_edittext_theme)
+//                edittextUsername.setTextColor(
+//                    (ContextCompat.getColor(
+//                        this@PersonalInfoActivity, R.color.black
+//                    ))
+//                )
+//
+//                continue_.isEnabled = false
+//                btn_color.setBackgroundColor(
+//                    (ContextCompat.getColor(
+//                        this@PersonalInfoActivity, R.color.disable_btn
+//                    ))
+//                )
+//                btn_text.setTextColor(
+//                    (ContextCompat.getColor(
+//                        this@PersonalInfoActivity, R.color.edittextHint
+//                    ))
+//                )
+//                OAuthAPIClient.cancelAll()
+//                isUsernameValid = false
+//                val usernameCopy = s.toString()
+//                if (!s!!.isNullOrEmpty()) {
+//                    profilePresenter!!.checkUsername(usernameCopy, object : ApiCallbacks {
+//                        override fun loaderShow(flag: Boolean) {
+//                            if (flag) {
+//                                setUsernameLoading()
+//                            }
+//                        }
+//
+//                        override fun error(error: String?) {
+//                            error(
+//                                errorUsername,
+//                                frame_username,
+//                                edittextUsername,
+//                                btn_color,
+//                                btn_text,
+//                                error
+//                            )
+//                        }
+//
+//                        override fun error404(error: String?) {
+//                            error(
+//                                errorUsername,
+//                                frame_username,
+//                                edittextUsername,
+//                                btn_color,
+//                                btn_text,
+//                                error
+//                            )
+//                        }
+//
+//                        override fun success(response: Any?) {
+//                            if (response is Boolean) {
+//                                if (response) {
+//                                    validUsername = usernameCopy
+//                                    isUsernameValid = true
+//                                    continue_.isEnabled = true
+//                                    setUsernameValidIcon()
+//                                } else {
+//                                    isUsernameValid = false
+//                                    setUsernameInvalidIcon()
+//                                }
+//                            } else {
+//                                isUsernameValid = false
+//                                setUsernameInvalidIcon()
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//        })
     }
 
     private fun setUsernameValidIcon() {

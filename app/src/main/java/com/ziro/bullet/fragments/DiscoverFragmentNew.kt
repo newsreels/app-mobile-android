@@ -30,6 +30,7 @@ import com.google.gson.Gson
 import com.ziro.bullet.BuildConfig
 import com.ziro.bullet.R
 import com.ziro.bullet.activities.*
+import com.ziro.bullet.activities.articledetail.ArticleDetailNew
 import com.ziro.bullet.adapters.discover_new.DiscoverAdapterNew
 import com.ziro.bullet.adapters.searchhistory.SearchHistoryAdapter
 import com.ziro.bullet.data.PrefConfig
@@ -391,6 +392,25 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                             startActivityForResult(intent, Constants.CommentsRequestCode)
                         }
 
+                        override fun onNewDetailClick(
+                            position: Int,
+                            article: Article?,
+                            articlelist: MutableList<Article>?
+                        ) {
+                            val intent = Intent(context, ArticleDetailNew::class.java)
+                            var itemsa: ArrayList<Article?>? =
+                                ArrayList() // your ArrayList of Article objects
+
+                            itemsa = articlelist as ArrayList<Article?>?
+                            intent.putExtra("myArrayList", Gson().toJson(itemsa))
+                            intent.putExtra("type", "type")
+                            intent.putExtra("articleID", article!!.id)
+                            intent.putExtra("position", position)
+                            intent.putExtra("mContextId", article.id)
+                            intent.putExtra("NextPageApi", "")
+                            startActivityForResult(intent, Constants.CommentsRequestCode)
+                        }
+
                         override fun fullscreen(
                             position: Int,
                             article: Article,
@@ -591,10 +611,10 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
                     )
                 }
                 "SPORTS" -> {
-                    val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
-                    val calendar = Calendar.getInstance()
-                    val date = sdf.format(calendar.time)
-                    discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
+//                    val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
+//                    val calendar = Calendar.getInstance()
+//                    val date = sdf.format(calendar.time)
+//                    discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
                 }
                 "ARTICLE" -> {
                     discoverPresenter.getDiscoverTrendingNews(
@@ -683,19 +703,23 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
             discoverAdapterNew?.notifyDataSetChanged()
         }
 
-        if (discoverTopicsArray != null) {
-            discoverTopicsArray.forEach {
-                when (it.type) {
-                    "TOPICS" -> {
-                        discoverPresenter.getDiscoverTrendingTopics(it.context)
-                    }
-                    "CHANNELS" -> {
-                        discoverPresenter.getDiscoverTrendingChannels(
-                            it.context
-                        )
+        try {
+            if (discoverTopicsArray != null) {
+                discoverTopicsArray.forEach {
+                    when (it.type) {
+                        "TOPICS" -> {
+                            discoverPresenter.getDiscoverTrendingTopics(it.context)
+                        }
+                        "CHANNELS" -> {
+                            discoverPresenter.getDiscoverTrendingChannels(
+                                it.context
+                            )
+                        }
                     }
                 }
             }
+        } catch (e: Exception) {
+
         }
 
     }
@@ -934,11 +958,11 @@ open class DiscoverFragmentNew : Fragment(), DiscoverResponseInterface,
 //                        }
 //                    }
                     "SPORTS" -> {
-                        discoverTopicsArray.add(it)
-                        val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
-                        val calendar = Calendar.getInstance()
-                        val date = sdf.format(calendar.time)
-                        discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
+//                        discoverTopicsArray.add(it)
+//                        val sdf = SimpleDateFormat("yyyyMMdd Z", Locale.getDefault())
+//                        val calendar = Calendar.getInstance()
+//                        val date = sdf.format(calendar.time)
+//                        discoverPresenter.getLiveScore(discoverPresenter.sportCategory, date)
                     }
                     "ARTICLE" -> {
                         articlesIndex = index
