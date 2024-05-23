@@ -73,7 +73,8 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
         pushpresenter = new PushNotificationPresenter(this, this);
         prefConfig = new PrefConfig(this);
         AnalyticsEvents.INSTANCE.logEvent(this, Events.APP_OPEN);
-        InternetCheckHelper.getInstance().startObservingConnection(getApplicationContext());
+        InternetCheckHelper.getInstance();
+        InternetCheckHelper.startObservingConnection(getApplicationContext());
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {
@@ -92,7 +93,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-//        return;
         if (!hasFocus) {
             return;
         }
@@ -105,52 +105,45 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
     }
 
     private void getDynamicLinkData() {
-        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent()).addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-            @Override
-            public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                // Get deep link from result (may be null if no link is found)
-                Uri deepLink = null;
-                if (pendingDynamicLinkData != null) {
-                    deepLink = pendingDynamicLinkData.getLink();
-                    Log.d(TAG, "onSuccess: deepLink" + deepLink);
-                    Log.d(TAG, "onSuccess: deepLink" + pendingDynamicLinkData.getExtensions());
-                    if (deepLink != null) {
-                        Log.d(TAG, "onSuccess: deepLink id = " + deepLink.getQueryParameter("id"));
-                        Log.d(TAG, "onSuccess: deepLink qry = " + deepLink.getQuery());
-                        Log.d(TAG, "onSuccess: deepLink qry prmtr names= " + deepLink.getQueryParameterNames());
-                        Log.d(TAG, "onSuccess: deepLink qry prmtr names= " + deepLink.getLastPathSegment());
-                    }
+        FirebaseDynamicLinks.getInstance().getDynamicLink(getIntent()).addOnSuccessListener(this, pendingDynamicLinkData -> {
+            // Get deep link from result (may be null if no link is found)
+            Uri deepLink = null;
+            if (pendingDynamicLinkData != null) {
+                deepLink = pendingDynamicLinkData.getLink();
+                Log.d(TAG, "onSuccess: deepLink" + deepLink);
+                Log.d(TAG, "onSuccess: deepLink" + pendingDynamicLinkData.getExtensions());
+                if (deepLink != null) {
+                    Log.d(TAG, "onSuccess: deepLink id = " + deepLink.getQueryParameter("id"));
+                    Log.d(TAG, "onSuccess: deepLink qry = " + deepLink.getQuery());
+                    Log.d(TAG, "onSuccess: deepLink qry prmtr names= " + deepLink.getQueryParameterNames());
+                    Log.d(TAG, "onSuccess: deepLink qry prmtr names= " + deepLink.getLastPathSegment());
                 }
+            }
 
-                Intent intent;
-                if (TextUtils.isEmpty(prefConfig.getAccessToken())) {
-                    skipLogin();
-//                            intent = new Intent(SplashActivity.this, WelcomeActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                } else {
-                    intent = new Intent(SplashActivity.this, MainActivityNew.class);
-//                            intent.putExtra("source_id", getIntent().getExtras().getString("source_id"));
-//                            intent.putExtra("source_name", getIntent().getExtras().getString("source_name"));
-                    if (deepLink != null && !TextUtils.isEmpty(deepLink.getLastPathSegment()) && deepLink.getLastPathSegment().contains("articles")) {
-                        intent.putExtra("article_id", deepLink.getQueryParameter("id"));
-                        Map<String, String> params = new HashMap<>();
-                        params.put(Events.KEYS.REEL_ID, deepLink.getQueryParameter("id"));
-                        AnalyticsEvents.INSTANCE.logEvent(SplashActivity.this, params, Events.SHARE_OPEN_ARTICLE);
-                    } else if (deepLink != null && !TextUtils.isEmpty(deepLink.getLastPathSegment()) && deepLink.getLastPathSegment().contains("reel")) {
-                        intent.putExtra("reel_context", deepLink.getQueryParameter("context"));
-                        Map<String, String> params = new HashMap<>();
-                        params.put(Events.KEYS.REEL_ID, deepLink.getQueryParameter("context"));
-                        AnalyticsEvents.INSTANCE.logEvent(SplashActivity.this, params, Events.SHARE_OPEN_REEL);
-                    }
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    clearIntent();
-                    intentStored = intent;
-                    openIntent(intentStored);
+            Intent intent;
+            if (TextUtils.isEmpty(prefConfig.getAccessToken())) {
+                skipLogin();
+            } else {
+                intent = new Intent(SplashActivity.this, MainActivityNew.class);
+                if (deepLink != null && !TextUtils.isEmpty(deepLink.getLastPathSegment()) && deepLink.getLastPathSegment().contains("articles")) {
+                    intent.putExtra("article_id", deepLink.getQueryParameter("id"));
+                    Map<String, String> params = new HashMap<>();
+                    params.put(Events.KEYS.REEL_ID, deepLink.getQueryParameter("id"));
+                    AnalyticsEvents.INSTANCE.logEvent(SplashActivity.this, params, Events.SHARE_OPEN_ARTICLE);
+                } else if (deepLink != null && !TextUtils.isEmpty(deepLink.getLastPathSegment()) && deepLink.getLastPathSegment().contains("reel")) {
+                    intent.putExtra("reel_context", deepLink.getQueryParameter("context"));
+                    Map<String, String> params = new HashMap<>();
+                    params.put(Events.KEYS.REEL_ID, deepLink.getQueryParameter("context"));
+                    AnalyticsEvents.INSTANCE.logEvent(SplashActivity.this, params, Events.SHARE_OPEN_REEL);
                 }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                clearIntent();
+                intentStored = intent;
+                openIntent(intentStored);
+            }
 //                        startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 //                        finishAfterTransition();
-            }
         }).addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -159,17 +152,12 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                 Intent intent;
                 if (TextUtils.isEmpty(prefConfig.getAccessToken())) {
                     skipLogin();
-//                            intent = new Intent(SplashActivity.this, WelcomeActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 } else {
                     intent = new Intent(SplashActivity.this, MainActivityNew.class);
                     clearIntent();
                     intentStored = intent;
                     openIntent(intentStored);
                 }
-//                        startActivity(intent);
-//                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                        finishAfterTransition();
             }
         });
     }
@@ -189,19 +177,12 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
 
                     intent.putExtra("source_id", getIntent().getExtras().getString("source_id"));
                     intent.putExtra("source_name", getIntent().getExtras().getString("source_name"));
-//                    intent.putExtra("article_id", getIntent().getExtras().getString("article_id"));
                     clearIntent();
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intentStored = intent;
                     openIntent(intentStored);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                    finishAfterTransition();
                 } else if (Objects.equals(getIntent().getExtras().getString("type"), "widget_article")) {
                     Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
-//                    intent.putExtra("topic_id", getIntent().getExtras().getString("topic_id"));
-//                    intent.putExtra("topic_name", getIntent().getExtras().getString("topic_name"));
-
                     intent.putExtra("source_id", getIntent().getExtras().getString("source_id"));
                     intent.putExtra("source_name", getIntent().getExtras().getString("source_name"));
                     intent.putExtra("article_id", getIntent().getExtras().getString("article_id"));
@@ -209,9 +190,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intentStored = intent;
                     openIntent(intentStored);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                    finishAfterTransition();
                 } else if (Objects.equals(getIntent().getExtras().getString("type"), "article.new")) {
                     AnalyticsEvents.INSTANCE.logEvent(this, Events.NOTIFICATION_OPEN_ARTICLE);
                     Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
@@ -222,9 +200,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                     clearIntent();
                     intentStored = intent;
                     openIntent(intentStored);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                    finishAfterTransition();
                 } else if (Objects.equals(getIntent().getExtras().getString("type"), "reel.new")) {
                     AnalyticsEvents.INSTANCE.logEvent(this, Events.NOTIFICATION_OPEN_REEL);
                     Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
@@ -235,9 +210,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                     clearIntent();
                     intentStored = intent;
                     openIntent(intentStored);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                    finishAfterTransition();
                 } else {
                     AnalyticsEvents.INSTANCE.logEvent(this, Events.NOTIFICATION_OPEN);
                     Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
@@ -247,9 +219,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                     clearIntent();
                     intentStored = intent;
                     openIntent(intentStored);
-//                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-//                    finishAfterTransition();
                 }
                 return true;
             }
@@ -262,19 +231,16 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
 
     @Override
     public void loaderShow(boolean flag) {
-//        progress.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void error(String error) {
-//        progress.setVisibility(View.GONE);
         runOnUiThread(() -> Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show());
     }
 
     @Override
     public void error404(String error) {
-//        progress.setVisibility(View.GONE);
         runOnUiThread(() -> Toast.makeText(this, this.getResources().getString(R.string.internet_error), Toast.LENGTH_SHORT).show());
     }
 
@@ -293,32 +259,29 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
     public void onUserConfigSuccess(UserConfigModel userConfigModel) {
 
         if (!this.isFinishing()) try {
-            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-                @Override
-                public void onComplete(@NonNull Task<String> task) {
-                    if (!task.isSuccessful()) {
-                        task.getException().printStackTrace();
-                    } else {
-                        String token = task.getResult();
-                        prefConfig.setFirebaseToken(token);
-                        fcmPresenter.sentTokenToServer(prefConfig);
-                        OneSignal.setExternalUserId(token);
-                    }
-                    Locale deviceLocale = null;
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        deviceLocale = Resources.getSystem().getConfiguration().getLocales().get(0);
-                    } else {
-                        deviceLocale = Resources.getSystem().getConfiguration().locale;
-                    }
-                    mSocialLoginPresenter.selectLanguage(deviceLocale.getLanguage());
-
-                    Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
-                    clearIntent();
-                    intentStored = intent;
-                    openIntent(intentStored);
-                    pushpresenter.onBoardingPushConfig(true, false, "1h");
-
+            FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                if (!task.isSuccessful()) {
+                    task.getException().printStackTrace();
+                } else {
+                    String token = task.getResult();
+                    prefConfig.setFirebaseToken(token);
+                    fcmPresenter.sentTokenToServer(prefConfig);
+                    OneSignal.setExternalUserId(token);
                 }
+                Locale deviceLocale = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    deviceLocale = Resources.getSystem().getConfiguration().getLocales().get(0);
+                } else {
+                    deviceLocale = Resources.getSystem().getConfiguration().locale;
+                }
+                mSocialLoginPresenter.selectLanguage(deviceLocale.getLanguage());
+
+                Intent intent = new Intent(SplashActivity.this, MainActivityNew.class);
+                clearIntent();
+                intentStored = intent;
+                openIntent(intentStored);
+                pushpresenter.onBoardingPushConfig(true, false, "1h");
+
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -327,8 +290,6 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
 
     @Override
     public void success(boolean flag) {
-//        progress.setVisibility(View.GONE);
-
         if (flag) {
             configPresenter.getUserConfig(false);
         }

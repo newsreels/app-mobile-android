@@ -372,10 +372,6 @@
                 <data
                     android:host="newsin.bullets.app"
                     android:scheme="https" />
-<!--                <data-->
-<!--                    android:host="getreel.onelink.me"-->
-<!--                    android:pathPrefix="/xU9P"-->
-<!--                    android:scheme="https" />-->
             </intent-filter>
 
             <intent-filter>
@@ -383,32 +379,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name=".activities.DeepLinkSplashActivity"-->
-        <!--            android:exported="true"-->
-        <!--            android:screenOrientation="portrait"-->
-        <!--            android:theme="@style/AppTheme.CenterAnimation">-->
-        <!--            <intent-filter android:autoVerify="true">-->
-        <!--                <action android:name="android.intent.action.VIEW" />-->
-
-        <!--                <category android:name="android.intent.category.DEFAULT" />-->
-        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-        <!--                <data-->
-        <!--                    android:host="newsreels.app"-->
-        <!--                    android:scheme="https" />-->
-        <!--                <data-->
-        <!--                    android:host="m.bullets.app"-->
-        <!--                    android:scheme="https" />-->
-        <!--                <data-->
-        <!--                    android:host="newsin.bullets.app"-->
-        <!--                    android:scheme="https" />-->
-        <!--                <data-->
-        <!--                    android:host="getreel.onelink.me"-->
-        <!--                    android:pathPrefix="/xU9P"-->
-        <!--                    android:scheme="https" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
         <activity
             android:name=".activities.MainActivityNew"
             android:configChanges="uiMode"

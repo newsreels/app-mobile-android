@@ -111,8 +111,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
+public class MainActivityNew extends BaseActivity implements TempHomeFragment.OnHomeFragmentInteractionListener, DetailFragment.OnHomeFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener, SearchModifiedFragment.OnFragmentInteractionListener, CommunityFeedFragmentMain.OnCommunityFragmentInteractionListener, GoHome {
     public static final int RESULT_INTENT_ADD_LOCATION = 3781;
     public static final int RESULT_INTENT_CHANGE_LANGUAGE = 3891;
     public static final int RESULT_INTENT_CHANGE_EDITION = 3111;
@@ -360,11 +359,11 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         Log.d(TAG, "onResume: ");
         if (active instanceof ReelFragment && Constants.HomeSelectedFragment == BOTTOM_TAB_VIDEO && !Constants.rvmdailogopen) {
             Constants.onResumeReels = true;
-            new Components().statusBarColor(MainActivityNew.this, "black");
+            Components.statusBarColor(MainActivityNew.this, "black");
             staticDarkColorBottomTabs();
         } else if (active instanceof TempHomeFragment && Constants.HomeSelectedFragment == Constants.BOTTOM_TAB_HOME) {
             Constants.onResumeReels = false;
-            new Components().statusBarColor(this, "white");
+            Components.statusBarColor(this, "white");
             dynamicColorBottomTabs();
         }/* else {
             staticDarkColorBottomTabs();
@@ -567,9 +566,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     private void checkRemoteConfig() {
         FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setMinimumFetchIntervalInSeconds(3600)
-                .build();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(3600).build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
 
         mFirebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(this, new OnCompleteListener<Boolean>() {
@@ -600,14 +597,13 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
                 Log.d(TAG, "Updated keys: " + configUpdate.getUpdatedKeys());
 
                 if (configUpdate.getUpdatedKeys().contains("welcome_message")) {
-                    mFirebaseRemoteConfig.activate()
-                            .addOnCompleteListener(task -> {
-                                String version = mFirebaseRemoteConfig.getString("app_version");
-                                RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
-                                if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
-                                    showUpdateDialog(configModel.getAndroid().getForce_update());
-                                Log.d("RemoteConfig_TAG", "addOnCompleteListener: Android Version-> " + version);
-                            });
+                    mFirebaseRemoteConfig.activate().addOnCompleteListener(task -> {
+                        String version = mFirebaseRemoteConfig.getString("app_version");
+                        RemoteConfigModel configModel = new Gson().fromJson(version, RemoteConfigModel.class);
+                        if (BuildConfig.VERSION_CODE < configModel.getAndroid().getVersion())
+                            showUpdateDialog(configModel.getAndroid().getForce_update());
+                        Log.d("RemoteConfig_TAG", "addOnCompleteListener: Android Version-> " + version);
+                    });
                 }
             }
 
@@ -655,10 +651,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
     }
 
     private void checkNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-        ) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 490);
         }
     }
@@ -768,7 +761,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         Utils.hideKeyboard(this, bottomNavigationView);
         Constants.onResumeReels = false;
 
-        new Components().statusBarColor(this, "white");
+        Components.statusBarColor(this, "white");
         dynamicColorBottomTabs();
     }
 
@@ -808,7 +801,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         if (prefConfig != null) {
             prefConfig.setAppStateMainTabs("nav_home");
         }
-        new Components().statusBarColor(this, "white");
+        Components.statusBarColor(this, "white");
         dynamicColorBottomTabs();
 
         AnalyticsEvents.INSTANCE.logEvent(this, Events.HOME_PAGE_CLICK);
@@ -865,8 +858,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         }
         active = getSearchFragment();
         Constants.HomeSelectedFragment = Constants.BOTTOM_TAB_SEARCH;
-        if (getSearchFragment() != null && Constants.updateDiscover)
-            getSearchFragment().reload();
+        if (getSearchFragment() != null && Constants.updateDiscover) getSearchFragment().reload();
         if (getSearchFragment() != null && getSearchFragment().isAdded()) {
             getSearchFragment().selectFirst();
             getSearchFragment().init();
@@ -876,7 +868,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         }
         Utils.hideKeyboard(this, bottomNavigationView);
         Constants.onResumeReels = false;
-        new Components().statusBarColor(this, "white");
+        Components.statusBarColor(this, "white");
         dynamicColorBottomTabs();
         if (getSearchFragment() != null && getSearchFragment().isAdded()) {
             getSearchFragment().setStatusBarColor();
@@ -954,7 +946,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
             Constants.menuDataUpdate = false;
         }
 
-        new Components().statusBarColor(this, "white");
+        Components.statusBarColor(this, "white");
         dynamicColorBottomTabs();
     }
 
@@ -1003,7 +995,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
         if (prefConfig != null) {
             prefConfig.setAppStateMainTabs("nav_reels");
         }
-        new Components().statusBarColor(this, "black");
+        Components.statusBarColor(this, "black");
         staticDarkColorBottomTabs();
         Log.d(TAG, "selectReelsFragment: ");
     }
@@ -1182,7 +1174,7 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 
             if (TextUtils.isEmpty(previousTab) || previousTab.equalsIgnoreCase("nav_reels") || (Constants.HomeSelectedFragment != Constants.BOTTOM_TAB_ACCOUNT)) {
                 //prefConfig.setAppStateMainTabs("nav_reels");
-                new Components().statusBarColor(this, "black");
+                Components.statusBarColor(this, "black");
 
                 if (!TextUtils.isEmpty(previousTab)) {
                     switch (previousTab) {

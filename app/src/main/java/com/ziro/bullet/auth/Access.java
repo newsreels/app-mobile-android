@@ -20,7 +20,6 @@ public class Access {
                 .post(formBodyBuilder.build())
                 .build();
 
-
         return refreshTokenFromResponse(oAuth2Client, request);
     }
 

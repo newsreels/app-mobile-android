@@ -45,7 +45,6 @@ public class SocialLoginPresenter {
         tokenGenerator = new TokenGenerator();
     }
 
-
     public void facebookLogin(@NonNull final AccessToken accessToken) {
         passwordInterface.loaderShow(true);
         final String token = accessToken.getToken();
@@ -99,16 +98,12 @@ public class SocialLoginPresenter {
     }
 
     public void skipLogin(String deviceId) {
-//        Log.d(TAG, "skipLogin: deviceId = " + deviceId);
-//        passwordInterface.loaderShow(true);
-
         tokenGenerator.authenticateGuest(deviceId + "a", mPrefconfig.getPrefLocale(), response -> {
             if (response.isSuccessful()) {
                 mPrefconfig.setAccessToken(response.getAccessToken());
                 mPrefconfig.setRefreshToken(response.getRefreshToken());
                 passwordInterface.success(true);
             } else {
-//                passwordInterface.loaderShow(false);
                 if (response.getOAuthError() != null && !TextUtils.isEmpty(response.getOAuthError().getErrorDescription()))
                     passwordInterface.error("" + response.getOAuthError().getErrorDescription());
                 else {
