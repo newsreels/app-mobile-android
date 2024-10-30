@@ -2,6 +2,6 @@
 <defaults>
   <entry>
     <key>app_version</key>
-    <value>{"android":{"version":99,"force_update":false},"ios":{"version":"99","force_update":false}}</value>
+    <value>{"android":{"version":1,"force_update":false},"ios":{"version":"1","force_update":false}}</value>
   </entry>
 </defaults>

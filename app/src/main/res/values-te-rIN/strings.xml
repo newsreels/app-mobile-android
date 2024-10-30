@@ -22,7 +22,7 @@
     <string name="trans_title" translatable="false">trans_title</string>
     <string name="trans_desc" translatable="false">trans_desc</string>
     <string name="x_" translatable="false">X</string>
-    <string name="pref_file" translatable="false">com.ziro.bullets.prefe</string>
+    <string name="pref_file" translatable="false">com.newsreels.apps.prefe</string>
 
     <string name="internet_error">ఇంటర్నెట్ కనెక్టివిటీని తనిఖీ చేయండి!</string>
     <string name="search">వెతకండి</string>

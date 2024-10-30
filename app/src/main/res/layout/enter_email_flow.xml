@@ -66,36 +66,41 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:layout_marginHorizontal="@dimen/_12sdp"
-    android:layout_gravity="center"
-    android:orientation="horizontal">
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_weight="2"
-        android:background="@color/greydull"/>
-    <TextView
-        android:id="@+id/or"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginVertical="@dimen/_20sdp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/oor"
         android:gravity="center"
-        android:textColor="@color/toolbar_icon"
-        android:textSize="@dimen/_12sdp" />
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_weight="2"
-        android:background="@color/greydull"/>
-</LinearLayout>
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="2"
+            android:background="@color/greydull" />
+
+        <TextView
+            android:id="@+id/or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="@string/oor"
+            android:textColor="@color/toolbar_icon"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="2"
+            android:background="@color/greydull" />
+    </LinearLayout>
+
     <include
         android:id="@+id/google"
         layout="@layout/outline_google_btn_wid_progress"
@@ -110,7 +115,8 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_20sdp" />
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/termc"
@@ -121,11 +127,11 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/by_continuing"
         android:textColor="@color/grey"
-        android:visibility="gone"
-        android:textSize="@dimen/_10sdp" />
+        android:textSize="@dimen/_10sdp"
+        android:visibility="gone" />
 
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/_200sdp" />-->
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/_200sdp" />-->
 
 </LinearLayout>

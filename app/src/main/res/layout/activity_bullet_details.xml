@@ -33,7 +33,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <com.ziro.bullet.storyMaker.StoriesProgressView
+    <com.newsreels.app.storyMaker.StoriesProgressView
         android:id="@+id/stories"
         android:layout_width="match_parent"
         android:layout_height="4dp"

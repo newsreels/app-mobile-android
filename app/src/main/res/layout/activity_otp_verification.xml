@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ziro.bullet.utills.SearchLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.newsreels.app.utills.SearchLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
@@ -137,7 +137,7 @@
                 android:orientation="horizontal"
                 android:weightSum="6">
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code1"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -156,7 +156,7 @@
                     android:textDirection="locale"
                     android:textSize="@dimen/_14sdp" />
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code2"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -175,7 +175,7 @@
                     android:textDirection="locale"
                     android:textSize="@dimen/_14sdp" />
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code3"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -194,7 +194,7 @@
                     android:textDirection="locale"
                     android:textSize="@dimen/_14sdp" />
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code4"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -213,7 +213,7 @@
                     android:textDirection="locale"
                     android:textSize="@dimen/_14sdp" />
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code5"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -232,7 +232,7 @@
                     android:textDirection="locale"
                     android:textSize="@dimen/_14sdp" />
 
-                <com.ziro.bullet.utills.ChatEditText
+                <com.newsreels.app.utills.ChatEditText
                     android:id="@+id/code6"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
@@ -364,4 +364,4 @@
 
     <include layout="@layout/progress_black_mode" />
 
-</com.ziro.bullet.utills.SearchLayout>
+</com.newsreels.app.utills.SearchLayout>

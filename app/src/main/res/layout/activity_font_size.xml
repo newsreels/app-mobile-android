@@ -271,7 +271,7 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <com.ziro.bullet.utills.FloatSeekBar
+                <com.newsreels.app.utills.FloatSeekBar
                     android:id="@+id/seekBarFont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

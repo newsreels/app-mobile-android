@@ -18,7 +18,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp" />
 
-    <com.ziro.bullet.discretescrollview.DiscreteScrollView
+    <com.newsreels.app.discretescrollview.DiscreteScrollView
         android:id="@+id/items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

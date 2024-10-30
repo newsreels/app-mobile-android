@@ -1,48 +1,61 @@
 {
   "project_info": {
-    "project_number": "844271567754",
-    "firebase_url": "https://nib-app-prod.firebaseio.com",
-    "project_id": "nib-app-prod",
-    "storage_bucket": "nib-app-prod.appspot.com"
+    "project_number": "106377066055",
+    "project_id": "bulletapp-902ad",
+    "storage_bucket": "bulletapp-902ad.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:844271567754:android:965089822bd5ffb9f9fe73",
+        "mobilesdk_app_id": "1:106377066055:android:f52e4f7b6c8cc841606362",
         "android_client_info": {
-          "package_name": "app.newsinbullets"
+          "package_name": "com.newsreels.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "844271567754-vf9sp93hvgdktq2icoiko0sr15v75cku.apps.googleusercontent.com",
+          "client_id": "106377066055-29apefig7jbsf83lscqrkbcbj5a4l0ku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newsreels.app",
+            "certificate_hash": "79f622f06a5dae08a5fbb82fd7c5ccb4a783dbc1"
+          }
+        },
+        {
+          "client_id": "106377066055-s1vd5rrpk4duial6828qoarndu2sqbq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newsreels.app",
+            "certificate_hash": "c28909801b54e97fb5100bc1cc784f306970ca29"
+          }
+        },
+        {
+          "client_id": "106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAD9HXUej-1jdKEq6J5f_jyzwscHW7BxdQ"
+          "current_key": "AIzaSyBOijsnxXB15JqV8vUlVbeGMuPfi5a128M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "844271567754-vf9sp93hvgdktq2icoiko0sr15v75cku.apps.googleusercontent.com",
+              "client_id": "106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "844271567754-99n40j0ibc3ot230a7sanaui0jecpvh6.apps.googleusercontent.com",
+              "client_id": "106377066055-dlgqqn4f518mn54t0lp4uoa5hjgkothm.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "app.newsinbullets",
-                "app_store_id": "1540932937"
+                "bundle_id": "app.bullet.reel"
               }
             }
           ]
         }
-      },
-      "admob_app_id": "ca-app-pub-2352871460867862~2661516303"
+      }
     }
   ],
   "configuration_version": "1"

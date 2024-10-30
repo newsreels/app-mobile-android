@@ -100,7 +100,7 @@
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingBottom="@dimen/_5sdp">
 
-                <com.ziro.bullet.mediapicker.gallery.process.TimeLineView
+                <com.newsreels.app.mediapicker.gallery.process.TimeLineView
                     android:id="@+id/timeLineView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -121,7 +121,7 @@
                 android:thumb="@drawable/seek_line"
                 android:visibility="invisible" />
 
-            <com.ziro.bullet.mediapicker.gallery.process.RangeSeekBarView
+            <com.newsreels.app.mediapicker.gallery.process.RangeSeekBarView
                 android:id="@+id/timeLineBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

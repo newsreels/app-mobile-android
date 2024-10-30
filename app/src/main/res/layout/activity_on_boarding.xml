@@ -185,7 +185,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:src="@drawable/onboard_art_2" />
 
-                <com.ziro.bullet.flowlayout.TagFlowLayout
+                <com.newsreels.app.flowlayout.TagFlowLayout
                     android:id="@+id/rvRegionsSelected"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_10sdp" />
 
-                <com.ziro.bullet.flowlayout.TagFlowLayout
+                <com.newsreels.app.flowlayout.TagFlowLayout
                     android:id="@+id/rvRegions"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -298,7 +298,7 @@
                     </RelativeLayout>
                 </RelativeLayout>
 
-                <com.ziro.bullet.flowlayout.TagFlowLayout
+                <com.newsreels.app.flowlayout.TagFlowLayout
                     android:id="@+id/rvTopics"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

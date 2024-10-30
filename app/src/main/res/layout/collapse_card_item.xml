@@ -167,7 +167,7 @@
                 android:layout_marginEnd="@dimen/_11sdp"
                 android:animateLayoutChanges="true">
 
-                <com.ziro.bullet.storyMaker.HorizontalStoriesProgressView
+                <com.newsreels.app.storyMaker.HorizontalStoriesProgressView
                     android:id="@+id/stories"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/progress_bar_height"

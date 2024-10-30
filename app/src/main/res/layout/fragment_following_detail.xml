@@ -177,7 +177,7 @@
                         android:textColor="@color/icon"
                         android:textSize="@dimen/_12sdp" />
 
-                    <com.ziro.bullet.flowlayout.TagFlowLayout
+                    <com.newsreels.app.flowlayout.TagFlowLayout
                         android:id="@+id/rvFollowingFlow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
                         android:textSize="@dimen/_10sdp"
                         android:visibility="gone" />
 
-                    <com.ziro.bullet.flowlayout.TagFlowLayout
+                    <com.newsreels.app.flowlayout.TagFlowLayout
                         android:id="@+id/rvSuggestedFlow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

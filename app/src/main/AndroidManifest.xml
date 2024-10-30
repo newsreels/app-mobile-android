@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ziro.bullet">
+    package="com.newsreels.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -182,13 +182,13 @@
             android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
             android:value="false" />
 
-        <!--        <service-->
-        <!--            android:name=".notification.PushReceiverService"-->
-        <!--            android:exported="false">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
+                <service
+                    android:name=".notification.PushReceiverService"
+                    android:exported="false">
+                    <intent-filter>
+                        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                    </intent-filter>
+                </service>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -350,29 +350,29 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.CenterAnimation">
 
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter android:autoVerify="true">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data
-                    android:host="www.newsinbullets.app"
-                    android:scheme="https" />
+<!--                <data-->
+<!--                    android:host="www.newsinbullets.app"-->
+<!--                    android:scheme="https" />-->
 
-                <data
-                    android:host="view.newsreels.app"
-                    android:scheme="https" />
-                <data
-                    android:host="view.newsreels.app"
-                    android:scheme="http" />
-                <data
-                    android:host="m.bullets.app"
-                    android:scheme="https" />
-                <data
-                    android:host="newsin.bullets.app"
-                    android:scheme="https" />
-            </intent-filter>
+<!--                <data-->
+<!--                    android:host="view.newsreels.app"-->
+<!--                    android:scheme="https" />-->
+<!--                <data-->
+<!--                    android:host="view.newsreels.app"-->
+<!--                    android:scheme="http" />-->
+<!--                <data-->
+<!--                    android:host="m.bullets.app"-->
+<!--                    android:scheme="https" />-->
+<!--                <data-->
+<!--                    android:host="newsin.bullets.app"-->
+<!--                    android:scheme="https" />-->
+<!--            </intent-filter>-->
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -444,11 +444,11 @@
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
                 <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.ziro.bullet.widget.CollectionWidget.ACTION_AUTO_UPDATE" />
-                <action android:name="com.ziro.bullet.widget.CollectionWidget.LEFT_BUTTON_CLICK" />
-                <action android:name="com.ziro.bullet.widget.CollectionWidget.RIGH_BUTTON_CLICK" />
-                <action android:name="com.ziro.bullet.widget.CollectionWidget.CONTAINER_CLICK" />
-                <action android:name="com.ziro.bullet.widget.CollectionWidget.MORE_CLICK" />
+                <action android:name="com.newsreels.app.widget.CollectionWidget.ACTION_AUTO_UPDATE" />
+                <action android:name="com.newsreels.app.widget.CollectionWidget.LEFT_BUTTON_CLICK" />
+                <action android:name="com.newsreels.app.widget.CollectionWidget.RIGH_BUTTON_CLICK" />
+                <action android:name="com.newsreels.app.widget.CollectionWidget.CONTAINER_CLICK" />
+                <action android:name="com.newsreels.app.widget.CollectionWidget.MORE_CLICK" />
             </intent-filter>
 
             <meta-data
@@ -471,7 +471,7 @@
 
 <!--        <meta-data-->
 <!--            android:name="com.onesignal.NotificationServiceExtension"-->
-<!--            android:value="com.ziro.bullet.services.OneSignalNotificationServiceExtension" />-->
+<!--            android:value="com.newsreels.app.services.OneSignalNotificationServiceExtension" />-->
 
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION"

@@ -287,7 +287,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.ziro.bullet.storyMaker.HorizontalStoriesProgressView
+    <com.newsreels.app.storyMaker.HorizontalStoriesProgressView
         android:id="@+id/stories"
         android:layout_width="match_parent"
         android:layout_height="@dimen/progress_bar_height"
