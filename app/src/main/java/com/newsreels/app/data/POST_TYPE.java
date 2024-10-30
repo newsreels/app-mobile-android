@@ -1,0 +1,5 @@
+package com.newsreels.app.data;
+
+public enum POST_TYPE {
+    ARTICLE, VIDEO_ARTICLE, YOUTUBE, REELS,UNKNOWN
+}
