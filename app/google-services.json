@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "106377066055",
+    "project_id": "bulletapp-902ad",
+    "storage_bucket": "bulletapp-902ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106377066055:android:f52e4f7b6c8cc841606362",
+        "android_client_info": {
+          "package_name": "com.newsreels.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106377066055-29apefig7jbsf83lscqrkbcbj5a4l0ku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newsreels.app",
+            "certificate_hash": "79f622f06a5dae08a5fbb82fd7c5ccb4a783dbc1"
+          }
+        },
+        {
+          "client_id": "106377066055-s1vd5rrpk4duial6828qoarndu2sqbq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newsreels.app",
+            "certificate_hash": "c28909801b54e97fb5100bc1cc784f306970ca29"
+          }
+        },
+        {
+          "client_id": "106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOijsnxXB15JqV8vUlVbeGMuPfi5a128M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106377066055-dlgqqn4f518mn54t0lp4uoa5hjgkothm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.bullet.reel"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

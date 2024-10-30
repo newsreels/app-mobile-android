@@ -36,7 +36,7 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <com.ziro.bullet.flowlayout.TagFlowLayout
+    <com.newsreels.app.flowlayout.TagFlowLayout
         android:id="@+id/items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

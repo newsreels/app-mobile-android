@@ -279,7 +279,7 @@
 
             </RelativeLayout>
 
-            <com.ziro.bullet.storyMaker.StoriesProgressView
+            <com.newsreels.app.storyMaker.StoriesProgressView
                 android:id="@+id/stories"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/progress_bar_height"

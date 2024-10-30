@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/reels_view_switcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,25 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/pager"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/black"
-                    android:elevation="@dimen/_12sdp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:elevation="@dimen/_12sdp"
+                android:orientation="vertical"  />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -150,9 +137,9 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_centerInParent="true"
-            android:visibility="visible"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/gradient_progress" />
+            android:indeterminateDrawable="@drawable/gradient_progress"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/notification"

@@ -8,7 +8,7 @@
     android:layoutDirection="ltr"
     android:orientation="vertical">
 
-    <com.ziro.bullet.Helper.DefaultTimeBarNew
+    <com.newsreels.app.Helper.DefaultTimeBarNew
         android:id="@id/exo_progress"
         android:layout_width="match_parent"
         android:layout_height="25dp"

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         tools:background="@color/colorPrimary">
 
-        <com.ziro.bullet.utills.DetailViewPager
+        <com.newsreels.app.utills.DetailViewPager
             android:id="@+id/articles_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

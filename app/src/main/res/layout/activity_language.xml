@@ -75,7 +75,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="visible"
             app:drawableEndCompat="@drawable/ic_arrow_down_icon"
             app:drawableStartCompat="@drawable/ic_regionnew"
             app:layout_constraintEnd_toEndOf="parent"

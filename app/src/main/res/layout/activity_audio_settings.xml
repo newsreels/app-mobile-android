@@ -199,7 +199,7 @@
             app:isb_track_progress_size="2dp" />
 
 
-        <com.ziro.bullet.utills.FloatSeekBar
+        <com.newsreels.app.utills.FloatSeekBar
             android:id="@+id/speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

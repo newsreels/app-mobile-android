@@ -155,7 +155,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_15sdp">
 
-                <com.ziro.bullet.storyMaker.StoriesProgressView
+                <com.newsreels.app.storyMaker.StoriesProgressView
                     android:layout_width="@dimen/progress_bar_height"
                     android:layout_height="@dimen/_30sdp"
                     android:visibility="gone"

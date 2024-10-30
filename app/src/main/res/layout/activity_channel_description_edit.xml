@@ -15,7 +15,7 @@
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.ziro.bullet.utills.SearchLayout
+        <com.newsreels.app.utills.SearchLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -121,7 +121,7 @@
                         android:textSize="@dimen/_9sdp"
                         android:visibility="gone" />
 
-                    <com.ziro.bullet.utills.ChatEditText
+                    <com.newsreels.app.utills.ChatEditText
                         android:id="@+id/channel_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
 
             </RelativeLayout>
 
-        </com.ziro.bullet.utills.SearchLayout>
+        </com.newsreels.app.utills.SearchLayout>
 
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

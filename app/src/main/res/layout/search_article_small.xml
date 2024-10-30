@@ -25,6 +25,7 @@
         android:gravity="center_vertical"
         android:includeFontPadding="false"
         android:maxLines="1"
+        android:visibility="gone"
         android:textAllCaps="false"
         android:textColor="@color/large_time"
         android:textSize="@dimen/_11sdp"

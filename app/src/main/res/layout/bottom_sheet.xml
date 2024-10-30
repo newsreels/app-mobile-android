@@ -431,7 +431,7 @@
                     android:fontFamily="@font/sf_ui_display_regular"
                     android:gravity="center"
                     android:paddingVertical="@dimen/_8sdp"
-                    android:text="@string/block_guardian"
+                    android:text="@string/"
                     android:textColor="@color/com_facebook_blue"
                     android:textSize="@dimen/_15sdp" />
 
