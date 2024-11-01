@@ -315,10 +315,10 @@ public class YoutubeViewHolderEdge extends RecyclerView.ViewHolder {
 
                 if (article.getBullets().get(0).getDuration() == 0) {
                     playDuration.setText("Live");
-                    youTubePlayerView.getPlayerUiController().enableLiveVideoUi(true);
+
                 } else {
                     playDuration.setText(article.getBullets().get(0).getDurationString());
-                    youTubePlayerView.getPlayerUiController().enableLiveVideoUi(false);
+//                    youTubePlayerView.getPlayerUiController().enableLiveVideoUi(false);
                 }
                 playDuration.setVisibility(View.VISIBLE);
 
@@ -340,7 +340,7 @@ public class YoutubeViewHolderEdge extends RecyclerView.ViewHolder {
                     odd_image.setImageResource(Utils.getPlaceholderForTheme(mPrefConfig.getAppTheme()));
                 }
             } else {
-                youTubePlayerView.getPlayerUiController().enableLiveVideoUi(false);
+//                youTubePlayerView.getPlayerUiController().enableLiveVideoUi(false);
                 odd_image.setImageResource(Utils.getPlaceholderForTheme(mPrefConfig.getAppTheme()));
             }
 

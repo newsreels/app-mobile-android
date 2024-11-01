@@ -99,8 +99,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:enableAutomaticInitialization="true"
-            app:showFullScreenButton="false"
-            app:showYouTubeButton="false" />
+
+             />
 
     </androidx.cardview.widget.CardView>
 

@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         app:enableAutomaticInitialization="true"
-        app:showFullScreenButton="true"
-        app:showYouTubeButton="true" />
+         />
 
 </RelativeLayout>

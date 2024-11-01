@@ -445,9 +445,9 @@ public class PostArticleActivity extends BaseActivity implements PostArticleCall
                                 if (article != null) {
                                     headline.setText(article.getTitle());
                                     if (article.getBullets().get(0).getDuration() == 0) {
-                                        youtube_view.getPlayerUiController().enableLiveVideoUi(true);
+//                                        youtube_view.getPlayerUiController().enableLiveVideoUi(true);
                                     } else {
-                                        youtube_view.getPlayerUiController().enableLiveVideoUi(false);
+//                                        youtube_view.getPlayerUiController().enableLiveVideoUi(false);
                                     }
                                     initYouTube(article.getLink());
                                 }
@@ -530,9 +530,9 @@ public class PostArticleActivity extends BaseActivity implements PostArticleCall
                                     case YOUTUBE:
                                         headerTxt.setText(getString(R.string.edit_article));
                                         if (article.getBullets().get(0).getDuration() == 0) {
-                                            youtube_view.getPlayerUiController().enableLiveVideoUi(true);
+//                                            youtube_view.getPlayerUiController().enableLiveVideoUi(true);
                                         } else {
-                                            youtube_view.getPlayerUiController().enableLiveVideoUi(false);
+//                                            youtube_view.getPlayerUiController().enableLiveVideoUi(false);
                                         }
                                         initYouTube(article.getLink());
                                         break;

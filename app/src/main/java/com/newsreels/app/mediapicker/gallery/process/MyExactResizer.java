@@ -2,9 +2,13 @@ package com.newsreels.app.mediapicker.gallery.process;
 
 import androidx.annotation.NonNull;
 
-import com.otaliastudios.transcoder.strategy.size.ExactSize;
-import com.otaliastudios.transcoder.strategy.size.Resizer;
-import com.otaliastudios.transcoder.strategy.size.Size;
+import com.otaliastudios.transcoder.common.ExactSize;
+import com.otaliastudios.transcoder.common.Size;
+import com.otaliastudios.transcoder.resize.Resizer;
+
+//import com.otaliastudios.transcoder.strategy.size.ExactSize;
+//import com.otaliastudios.transcoder.strategy.size.Resizer;
+//import com.otaliastudios.transcoder.strategy.size.Size;
 
 public class MyExactResizer implements Resizer {
     private int height;
