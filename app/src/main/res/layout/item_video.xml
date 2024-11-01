@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         app:enableAutomaticInitialization="true"
-        app:showFullScreenButton="false"
-        app:showYouTubeButton="false" />
+
+         />
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/video_player"

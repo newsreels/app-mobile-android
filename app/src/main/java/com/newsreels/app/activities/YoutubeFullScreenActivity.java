@@ -56,7 +56,7 @@ public class YoutubeFullScreenActivity extends BaseActivity {
         youTubePlayerView = findViewById(R.id.youtube_player_view);
         tracker = new YouTubePlayerTracker();
         getLifecycle().addObserver(youTubePlayerView);
-        youTubePlayerView.enterFullScreen();
+//        youTubePlayerView.enterFullScreen();
 
         if (getIntent() != null) {
             String mode = getIntent().getStringExtra("mode");
@@ -69,6 +69,7 @@ public class YoutubeFullScreenActivity extends BaseActivity {
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                youTubePlayer.toggleFullscreen();
                 youTubePlayer.loadVideo(url, duration);
                 youTubePlayer.addListener(tracker);
             }

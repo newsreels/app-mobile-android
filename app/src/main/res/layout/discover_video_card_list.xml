@@ -32,8 +32,8 @@
         <!--            android:layout_height="match_parent"-->
         <!--            android:visibility="gone"-->
         <!--            app:enableAutomaticInitialization="true"-->
-        <!--            app:showFullScreenButton="false"-->
-        <!--            app:showYouTubeButton="false" />-->
+        <!--            -->
+        <!--             />-->
 
         <ImageView
             android:id="@+id/thumbnail"

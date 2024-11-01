@@ -928,7 +928,7 @@ public class BulletDetailFragment extends Fragment implements NewsCallback, Shar
             }
             if (article.getInfo() != null)
                 favCount.setText("" + article.getInfo().getLike_count());
-            youtubeView.getPlayerUiController().enableLiveVideoUi(article.getBullets() != null && article.getBullets().size() > 0 && article.getBullets().get(0).getDuration() == 0);
+//            youtubeView.getPlayerUiController().enableLiveVideoUi(article.getBullets() != null && article.getBullets().size() > 0 && article.getBullets().get(0).getDuration() == 0);
 
             Glide.with(sourceImage)
                     .load(article.getSourceImageToDisplay())
