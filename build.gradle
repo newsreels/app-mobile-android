@@ -4,7 +4,7 @@ buildscript {
     ext.kotlin_version = '1.5.30'
     repositories {
         google()
-        jcenter()
+//        jcenter()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -23,10 +23,15 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+//        jcenter()
         mavenCentral()
-        maven { url "https://jitpack.io" }
         mavenLocal()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.scijava.org/content/repositories/public/' }
+        maven {
+            url "https://repository.mulesoft.org/nexus/content/repositories/public/"
+        }
+
     }
 }
 
