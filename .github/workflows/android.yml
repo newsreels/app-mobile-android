@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleProductionDebug
 
       - name: Set version code and version name from gradle file
         run: |
