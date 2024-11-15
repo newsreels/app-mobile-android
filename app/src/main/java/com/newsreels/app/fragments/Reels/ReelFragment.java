@@ -148,7 +148,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
         public void success(HomeModel response) {
             homeModel = response;
             if (homeModel != null && homeModel.getData() != null && !homeModel.getData().isEmpty()) {
-                context = homeModel.getData().get(0).getId();
+//                context = homeModel.getData().get(0).getId();
                 tvLabel.setText(homeModel.getData().get(0).getTitle());
                 loadCacheData();
             }
@@ -407,7 +407,9 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
             @Override
             public void onHomeTab(DataItem item) {
                 isHomeTabClicked = true;
+
                 context = item.getId();
+                Log.d(TAG, "onHomeTab:1 "+context);
                 if (forYouReelSheet != null) {
                     forYouReelSheet.dismiss();
                 }
@@ -451,6 +453,7 @@ public class ReelFragment extends Fragment implements VideoInterface, M3UParser.
                     if (!isHomeTabClicked) {
                         tvLabel.setText(homeModel.getData().get(0).getTitle());
                         context = homeModel.getData().get(0).getId();
+                        Log.d(TAG, "onHomeTab:0 "+context);
                         reload();
                     }
                 }

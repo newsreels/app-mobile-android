@@ -22,12 +22,26 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleRelease
 
+      - name: Set version from gradle file
+        run: |
+          VERSION_NAME=$(grep "versionName" app/build.gradle | head -n 1 | sed 's/.*"\(.*\)".*/\1/')
+          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
+
       - name: Upload APK to Slack
         run: |
-          curl -X POST https://slack.com/api/files.upload \
-            -F file=@app/build/outputs/apk/release/app-release-unsigned.apk \
-            -F "channels=android-news-reels" \
-            -F "initial_comment=The APK is ready!!" \
-            -H "Authorization: Bearer $SLACK_WEBHOOK_URL"
+          # Construct APK file path dynamically using version name
+          APK_PATH="app/build/outputs/apk/release/app-release-unsigned-v${VERSION_NAME}.apk"
+          
+          # Check if the file exists and upload it
+          if [ -f "$APK_PATH" ]; then
+            curl -X POST https://slack.com/api/files.upload \
+              -F file=@$APK_PATH \
+              -F "channels=android-news-reels" \
+              -F "initial_comment=The APK is ready!! Version: $VERSION_NAME" \
+              -H "Authorization: Bearer ${{ secrets.SLACK_WEBHOOK_URL }}"
+          else
+            echo "APK not found at $APK_PATH"
+            exit 1
+          fi
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

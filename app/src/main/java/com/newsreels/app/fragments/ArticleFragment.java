@@ -695,7 +695,7 @@ public class ArticleFragment extends Fragment implements NewsCallback, ShareToMa
     }
 
     private void forYouSelect() {
-        mContextId = "VE9QX05FV1MqKioqKkZPUl9ZT1U=";
+        mContextId = "";
         mode = KEY_FOR_YOU;
         if (getActivity() != null) {
             prefConfig.setReelsType(Constants.REELS_FOR_YOU);

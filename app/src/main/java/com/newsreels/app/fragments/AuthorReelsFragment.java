@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -207,6 +208,7 @@ public class AuthorReelsFragment extends Fragment implements StudioCallback, Vid
                     if (!isLoading && !TextUtils.isEmpty(mPage) && currentTotalCount <= lastItem + visibleThreshold) {
                         //show your loading view
                         // load content in background
+                        Log.d("SHAHZAIB", "TAG 1: "+contextOrAuthorId);
                         if (!TextUtils.isEmpty(contextOrAuthorId))//;;;;/////////////////////////////////
                             reelPresenter.getVideos("", contextOrAuthorId, mPage, true, false, "");
                     }
@@ -345,6 +347,7 @@ public class AuthorReelsFragment extends Fragment implements StudioCallback, Vid
             isReload = true;
             if (presenter == null) return;
             mPage = "";
+            Log.d("SHAHZAIB", "TAG 2: "+contextOrAuthorId);
             if (!TextUtils.isEmpty(contextOrAuthorId))
                 reelPresenter.getVideos("", contextOrAuthorId, mPage, true, false, "");
         }

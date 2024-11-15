@@ -41,6 +41,7 @@ public class ReelPresenter {
     }
 
     public void getVideos(String type, String context, String page, boolean reload, boolean isPagination, String hashtag) {
+        Log.d("SHAHZAIB", "TAG 0: getVideos");
         if (!InternetCheckHelper.isConnected()) {
             videoInterface.error(activity.getString(R.string.internet_error));
 //            videoInterface.loaderShow(true);
@@ -76,6 +77,7 @@ public class ReelPresenter {
     public void getReelsHome(String type, String context, String page, boolean reload, boolean showShimmer, boolean isPagination, String hashtag) {
 //        Log.d(TAG, "getReelsHome: Token:: " + mPrefs.getAccessToken());
 //        videoInterface.loaderShow(showShimmer);
+
         if (!InternetCheckHelper.isConnected()) {
             videoInterface.loaderShow(false);
             Toast.makeText(activity, "" + activity.getString(R.string.network_error), Toast.LENGTH_SHORT).show();

@@ -122,19 +122,19 @@ public class BulletApp extends Application implements androidx.work.Configuratio
 
 
 
-//        new Thread(){
-//            @Override
-//            public void run() {
-//                super.run();
-//                try{
-//                    Log.d("SHAHZAIB", "ACCESS TOKEN -> "+getAccessToken());
-//                }
-//                catch (Exception e){
-//                    e.printStackTrace();
-//                    Log.d("SHAHZAIB", "ACCESS TOKEN -> FAILED");
-//                }
-//            }
-//        }.start();
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try{
+                    Log.d("SHAHZAIB", "ACCESS TOKEN -> "+getAccessToken());
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    Log.d("SHAHZAIB", "ACCESS TOKEN -> FAILED");
+                }
+            }
+        }.start();
 
     }
 //
