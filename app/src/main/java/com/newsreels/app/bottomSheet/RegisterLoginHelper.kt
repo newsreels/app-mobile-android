@@ -38,7 +38,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
-import com.onesignal.OneSignal
+//import com.onesignal.OneSignal
 import com.newsreels.app.APIResources.ApiClient
 import com.newsreels.app.BuildConfig
 import com.newsreels.app.CacheData.DbHandler
@@ -85,6 +85,12 @@ import kotlinx.android.synthetic.main.username_btn_conitnue.view.*
 import kotlinx.android.synthetic.main.welcome_back_flow.view.*
 import kotlinx.android.synthetic.main.welcome_continuee.view.*
 import kotlinx.android.synthetic.main.welcome_edittext_password.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -128,6 +134,7 @@ class RegisterLoginHelper(
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(BuildConfig.G_SERVER_CLIENT_ID)
+//            .requestServerAuthCode(BuildConfig.G_SERVER_CLIENT_ID)
             .requestEmail()
             .build()
 
@@ -772,6 +779,11 @@ class RegisterLoginHelper(
 
         view.continuePassword.setOnClickListener {
             validPassword = view.edittextPassword.text.toString()
+//            passwordPresenter!!.register(
+//                    validEmail,
+//                    view.edittextPassword.text.toString(),
+//                    true
+//            )
             enterTermsFlow(true)
         }
 
@@ -787,68 +799,73 @@ class RegisterLoginHelper(
         view.welcome_back_flow.visibility = View.GONE
         view.back.visibility = View.GONE
         view.password_flow.visibility = View.GONE
-        view.terms_flow.visibility = View.VISIBLE
+//        view.terms_flow.visibility = View.VISIBLE
         view.reg_complete_flow.visibility = View.GONE
         view.closeBtn.visibility = View.GONE
-        if (isFirstTime) {
-
-            val webSettings: WebSettings = view.terms_webview.settings
-            view.terms_webview.webViewClient = WebViewClient()
-            webSettings.javaScriptEnabled = true
-            webSettings.domStorageEnabled = true
-            view.terms_webview.settings.cacheMode = WebSettings.LOAD_DEFAULT
-//            webSettings.setAppCacheEnabled(false)
-            view.terms_webview.loadUrl("https://www.newsinbullets.app/terms?header=false")
-            //WEBVIEW CALLBACKS
-            view.terms_webview.setWebChromeClient(object : WebChromeClient() {
-                override fun onProgressChanged(view1: WebView, newProgress: Int) {
-                    super.onProgressChanged(view1, newProgress)
-                    Log.e(
-                        TAG,
-                        "onProgressChanged() called with: view1 = $view1, newProgress = $newProgress"
-                    )
-//                    view.linearPb.setProgressCompat(newProgress, true)
-                    if (newProgress == 10) {
-                        loaderShow(true)
-                    } else if (newProgress == 100) {
-                        loaderShow(false)
-                    }
-
-                }
-            })
-            view.disagree.setOnClickListener {
-                activity.setResult(RESULT_OK)
-                activity.finish()
-            }
-            view.agree.setOnClickListener {
-
-                Log.e(TAG, "=========================")
-                Log.e(TAG, "email : " + validEmail)
-                Log.e(TAG, "password : " + validPassword)
-                Log.e(TAG, "username : " + validUsername)
-
-                if (!InternetCheckHelper.isConnected()) {
-                    Utils.showPopupMessageWithCloseButton(
-                        activity,
-                        2000,
-                        activity.getString(R.string.internet_error),
-                        true
-                    )
-                    return@setOnClickListener
-                }
-                logEvent(
-                    activity,
-                    Events.SIGNIN_CLICK
-                )
-
-                passwordPresenter!!.register(
-                    validEmail,
-                    view.edittextPassword.text.toString(),
-                    true
-                )
-
-            }
-        }
+        passwordPresenter!!.register(
+                validEmail,
+                view.edittextPassword.text.toString(),
+                true
+        )
+//        if (isFirstTime) {
+//
+//            val webSettings: WebSettings = view.terms_webview.settings
+//            view.terms_webview.webViewClient = WebViewClient()
+//            webSettings.javaScriptEnabled = true
+//            webSettings.domStorageEnabled = true
+//            view.terms_webview.settings.cacheMode = WebSettings.LOAD_DEFAULT
+////            webSettings.setAppCacheEnabled(false)
+//            view.terms_webview.loadUrl("https://www.newsinbullets.app/terms?header=false")
+//            //WEBVIEW CALLBACKS
+//            view.terms_webview.setWebChromeClient(object : WebChromeClient() {
+//                override fun onProgressChanged(view1: WebView, newProgress: Int) {
+//                    super.onProgressChanged(view1, newProgress)
+//                    Log.e(
+//                        TAG,
+//                        "onProgressChanged() called with: view1 = $view1, newProgress = $newProgress"
+//                    )
+////                    view.linearPb.setProgressCompat(newProgress, true)
+//                    if (newProgress == 10) {
+//                        loaderShow(true)
+//                    } else if (newProgress == 100) {
+//                        loaderShow(false)
+//                    }
+//
+//                }
+//            })
+//            view.disagree.setOnClickListener {
+//                activity.setResult(RESULT_OK)
+//                activity.finish()
+//            }
+//            view.agree.setOnClickListener {
+//
+//                Log.e(TAG, "=========================")
+//                Log.e(TAG, "email : " + validEmail)
+//                Log.e(TAG, "password : " + validPassword)
+//                Log.e(TAG, "username : " + validUsername)
+//
+//                if (!InternetCheckHelper.isConnected()) {
+//                    Utils.showPopupMessageWithCloseButton(
+//                        activity,
+//                        2000,
+//                        activity.getString(R.string.internet_error),
+//                        true
+//                    )
+//                    return@setOnClickListener
+//                }
+//                logEvent(
+//                    activity,
+//                    Events.SIGNIN_CLICK
+//                )
+//
+//                passwordPresenter!!.register(
+//                    validEmail,
+//                    view.edittextPassword.text.toString(),
+//                    true
+//                )
+//
+//            }
+//        }
     }
 
     fun enterRegCompleteFlow(isFirstTime: Boolean) {
@@ -1442,7 +1459,7 @@ class RegisterLoginHelper(
                 val token = task.result
                 Log.d(TAG, "onComplete: fcm  == $token")
                 preference.firebaseToken = token
-                OneSignal.setExternalUserId(token)
+//                OneSignal.setExternalUserId(token)
                 fcmPresenter!!.sentTokenToServer(preference)
             })
             if (!TextUtils.isEmpty(preference.isLanguagePushedToServer)) {
@@ -1459,21 +1476,53 @@ class RegisterLoginHelper(
         } else {
             when (step) {
                 "6" -> {
-                    var intent: Intent? = null
-                    intent = Intent(activity, ProfileNameActivity::class.java)
-                    intent.putExtra("onboard", userConfigModel.isOnboarded)
-                    intent.putExtra("isPopUpLogin", isPopup)
-                    view.tint.visibility = View.GONE
-                    activity.startActivityForResult(intent, LoginPopupActivity.LOGIN_WITH_EMAIL)
+
+
+//                    var intent: Intent? = null
+//                    intent = Intent(activity, ProfileNameActivity::class.java)
+//                    intent.putExtra("onboard", userConfigModel.isOnboarded)
+//                    intent.putExtra("isPopUpLogin", isPopup)
+//                    view.tint.visibility = View.GONE
+//                    activity.startActivityForResult(intent, LoginPopupActivity.LOGIN_WITH_EMAIL)
+                    //TODO FIX
+                    CoroutineScope(Dispatchers.IO).launch {
+                        validEmail.split("@").getOrNull(0)?.let{
+                            ProfilePresenter(activity,object: ProfileApiCallback{
+                                override fun loaderShow(flag: Boolean)
+                                {
+                                    //                                TODO("Not yet implemented")
+                                }
+
+                                override fun error(error: String?, img: String?)
+                                {
+                                    //                                TODO("Not yet implemented")
+                                }
+
+                                override fun success()
+                                {
+                                    //                                TODO("Not yet implemented")
+                                }
+
+
+                            }).updateProfile(it,null,null,true,it)
+                        }
+                    }
+
+                    gotoHome()
+
+
+
                 }
                 "4" -> enterRegCompleteFlow(true)
                 "7" -> {
-                    var intent: Intent? = null
-                    intent = Intent(activity, ProfileNameActivity::class.java)
-                    intent.putExtra("onboard", userConfigModel.isOnboarded)
-                    intent.putExtra("isPopUpLogin", isPopup)
-                    view.tint.visibility = View.GONE
-                    activity.startActivityForResult(intent, LoginPopupActivity.LOGIN_WITH_EMAIL)
+                    gotoHome()
+//                    passDataToPreviousActivity()
+//                    var intent: Intent? = null
+//                    intent = Intent(activity, ProfileNameActivity::class.java)
+//                    intent.putExtra("onboard", userConfigModel.isOnboarded)
+//                    intent.putExtra("isPopUpLogin", isPopup)
+//                    view.tint.visibility = View.GONE
+//                    activity.startActivityForResult(intent, LoginPopupActivity.LOGIN_WITH_EMAIL)
                 }
             }
         }
@@ -1614,6 +1663,7 @@ class RegisterLoginHelper(
         )
         fbCallbackManager?.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
+
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         } else if (requestCode == LoginPopupActivity.LOGIN_WITH_EMAIL) {

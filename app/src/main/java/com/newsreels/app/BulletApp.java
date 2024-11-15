@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.Pair;
 
 import androidx.annotation.NonNull;
@@ -20,14 +21,20 @@ import com.facebook.FacebookSdk;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
-import com.onesignal.OneSignal;
+import com.google.firebase.messaging.FirebaseMessaging;
+//import com.onesignal.OneSignal;
 import com.newsreels.app.data.PrefConfig;
-import com.newsreels.app.services.OneSignalNotificationOpenHandler;
+//import com.newsreels.app.services.OneSignalNotificationOpenHandler;
 import com.newsreels.app.utills.CacheUtils;
 import com.newsreels.app.utills.Constants;
 import com.newsreels.app.utills.InternetCheckHelper;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class BulletApp extends Application implements androidx.work.Configuration.Provider {
@@ -52,6 +59,13 @@ public class BulletApp extends Application implements androidx.work.Configuratio
         AppCompatDelegate.setDefaultNightMode(theme);
     }
 
+    private  String getAccessToken() throws IOException {
+        GoogleCredentials googleCredentials = GoogleCredentials
+                .fromStream(this.getAssets().open("service-account.json"))
+                .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging"));
+        googleCredentials.refresh();
+        return googleCredentials.getAccessToken().getTokenValue();
+    }
     public static HttpProxyCacheServer getProxy(Context context) {
         BulletApp app = (BulletApp) context.getApplicationContext();
         return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
@@ -94,17 +108,34 @@ public class BulletApp extends Application implements androidx.work.Configuratio
 
         Constants.muted = prefConfig.getBulletAudioMute();
 
-        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
-        OneSignal.initWithContext(getApplicationContext());
-        OneSignal.setAppId(BuildConfig.One_Signal);
-        OneSignal.setNotificationOpenedHandler(new OneSignalNotificationOpenHandler(getApplicationContext()));
+//        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+//        OneSignal.initWithContext(getApplicationContext());
+//        OneSignal.setAppId(BuildConfig.One_Signal);
+//        OneSignal.setNotificationOpenedHandler(new OneSignalNotificationOpenHandler(getApplicationContext()));
 
-        if (prefConfig.getFirebaseToken() != null && !prefConfig.getFirebaseToken().isEmpty())
-            OneSignal.setExternalUserId(prefConfig.getFirebaseToken());
+//        if (prefConfig.getFirebaseToken() != null && !prefConfig.getFirebaseToken().isEmpty())
+//            OneSignal.setExternalUserId(prefConfig.getFirebaseToken());
 
         PRDownloaderConfig.newBuilder().setDatabaseEnabled(true);
         PRDownloader.initialize(getApplicationContext());
         InternetCheckHelper.getInstance().startObservingConnection(getApplicationContext());
+
+
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try{
+                    Log.d("SHAHZAIB", "ACCESS TOKEN -> "+getAccessToken());
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    Log.d("SHAHZAIB", "ACCESS TOKEN -> FAILED");
+                }
+            }
+        }.start();
+
     }
 //
 //    @Override

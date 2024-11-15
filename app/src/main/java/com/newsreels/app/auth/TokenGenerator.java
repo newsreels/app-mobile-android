@@ -1,5 +1,7 @@
 package com.newsreels.app.auth;
 
+import android.util.Log;
+
 import com.newsreels.app.BuildConfig;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class TokenGenerator {
 
 
     public void socialExchangeToken(String token, String tokenType, String language, OAuthResponseCallback callback) {
+        Log.d("TAG", "TOKEN: "+token);
         String grant_type = "token_exchange";
         OAuthClient.Builder builder = new OAuthClient.Builder(token, grant_type, tokenType, BuildConfig.AUTH_CLIENT_ID, BuildConfig.AUTH_CLIENT_SECRET, BuildConfig.AUTH_ACCOUNT_URL);
         builder.langauge(language);

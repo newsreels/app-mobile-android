@@ -10,6 +10,17 @@ public class OneSignalNotificationModel {
     @SerializedName("title")
     private String title;
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    @SerializedName("message")
+    private String message;
+
     @SerializedName("thumbnail")
     private String thumbnail;
 

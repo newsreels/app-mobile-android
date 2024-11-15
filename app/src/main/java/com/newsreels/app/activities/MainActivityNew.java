@@ -48,9 +48,11 @@ import androidx.lifecycle.Lifecycle;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.remoteconfig.ConfigUpdate;
 import com.google.firebase.remoteconfig.ConfigUpdateListener;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
@@ -88,6 +90,7 @@ import com.newsreels.app.model.AudioObject;
 import com.newsreels.app.model.Menu.CategoryResponse;
 import com.newsreels.app.model.RemoteConfigModel;
 import com.newsreels.app.model.articles.ArticleResponse;
+import com.newsreels.app.presenter.FCMPresenter;
 import com.newsreels.app.presenter.MainPresenter;
 import com.newsreels.app.presenter.UserConfigPresenter;
 import com.newsreels.app.texttospeech.TextToAudioPlayerHelper;
@@ -557,6 +560,29 @@ public class MainActivityNew extends BaseActivity implements TempHomeFragment.On
 //        }
 //        invalidateViews(true);
         updateWidget();
+        pasTokenToServer();
+    }
+
+    private void pasTokenToServer() {
+        Log.d(TAG, "loadReels: "+ prefConfig.getAccessToken());
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    Log.w("SHAHZAIB", "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
+//
+//                // Get new FCM registration token
+
+                String token = task.getResult();
+
+                Log.d("SHAHZAIB", "onComplete: fcm  == " + token);
+
+                prefConfig.setFirebaseToken(token);
+                new FCMPresenter(MainActivityNew.this).sentTokenToServer(prefConfig);
+            }
+        });
     }
 
     private void checkRemoteConfig() {

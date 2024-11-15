@@ -23,7 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.onesignal.OneSignal;
+//import com.onesignal.OneSignal;
 import com.newsreels.app.R;
 import com.newsreels.app.analytics.AnalyticsEvents;
 import com.newsreels.app.analytics.Events;
@@ -267,7 +267,7 @@ public class SplashActivity extends BaseActivity implements PasswordInterface, U
                     Log.d("FCM", "onUserConfigSuccess: " + token);
                     prefConfig.setFirebaseToken(token);
                     fcmPresenter.sentTokenToServer(prefConfig);
-                    OneSignal.setExternalUserId(token);
+//                    OneSignal.setExternalUserId(token);
                 }
                 Locale deviceLocale = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
