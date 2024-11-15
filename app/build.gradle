@@ -42,8 +42,8 @@ android {
         targetSdkVersion 34
 //        versionCode 93
 //        versionName "2.5.2"
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         setProperty("archivesBaseName", "Newsreel" + "-v" + versionCode + "(" + versionName + ")")
@@ -108,7 +108,7 @@ android {
             buildConfigField "String", 'POLYGON_TOKEN', '"Bearer IZm7ZaTdCOkEBpeGx0IPKjp3nfL6CjV9"'
             buildConfigField "String", 'WEATHER_API_TOKEN', '"93a47871d1284877b7e112904221406"'
             buildConfigField "String", 'WEATHER_URL', '"https://api.weatherapi.com/v1/forecast.json"'
-            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"106377066055-29apefig7jbsf83lscqrkbcbj5a4l0ku.apps.googleusercontent.com"'
+            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com"'
             buildConfigField "String", 'One_Signal', '"5ca68357-0d2e-4c8c-af93-a04403ee9cb9"'
             buildConfigField "String", 'API_VERSION', '"v6"'
 //            buildConfigField "String", 'API_VERSION', '"v4"'
@@ -132,7 +132,7 @@ android {
             buildConfigField "String", 'POLYGON_TOKEN', '"Bearer IZm7ZaTdCOkEBpeGx0IPKjp3nfL6CjV9"'
             buildConfigField "String", 'WEATHER_API_TOKEN', '"93a47871d1284877b7e112904221406"'
             buildConfigField "String", 'WEATHER_URL', '"https://api.weatherapi.com/v1/forecast.json"'
-            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"106377066055-29apefig7jbsf83lscqrkbcbj5a4l0ku.apps.googleusercontent.com"'
+            buildConfigField "String", 'G_SERVER_CLIENT_ID', '"106377066055-hi51km6npbv0u58h4anrtallueua2e0f.apps.googleusercontent.com"'
             buildConfigField "String", 'One_Signal', '"5ca68357-0d2e-4c8c-af93-a04403ee9cb9"'
             buildConfigField "String", 'API_VERSION', '"v6"'
             buildConfigField "String", 'HelpUrl', '"https://www.rideziro.com/terms"'
@@ -141,6 +141,16 @@ android {
 //            buildConfigField "String", 'CHARTBOOST_APPID', '"6110f38f6a729e0783b72f7e"'
 //            buildConfigField "String", 'CHARTBOOST_SIGNATURE', '"fda0b02bffcee5de532feb4a68856e7b12a3092e"'
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+}
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+        force 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+        force 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     }
 }
 configurations.all {
@@ -159,7 +169,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.android.material:material:1.4.0'
 
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-messaging:24.0.3'
     // Add the Firebase Crashlytics SDK.
     implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
     implementation 'com.google.firebase:firebase-perf:20.2.0'
@@ -250,7 +260,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-dynamic-links:21.1.0'
     implementation 'com.google.firebase:firebase-analytics:21.2.0'
 
-    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
     implementation("com.squareup.moshi:moshi:1.12.0")
 
     //Skeleton loading
@@ -280,7 +290,7 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.8'
 
 //    Onesignal
-    implementation 'com.onesignal:OneSignal:4.8.3'
+//    implementation 'com.onesignal:OneSignal:4.8.3'
 
     //PR Downloader
 //    implementation 'com.mindorks.android:prdownloader:0.6.0'
@@ -296,5 +306,8 @@ dependencies {
 
     //RemoteConfig
     implementation 'com.google.firebase:firebase-config:21.3.0'
+
+    implementation 'com.google.auth:google-auth-library-oauth2-http:0.26.0'
+
 
 }

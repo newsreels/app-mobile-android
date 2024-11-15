@@ -444,6 +444,7 @@ public class FirstActivity extends BaseActivity implements PasswordInterface, Us
 
     private void loadReels() {
         loaderShow(true);
+
         Call<ReelResponse> call = ApiClient.getInstance(this)
                 .getApi()
                 .newsReel(

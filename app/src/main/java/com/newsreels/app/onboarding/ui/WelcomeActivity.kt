@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.google.firebase.messaging.FirebaseMessaging
-import com.onesignal.OneSignal
+//import com.onesignal.OneSignal
 import com.newsreels.app.R
 import com.newsreels.app.activities.BaseActivity
 import com.newsreels.app.activities.MainActivityNew
@@ -188,7 +188,7 @@ class WelcomeActivity : BaseActivity(), PasswordInterface, UserConfigCallback,
                 Log.d("TAG", "onComplete: fcm  == $token")
                 prefConfig.firebaseToken = token
                 fcmPresenter.sentTokenToServer(prefConfig)
-                OneSignal.setExternalUserId(token)
+//                OneSignal.setExternalUserId(token)
             })
             if (!TextUtils.isEmpty(prefConfig.isLanguagePushedToServer)) {
                 mSocialLoginPresenter.selectRegion(prefConfig.selectedRegion, prefConfig)

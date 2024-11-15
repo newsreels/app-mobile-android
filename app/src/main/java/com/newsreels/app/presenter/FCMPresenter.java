@@ -45,12 +45,12 @@ public class FCMPresenter {
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
-                    Log.e("FCM", "FCM token to server onResponse : " + response.toString());
+                    Log.e("SHAHZAB -> FCM", "FCM token to server onResponse : " + response.toString());
                 }
 
                 @Override
                 public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
-                    Log.e("FCM", "FCM token to server Failure : " + t.getMessage());
+                    Log.e("SHAHZAB -> FCM", "FCM token to server Failure : " + t.getMessage());
                 }
             });
         }

@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "106377066055",
     "project_id": "bulletapp-902ad",
-    "storage_bucket": "bulletapp-902ad.appspot.com"
+    "storage_bucket": "bulletapp-902ad.firebasestorage.app"
   },
   "client": [
     {

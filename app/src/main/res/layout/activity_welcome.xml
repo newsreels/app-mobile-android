@@ -22,6 +22,7 @@
     <RelativeLayout
         android:id="@+id/langMain"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_16sdp">
 
@@ -43,6 +44,7 @@
                 android:layout_marginHorizontal="@dimen/_4sdp"
                 android:fontFamily="@font/roboto_bold"
                 android:maxLength="3"
+
                 android:paddingHorizontal="@dimen/_20sdp"
                 android:paddingVertical="@dimen/_8sdp"
                 android:text="@string/language"

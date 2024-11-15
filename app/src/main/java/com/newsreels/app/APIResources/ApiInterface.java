@@ -148,6 +148,16 @@ public interface ApiInterface {
             @Query("debug") Boolean debug
     );
 
+    @GET("/fcmtoken")
+    Call<ReelResponse> passToken(
+            @Header("Authorization") String token,
+            @Query("context") String context,
+            @Query("tag") String hashtag,
+            @Query("page") String page,
+            @Query("type") String type,
+            @Query("debug") Boolean debug
+    );
+
     @GET("/news/reels/archive")
     Call<ReelResponse> newsReelArchive(@Header("Authorization") String token, @Query("page") String page);
 
@@ -172,7 +182,7 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("/notification/token")
+    @POST("/news/fcmtoken")
     Call<ResponseBody> sendTokenToServer(@Header("Authorization") String token, @Field("token") String fcmToken);
 
     @FormUrlEncoded

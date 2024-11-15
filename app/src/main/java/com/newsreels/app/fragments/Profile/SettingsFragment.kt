@@ -19,7 +19,7 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.onesignal.OneSignal
+//import com.onesignal.OneSignal
 import com.squareup.picasso.Picasso
 import com.newsreels.app.BuildConfig
 import com.newsreels.app.CacheData.DbHandler
@@ -477,7 +477,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         mPrefConfig!!.prefPrimaryLang = savedLangName
         mPrefConfig!!.selectedRegion = savedRegion
         mPrefConfig!!.firstTimeLaunch = false
-        OneSignal.removeExternalUserId()
+//        OneSignal.removeExternalUserId()
         try {
             if (activity != null) {
                 if (Utils.isMyServiceRunning(activity, VideoProcessorService::class.java)) {
