@@ -1,0 +1,33 @@
+name: Build and Upload APK
+
+on:
+  push:
+    branches:
+      - shahzaib
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        run: ./gradlew assembleRelease
+
+      - name: Upload APK to Slack
+        run: |
+          curl -X POST https://slack.com/api/files.upload \
+            -F file=@app/build/outputs/apk/release/app-release-unsigned.apk \
+            -F "channels=android-news-reels" \
+            -F "initial_comment=The APK is ready!!" \
+            -H "Authorization: Bearer $SLACK_WEBHOOK_URL"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
